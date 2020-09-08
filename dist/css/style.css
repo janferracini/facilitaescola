@@ -7,6 +7,11 @@
   --verdeclaro: #32deed;
 }
 
+.navbar:focus {
+  color: var(--salmao);
+}
+
+
 /* Botões */
 .btn-laranja {
   color: #1F2D3D;
