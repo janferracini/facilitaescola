@@ -1,5 +1,25 @@
+<?php
+session_start();
+
+ini_set("display_errors", 1);
+ini_set("display_startup_erros", 1);
+error_reporting(E_ALL);
+
+$pagina = "home";
+
+include "../config/conexao.php";
+
+$site   = $_SERVER['SERVER_NAME'];
+$porta  = $_SERVER["SERVER_PORT"];
+$url    = $_SERVER['SCRIPT_NAME'];
+$h      = $_SERVER['REQUEST_SCHEME'];
+
+$base = "$h://$site:$porta/$url"
+
+?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
   <meta charset="utf-8">
@@ -7,6 +27,7 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
   <title>Facilita Escola | Inicio</title>
+  <base href="<?= $base; ?>">
 
   <link rel="shortcut icon" href="../docs/assets/img/FE-icone.ico">
 
@@ -14,23 +35,35 @@
   <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
   <!-- IonIcons -->
   <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Tempusdominus Bbootstrap 4 -->
+  <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="../dist/css/style.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
-<!--
-BODY TAG OPTIONS:
-=================
-Apply one or more of the following classes to to the body tag
-to get the desired effect
-|---------------------------------------------------------|
-|LAYOUT OPTIONS | sidebar-collapse                        |
-|               | sidebar-mini                            |
-|---------------------------------------------------------|
--->
+
 
 <body class="hold-transition sidebar-mini">
+
+  <?php
+  $pagina = $pagina . ".php";
+
+
+  /* VALIDAÇÃO DE LOGADO. SE NÃO TIVER, IR PARA PÁGINA DE LOGIN
+  if (!isset($_SESSION["facilita_escola"]["id"])) {
+    //incluir login
+    include $pagina;
+  } else { 
+  */
+
+  ?>
+
   <div class="wrapper">
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -43,90 +76,18 @@ to get the desired effect
 
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
-        <!-- Messages Dropdown Menu -->
+        <!-- Botão CONFIG -->
         <li class="nav-item dropdown">
           <a class="nav-link" data-toggle="dropdown" href="#">
-            <i class="far fa-comments"></i>
-            <span class="badge badge-danger navbar-badge">3</span>
+            <i class="fas fa-key"></i>
           </a>
-          <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-            <a href="#" class="dropdown-item">
-              <!-- Message Start -->
-              <div class="media">
-                <img src="../dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
-                <div class="media-body">
-                  <h3 class="dropdown-item-title">
-                    Brad Diesel
-                    <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
-                  </h3>
-                  <p class="text-sm">Call me whenever you can...</p>
-                  <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-                </div>
-              </div>
-              <!-- Message End -->
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
-              <!-- Message Start -->
-              <div class="media">
-                <img src="../dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-                <div class="media-body">
-                  <h3 class="dropdown-item-title">
-                    John Pierce
-                    <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
-                  </h3>
-                  <p class="text-sm">I got your message bro</p>
-                  <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-                </div>
-              </div>
-              <!-- Message End -->
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
-              <!-- Message Start -->
-              <div class="media">
-                <img src="../dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-                <div class="media-body">
-                  <h3 class="dropdown-item-title">
-                    Nora Silvester
-                    <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
-                  </h3>
-                  <p class="text-sm">The subject goes here</p>
-                  <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-                </div>
-              </div>
-              <!-- Message End -->
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
-          </div>
+
         </li>
-        <!-- Notifications Dropdown Menu -->
+        <!-- Botão SAIR -->
         <li class="nav-item dropdown">
           <a class="nav-link" data-toggle="dropdown" href="#">
-            <i class="far fa-bell"></i>
-            <span class="badge badge-warning navbar-badge">15</span>
+            <i class="fas fa-sign-out-alt"></i>
           </a>
-          <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-            <span class="dropdown-item dropdown-header">15 Notifications</span>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
-              <i class="fas fa-envelope mr-2"></i> 4 new messages
-              <span class="float-right text-muted text-sm">3 mins</span>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
-              <i class="fas fa-users mr-2"></i> 8 friend requests
-              <span class="float-right text-muted text-sm">12 hours</span>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
-              <i class="fas fa-file mr-2"></i> 3 new reports
-              <span class="float-right text-muted text-sm">2 days</span>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-          </div>
         </li>
       </ul>
     </nav>
@@ -142,78 +103,31 @@ to get the desired effect
 
       <!-- Sidebar -->
       <div class="sidebar">
-        <!-- Sidebar user panel (optional) -->
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-          <div class="image">
-            <img src="../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-          </div>
-          <div class="info">
-            <!-- BUSCA NO DB -->
-            <a href="#" class="d-block">Alexander Pierce</a>    
-          </div>
-        </div>
-
         <!-- Sidebar Menu -->
         <nav class="mt-2">
-          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-            <!-- Add icons to the links using the .nav-icon class
-            with font-awesome or any other icon font library -->
+          <ul class="nav nav-pills nav-sidebar nav-legacy nav-flat nav-child-indent flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <li class="nav-header"></li>
             <li class="nav-item">
               <a href="#" class="nav-link active">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
-                <p>Dashboard</p>
+                <p>Início</p>
               </a>
             </li>
 
-            <li class="nav-header"></li>
-
-            <li class="nav-item has-treeview">
-              <a href="#" class="nav-link">
-              <i class="nav-icon far fa-plus-square"></i>
+            <li class="nav-item">
+              <a href="pages/calendar.html" class="nav-link">
+                <i class="nav-icon fas fa-pencil-alt"></i>
                 <p>
-                  Cadastros
-                  <i class="fas fa-angle-left right"></i>
+                  Atividades
                 </p>
               </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="../pages/layout/top-nav.html" class="nav-link">
-                    <i class="fas fa-user-graduate nav-icon"></i>
-                    <p>Alunos</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../pages/layout/top-nav-sidebar.html" class="nav-link">
-                    <i class="fas fa-apple-alt nav-icon"></i>
-                    <p>Professores</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../pages/layout/boxed.html" class="nav-link">
-                    <i class="fas fa-laptop-code nav-icon"></i>
-                    <p>Equipe Administrativa</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../pages/layout/fixed-sidebar.html" class="nav-link">
-                    <i class="fas fa-book-open nav-icon"></i>
-                    <p>Disciplina</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../pages/layout/fixed-sidebar.html" class="nav-link">
-                    <i class="fas fa-chalkboard nav-icon"></i>
-                    <p>Turmas</p>
-                  </a>
-                </li>
-              </ul>
             </li>
-            
+
             <li class="nav-item">
               <a href="pages/calendar.html" class="nav-link">
                 <i class="nav-icon fas fa-calendar-alt"></i>
                 <p>
-                  Calendário
+                  Eventos
                 </p>
               </a>
             </li>
@@ -231,19 +145,11 @@ to get the desired effect
               <a href="pages/calendar.html" class="nav-link">
                 <i class="nav-icon fas fa-envelope"></i>
                 <p>
-                  Mensagens
+                  Enviar Mensagens
                 </p>
               </a>
             </li>
 
-            <li class="nav-item">
-              <a href="pages/calendar.html" class="nav-link">
-                <i class="nav-icon fas fa-folder-open"></i>
-                <p>
-                  Arquivos
-                </p>
-              </a>
-            </li>
 
           </ul>
         </nav>
@@ -263,7 +169,7 @@ to get the desired effect
             </div><!-- /.col -->
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="#">Início</a></li>
+                <li class="breadcrumb-item">Início</i></li>
               </ol>
             </div><!-- /.col -->
           </div><!-- /.row -->
@@ -274,8 +180,32 @@ to get the desired effect
       <!-- Main content -->
       <div class="content">
         <div class="container-fluid">
-          
-          <!-- /.row -->
+
+          <?php
+
+          $pagina = "home.php";
+
+          if (isset($_GET["parametro"])) {
+            //recuperar o parametro
+            $p = trim($_GET["parametro"]);
+            $p = explode("/", $p);
+
+            $pasta      = $p[0];
+            $arquivo    = $p[1];
+
+            $pagina = "$pasta/$arquivo.php";
+            if (isset($p[2]))
+              $id     = $p[2];
+          }
+
+
+          if (file_exists($pagina)) {
+            include $pagina;
+          } else {
+            include "paginas/erro.php";
+          }
+          ?>
+
         </div>
         <!-- /.container-fluid -->
       </div>
@@ -291,14 +221,15 @@ to get the desired effect
 
     <!-- Main Footer -->
     <footer class="main-footer">
-      <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
-      All rights reserved.
-      <div class="float-right d-none d-sm-inline-block">
-        <b>Version</b> 3.0.5
-      </div>
-    </footer>
+      Copyright &copy; 2020 <strong>Facilita Escola</strong>.
+  </div>
+  </footer>
   </div>
   <!-- ./wrapper -->
+
+  <?php
+  //}
+  ?>
 
   <!-- REQUIRED SCRIPTS -->
 
@@ -308,6 +239,11 @@ to get the desired effect
   <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- AdminLTE -->
   <script src="../dist/js/adminlte.js"></script>
+  <!-- daterangepicker -->
+  <script src="plugins/moment/moment.min.js"></script>
+  <script src="plugins/daterangepicker/daterangepicker.js"></script>
+  <!-- Tempusdominus Bootstrap 4 -->
+  <script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
 
   <!-- OPTIONAL SCRIPTS -->
   <script src="../plugins/chart.js/Chart.min.js"></script>
