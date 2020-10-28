@@ -49,6 +49,10 @@ $base = "$h://$site:$porta/$url"
 
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+  <script src="build/js/jquery.inputmask.min.js"></script>
+  <script src="build/js/bindings/inputmask.binding.js"></script>
+
 </head>
 
 

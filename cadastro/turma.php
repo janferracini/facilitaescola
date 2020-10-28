@@ -8,7 +8,7 @@ if (!isset($id)) $id = "";
 $serie = $descricao = $periodo = $ano = $periodo_id = '';
 
 if (!empty($id)) {
-    //select nos dados do cliente
+    //select nos dados da turma 
     $sql = "SELECT  t.id,
                     t.serie,
                     t.descricao,
@@ -17,7 +17,7 @@ if (!empty($id)) {
                     p.id idperiodo,
                     p.periodo
             FROM turma t
-            INNER JOIN periodo p on (p.id = t.periodo_id)
+            INNER JOIN periodo p ON (p.id = t.periodo_id)
             WHERE t.id = :id
             LIMIT 1";
     $consulta = $pdo->prepare($sql);
@@ -65,13 +65,13 @@ if (!empty($id)) {
     <form action="salvar/turma" name="formCadastro" method="post" data-parsley-validate enctype="multipart/form-data" role="form">
         <div class="row mb-3">
             <div class="col-sm-6">
-                <input type="hidden" class="form-control" name="id" id="id" readonly value="<?= $id ?>">
-                <label for="serie">Série:<?php echo $id?></label>
+                <input type="hidden" class="form-control" id="id" name="id" readonly value="<?= $id ?>">
+                <label for="serie">Série<?php echo $id?></label>
                 <input type="text" name="serie" id="serie" class="form-control" required data-parsley-required-message="Preencha a Série" value="<?= $serie ?>" placeholder="Digite a Série: Pré, 1, 2, 3 ...">
             </div>
 
             <div class="col-sm-6">
-                <label for="descricao">Descrição:</label>
+                <label for="descricao">Descrição</label>
                 <input type="text" name="descricao" id="descricao" class="form-control" required data-parsley-required-message="Preencha a Descrição" value="<?= $descricao ?>" placeholder="Digite a Descrição: A, B, C ...">
             </div>
 
@@ -80,7 +80,7 @@ if (!empty($id)) {
                 <div class="form-group">
                     <label for="periodo">Período</label>
                     <input type="text" name="periodo_id" id="periodo_id" class="form-control" list="listaPeriodo"
-                    data-parsley-required-message="Selecione um tipo de quadrinho" value="<?php
+                    data-parsley-required-message="Selecione o período" value="<?php
                                                 if (!empty($periodo_id)) echo "$periodo - $periodo_id";
                                                 ?>">
                     <datalist id="listaPeriodo">
@@ -99,12 +99,11 @@ if (!empty($id)) {
                             };
                         ?>
                     </datalist>
-                    </select>
                 </div>
             </div>
 
             <div class="col-sm-6">
-                <label for="ano">Ano:</label>
+                <label for="ano">Ano</label>
                 <input type="text" name="ano" id="ano" class="form-control" required data-parsley-required-message="Preencha o Ano" value="<?= $ano ?>" placeholder="Digite o Ano">
             </div>
 

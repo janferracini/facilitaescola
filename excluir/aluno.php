@@ -7,15 +7,15 @@
     //verificar se id está vazia
     if (empty ($id)) {
         echo "<script>
-                alert('Não foi possível excluir o registro');history.back();
+                alert('Não foi possível excluir o este cadastro');history.back();
             </script>";
             exit;
     }
 
-    //verificar se existe uma grade cadastrada com esse turma
+    //verificar se existe uma aluno cadastrado
     $sql = "SELECT id
-            FROM grade
-            WHERE turma_id = :id
+            FROM aluno
+            WHERE aluno_id = :id
             LIMIT 1";
     //prepara a sql para executar
     $consulta = $pdo->prepare($sql);
@@ -30,16 +30,15 @@
         //se o id não está vazio, não posso excluir
         
         echo "<script>
-                alert('Não é possível excluir esta turma');history.back();
+                alert('Não é possível excluir este cadastro pois possui turma relacionada');history.back();
             </script>";
     }
 
     //se existir, avisar e voltar
     
 
-    //excluir a editora
-    $sql = "DELETE FROM turma WHERE id = :id limit 1";
-    
+    //excluir aluno
+    $sql = "DELETE FROM aluno WHERE id = :id limit 1";
     $consulta = $pdo->prepare($sql);
     $consulta->bindParam(":id", $id);
     //verificar se não executou
@@ -49,7 +48,7 @@
             </script>";
     }
 
-    //redirecionar para a listagem de editoras
-    echo "<script>location.href='listar/turma'</script>"
+    //redirecionar para a listagem de alunos
+    echo "<script>location.href='listar/aluno'</script>"
 
 ?>

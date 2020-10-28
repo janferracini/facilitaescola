@@ -46,6 +46,9 @@ $base = "$h://$site:$porta/$url"
   <link rel="stylesheet" href="dist/css/style.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+  <script src="plugins/inputmask/jquery.inputmask.min.js"></script>
+  <script src="plugins/inputmask/inputmask.js"></script>
 </head>
 
 <body class="hold-transition login-page">
@@ -84,9 +87,9 @@ $base = "$h://$site:$porta/$url"
 
           <div class="input-group mb-3 ">
             <select class="custom-select" id="tipo_usuario">
-              <option class="input-group-text " selected >
+              <option class="input-group-text " selected>
                 Selecione o tipo de Usuário
-            </option>
+              </option>
               <option value="1">Aluno</option>
               <option value="2">Professor</option>
               <option value="3">Administração</option>

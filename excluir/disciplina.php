@@ -14,9 +14,10 @@
 
     //verificar se existe uma grade cadastrada com esse turma
     $sql = "SELECT id
-            FROM grade
-            WHERE turma_id = :id
+            FROM disciplina
+            WHERE disciplina_id = :id
             LIMIT 1";
+
     //prepara a sql para executar
     $consulta = $pdo->prepare($sql);
     //passar o id do parametro
@@ -30,7 +31,7 @@
         //se o id não está vazio, não posso excluir
         
         echo "<script>
-                alert('Não é possível excluir esta turma');history.back();
+                alert('Não é possível excluir este registro pois contém turma cadastrada');history.back();
             </script>";
     }
 
@@ -38,8 +39,8 @@
     
 
     //excluir a editora
-    $sql = "DELETE FROM turma WHERE id = :id limit 1";
-    
+    $sql = "DELETE FROM disciplina WHERE id = :id limit 1";
+
     $consulta = $pdo->prepare($sql);
     $consulta->bindParam(":id", $id);
     //verificar se não executou
@@ -50,6 +51,6 @@
     }
 
     //redirecionar para a listagem de editoras
-    echo "<script>location.href='listar/turma'</script>"
+    echo "<script>location.href='listar/disciplina'</script>"
 
 ?>
