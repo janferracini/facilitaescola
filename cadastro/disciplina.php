@@ -48,11 +48,7 @@ if (!empty($id)) {
 
     <form action="salvar/disciplina" name="formDisciplina" method="post" data-parsley-validate enctype="multipart/form-data" role="form">
         <div class="row mb-3">
-            <div class="col-sm-4">
-                <label for="id">ID</label>
-                <input type="text" id="id" name="id" class="form-control" readonly>
-            </div>
-
+        
             <div class="col-sm-8">
                 <label for="descricao">Disciplina</label>
                 <input type="text" id="disciplina" name="disciplina" class="form-control" 

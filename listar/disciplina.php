@@ -29,7 +29,6 @@
         <table id="tabDisciplina" class="table table-hover text-nowrap">
             <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Disciplina</th>
                     <th>Ações</th>
                 </tr>
@@ -51,7 +50,6 @@
 
                 // Mostrar na tela
                 echo '<tr>
-                        <td>' . $id . '</td>
                         <td>' . $disciplina . '</td>
                         <td><a href="cadastro/disciplina/' . $id . '" class="btn btn-success btn-sm">
                             <i class="fas fa-edit"></i></a>

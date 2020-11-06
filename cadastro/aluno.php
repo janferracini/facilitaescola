@@ -1,31 +1,21 @@
 <?php
-//verificar se não está logado
-// if (!isset($_SESSION["hqs"]["id"])) {
-//     exit;
-// }
 
 if (!isset($id)) $id = "";
 
-$matricula = $login = $nome = $cpf = $rg = $data_nascimento = $logradouro = $cep = $cidade_id = $bairro = 
-$foto = $serie = $turma = $pessoa_id = '';
+// tabela pessoa
+$nome = $rg = $cpf = $data_nascimento = $senha = $email = $login = 
+// tabela aluno
+$matricula = $foto = $serie = $pessoa_id = 
+// tabela endereço
+$logradouro = $numero = $cep = $complemento = $cidade_id = '';
 
 if (!empty($id)) {
-    $sql = "SELECT a.id,
-                   a.matricula,
-                   a.foto,
-                   a.serie,
-                   pe.nome,
-                   pe.rg,
-                   pe.cpf,
-                   pe.data_nascimento,
-                   pe.login,
-                   pe.senha,
-                   t.serie,
-                   t.periodo_id,
-                   pe.id pessoa_id
-            FROM aluno a
-            INNER JOIN pessoa pe ON (pe.id = a.pessoa_id),
-            INNER JOIN turma t ON (
+    $sql = "SELECT a.matricula, a.foto, a.serie, a.pessoa_id,
+            pe.nome, pe.rg. pe.cpf, pe.data_nascimento, pe.senha, pe.senha, pe.email, pe.login,
+            e.logradouro, e.numero, e.cep, e.complemento, e.cidade_id
+            FROM pessoa pe
+            INNER JOIN aluno a ON (a.pessoa_id = pe.id),
+            INNER JOIN endereco e ON (e.id = cidade_id)
             WHERE pe.id = :id
             LIMIT 1";
 
@@ -41,18 +31,22 @@ if (!empty($id)) {
     }
 
     $id         = $dados->id;
-    $matricula  = $dados->matricula;
-    $login      = $dados->login;
-    $cpf        = $dados->cpf;
+    $nome       = $dados->nome;
     $rg         = $dados->rg;
-    $data_nascimento =  $dados->data_nascimento;
-    $cep        = $dados->cep;
-    $cidade_id  = $dados->cidade_id;
-    $bairro     = $dados->bairro;
+    $cpf        = $dados->cpf;
+    $data_nascimento = $dados->data_nascimento;
+    $senha      = $dados->senha;
+    $email      = $dados->email;
+    $login      = $dados->login;
+    $matricula  = $dados->matricula;
     $foto       = $dados->foto;
     $serie      = $dados->serie;
-    $turma      = $dados->turma;
     $pessoa_id  = $dados->pessoa_id;
+    $logradouro = $dados->logradouro;
+    $numero     = $dados->numero;
+    $cep        = $dados->cep;
+    $complemento = $dados->complemento;
+    $cidade_id  = $dados->cidade_id;
 }
 ?>
 
@@ -81,19 +75,19 @@ if (!empty($id)) {
             <!-- LINHA 1 -->
             <div class="col-12 col-md-3">
                 <label for="CGM"> CGM </label>
-                <input type="number" class="form-control" id="cgm" name="CGM" require data-parsley-required-message="Preencha com o número do CGM do aluno" 
+                <input type="number" class="form-control" id="cgm" name="CGM" required data-parsley-required-message="Preencha com o número do CGM do aluno" 
                 placeholder="Código Geral de Matrícula" value="<?= $matricula ?>">
             </div>
 
             <div class="col-12 col-md-3">
                 <label for="nome"> Login </label>
-                <input type="text" class="form-control" id="login" name="login" require data-parsley-required-message="Preencha o nome do login" 
+                <input type="text" class="form-control" id="login" name="login" required data-parsley-required-message="Preencha o nome do login" 
                 placeholder="Insira com o login de acesso" value="<?= $login ?>">
             </div>
 
             <div class="col-12 col-md-6">
                 <label for="nome"> Nome Completo </label>
-                <input type="text" class="form-control" id="nome" name="nome" require data-parsley-required-message="Preencha o nome do aluno" value="<?= $nome?>">
+                <input type="text" class="form-control" id="nome" name="nome" required data-parsley-required-message="Preencha o nome do aluno" value="<?= $nome?>">
             </div>
 
             <!-- LINHA 2 -->
@@ -104,39 +98,39 @@ if (!empty($id)) {
 
             <div class="col-12 col-md-4">
                 <label for="rg"> RG </label>
-                <input type="text" class="form-control" id="rg" name="rg" require data-parsley-required-message="Preencha o RG" value="<?= $rg ?>">
+                <input type="text" class="form-control" id="rg" name="rg" required data-parsley-required-message="Preencha o RG" value="<?= $rg ?>">
             </div>
 
             <div class="col-12 col-md-4">
                 <label for="dataNascimento"> Data De Nascimento </label>
-                <input type="date" class="form-control" id="dataNascimento" name="dataNascimento" require data-parsley-required-message="Preencha a data de nascimento" value="<?= $data_nascimento?>">
+                <input type="date" class="form-control" id="dataNascimento" name="dataNascimento" required data-parsley-required-message="Preencha a data de nascimento" value="<?= $data_nascimento?>">
             </div>
 
             <!-- LINHA 3-->
             <div class="col-12 col-md-3">
                 <label for="cep"> CEP </label>
-                <input type="text" class="form-control" id="cep" name="cep" require data-parsley-required-message="Preencha com um CEP válido" value="<?= $cep ?>">
+                <input type="text" class="form-control" id="cep" name="cep" required data-parsley-required-message="Preencha com um CEP válido" value="<?= $cep ?>">
             </div>
 
             <div class="col-12 col-md-5">
                 <label for="cidade"> Cidade </label>
-                <input type="text" class="form-control" id="cidade" name="cidade" require data-parsley-required-message="Preencha a cidade" value="<?= $cidade_id?>">
+                <input type="text" class="form-control" id="cidade" name="cidade" required data-parsley-required-message="Preencha a cidade" value="<?= $cidade_id ?>">
             </div>
 
             <div class="col-12 col-md-4">
                 <label for="bairro"> Bairro </label>
-                <input type="text" class="form-control" id="bairro" name="bairro" require data-parsley-required-message="Preencha o bairro" value="<?= $bairro?>">
+                <input type="text" class="form-control" id="bairro" name="bairro" required data-parsley-required-message="Preencha o bairro">
             </div>
 
             <!-- LINHA 4 -->
             <div class="col-12 col-md-8">
                 <label for="endereco"> Endereço </label>
-                <input type="text" class="form-control" id="endereco" name="endereco" require data-parsley-required-message="Preencha o endereço" value="<?= $logradouro?>">
+                <input type="text" class="form-control" id="endereco" name="endereco" required data-parsley-required-message="Preencha o endereço" value="<?= $logradouro?>">
             </div>
 
             <div class="col-12 col-md-4">
                 <label for="numero"> Número </label>
-                <input type="text" class="form-control" id="numero" name="numero" require data-parsley-required-message="Preencha com o número da residência" placeholder="Insira o número da residência">
+                <input type="text" class="form-control" id="numero" name="numero" required data-parsley-required-message="Preencha com o número da residência" placeholder="Insira o número da residência">
             </div>
 
             <!-- LINHA 5 -->
@@ -148,12 +142,12 @@ if (!empty($id)) {
             <!-- LINHA 6 -->
             <div class="col-12 col-md-4">
                 <label for="telefone"> Telefone </label>
-                <input type="text" class="form-control" id="telefone" name="telefone" require data-parsley-required-message="Preencha com o número de telefone">
+                <input type="text" class="form-control" id="telefone" name="telefone" required data-parsley-required-message="Preencha com o número de telefone">
             </div>
 
             <div class="col-12 col-md-4">
                 <label for="celular"> Celular/WhatsApp </label>
-                <input type="text" class="form-control" id="celular" name="telefone" require data-parsley-required-message="Preencha com o número de celular/whatsapp">
+                <input type="text" class="form-control" id="celular" name="telefone" required data-parsley-required-message="Preencha com o número de celular/whatsapp">
             </div>
 
             <div class="col-12 col-md-4">
@@ -164,7 +158,7 @@ if (!empty($id)) {
             <!-- LINHA 7 -->
             <div class="col-12 col-md-4">
                 <label for="turma"> Turma </label> <!-- colocar dropdown-->
-                <input type="text" class="form-control" id="turma" name="turma" list="listaTurma" require data-parsley-required-message="Preencha com a turma do aluno" value="<?php
+                <input type="text" class="form-control" id="turma" name="turma" list="listaTurma" required data-parsley-required-message="Preencha com a turma do aluno" value="<?php
                     if (!empty($turma)) echo "$serie - $descricao - $ano";
                     ?>">
 
@@ -228,4 +222,10 @@ if (!empty($id)) {
             <i class="fas fa-check"></i> Gravar Dados
         </button>
     </form>
+
+    <script>
+        $(document).ready(function() {
+            $("#cpf").inputmask("999.999.999-99");
+        })
+    </script>
 </div>

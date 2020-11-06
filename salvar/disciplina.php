@@ -19,6 +19,26 @@ if ($_POST) {
         echo "<script>alert('Preencha a Disciplina');history.back();</script>";
         exit;
     }
+
+        //verificar se existe disciplina com mesmo nome
+        $sql = "SELECT id
+        FROM disciplina
+        WHERE disciplina = ? AND id <> ?
+        LIMIT 1 ";
+    
+        $consulta = $pdo->prepare($sql);
+    
+        $consulta->bindParam(1, $disciplina);
+        $consulta->bindParam(2, $id);
+    
+        $consulta->execute();
+    
+        $dados = $consulta->fetch(PDO::FETCH_OBJ);
+    
+        if (!empty($dados->id)) {
+            echo "<script>alert('Disciplina já existente');location.href='listar/disciplina';</script>;";
+            exit;
+        }
     
     //iniciar uma transação com o DB toda alteração pra baixo, só será feito após o commit
     $pdo->beginTransaction();
