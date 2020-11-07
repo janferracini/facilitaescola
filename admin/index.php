@@ -125,25 +125,25 @@ $base = "$h://$site:$porta/$url"
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="../cadastro/aluno.php" class="nav-link">
+                  <a href="cadastro/aluno" class="nav-link">
                     <i class="fas fa-user-graduate nav-icon"></i>
                     <p>Alunos</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="../pages/layout/top-nav-sidebar.html" class="nav-link">
+                  <a href="cadastro/professor" class="nav-link">
                     <i class="fas fa-apple-alt nav-icon"></i>
                     <p>Professores</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="../pages/layout/boxed.html" class="nav-link">
+                  <a href="cadastro/admin" class="nav-link">
                     <i class="fas fa-laptop-code nav-icon"></i>
                     <p>Equipe Administrativa</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="../pages/layout/fixed-sidebar.html" class="nav-link">
+                  <a href="cadastro/disciplina" class="nav-link">
                     <i class="fas fa-book-open nav-icon"></i>
                     <p>Disciplina</p>
                   </a>

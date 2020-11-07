@@ -12,10 +12,10 @@
             exit;
     }
 
-    //verificar se existe uma grade cadastrada com esse turma
+    //verificar se existe uma grade cadastrada com essa disciplina
     $sql = "SELECT id
             FROM grade
-            WHERE turma_id = :id
+            WHERE disciplina_id = :id
             LIMIT 1";
     //prepara a sql para executar
     $consulta = $pdo->prepare($sql);
@@ -35,8 +35,7 @@
             </script>";
     }
 
-
-    $sql = "DELETE FROM turma WHERE id = :id limit 1";
+    $sql = "DELETE FROM disciplina WHERE id = :id limit 1";
     $consulta = $pdo->prepare($sql);
     $consulta->bindParam(":id", $id);
     //verificar se não executou
@@ -46,7 +45,6 @@
             </script>";
     }
 
-
-    echo "<script>location.href='listar/turma'</script>"
+    echo "<script>location.href='listar/disciplina'</script>"
 
 ?>

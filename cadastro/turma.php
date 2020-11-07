@@ -66,7 +66,7 @@ if (!empty($id)) {
         <div class="row mb-3">
             <div class="col-sm-6">
                 <input type="hidden" class="form-control" name="id" id="id" readonly value="<?= $id ?>">
-                <label for="serie">Série:<?php echo $id?></label>
+                <label for="serie">Série:</label>
                 <input type="text" name="serie" id="serie" class="form-control" required data-parsley-required-message="Preencha a Série" value="<?= $serie ?>" placeholder="Digite a Série: Pré, 1, 2, 3 ...">
             </div>
 
