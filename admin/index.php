@@ -79,14 +79,14 @@ $base = "$h://$site:$porta/$url"
       <ul class="navbar-nav ml-auto">
         <!-- Botão CONFIG -->
         <li class="nav-item dropdown">
-          <a class="nav-link" data-toggle="dropdown" href="#">
+          <a class="nav-link"  href="#">
             <i class="fas fa-key"></i>
           </a>
 
         </li>
         <!-- Botão SAIR -->
         <li class="nav-item dropdown">
-          <a class="nav-link" data-toggle="dropdown" href="#" data-toggle="modal" data-target="#logoutModal">
+          <a class="nav-link"  href="#" data-toggle="modal" data-target="#logoutModal">
             <i class="fas fa-sign-out-alt"></i>
           </a>
         </li>
