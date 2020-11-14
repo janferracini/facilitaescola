@@ -82,28 +82,17 @@ $base = "$h://$site:$porta/$url"
             </div>
           </div>
 
-          <div class="input-group mb-3 ">
-            <select class="custom-select" id="tipo_usuario">
-              <option class="input-group-text " selected >
-                Selecione o tipo de Usuário
-            </option>
-              <option value="1">Aluno</option>
-              <option value="2">Professor</option>
-              <option value="3">Administração</option>
-            </select>
-          </div>
-
           <!-- fim dos campos de informação de login -->
 
           <div class="row">
             <div class="col-8">
-              <div class="icheck-orange">
+              <!--<div class="icheck-orange">
                 <input type="checkbox" id="remember">
                 <label for="remember">
                   Lembrar-me
                 </label>
-              </div>
-            </div>
+              </div>-->
+            </div> 
             <!-- /.col -->
             <div class="col-4">
               <button type="submit" class="btn btn-outline-laranja btn-block">Entrar</button>
@@ -111,6 +100,8 @@ $base = "$h://$site:$porta/$url"
             <!-- /.col -->
           </div>
         </form>
+
+        <p class="danger" >Login ou senha incorretos</p>
 
         <p class="mb-1">
           <a href="forgot-password.html">Esqueci minha senha</a>

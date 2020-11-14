@@ -5,9 +5,9 @@ ini_set("display_errors", 1);
 ini_set("display_startup_erros", 1);
 error_reporting(E_ALL);
 
-$pagina = "home";
+$pagina = "paginas/login";
 
-include "../config/conexao.php";
+include "config/conexao.php";
 
 $site   = $_SERVER['SERVER_NAME'];
 $porta  = $_SERVER["SERVER_PORT"];
@@ -54,16 +54,15 @@ $base = "$h://$site:$porta/$url"
 
 <body class="hold-transition sidebar-mini">
   <?php
-  $pagina = $pagina . ".php";
+    $pagina = $pagina . ".php";
 
 
-  /* VALIDAÇÃO DE LOGADO. SE NÃO TIVER, IR PARA PÁGINA DE LOGIN
+  //VALIDAÇÃO DE LOGADO. SE NÃO TIVER, IR PARA PÁGINA DE LOGIN
   if (!isset($_SESSION["facilita_escola"]["id"])) {
     //incluir login
     include $pagina;
   } else { 
-  */
-
+  
   ?>
 
   <div class="wrapper">
@@ -87,7 +86,7 @@ $base = "$h://$site:$porta/$url"
         </li>
         <!-- Botão SAIR -->
         <li class="nav-item dropdown">
-          <a class="nav-link" data-toggle="dropdown" href="#">
+          <a class="nav-link" data-toggle="dropdown" href="#" data-toggle="modal" data-target="#logoutModal">
             <i class="fas fa-sign-out-alt"></i>
           </a>
         </li>
@@ -98,7 +97,7 @@ $base = "$h://$site:$porta/$url"
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-orange elevation-4">
       <!-- Brand Logo -->
-      <a href="index3.php" class="brand-link">
+      <a href="index.php" class="brand-link">
         <img src="img/facilitaescola-logo.png" alt="Facilita Escola Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">Facilita Escola</span>
       </a>
@@ -131,7 +130,7 @@ $base = "$h://$site:$porta/$url"
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="cadastro/professor" class="nav-link">
+                  <a href="professor" class="nav-link">
                     <i class="fas fa-apple-alt nav-icon"></i>
                     <p>Professores</p>
                   </a>
@@ -228,7 +227,7 @@ $base = "$h://$site:$porta/$url"
             $pasta      = $p[0];
             $arquivo    = $p[1];
 
-            $pagina = "../$pasta/$arquivo.php";
+            $pagina = "$pasta/$arquivo.php";
             if (isset($p[2]))
               $id     = $p[2];
           }
@@ -237,7 +236,7 @@ $base = "$h://$site:$porta/$url"
           if (file_exists($pagina)) {
             include $pagina;
           } else {
-            include "../erro.php";
+            include "paginas/erro.php";
           }
           ?>
 
@@ -261,8 +260,30 @@ $base = "$h://$site:$porta/$url"
   </footer>
   </div>
   <!-- ./wrapper -->
+
+
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Sair do Sistema?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Selecione sair para efetuar o logout do Sistema</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <a class="btn btn-primary" href="sair.php">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
   <?php
-  //}
+  }
   ?>
   <!-- REQUIRED SCRIPTS -->
 
