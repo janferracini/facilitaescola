@@ -5,7 +5,7 @@
 // }
 
 if (!isset($id)) $id = "";
-$serie = $descricao = $periodo = $ano = $periodo_id = '';
+$serie = $descricao = $descricaoP = $ano = $periodo_id = '';
 
 if (!empty($id)) {
     //select nos dados da turma 
@@ -15,7 +15,7 @@ if (!empty($id)) {
                     t.ano,
                     t.periodo_id,
                     p.id idperiodo,
-                    p.periodo
+                    p.descricao
             FROM turma t
             INNER JOIN periodo p ON (p.id = t.periodo_id)
             WHERE t.id = :id
@@ -33,7 +33,7 @@ if (!empty($id)) {
     $id             = $dados->id;
     $serie          = $dados->serie;
     $descricao      = $dados->descricao;
-    $periodo        = $dados->periodo;
+    $descricaoP     = $dados->descricaoP;
     $ano            = $dados->ano;
     $periodo_id     = $dados->periodo_id;
     $idperiodo      = $dados->idperiodo;
@@ -81,21 +81,21 @@ if (!empty($id)) {
                     <label for="periodo">Período</label>
                     <input type="text" name="periodo_id" id="periodo_id" class="form-control" list="listaPeriodo"
                     data-parsley-required-message="Selecione o período" value="<?php
-                                                if (!empty($periodo_id)) echo "$periodo - $periodo_id";
+                                                if (!empty($descricaoP)) echo "$descricaoP";
                                                 ?>">
                     <datalist id="listaPeriodo">
                         <?php
-                            $sql = "SELECT id, periodo
+                            $sql = "SELECT descricao
                                     FROM periodo
-                                    ORDER BY id";
+                                    ORDER BY descricao";
                             $consulta = $pdo->prepare($sql);
                             $consulta->execute();
                             
                             while ($d = $consulta->fetch(PDO::FETCH_OBJ)) {
                                 //separar os dados
-                                $periodo_id    = $d->id;
-                                $periodo       = $d->periodo;
-                                echo '<option value=" ' . $periodo . ' - ' . $periodo_id . '">';
+                                // $periodo_id    = $d->id;
+                                $descricaoP    = $d->descricaoP;
+                                echo '<option value=" ' . $descricaoP . '">';
                             };
                         ?>
                     </datalist>

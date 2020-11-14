@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 if (!isset($id)) $id = "";
 
@@ -64,8 +64,8 @@ if (!empty($id)) {
 <div class="container">
 
     <div class="float-right">
-        <a href="cadastro/aluno" class="btn btn-success">Novo Registro</a>
-        <a href="listar/aluno" class="btn btn-info">Listar Registro</a>
+        <a href="cadastro/aluno" class="btn btn-success">Novo Aluno</a>
+        <a href="listar/aluno" class="btn btn-info">Listar Alunos</a>
     </div>
 
     <div class="clearfix"></div> <!-- Ignora os floats -->
@@ -74,9 +74,9 @@ if (!empty($id)) {
         <div class="row">
             <!-- LINHA 1 -->
             <div class="col-12 col-md-3">
-                <label for="CGM"> CGM </label>
-                <input type="number" class="form-control" id="cgm" name="CGM" required data-parsley-required-message="Preencha com o número do CGM do aluno" 
-                placeholder="Código Geral de Matrícula" value="<?= $matricula ?>">
+                <label for="matricula"> Matrícula </label>
+                <input type="number" class="form-control" id="cgm" name="CGM" required data-parsley-required-message="Preencha com o número da matrícula" 
+                placeholder="Número da matrícula" value="<?= $matricula ?>">
             </div>
 
             <div class="col-12 col-md-3">
@@ -130,7 +130,7 @@ if (!empty($id)) {
 
             <div class="col-12 col-md-4">
                 <label for="numero"> Número </label>
-                <input type="text" class="form-control" id="numero" name="numero" required data-parsley-required-message="Preencha com o número da residência" placeholder="Insira o número da residência">
+                <input type="text" class="form-control" id="numero" name="numero" required data-parsley-required-message="Preencha com o número da residência">
             </div>
 
             <!-- LINHA 5 -->
@@ -212,14 +212,14 @@ if (!empty($id)) {
 
             <div class="col-12 col-md-4">
                 <label for="nome"> Senha </label>
-                <input type="text" class="form-control" id="login" name="login" 
+                <input type="password" class="form-control" id="login" name="login" 
                 require data-parsley-required-message="Preencha o nome do login" placeholder="Insira com a senha inicial de acesso">
             </div>
         </div>
 
         <br>
         <button type="submit" class="btn btn-success margin">
-            <i class="fas fa-check"></i> Gravar Dados
+            <i class="fas fa-check"></i> Salvar
         </button>
     </form>
 

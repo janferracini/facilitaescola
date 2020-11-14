@@ -45,10 +45,11 @@ if ($_POST) {
 
     if (empty($id)) {
         $sql = "INSERT INTO disciplina
-                    (disciplina)
+                    (id, disciplina)
                 VALUES 
-                    (:disciplina)";
+                    (:id, :disciplina)";
         $consulta = $pdo->prepare($sql);
+        $consulta->bindParam("id", $id);
         $consulta->bindParam("disciplina", $disciplina);
     } else {
         $sql = "UPDATE disciplina    

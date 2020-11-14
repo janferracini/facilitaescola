@@ -12,6 +12,7 @@ if (!empty($id)) {
 
     $consulta = $pdo->prepare($sql);
     $consulta->bindParam(":id", $id);
+    $consulta->bindParam(":disciplina", $disciplina);
     $consulta->execute();
 
     $dados = $consulta->fetch(PDO::FETCH_OBJ);
@@ -50,7 +51,7 @@ if (!empty($id)) {
         <div class="row mb-3">
         
             <div class="col-sm-8">
-                <label for="descricao">Disciplina</label>
+                <label for="disciplina">Disciplina</label>
                 <input type="text" id="disciplina" name="disciplina" class="form-control" 
                 required data-parsley-required-message="Preencha a Disciplina" placeholder="Nome da disciplina" value="<?= $disciplina ?>">
             </div>

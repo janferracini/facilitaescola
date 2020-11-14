@@ -10,7 +10,7 @@
     <div class="container-fluid">
         <div class="row">
             <div>
-                <h1 class="m-0 text-dark">Turmas Cadastradas</h1>
+                <h1 class="m-0 text-dark">Professores Cadastrados</h1>
             </div><!-- /.col -->
         </div><!-- /.row -->
     </div><!-- /.container-fluid -->
@@ -19,8 +19,8 @@
 <div class="container">
 
     <div class="float-right">
-        <a href="cadastro/turma" class="btn btn-success">Nova Turma</a>
-        <a href="listar/turma" class="btn btn-info">Listar Turmas</a>
+        <a href="cadastro/turma" class="btn btn-success">Novo Professor</a>
+        <a href="listar/turma" class="btn btn-info">Listar Professores</a>
     </div>
 
     <div class="clearfix"></div>
@@ -30,47 +30,22 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Série</th>
-                    <th>Descrição</th>
-                    <th>Período</th>
-                    <th>Ano</th>
+                    <th>Nome</th>
+                    <th>Formação</th>
                     <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
             <?php
 
-            // $sql = "SELECT  t.id,
-            //                 t.serie,
-            //                 t.descricao,
-            //                 t.ano,
-            //                 t.periodo_id,
-            //                 p.id idperiodo,
-            //                 p.periodo
-            //         FROM turma t
-            //         INNER JOIN periodo p on (p.id = t.periodo_id)
-            //         ORDER BY serie";
-                    
-            // $consulta = $pdo->prepare($sql);
-            // $consulta->execute();
-
-            // while ($dados = $consulta->fetch(PDO::FETCH_OBJ)) {
-            //     // Separar os dados
-            //     $id = $dados->id;
-            //     $serie = $dados->serie;
-            //     $descricao = $dados->descricao;
-            //     $periodo_id = $dados->periodo_id;
-            //     $periodo = $dados->periodo;
-            //     $ano = $dados->ano;
-            //     $idperiodo = $dados->idperiodo;
+            
 
                 // Mostrar na tela
                 echo '<tr>
-                        <td>' . 1 . '</td>
-                        <td>' . 3 . '</td>
-                        <td>' . "C" . '</td>
-                        <td>' . "Manhã" . '</td>
-                        <td>' . 2020 . '</td>
+                        <td>' . 2 . '</td>
+                        <td>' . "Ediane Mônica" . '</td>
+                        <td>' . "Licenciatura" . '</td>
+                        
                         <td><a href="cadastro/turma/' . 1 . '" class="btn btn-success btn-sm">
                             <i class="fas fa-edit"></i></a>
                             
@@ -78,12 +53,12 @@
                             <i class="fas fa-trash"></i></a>
                         </td>
                     </tr>';
+
                 echo '<tr>
-                        <td>' . 3 . '</td>
-                        <td>' . 5 . '</td>
-                        <td>' . "A" . '</td>
-                        <td>' . "Tarde" . '</td>
-                        <td>' . 2020 . '</td>
+                        <td>' . 4 . '</td>
+                        <td>' . "Marcia Valéria" . '</td>
+                        <td>' . "Licenciatura" . '</td>
+                        
                         <td><a href="cadastro/turma/' . 1 . '" class="btn btn-success btn-sm">
                             <i class="fas fa-edit"></i></a>
                             
