@@ -6,4 +6,4 @@
     unset ( $_SESSION["facilita_escola"] ); //apaga as variaveis da sessão
 
     //redirecionar para a página inicial
-    header("Location: index.php");
+    header("Location: ../index.php");

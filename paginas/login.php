@@ -1,8 +1,4 @@
 <?php
-//verificar se não está logado
-if (!isset($pagina)) { //página só existe quando passa pelo index e adquirindo a variável
-    exit;
-}
 
 $msg = NULL;
 
@@ -18,6 +14,7 @@ if ($_POST) {
     if (isset($_POST["senha"])) {
         $senha = trim($_POST["senha"]);
     }
+
     //verificar se os campos estao em branco
     if (empty($login)) {
         $msg = '<p class="alert alert-danger"> Preencha o campo Login </p>';
@@ -25,13 +22,13 @@ if ($_POST) {
         $msg = '<p class="alert alert-danger">Preencha o campo Senha</p>';
     } else {
         //verificar se o login existe
-        $sql = "select id, nome, login, senha
-                    from pessoa where login = ? and tipo_cadastro = 1 limit 1";
+        $sql = "select id, nome, login, senha, tipo_cadastro
+                    from pessoa where login = :login limit 1";
         //apontar a conexão com o banco a utilizar
         //prepara a sql para exetutar 
         $consulta = $pdo->prepare($sql);
         //passar o parametro para o sql
-        $consulta->bindParam(1, $login);
+        $consulta->bindParam(":login", $login);
         //executar o sql
         $consulta->execute();
         //puxar os dados do resultado
@@ -45,13 +42,21 @@ if ($_POST) {
         else {
             $_SESSION["facilita_escola"] = array(
                 "id" => $dados->id,
-                "nome" => $dados->nome
+                "nome" => $dados->nome,
+                "tipo_cadastro" => $dados->tipo_cadastro
             );
 
-            //redireciona para o home
-            $msg = "Deu certo";
+            $tipo_cadastro = $dados->tipo_cadastro;
+            
+            $msg = "Deu certo ";
             //javascript para recirecionar
-            echo '<script>location.href="index.php";</script>';
+            if( $tipo_cadastro == 1 ) {
+                echo '<script>location.href="admin/index.php";</script>';
+            } else if($tipo_cadastro == 2) {
+                echo '<script>location.href="aluno/index.php";</script>';
+            } else if ($tipo_cadastro == 3) {
+                echo '<script>location.href="professor/index.php";</script>';
+            }
         }
     }
 }
@@ -60,7 +65,7 @@ if ($_POST) {
     <div class="login-box">
         <div class="login-logo">
             <a href="index.html">
-                <img src="../docs/assets/img/FE-logo.png" style="width: 250px;" />
+                <img src="docs/assets/img/FE-logo.png" style="width: 250px;" />
             </a>
         </div>
         <!-- /.login-logo -->
