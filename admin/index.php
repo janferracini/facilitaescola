@@ -134,7 +134,7 @@ $base = "$h://$site:$porta/$url"
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="professor" class="nav-link">
+                    <a href="cadastro/professor" class="nav-link">
                       <i class="fas fa-apple-alt nav-icon"></i>
                       <p>Professores</p>
                     </a>

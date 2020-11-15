@@ -185,16 +185,14 @@ if (!empty($id)) {
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Status do Usuário</div>
+                <div class="modal-body">
 
-                <div class="col-12 col-md-6">
-                    <form>
-                        <select id="status" class="form-control">
+                <form >
+                        <label class="col-12 col-md-6"  style="float: left;">Status do Usuário: </label>
+                        <select id="status" class="form-control col-12 col-md-6">
                             <option selected>Ativo </option>
                             <option>Inativo </option>
                         </select>
-                    </form>
-                </div>
 
                 <div class="modal-footer mt-2">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Voltar</button>
