@@ -50,9 +50,9 @@ $base = "$h://$site:$porta/$url"
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
-  <script src="js/jquery.inputmask.min.js"></script>
-  <script src="js/bindings/inputmask.binding.js"></script>
-
+    <script src="../dist/js/jquery.inputmask.min.js"></script>
+    <script src="../dist/js/bindings/inputmask.binding.js"></script>
+    <script src="../dist/js/jquery.maskedinput-1.2.1.js"></script>
 </head>
 
 
@@ -214,8 +214,6 @@ $base = "$h://$site:$porta/$url"
 
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
-
-
         <!-- Main content -->
         <div class="content pb-3">
           <div class="container-fluid">
@@ -284,26 +282,6 @@ $base = "$h://$site:$porta/$url"
         </div>
       </div>
     </div>
-
-    <!--Modal Desativar Usuário-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Sair do Sistema?</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">Selecione SAIR para efetuar o logout do Sistema</div>
-          <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Voltar</button>
-            <a class="btn btn-primary" href="sair.php">Sair</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
 
   <?php
   }

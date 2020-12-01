@@ -99,7 +99,6 @@ if (!empty($id)) {
                             };
                         ?>
                     </datalist>
-                    </select>
                 </div>
             </div>
 

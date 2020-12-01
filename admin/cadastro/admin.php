@@ -3,19 +3,15 @@
 if (!isset($id)) $id = "";
 
 // tabela pessoa
-$nome = $rg = $cpf = $data_nascimento = $senha = $email = $login =
-    // tabela aluno
-    $matricula = $foto = $serie = $pessoa_id =
-    // tabela endereço
-    $logradouro = $numero = $cep = $complemento = $cidade_id = '';
+$nome = $login = $senha = $rg = $cpf = $datanascimento = $data_cadastro =
+$email = $logradouro = $numero  = $cep = $complemento = $telefone1 = $telefone2 = $foto = $status = $cidade_id = $estado = '';
 
 if (!empty($id)) {
-    $sql = "SELECT a.matricula, a.foto, a.serie, a.pessoa_id,
-            pe.nome, pe.rg. pe.cpf, pe.data_nascimento, pe.senha, pe.senha, pe.email, pe.login,
-            e.logradouro, e.numero, e.cep, e.complemento, e.cidade_id
+    $sql = "SELECT  p.*,
+                    c.cidade, c.estado
             FROM pessoa p
-            INNER JOIN cidade c ON (e.id = cidade_id)
-            WHERE pe.id = :id
+            INNER JOIN cidade c ON (c.id = p.id_cidade)
+            WHERE p.id = :id
             LIMIT 1";
 
     $consulta = $pdo->prepare($sql);
@@ -24,28 +20,28 @@ if (!empty($id)) {
 
     $dados = $consulta->fetch(PDO::FETCH_OBJ);
 
-    // caso não existir aluno cadastrado
+    // caso não existir admin cadastrado
     if (empty($dados->id)) {
-        echo "<p class='alert alert-danger'> Aluno não cadastrado </p>";
+        echo "<p class='alert alert-danger'> Administrador não cadastrado </p>";
     }
 
     $id         = $dados->id;
     $nome       = $dados->nome;
     $rg         = $dados->rg;
     $cpf        = $dados->cpf;
-    $data_nascimento = $dados->data_nascimento;
-    $senha      = $dados->senha;
-    $email      = $dados->email;
-    $login      = $dados->login;
-    $matricula  = $dados->matricula;
-    $foto       = $dados->foto;
-    $serie      = $dados->serie;
-    $pessoa_id  = $dados->pessoa_id;
-    $logradouro = $dados->logradouro;
-    $numero     = $dados->numero;
-    $cep        = $dados->cep;
+    $datanascimento = $dados->data_nascimento;
+    $email       = $dados->email;
+    $login       = $dados->login;
+    $foto        = $dados->foto;
+    $logradouro  = $dados->logradouro;
+    $numero      = $dados->numero;
+    $cep         = $dados->cep;
     $complemento = $dados->complemento;
-    $cidade_id  = $dados->cidade_id;
+    $cidade_id   = $dados->id_cidade;
+    $cidade      = $dados->cidade;
+    $telefone1  = $dados->telefone1;
+    $telefone2  = $dados->telefone2;
+    $estado     = $dados->estado;
 }
 ?>
 
@@ -63,13 +59,14 @@ if (!empty($id)) {
 <div class="container">
 
     <div class="float-right">
-        <a href="cadastro/aluno" class="btn btn-success">Novo Registro</a>
-        <a href="listar/aluno" class="btn btn-info">Listar Registro</a>
+        <a href="cadastro/admin" class="btn btn-success">Novo Registro</a>
+        <a href="listar/admin" class="btn btn-info">Listar Registro</a>
     </div>
 
     <div class="clearfix"></div> <!-- Ignora os floats -->
 
-    <form action="salvar/aluno" name="formCadastroAluno" method="post" data-parsley-validate enctype="multipart/form-data" role="form">
+    <form action="salvar/admin" name="formCadastroAdmin" method="post"
+    data-parsley-validate enctype="multipart/form-data" role="form">
         <div class="row mb-3">
 
             <input type="hidden" class="form-control" name="id" id="id" readonly value="<?= $id ?>">
@@ -77,45 +74,78 @@ if (!empty($id)) {
             <!-- LINHA 1 -->
             <div class="col-12 col-md-12">
                 <label for="nome"> Nome Completo </label>
-                <input type="text" class="form-control" id="nome" name="nome" required data-parsley-required-message="Preencha o nome" value="<?= $nome ?>">
+                <input type="text" class="form-control" id="nome" name="nome"
+                required data-parsley-required-message="Preencha o nome" value="<?= $nome ?>">
             </div>
 
             <!-- LINHA 2 -->
             <div class="col-12 col-md-4">
                 <label for="login"> Login </label>
-                <input type="text" class="form-control" id="login" name="login" required data-parsley-required-message="Preencha o nome do login" placeholder="Insira com o login de acesso" value="<?= $login ?>">
+                <input type="text" class="form-control" id="login" name="login"
+                required data-parsley-required-message="Preencha o nome do login"
+                placeholder="Insira com o login de acesso" value="<?= $login ?>">
             </div>
 
             <div class="col-12 col-md-8">
                 <label for="email"> E-mail </label>
-                <input type="number" class="form-control" id="email" name="email" required data-parsley-required-message="Preencha com um e-mail válido" placeholder="Digite um e-mail válido" value="<?= $email ?>">
+                <input type="email" class="form-control" id="email" name="email"
+                required data-parsley-required-message="Preencha com um e-mail válido"
+                placeholder="Digite um e-mail válido" value="<?= $email ?>">
             </div>
 
             <!-- LINHA 3-->
             <div class="col-12 col-md-4">
                 <label for="rg"> RG </label>
-                <input type="text" class="form-control" id="rg" name="rg" required data-parsley-required-message="Preencha o RG" value="<?= $rg ?>">
+                <input type="number" class="form-control" id="rg" name="rg"
+                required data-parsley-required-message="Preencha o RG" value="<?= $rg ?>">
             </div>
 
             <div class="col-12 col-md-4">
                 <label for="CPF"> CPF </label>
-                <input type="text" class="form-control" id="cpf" name="cpf" value="<?= $cpf ?>">
+                <input type="number" class="form-control" id="cpf" name="cpf" value="<?= $cpf ?>">
+
             </div>
 
             <div class="col-12 col-md-4">
                 <label for="dataNascimento"> Data De Nascimento </label>
-                <input type="date" class="form-control" id="dataNascimento" name="dataNascimento" required data-parsley-required-message="Preencha a data de nascimento" value="<?= $data_nascimento ?>">
+                <input type="date" class="form-control" id="dataNascimento" name="dataNascimento"
+                required data-parsley-required-message="Preencha a data de nascimento" value="<?= $datanascimento ?>">
             </div>
 
             <!-- LINHA 4 -->
             <div class="col-12 col-md-4">
                 <label for="cep"> CEP </label>
-                <input type="text" class="form-control" id="cep" name="cep" required data-parsley-required-message="Preencha com um CEP válido" value="<?= $cep ?>">
+                <input type="text" class="form-control" id="cep" name="cep"
+                required data-parsley-required-message="Preencha com um CEP válido" value="<?= $cep ?>">
             </div>
 
-            <div class="col-12 col-md-8">
+            <div class="col-12 col-md-4">
+                <label for="estado"> Estado </label>
+                <input type="text" class="form-control" id="estado" name="estado"
+                required data-parsley-required-message="Selecione o Estado " value="<?= $estado ?>">
+            </div>
+
+            <div class="col-12 col-md-4">
                 <label for="cidade"> Cidade </label>
-                <input type="text" class="form-control" id="cidade" name="cidade" required data-parsley-required-message="Preencha a cidade" value="<?= $cidade_id ?>">
+                <input type="text" class="form-control" id="cidade" name="cidade" list="listaCidade"
+                required data-parsley-required-message="Delecione a cidade" value="<?php
+                                                                                                                                                                        if (!empty($cidade_id)) echo "$cidade - $cidade_id"; ?>">
+                <datalist id="listaCidade">
+                    <?php
+                    $sql = "SELECT *
+                                    FROM cidade c
+                                    ORDER BY cidade";
+                    $consulta = $pdo->prepare($sql);
+                    $consulta->execute();
+
+                    while ($d = $consulta->fetch(PDO::FETCH_OBJ)) {
+                        //separar os dados
+                        $id     = $d->id;
+                        $cidade = $d->cidade;
+                        echo '<option value=" ' . $cidade . ' - ' . $cidade_id . '">';
+                    };
+                    ?>
+                </datalist>
             </div>
 
             <!-- LINHA 5 -->
@@ -126,40 +156,39 @@ if (!empty($id)) {
 
             <div class="col-12 col-md-4">
                 <label for="numero"> Número </label>
-                <input type="text" class="form-control" id="numero" name="numero" required data-parsley-required-message="Preencha com o número da residência" placeholder="Insira o número da residência">
+                <input type="text" class="form-control" id="numero" name="numero" required data-parsley-required-message="Preencha com o número da residência" placeholder="Insira o número da residência" value="<?= $numero ?>">
             </div>
 
             <!-- LINHA 6 -->
             <div class="col-12 col-md-12">
                 <label for="complemento"> Complemento </label>
-                <input type="text" class="form-control" id="complement" name="completo">
+                <input type="text" class="form-control" id="complement" name="completo" value="<?= $complemento ?>">
             </div>
 
             <!-- LINHA 7 -->
-            <div class="col-12 col-md-4">
+            <div class="col-12 col-md-6">
                 <label for="telefone1"> Telefone Obrigatório</label>
-                <input type="text" class="form-control" id="telefone" name="telefone" required data-parsley-required-message="Preencha com o número de telefone">
+                <input type="text" class="form-control" id="telefone" name="telefone" required data-parsley-required-message="Preencha com o número de telefone" value="<?= $telefone1 ?>">
             </div>
 
-            <div class="col-12 col-md-4">
+            <div class="col-12 col-md-6">
                 <label for="telefone2"> Telefone Opcional </label>
-                <input type="text" class="form-control" id="telefone2" name="telefone2">
+                <input type="text" class="form-control" id="telefone2" name="telefone2" value="<?= $telefone2 ?>">
             </div>
 
-            <div class="col-12 col-md-4">
+            <!-- <div class="col-12 col-md-4 custom-file">
                 <label for="foto"> Foto </label>
                 <input type="file" class="form-control" id="foto" name="foto" accept=".jpeg, .jpg">
-            </div>
+            </div> -->
+            <div class="clearfix"></div>
 
             <!-- LINHA 7 -->
-
-
-            <div class="col-12 col-md-4">
+            <div class="col-12 col-md-6">
                 <label for="senha"> Senha </label>
                 <input type="password" class="form-control" id="senha" name="senha" require data-parsley-required-message="Insira uma senha" placeholder="Insira com a senha inicial de acesso">
             </div>
 
-            <div class="col-12 col-md-4">
+            <div class="col-12 col-md-6">
                 <label for="confirmaSenha">Confirmar Senha </label>
                 <input type="password" class="form-control" id="confirmaSenha" name="confirmaSenha" require data-parsley-required-message="Insira a senha novamente" placeholder="Insira com a senha inicial de acesso">
             </div>
@@ -187,28 +216,60 @@ if (!empty($id)) {
                 </div>
                 <div class="modal-body">
 
-                <form >
-                        <label class="col-12 col-md-6"  style="float: left;">Status do Usuário: </label>
+                    <form>
+                        <label class="col-12 col-md-6" style="float: left;">Status do Usuário: </label>
                         <select id="status" class="form-control col-12 col-md-6">
                             <option selected>Ativo </option>
                             <option>Inativo </option>
                         </select>
 
-                <div class="modal-footer mt-2">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Voltar</button>
-                    <a class="btn btn-primary" href="#">Salvar</a>
+                        <div class="modal-footer mt-2">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Voltar</button>
+                            <a class="btn btn-primary" href="#">Salvar</a>
+                        </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <script>
-        $(document).ready(function() {
-            $("#data_nascimento").inputmask("99/99/9999");
-            $("#cpf").inputmask("999.999.999-99");
-            $("#telefone1").inputmask("(99) 9999-9999");
-            $("#telefone2").inputmask("(99) 99999-9999");
-            $("#cep").inputmask("99.999-999");
-        });
-    </script>
+        <script>
+            $(document).ready(function() {
+                $("#data_nascimento").inputmask("99/99/9999");
+                $("#cpf").inputmask("999.999.999-99");
+                $("#telefone1").inputmask("(99) 9999-9999");
+                $("#telefone2").inputmask("(99) 99999-9999");
+                $("#cep").inputmask("99.999-999");
+            });
+
+            $("#cep").blur(function() {
+            //pega valor do CEP
+            cep = $("#cep").val();
+            cep = cep.replace(/\D/g, '');
+            if (cep == "") {
+                alert("Preencha o CEP");
+            } else {
+                //Consulta o webservice viacep.com.br/
+                $.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?", function(dados) {
+                    $("#cidade").val(dados.localidade);
+                    $("#estado").val(dados.uf);
+                    $("#logradouro").val(dados.logradouro);
+
+                    //buscar ID da cidade
+                    $.get("buscarCidade.php", {
+                            cidade: dados.localidade,
+                            estado: dados.uf
+                        },
+                        function(dados) {
+                            if (dados != "Erro") {
+                                $("#id_cidade").val(dados) //coloca o VALor de dados
+                            } else {
+                                alert(dados);
+                            }
+                        })
+                    //focar no endereço
+                    $("#endereco").focus();
+                })
+            }
+        })
+        </script>
+    </div>
 </div>
