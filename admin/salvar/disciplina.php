@@ -1,6 +1,6 @@
 <?php
 // Verificar se não está logado
-// if (!isset($_SESSION['hqs']['id'])) {
+// if (!isset($_SESSION['facilita_escola']['id'])) {
 //     exit;
 // }
 
@@ -15,7 +15,7 @@ if ($_POST) {
     }
 
     if (empty($disciplina)) {
-        echo "<script>alert('Preencha a Série');history.back();</script>";
+        echo "<script>alert('Preencha a Disciplina');history.back();</script>";
         exit;
     }
     //iniciar uma transação com o DB toda alteração pra baixo, só será feito após o commit

@@ -33,6 +33,8 @@
                 alert('Não é possível excluir este registro 
                     pois existe uma grade relacionada.');history.back();
             </script>";
+
+            //INATIVAR ITEM
     }
 
     $sql = "DELETE FROM disciplina WHERE id = :id limit 1";
