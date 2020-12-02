@@ -4,7 +4,7 @@
     $servidor   = "localhost";
     $usuario    = "root";
     $senha      = "";
-    $banco      = "facilita_escola";
+    $banco      ="facilita_escola";
 
     try {
         $pdo = new PDO("mysql:host=$servidor;

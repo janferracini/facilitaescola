@@ -7,6 +7,12 @@
   --verdeclaro: #32deed;
 }
 
+.clearfix::after {
+  display: block;
+  clear: both;
+  content: "";
+}
+
 .navbar:focus {
   color: var(--verdeclaro);
 }

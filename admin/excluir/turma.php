@@ -1,6 +1,6 @@
 <?php
     //verificar se não está logado
-    if ( !isset ($_SESSION["hqs"]["id"] ) ) {
+    if ( !isset ($_SESSION["facilita_escola"]["id"] ) ) {
         exit;
     }
 
@@ -31,14 +31,11 @@
         
         echo "<script>
                 alert('Não é possível excluir este registro 
-                    pois existe um quadrinho relacionado.');history.back();
+                    pois existe uma grade relacionada.');history.back();
             </script>";
     }
 
-    //se existir, avisar e voltar
-    
 
-    //excluir a editora
     $sql = "DELETE FROM turma WHERE id = :id limit 1";
     $consulta = $pdo->prepare($sql);
     $consulta->bindParam(":id", $id);
@@ -49,7 +46,7 @@
             </script>";
     }
 
-    //redirecionar para a listagem de editoras
+
     echo "<script>location.href='listar/turma'</script>"
 
 ?>
