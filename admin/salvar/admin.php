@@ -26,13 +26,19 @@ if ($_POST) {
 
     if (empty($id)) {
         $sql = "INSERT INTO pessoa (
-                    nome, login, senha, rg, cpf, datanascimento, 
-                    data_cadastro, email, logradouro, numero, cep, complemento,
-                    telefone1, telefone2, foto, status, cidade_id, tipo_cadastro) 
+                    nome, login, senha, rg, cpf, data_nascimento, 
+                    email, logradouro, numero, cep, complemento,
+                    telefone1, telefone2, id_cidade, tipo_cadastro, status) 
             VALUES (
                     :nome, :login, :senha, :rg, :cpf, :datanascimento, 
-                    :data_cadastro, :email, :logradouro, :numero, :cep, :complemento,
-                    :telefone1, :telefone2, :foto, :status, :cidade_id, :tipo_cadastro)";
+                    :email, :logradouro, :numero, :cep, :complemento,
+                    :telefone1, :telefone2, :cidade_id, :tipo_cadastro, :status)";
+        
+        $tipo_cadastro = 1; //1 - ADM, 2 - ALUNO, 3 - PROF
+        $status = 1;       // 1 - ATIVO, 0 - INATIVO
+        $senha = password_hash($senha, PASSWORD_BCRYPT);
+
+
         $consulta = $pdo->prepare($sql);
         $consulta->bindParam(":nome", $nome);
         $consulta->bindParam(":login", $login);
@@ -40,7 +46,6 @@ if ($_POST) {
         $consulta->bindParam(":rg", $rg);
         $consulta->bindParam(":cpf", $cpf);
         $consulta->bindParam(":datanascimento", $datanascimento);
-        $consulta->bindParam(":data_cadastro", $data_cadastro);
         $consulta->bindParam(":email", $email);
         $consulta->bindParam(":logradouro", $logradouro);
         $consulta->bindParam(":numero", $numero);
@@ -48,10 +53,11 @@ if ($_POST) {
         $consulta->bindParam(":complemento", $complemento);
         $consulta->bindParam(":telefone1", $telefone1);
         $consulta->bindParam(":telefone2", $telefone2);
-        $consulta->bindParam(":foto", $foto);
-        $consulta->bindParam(":status", $status);
         $consulta->bindParam(":cidade_id", $cidade_id);
-        $consulta->bindParam(":tipo_cadastro", 1);
+        $consulta->bindParam(":tipo_cadastro", $tipo_cadastro);
+        $consulta->bindParam(":status", $status);
+
+
 
     } else {
         $sql = "UPDATE pessoa    
@@ -60,8 +66,7 @@ if ($_POST) {
                     senha = :senha,
                     rg = :rg,
                     cpf = :cpf,
-                    datanascimento = :datanascimento, 
-                    data_cadastro = :data_cadastro,
+                    data_nascimento = :datanascimento, 
                     email = :email,
                     logradouro = :logradouro,
                     numero = :numero,
@@ -69,11 +74,12 @@ if ($_POST) {
                     complemento = :complemento,
                     telefone1 = :telefone1,
                     telefone2 = :telefone2,
-                    foto = :foto,
-                    status = :status,
-                    cidade_id = :cidade_id)
+                    id_cidade = :cidade_id
                 WHERE id = :id 
                 LIMIT 1";
+
+        $senha = password_hash($senha, PASSWORD_BCRYPT);
+        
         $consulta = $pdo->prepare($sql);
         $consulta->bindParam(":nome", $nome);
         $consulta->bindParam(":login", $login);
@@ -81,7 +87,6 @@ if ($_POST) {
         $consulta->bindParam(":rg", $rg);
         $consulta->bindParam(":cpf", $cpf);
         $consulta->bindParam(":datanascimento", $datanascimento);
-        $consulta->bindParam(":data_cadastro", $data_cadastro);
         $consulta->bindParam(":email", $email);
         $consulta->bindParam(":logradouro", $logradouro);
         $consulta->bindParam(":numero", $numero);
@@ -89,9 +94,8 @@ if ($_POST) {
         $consulta->bindParam(":complemento", $complemento);
         $consulta->bindParam(":telefone1", $telefone1);
         $consulta->bindParam(":telefone2", $telefone2);
-        $consulta->bindParam(":foto", $foto);
-        $consulta->bindParam(":status", $status);
         $consulta->bindParam(":cidade_id", $cidade_id);
+        $consulta->bindParam(":id", $id);
     }
 
     //executar SQL depois de ver qual ele vai passar
