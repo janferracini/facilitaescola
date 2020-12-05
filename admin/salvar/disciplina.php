@@ -19,7 +19,7 @@ if ($_POST) {
         exit;
     }
 
-    //verificar se existe disciplina com mesmo nome
+    // verificar se existe disciplina de mesmo nome
     $sql = "SELECT id
      FROM disciplina
      WHERE disciplina = ? AND id <> ?
