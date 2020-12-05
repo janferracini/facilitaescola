@@ -35,7 +35,7 @@ if ($_POST) {
                     :telefone1, :telefone2, :cidade_id, :tipo_cadastro, :status)";
         
         $tipo_cadastro = 1; //1 - ADM, 2 - ALUNO, 3 - PROF
-        $status = 1;       // 1 - ATIVO, 0 - INATIVO
+        $status = 1;       // 1 - ATIVO, 0 - INATIVO - Atico como padrão
         $senha = password_hash($senha, PASSWORD_BCRYPT);
 
 
