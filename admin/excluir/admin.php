@@ -12,7 +12,7 @@
             exit;
     }
 
-    //verificar se existe uma grade cadastrada com essa disciplina
+    /*//verificar se existe uma grade cadastrada com essa disciplina
     $sql = "SELECT id
             FROM grade
             WHERE disciplina_id = :id
@@ -35,9 +35,9 @@
             </script>";
 
             //INATIVAR ITEM
-    }
+    }*/
 
-    $sql = "DELETE FROM disciplina WHERE id = :id limit 1";
+    $sql = "DELETE FROM pessoa WHERE id = :id limit 1";
     $consulta = $pdo->prepare($sql);
     $consulta->bindParam(":id", $id);
     //verificar se não executou
@@ -47,6 +47,6 @@
             </script>";
     }
 
-    echo "<script>location.href='listar/disciplina'</script>"
+    echo "<script>location.href='listar/admin'</script>"
 
 ?>

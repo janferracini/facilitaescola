@@ -1,6 +1,6 @@
 <?php
 // Verificar se não está logado
-// if (!isset($_SESSION['hqs']['id'])) {
+// if (!isset($_SESSION['facilita_escola']['id'])) {
 //     exit;
 // }
 

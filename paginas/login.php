@@ -22,7 +22,7 @@ if ($_POST) {
         $msg = '<p class="alert alert-danger">Preencha o campo Senha</p>';
     } else {
         //verificar se o login existe
-        $sql = "select id, nome, login, senha, tipo_cadastro
+        $sql = "select id, nome, login, senha, tipo_cadastro, status
                     from pessoa where login = :login limit 1";
         //apontar a conexão com o banco a utilizar
         //prepara a sql para exetutar 
@@ -35,26 +35,28 @@ if ($_POST) {
         $dados = $consulta->fetch(PDO::FETCH_OBJ); //msqli_fetch
         //verificar se existe usuario
         if (empty($dados->id))
-            $msg = '<p class=!alert alert-danger>Usuário não existe</p>';
+            $msg = '<p class="alert alert-danger">Usuário não existe</p>';
         else if (!password_verify($senha, $dados->senha))
-            $msg = '<p class=!alert alert-danger>Senha incorreta</p>';
+            $msg = '<p class="alert alert-danger">Senha incorreta</p>';
         //se deu tudo certo
         else {
             $_SESSION["facilita_escola"] = array(
                 "id" => $dados->id,
                 "nome" => $dados->nome,
-                "tipo_cadastro" => $dados->tipo_cadastro
+                "tipo_cadastro" => $dados->tipo_cadastro,
+                "status" => $dados->status
             );
 
             $tipo_cadastro = $dados->tipo_cadastro;
+            $status = $dados->status;
             
-            $msg = "Deu certo ";
+            $msg = "<p class='alert alert-danger'>Usuário inativo</p>";
             //javascript para recirecionar
-            if( $tipo_cadastro == 1 ) {
+            if( $tipo_cadastro == 1 && $status == 1) {
                 echo '<script>location.href="admin/index.php";</script>';
-            } else if($tipo_cadastro == 2) {
+            } else if($tipo_cadastro == 2 && $status == 1) {
                 echo '<script>location.href="aluno/index.php";</script>';
-            } else if ($tipo_cadastro == 3) {
+            } else if ($tipo_cadastro == 3 && $status == 1) {
                 echo '<script>location.href="professor/index.php";</script>';
             }
         }
@@ -74,28 +76,9 @@ if ($_POST) {
                 <p class="login-box-msg">Inicar seu acesso</p>
                 <?=$msg;?> 
                 <form class="user" name="login" method="post" data-parsley-validate>
-                    <!-- campos de informação de login -->
-                    <!-- <div class="input-group mb-3">
-                        <input type="text" name="login" class="form-control" placeholder="Login">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-envelope"></span>
-                            </div>
-                        </div>
-                    </div> -->
                     <div class="form-group">
                         <input type="text" name="login" class="form-control form-control-user" id="login" placeholder="Digite seu login" required data-parsley-required-message="Preencha seu login">
                     </div>
-
-                    <!-- <div class="input-group mb-3">
-                        <input type="password" class="form-control" placeholder="Senha">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
-                            </div>
-                        </div>
-                    </div> -->
-
                     <div class="form-group">
                         <input type="password" name="senha" class="form-control form-control-user" id="senha" placeholder="Digite sua senha" required data-parsley-required-message="Coloque sua senha">
                     </div>
@@ -104,10 +87,7 @@ if ($_POST) {
 
                     <div class="row">
                         <div class="col-8">
-                            <!--<div class="icheck-orange">
-                            <input type="checkbox" id="remember">
-                            <label for="remember"> Lembrar-me</label>
-                            </div>-->
+
                         </div>
                         <!-- /.col -->
                         <div class="col-4">

@@ -50,9 +50,10 @@ $base = "$h://$site:$porta/$url"
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
-    <script src="../dist/js/jquery.inputmask.min.js"></script>
-    <script src="../dist/js/bindings/inputmask.binding.js"></script>
-    <script src="../dist/js/jquery.maskedinput-1.2.1.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
 </head>
 
 
