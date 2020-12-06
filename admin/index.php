@@ -50,7 +50,7 @@ $base = "$h://$site:$porta/$url"
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
-  <script src="vendor/jquery/jquery.min.js"> </script>
+    <script src="vendor/jquery/jquery.min.js"> </script>
     <script src="js/jquery.inputmask.min.js"></script>
     <script src="js/bindings/inputmask.binding.js"></script>
     <script src="js/jquery.maskMoney.min.js"></script>
