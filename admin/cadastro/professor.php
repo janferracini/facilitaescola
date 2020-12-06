@@ -140,8 +140,8 @@ if (!empty($id)) {
 
             <!-- LINHA 5 -->
             <div class="col-12 col-md-8">
-                <label for="endereco"> Endereço Completo</label>
-                <input type="text" class="form-control" id="endereco" name="endereco"
+                <label for="logradouro"> Endereço Completo</label>
+                <input type="text" class="form-control" id="logradouro" name="logradouro"
                 required data-parsley-required-message="Preencha o endereço" value="<?= $logradouro ?>">
             </div>
 
@@ -155,7 +155,7 @@ if (!empty($id)) {
             <!-- LINHA 6 -->
             <div class="col-12 col-md-12">
                 <label for="complemento"> Complemento </label>
-                <input type="text" class="form-control" id="complement" name="completo" value="<?= $complemento ?>">
+                <input type="text" class="form-control" id="complemento" name="complemento" value="<?= $complemento ?>">
             </div>
 
             <!-- LINHA 7 -->
@@ -283,7 +283,7 @@ if (!empty($id)) {
                 $.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?", function(dados) {
                     $("#cidade").val(dados.localidade);
                     $("#estado").val(dados.uf);
-                    $("#endereco").val(dados.logradouro);
+                    $("#logradouro").val(dados.logradouro);
 
                     //buscar ID da cidade
                     $.get("buscarCidade.php", {
@@ -298,7 +298,7 @@ if (!empty($id)) {
                             }
                         })
                     //focar no endereço
-                    $("#endereco").focus();
+                    $("#logradouro").focus();
                 })
             }
         })

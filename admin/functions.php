@@ -1,7 +1,5 @@
 <?php
-/*
-
-GDLIB biblioteca para manipular imagens
+/* GDLIB biblioteca para manipular imagens
 	    validaCPF - função para validar CPF
 	    Como usar: 
 	    $cpf = "123.123.123-34";
@@ -9,9 +7,10 @@ GDLIB biblioteca para manipular imagens
 	    if ( $msg != 1 ) echo $msg; //deu erro
 	    retornando 1 o documento é inválido
 	*/
+
+
 function validaCPF($cpf)
 {
-
 	// Extrai somente os números
 	$cpf = preg_replace('/[^0-9]/is', '', $cpf);
 
@@ -34,29 +33,6 @@ function validaCPF($cpf)
 		}
 	}
 	return true;
-}
-
-function validaCNPJ($cnpj)
-{
-	$cnpj = preg_replace('/[^0-9]/', '', (string) $cnpj);
-	// Valida tamanho
-	if (strlen($cnpj) != 14)
-		return "CNPJ precisa ter ao menos 14 números";
-	// Valida primeiro dígito verificador
-	for ($i = 0, $j = 5, $soma = 0; $i < 12; $i++) {
-		$soma += $cnpj[$i] * $j;
-		$j = ($j == 2) ? 9 : $j - 1;
-	}
-	$resto = $soma % 11;
-	if ($cnpj[12] != ($resto < 2 ? 0 : 11 - $resto))
-		return "CNPJ inválido";
-	// Valida segundo dígito verificador
-	for ($i = 0, $j = 6, $soma = 0; $i < 13; $i++) {
-		$soma += $cnpj[$i] * $j;
-		$j = ($j == 2) ? 9 : $j - 1;
-	}
-	$resto = $soma % 11;
-	return $cnpj[13] == ($resto < 2 ? 0 : 11 - $resto);
 }
 
 /*
@@ -126,54 +102,15 @@ function redimensionarImagem($pastaFotos, $imagem, $nome)
 	unlink($imagem);
 }
 
-//função para formatar a $editora
-function getEditora($editora_id)
-{
-	// Editora - ID -> ID
-	$editora_id = explode("-", $editora_id);
-	return $editora_id[1];
-}
-
-function getTipo($tipo_id)
-{
-	// Editora - ID -> ID
-	$tipo_id = explode("-", $tipo_id);
-	return $tipo_id[1];
-}
-
-function formatar($data)
+function formatarDN($data_nascimento)
 {
 	// 20/12/2020 -> 2020/12/20
-	$data = explode("/", $data);
-	return $data[2] . "-" . $data[1] . "-" . $data[0];
+	$data_nascimento = explode("/", $data_nascimento);
+	return $data_nascimento[2] . "-" . $data_nascimento[1] . "-" . $data_nascimento[0];
 }
 
-function formatarDN($datanascimento)
+function fotoUsuario($pastaFotos, $imagem, $nome)
 {
-	// 20/12/2020 -> 2020/12/20
-	$datanascimento = explode("/", $datanascimento);
-	return $datanascimento[2] . "-" . $datanascimento[1] . "-" . $datanascimento[0];
-}
-
-//formatar valor
-//12.000,00 -> 120000.00
-function formatarValor($valor)
-{
-	$valor = str_replace(".", "", $valor);  // -> 12000,00
-	return str_replace(",", ".", $valor); // -> 12000.00
-}
-
-//função para retirar os __ do numero
-function retirar($texto)
-{
-	//12__ -> 12
-	return str_replace("_", "", $texto);
-	//o que substituir, pelo que substiquir, quem substituir
-}
-
-function fotoCliente($pastaFotos, $imagem, $nome)
-{
-
 	$imagem = $pastaFotos . $imagem;
 
 	list($largura1, $altura1) = getimagesize($imagem);

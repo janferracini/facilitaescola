@@ -3,11 +3,11 @@
 if (!isset($id)) $id = "";
 
 // tabela pessoa
-$nome = $login = $senha = $rg = $cpf = $datanascimento = $data_cadastro =
+$nome = $login = $senha = $rg = $cpf = $data_nascimento = $data_cadastro =
 $email = $logradouro = $numero  = $cep = $complemento = $telefone1 = $telefone2 = $foto = $status = $cidade_id = $cidade = $estado = '';
 
 if (!empty($id)) {
-    $sql = "SELECT  p.*,
+    $sql = "SELECT  p.*, date_format(p.data_nascimento, '%d/%m/%Y') dt,
                     c.cidade, c.estado
             FROM pessoa p
             INNER JOIN cidade c ON (c.id = p.id_cidade)
@@ -25,23 +25,23 @@ if (!empty($id)) {
         echo "<p class='alert alert-danger'> Administrador não cadastrado </p>";
     }
 
-    $id         = $dados->id;
-    $nome       = $dados->nome;
-    $rg         = $dados->rg;
-    $cpf        = $dados->cpf;
-    $datanascimento = $dados->data_nascimento;
-    $email       = $dados->email;
-    $login       = $dados->login;
-    $foto        = $dados->foto;
-    $logradouro  = $dados->logradouro;
-    $numero      = $dados->numero;
-    $cep         = $dados->cep;
-    $complemento = $dados->complemento;
-    $cidade_id   = $dados->id_cidade;
-    $cidade      = $dados->cidade;
-    $telefone1  = $dados->telefone1;
-    $telefone2  = $dados->telefone2;
-    $estado     = $dados->estado;
+    $id             = $dados->id;
+    $nome           = $dados->nome;
+    $rg             = $dados->rg;
+    $cpf            = $dados->cpf;
+    $data_nascimento = $dados->dt;
+    $email          = $dados->email;
+    $login          = $dados->login;
+    $foto           = $dados->foto;
+    $logradouro     = $dados->logradouro;
+    $numero         = $dados->numero;
+    $cep            = $dados->cep;
+    $complemento    = $dados->complemento;
+    $cidade_id      = $dados->id_cidade;
+    $cidade         = $dados->cidade;
+    $telefone1      = $dados->telefone1;
+    $telefone2      = $dados->telefone2;
+    $estado         = $dados->estado;
 }
 ?>
 
@@ -103,13 +103,13 @@ if (!empty($id)) {
             <div class="col-12 col-md-4">
                 <label for="cpf"> CPF </label>
                 <input type="text" class="form-control" id="cpf" name="cpf" value="<?= $cpf ?>" onblur="verificarCpf(this.value)">
-
             </div>
 
             <div class="col-12 col-md-4">
-                <label for="dataNascimento"> Data De Nascimento </label>
-                <input type="date" class="form-control" id="dataNascimento" name="dataNascimento"
-                required data-parsley-required-message="Preencha a data de nascimento" value="<?= $datanascimento ?>">
+            <label for="data_nascimento">Data de Nascimento </label>
+                <input type="text" name="data_nascimento" id="data_nascimento" class="form-control"
+                required data-parsley-required-message="Preencha a data de nascimento" value="<?= $data_nascimento ?>"
+                placeholder="Digite a data de nascimento ex 00/00/0000">
             </div>
 
             <!-- LINHA 4 -->
@@ -139,8 +139,8 @@ if (!empty($id)) {
 
             <!-- LINHA 5 -->
             <div class="col-12 col-md-8">
-                <label for="endereco"> Endereço Completo</label>
-                <input type="text" class="form-control" id="endereco" name="endereco"
+                <label for="logradouro"> Endereço Completo</label>
+                <input type="text" class="form-control" id="logradouro" name="logradouro"
                 required data-parsley-required-message="Preencha o endereço" value="<?= $logradouro ?>">
             </div>
 
@@ -154,7 +154,7 @@ if (!empty($id)) {
             <!-- LINHA 6 -->
             <div class="col-12 col-md-12">
                 <label for="complemento"> Complemento </label>
-                <input type="text" class="form-control" id="complement" name="completo" value="<?= $complemento ?>">
+                <input type="text" class="form-control" id="complemento" name="complemento" value="<?= $complemento ?>">
             </div>
 
             <!-- LINHA 7 -->
@@ -183,16 +183,16 @@ if (!empty($id)) {
             </div>
 
             <div class="col-12 col-md-6">
-                <label for="confirmaSenha">Confirmar Senha </label>
-                <input type="password" class="form-control" id="confirmaSenha" name="confirmaSenha" 
+                <label for="senha2">Confirmar Senha </label>
+                <input type="password" class="form-control" id="senha2" name="senha2" 
                 require data-parsley-required-message="Insira a senha novamente" placeholder="Insira com a senha inicial de acesso">
             </div>
         </div>
 
 
-        <a class="btn btn-success margin" data-toggle="modal" data-target="#gerenciarModal" style="color : #fff;">
+        <!-- <a class="btn btn-success margin" data-toggle="modal" data-target="#gerenciarModal" style="color : #fff;">
             <i class="fas fa-cog"></i> Gerenciar
-        </a>
+        </a> -->
 
         <button type="submit" class="btn btn-success margin">
             <i class="fas fa-check"></i> Gravar Dados
@@ -233,34 +233,46 @@ if (!empty($id)) {
 
     <?php if (empty($id)) $id = 0; //verificar se id é vazio ?>
 
-        <script>
+    <script>
 
-            function verificarCpf(cpf) {
-                //ajax verificação CPF
-                //faz o get para o arquivo indicado e a variável e o retorno
-                $.get("verificarCpf.php", {
-                        cpf: cpf,
-                        id: <?= $id; ?>
-                    },
-                function(dados) {
-                    if (dados != "") {
-                        // retorno da mensagem da verificação de erro
-                        alert(dados);
-                        //zera o CPF
-                        $("#cpf").val("");
-                    }
-                })
-            };
+        function verificarCpf(cpf) {
+            //ajax verificação CPF
+            //faz o get para o arquivo indicado e a variável e o retorno
+            $.get("verificarCpf.php", {
+                    cpf: cpf,
+                    id: <?= $id; ?>
+                },
+            function(dados) {
+                if (dados != "") {
+                    // retorno da mensagem da verificação de erro
+                    alert(dados);
+                    //zera o CPF
+                    $("#cpf").val("");
+                }
+            })
+        };
 
-            $(document).ready(function() {
-                $("#data_nascimento").mask("99/99/9999");
-                $("#cpf").mask("999.999.999-99");
-                $("#telefone1").mask("(99) 9999-9999");
-                $("#telefone2").mask("(99) 99999-9999");
-                $("#cep").mask("99.999-999");
-            });
+        function verificarSenha() {
+            if ($('#senha').val() != $('#senha2').val()) {
+                $('#senha').val('')
+                $('#senha2').val('')
+                $('#senha2').removeClass('is-valid')
+                $('#senha2').addClass('is-invalid')
+                return alert('As senhas devem ser iguais.')
+            }
+            $('#senha2').removeClass('is-invalid')
+            $('#senha2').addClass('is-valid')
+        }
 
-            $("#cep").blur(function() {
+        $(document).ready(function() {
+            $("#data_nascimento").mask("99/99/9999");
+            $("#cpf").mask("999.999.999-99");
+            $("#telefone1").mask("(99) 9999-9999");
+            $("#telefone2").mask("(99) 99999-9999");
+            $("#cep").mask("99.999-999");
+        });
+
+        $("#cep").blur(function() {
             //pega valor do CEP
             cep = $("#cep").val();
             cep = cep.replace(/\D/g, '');
@@ -271,7 +283,7 @@ if (!empty($id)) {
                 $.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?", function(dados) {
                     $("#cidade").val(dados.localidade);
                     $("#estado").val(dados.uf);
-                    $("#endereco").val(dados.logradouro);
+                    $("#logradouro").val(dados.logradouro);
 
                     //buscar ID da cidade
                     $.get("buscarCidade.php", {
@@ -286,9 +298,9 @@ if (!empty($id)) {
                             }
                         })
                     //focar no endereço
-                    $("#endereco").focus();
+                    $("#logradouro").focus();
                 })
             }
         })
-        </script>
+    </script>
 </div>
