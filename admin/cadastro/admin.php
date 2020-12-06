@@ -225,6 +225,7 @@ if (!empty($id)) {
                             <button class="btn btn-secondary" type="button" data-dismiss="modal">Voltar</button>
                             <a class="btn btn-primary" href="#">Salvar</a>
                         </div>
+                    </form>
                 </div>
             </div>
         </div>

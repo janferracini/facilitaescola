@@ -8,10 +8,12 @@
 if ($_POST) {
     include "../config/conexao.php";
 
+    // tabela pessoa
     $nome = $login = $senha = $rg = $cpf = $datanascimento = $data_cadastro =
     $email = $logradouro = $numero  = $cep = $complemento = $telefone1 = $telefone2 = 
     $foto = $status = $cidade_id = '';
-
+    // tabela matricula
+    // $numero_matricula = $pessoa_id = $data_matricula = $situacao = '';
 
     foreach ($_POST as $key => $value) {
         $$key = trim($value);
@@ -21,6 +23,7 @@ if ($_POST) {
         echo "<script>alert('Preencha o Nome');history.back();</script>";
         exit;
     }
+
     //iniciar uma transação com o DB toda alteração pra baixo, só será feito após o commit
     $pdo->beginTransaction();
 
@@ -34,10 +37,9 @@ if ($_POST) {
                     :email, :logradouro, :numero, :cep, :complemento,
                     :telefone1, :telefone2, :cidade_id, :tipo_cadastro, :status)";
         
-        $tipo_cadastro = 1; //1 - ADM, 2 - ALUNO, 3 - PROF
+        $tipo_cadastro = 2; //1 - ADM, 2 - ALUNO, 3 - PROF
         $status = 1;       // 1 - ATIVO, 0 - INATIVO - Atico como padrão
         $senha = password_hash($senha, PASSWORD_BCRYPT);
-
 
         $consulta = $pdo->prepare($sql);
         $consulta->bindParam(":nome", $nome);
@@ -56,8 +58,13 @@ if ($_POST) {
         $consulta->bindParam(":cidade_id", $cidade_id);
         $consulta->bindParam(":tipo_cadastro", $tipo_cadastro);
         $consulta->bindParam(":status", $status);
+        // matricula
+        // $consulta->bindParam(":numero_matricula", $numero_matricula);
+        // $consulta->bindParam(":pessoa_id", $pessoa_id);
+        // $consulta->bindParam(":data_matricula", $data_matricula);
+        // $consulta->bindParam(":situacao",$situacao);
 
-    } else {
+    }  else {
         $sql = "UPDATE pessoa    
                 SET nome = :nome,
                     login = :login,
@@ -99,14 +106,14 @@ if ($_POST) {
     //executar SQL depois de ver qual ele vai passar
     if ($consulta->execute()) {
 
-            //gravar no DB se tudo estiver OK
-            $pdo->commit();
-            echo "<script>alert('Registro salvo');location.href='listar/admin';</script>;";
-            exit;
-        
-    }
-    echo $consulta->errorInfo()[2];
-    exit;
+        //gravar no DB se tudo estiver OK
+        $pdo->commit();
+        echo "<script>alert('Registro salvo');location.href='listar/aluno';</script>;";
+        exit;
+    
+}
+echo $consulta->errorInfo()[2];
+exit;
 }
 // Mensagem de erro
 // Javascript - mensagem alert

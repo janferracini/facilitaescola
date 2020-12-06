@@ -34,7 +34,7 @@ if ($_POST) {
                     :email, :logradouro, :numero, :cep, :complemento,
                     :telefone1, :telefone2, :cidade_id, :tipo_cadastro, :status)";
         
-        $tipo_cadastro = 1; //1 - ADM, 2 - ALUNO, 3 - PROF
+        $tipo_cadastro = 3; //1 - ADM, 2 - ALUNO, 3 - PROF
         $status = 1;       // 1 - ATIVO, 0 - INATIVO - Atico como padrão
         $senha = password_hash($senha, PASSWORD_BCRYPT);
 
@@ -61,7 +61,7 @@ if ($_POST) {
         $sql = "UPDATE pessoa    
                 SET nome = :nome,
                     login = :login,
-                    senha = :senha,
+                    -- senha = :senha,
                     rg = :rg,
                     cpf = :cpf,
                     data_nascimento = :datanascimento, 
@@ -81,7 +81,7 @@ if ($_POST) {
         $consulta = $pdo->prepare($sql);
         $consulta->bindParam(":nome", $nome);
         $consulta->bindParam(":login", $login);
-        $consulta->bindParam(":senha", $senha);
+        // $consulta->bindParam(":senha", $senha);
         $consulta->bindParam(":rg", $rg);
         $consulta->bindParam(":cpf", $cpf);
         $consulta->bindParam(":datanascimento", $datanascimento);
@@ -101,7 +101,7 @@ if ($_POST) {
 
             //gravar no DB se tudo estiver OK
             $pdo->commit();
-            echo "<script>alert('Registro salvo');location.href='listar/admin';</script>;";
+            echo "<script>alert('Registro salvo');location.href='listar/professor';</script>;";
             exit;
         
     }

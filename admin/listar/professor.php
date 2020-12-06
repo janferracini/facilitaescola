@@ -10,7 +10,7 @@
     <div class="container-fluid">
         <div class="row">
             <div>
-                <h1 class="m-0 text-dark">Administradores Cadastrados</h1>
+                <h1 class="m-0 text-dark">Professores Cadastrados</h1>
             </div><!-- /.col -->
         </div><!-- /.row -->
     </div><!-- /.container-fluid -->
@@ -19,8 +19,8 @@
 <div class="container">
 
     <div class="float-right">
-        <a href="cadastro/admin" class="btn btn-success">Novo Administrador</a>
-        <a href="listar/admin" class="btn btn-info">Listar Administradores</a>
+        <a href="cadastro/professor" class="btn btn-success">Novo Professor</a>
+        <a href="listar/professor" class="btn btn-info">Listar Professores</a>
     </div>
 
     <div class="clearfix"></div>
@@ -39,7 +39,7 @@
 
             $sql = "SELECT  id, nome
                     FROM pessoa
-                    WHERE tipo_cadastro = 1 AND status = 1
+                    WHERE tipo_cadastro = 3 AND status = 1
                     ORDER BY nome";
                     
             $consulta = $pdo->prepare($sql);
@@ -52,7 +52,7 @@
                 echo '<tr>
                         <td>' . $id . '</td>
                         <td>' . $nome . '</td>
-                        <td><a href="cadastro/admin/' . $id . '" class="btn btn-success btn-sm">
+                        <td><a href="cadastro/professor/' . $id . '" class="btn btn-success btn-sm">
                             <i class="fas fa-edit"></i></a>
                             
                             <a href="javascript:excluir('.$id.')" class="btn btn-danger btn-sm">
@@ -74,7 +74,7 @@
         //perguntar
         if (confirm("Deseja mesmo excluir?")) {
             //direcionar para exclusão
-            location.href = "excluir/admin/" + id;
+            location.href = "excluir/professor/" + id;
         }
     }
 </script>

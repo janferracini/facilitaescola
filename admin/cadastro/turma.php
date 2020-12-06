@@ -80,7 +80,7 @@ if (!empty($id)) {
                 <div class="form-group">
                     <label for="periodo">Período</label>
                     <input type="text" name="periodo_id" id="periodo_id" class="form-control" list="listaPeriodo"
-                    data-parsley-required-message="Selecione um tipo de quadrinho" value="<?php
+                    data-parsley-required-message="Selecione o período" value="<?php
                                                 if (!empty($periodo_id)) echo "$periodo - $periodo_id";
                                                 ?>">
                     <datalist id="listaPeriodo">
