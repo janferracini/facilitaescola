@@ -3,7 +3,7 @@
 if (!isset($id)) $id = "";
 
 // tabela pessoa
-$nome = $login = $senha = $rg = $cpf = $datanascimento = $data_cadastro =
+$nome = $login = $senha = $rg = $cpf = $data_nascimento = $data_cadastro =
 $email = $logradouro = $numero  = $cep = $complemento = $telefone1 = $telefone2 = 
 $foto = $status = $cidade_id = $cidade = $estado = '';
 
@@ -30,7 +30,7 @@ if (!empty($id)) {
     $nome       = $dados->nome;
     $rg         = $dados->rg;
     $cpf        = $dados->cpf;
-    $datanascimento = $dados->data_nascimento;
+    $data_nascimento = $dados->data_nascimento;
     $email       = $dados->email;
     $login       = $dados->login;
     $foto        = $dados->foto;
@@ -108,9 +108,9 @@ if (!empty($id)) {
             </div>
 
             <div class="col-12 col-md-4">
-                <label for="dataNascimento"> Data De Nascimento </label>
-                <input type="date" class="form-control" id="dataNascimento" name="dataNascimento"
-                required data-parsley-required-message="Preencha a data de nascimento" value="<?= $datanascimento ?>">
+                <label for="data_nascimento"> Data De Nascimento </label>
+                <input type="date" class="form-control" id="data_nascimento" name="data_nascimento"
+                required data-parsley-required-message="Preencha a data de nascimento" value="<?= $data_nascimento ?>">
             </div>
 
             <!-- LINHA 4 -->
