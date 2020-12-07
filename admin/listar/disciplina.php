@@ -19,8 +19,8 @@
 <div class="container">
 
     <div class="float-right">
-        <a href="cadastro/disciplina" class="btn btn-success">Novo Registro</a>
-        <a href="listar/disciplina" class="btn btn-info">Listar Registro</a>
+        <a href="cadastro/disciplina" class="btn btn-outline-laranja">Novo Registro</a>
+        <a href="listar/disciplina" class="btn btn-outline-info">Listar Registro</a>
     </div>
 
     <div class="clearfix"></div>

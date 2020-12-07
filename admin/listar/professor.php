@@ -19,8 +19,8 @@
 <div class="container">
 
     <div class="float-right">
-        <a href="cadastro/professor" class="btn btn-success">Novo Professor</a>
-        <a href="listar/professor" class="btn btn-info">Listar Professores</a>
+        <a href="cadastro/professor" class="btn btn-outline-laranja">Novo Professor</a>
+        <a href="listar/professor" class="btn btn-outline-info">Listar Professores</a>
     </div>
 
     <div class="clearfix"></div>

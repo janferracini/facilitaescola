@@ -19,8 +19,8 @@
 <div class="container">
 
     <div class="float-right">
-        <a href="cadastro/admin" class="btn btn-success">Novo Administrador</a>
-        <a href="listar/admin" class="btn btn-info">Listar Administradores</a>
+        <a href="cadastro/admin" class="btn btn-outline-laranja">Novo Administrador</a>
+        <a href="listar/admin" class="btn btn-outline-info">Listar Administradores</a>
     </div>
 
     <div class="clearfix"></div>

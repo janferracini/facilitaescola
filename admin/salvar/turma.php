@@ -7,7 +7,7 @@
 // Verificar se existem dados no POST
 if ($_POST) {
     include "../config/conexao.php";
-    include "../functions.php";
+    include "functions.php";
 
     $id = $serie = $descricao = $ano = $periodo_id = "";
 

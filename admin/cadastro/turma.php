@@ -56,8 +56,8 @@ if (!empty($id)) {
 <div class="container">
 
     <div class="float-right">
-        <a href="cadastro/turma" class="btn btn-success">Novo Registro</a>
-        <a href="listar/turma" class="btn btn-info">Listar Registro</a>
+        <a href="cadastro/turma" class="btn btn-outline-laranja">Novo Registro</a>
+        <a href="listar/turma" class="btn btn-outline-info">Listar Registro</a>
     </div>
 
     <div class="clearfix"></div> <!-- Ignora os floats -->
@@ -110,7 +110,7 @@ if (!empty($id)) {
 
         </div>
 
-        <button type="submit" class="btn btn-success margin">
+        <button type="submit" class="btn btn-outline-laranja">
             <i class="fas fa-check"></i> Gravar Dados
         </button>
     </form>

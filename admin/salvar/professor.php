@@ -21,6 +21,36 @@ if ($_POST) {
         echo "<script>alert('Preencha o Nome');history.back();</script>";
         exit;
     }
+    if (empty($login)) {
+        echo "<script>alert('Preencha o Login');history.back();</script>";
+        exit;
+    }
+    if (empty($data_nascimento)) {
+        echo "<script>alert('Preencha a Data de Nascimento');history.back();</script>";
+        exit;
+    }
+    if (empty($logradouro)) {
+        echo "<script>alert('Preencha o Endereço');history.back();</script>";
+        exit;
+    }
+    if (empty($numero)) {
+        echo "<script>alert('Preencha o Numero');history.back();</script>";
+        exit;
+    }
+    if (empty($cep)) {
+        echo "<script>alert('Preencha o CEP');history.back();</script>";
+        exit;
+    }
+    if (empty($telefone1)) {
+        echo "<script>alert('Preencha o Telefone obrigatório');history.back();</script>";
+        exit;
+    }
+
+    if (empty($id) && empty($senha)) {
+        echo "<script>alert('Preencha a Senha');history.back();</script>";
+        exit;
+    }
+    
     //iniciar uma transação com o DB toda alteração pra baixo, só será feito após o commit
     $pdo->beginTransaction();
 

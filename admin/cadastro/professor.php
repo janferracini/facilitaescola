@@ -8,7 +8,7 @@ $email = $logradouro = $numero  = $cep = $complemento = $telefone1 = $telefone2 
 $foto = $status = $cidade_id = $cidade = $estado = '';
 
 if (!empty($id)) {
-    $sql = "SELECT  p.*,
+    $sql = "SELECT  p.*, date_format(p.data_nascimento, '%d/%m/%Y') dt,
                     c.cidade, c.estado
             FROM pessoa p
             INNER JOIN cidade c ON (c.id = p.id_cidade)
@@ -60,8 +60,8 @@ if (!empty($id)) {
 <div class="container">
 
     <div class="float-right">
-        <a href="cadastro/professor" class="btn btn-success">Novo Professor</a>
-        <a href="listar/professor" class="btn btn-info">Listar Professores</a>
+        <a href="cadastro/professor" class="btn btn-outline-laranja">Novo Professor</a>
+        <a href="listar/professor" class="btn btn-outline-info">Listar Professores</a>
     </div>
 
     <div class="clearfix"></div> <!-- Ignora os floats -->
@@ -140,8 +140,8 @@ if (!empty($id)) {
 
             <!-- LINHA 5 -->
             <div class="col-12 col-md-8">
-                <label for="endereco"> Endereço Completo</label>
-                <input type="text" class="form-control" id="endereco" name="endereco"
+                <label for="logradouro"> Endereço Completo</label>
+                <input type="text" class="form-control" id="logradouro" name="logradouro"
                 required data-parsley-required-message="Preencha o endereço" value="<?= $logradouro ?>">
             </div>
 
@@ -155,7 +155,7 @@ if (!empty($id)) {
             <!-- LINHA 6 -->
             <div class="col-12 col-md-12">
                 <label for="complemento"> Complemento </label>
-                <input type="text" class="form-control" id="complement" name="completo" value="<?= $complemento ?>">
+                <input type="text" class="form-control" id="complemento" name="complemento" value="<?= $complemento ?>">
             </div>
 
             <!-- LINHA 7 -->
@@ -190,12 +190,12 @@ if (!empty($id)) {
             </div>
         </div>
 
-
+<!-- 
         <a class="btn btn-success margin" data-toggle="modal" data-target="#gerenciarModal" style="color : #fff;">
             <i class="fas fa-cog"></i> Gerenciar
-        </a>
+        </a> -->
 
-        <button type="submit" class="btn btn-success margin">
+        <button type="submit" class="btn btn-outline-laranja">
             <i class="fas fa-check"></i> Gravar Dados
         </button>
 
@@ -204,7 +204,7 @@ if (!empty($id)) {
                     
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="gerenciarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- <div class="modal fade" id="gerenciarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -241,7 +241,7 @@ if (!empty($id)) {
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <?php if (empty($id)) $id = 0; //verificar se id é vazio ?>
 
@@ -264,6 +264,19 @@ if (!empty($id)) {
                 })
             };
 
+            // verificador de senha no update
+            function verificarSenha() {
+                if ($('#senha').val() != $('#senha2').val()) {
+                    $('#senha').val('')
+                    $('#senha2').val('')
+                    $('#senha2').removeClass('is-valid')
+                    $('#senha2').addClass('is-invalid')
+                    return alert('As senhas devem ser iguais.')
+            }
+                $('#senha2').removeClass('is-invalid')
+                $('#senha2').addClass('is-valid')
+        }
+
             $(document).ready(function() {
                 $("#data_nascimento").mask("99/99/9999");
                 $("#cpf").mask("999.999.999-99");
@@ -283,7 +296,7 @@ if (!empty($id)) {
                 $.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?", function(dados) {
                     $("#cidade").val(dados.localidade);
                     $("#estado").val(dados.uf);
-                    $("#endereco").val(dados.logradouro);
+                    $("#logradouro").val(dados.logradouro);
 
                     //buscar ID da cidade
                     $.get("buscarCidade.php", {
@@ -298,7 +311,7 @@ if (!empty($id)) {
                             }
                         })
                     //focar no endereço
-                    $("#endereco").focus();
+                    $("#logradouro").focus();
                 })
             }
         })

@@ -7,6 +7,7 @@
 // Verificar se existem dados no POST
 if ($_POST) {
     include "../config/conexao.php";
+    include "functions.php";
 
     $nome = $login = $senha = $rg = $cpf = $data_nascimento = $data_cadastro =
     $email = $logradouro = $numero  = $cep = $complemento = $telefone1 = $telefone2 = 
@@ -21,8 +22,39 @@ if ($_POST) {
         echo "<script>alert('Preencha o Nome');history.back();</script>";
         exit;
     }
+    if (empty($login)) {
+        echo "<script>alert('Preencha o Login');history.back();</script>";
+        exit;
+    }
+    if (empty($data_nascimento)) {
+        echo "<script>alert('Preencha a Data de Nascimento');history.back();</script>";
+        exit;
+    }
+    if (empty($logradouro)) {
+        echo "<script>alert('Preencha o Endereço');history.back();</script>";
+        exit;
+    }
+    if (empty($numero)) {
+        echo "<script>alert('Preencha o Numero');history.back();</script>";
+        exit;
+    }
+    if (empty($cep)) {
+        echo "<script>alert('Preencha o CEP');history.back();</script>";
+        exit;
+    }
+    if (empty($telefone1)) {
+        echo "<script>alert('Preencha o Telefone obrigatório');history.back();</script>";
+        exit;
+    }
+
+    if (empty($id) && empty($senha)) {
+        echo "<script>alert('Preencha a Senha');history.back();</script>";
+        exit;
+    }
+    
     //iniciar uma transação com o DB toda alteração pra baixo, só será feito após o commit
     $pdo->beginTransaction();
+    // $data_nascimento   = formatarDN($data_nascimento);
 
     if (empty($id)) {
         $sql = "INSERT INTO pessoa (
@@ -35,7 +67,7 @@ if ($_POST) {
                     :telefone1, :telefone2, :cidade_id, :tipo_cadastro, :status)";
         
         $tipo_cadastro = 1; //1 - ADM, 2 - ALUNO, 3 - PROF
-        $status = 1;       // 1 - ATIVO, 0 - INATIVO - Atico como padrão
+        $status = 1;       // 1 - ATIVO, 0 - INATIVO - Ativo como padrão
         $senha = password_hash($senha, PASSWORD_BCRYPT);
 
 

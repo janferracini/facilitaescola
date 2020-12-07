@@ -4,10 +4,11 @@ if (!isset($id)) $id = "";
 
 // tabela pessoa
 $nome = $login = $senha = $rg = $cpf = $data_nascimento = $data_cadastro =
-$email = $logradouro = $numero  = $cep = $complemento = $telefone1 = $telefone2 = $foto = $status = $cidade_id = $cidade = $estado = '';
+$email = $logradouro = $numero  = $cep = $complemento = $telefone1 = $telefone2 = 
+$foto = $status = $cidade_id = $cidade = $estado = '';
 
 if (!empty($id)) {
-    $sql = "SELECT  p.*,
+    $sql = "SELECT  p.*, date_format(p.data_nascimento, '%d/%m/%Y') dt,
                     c.cidade, c.estado
             FROM pessoa p
             INNER JOIN cidade c ON (c.id = p.id_cidade)
@@ -42,6 +43,7 @@ if (!empty($id)) {
     $telefone1  = $dados->telefone1;
     $telefone2  = $dados->telefone2;
     $estado     = $dados->estado;
+
 }
 ?>
 
@@ -59,8 +61,8 @@ if (!empty($id)) {
 <div class="container">
 
     <div class="float-right">
-        <a href="cadastro/admin" class="btn btn-success">Novo Registro</a>
-        <a href="listar/admin" class="btn btn-info">Listar Registro</a>
+        <a href="cadastro/admin" class="btn btn-outline-laranja">Novo Administrador</a>
+        <a href="listar/admin" class="btn btn-outline-info">Listar Administradores</a>
     </div>
 
     <div class="clearfix"></div> <!-- Ignora os floats -->
@@ -103,13 +105,14 @@ if (!empty($id)) {
             <div class="col-12 col-md-4">
                 <label for="cpf"> CPF </label>
                 <input type="text" class="form-control" id="cpf" name="cpf" value="<?= $cpf ?>" onblur="verificarCpf(this.value)">
-
             </div>
 
             <div class="col-12 col-md-4">
+
                 <label for="data_nascimento"> Data De Nascimento </label>
                 <input type="date" class="form-control" id="data_nascimento" name="data_nascimento"
                 required data-parsley-required-message="Preencha a data de nascimento" value="<?= $data_nascimento ?>">
+
             </div>
 
             <!-- LINHA 4 -->
@@ -122,25 +125,25 @@ if (!empty($id)) {
             <div class="col-12 col-md-4">
                 <label for="cidade"> Cidade</label>
                 <input type="text" class="form-control" id="cidade"
-                    required data-parsley-required-message="Selecione a cidade" value="<?= $cidade ?>">
+                required data-parsley-required-message="Selecione a cidade" value="<?= $cidade ?>">
             </div>
 
             <div class="col-12 col-md-1">
                 <label for="cidade_id"> ID Cidade</label>
                 <input type="text" class="form-control" id="cidade_id" name="cidade_id"
-                    required data-parsley-required-message="Selecione a cidade" readonly value="<?= $cidade_id ?>">
+                required data-parsley-required-message="Selecione a cidade" readonly value="<?= $cidade_id ?>">
             </div>
 
             <div class="col-12 col-md-3">                
                 <label for="cidade"> Estado </label>
                 <input type="text" class="form-control" id="estado"
-                    required data-parsley-required-message="Selecione o estado" value="<?= $estado ?>">
+                required data-parsley-required-message="Selecione o estado" value="<?= $estado ?>">
             </div>
 
             <!-- LINHA 5 -->
             <div class="col-12 col-md-8">
-                <label for="endereco"> Endereço Completo</label>
-                <input type="text" class="form-control" id="endereco" name="endereco"
+                <label for="logradouro"> Endereço Completo </label>
+                <input type="text" class="form-control" id="logradouro" name="logradouro"
                 required data-parsley-required-message="Preencha o endereço" value="<?= $logradouro ?>">
             </div>
 
@@ -154,19 +157,22 @@ if (!empty($id)) {
             <!-- LINHA 6 -->
             <div class="col-12 col-md-12">
                 <label for="complemento"> Complemento </label>
-                <input type="text" class="form-control" id="complement" name="completo" value="<?= $complemento ?>">
+                <input type="text" class="form-control" id="complemento" name="complemento" 
+                value="<?= $complemento ?>">
             </div>
 
             <!-- LINHA 7 -->
             <div class="col-12 col-md-6">
-                <label for="telefone1"> Telefone Obrigatório</label>
+                <label for="telefone1"> Telefone Obrigatório </label>
                 <input type="text" class="form-control" id="telefone1" name="telefone1"
-                required data-parsley-required-message="Preencha com o número de telefone" value="<?= $telefone1 ?>">
+                required data-parsley-required-message="Preencha com o número de telefone" 
+                value="<?= $telefone1 ?>">
             </div>
 
             <div class="col-12 col-md-6">
                 <label for="telefone2"> Telefone Opcional </label>
-                <input type="text" class="form-control" id="telefone2" name="telefone2" value="<?= $telefone2 ?>">
+                <input type="text" class="form-control" id="telefone2" name="telefone2" 
+                value="<?= $telefone2 ?>">
             </div>
 
             <!-- <div class="col-12 col-md-4 custom-file">
@@ -183,18 +189,18 @@ if (!empty($id)) {
             </div>
 
             <div class="col-12 col-md-6">
-                <label for="confirmaSenha">Confirmar Senha </label>
-                <input type="password" class="form-control" id="confirmaSenha" name="confirmaSenha" 
+                <label for="senha2">Confirmar Senha </label>
+                <input type="password" class="form-control" id="senha2" name="senha2" 
                 require data-parsley-required-message="Insira a senha novamente" placeholder="Insira com a senha inicial de acesso">
             </div>
         </div>
 
 
-        <a class="btn btn-success margin" data-toggle="modal" data-target="#gerenciarModal" style="color : #fff;">
+        <!-- <a class="btn btn-success margin" data-toggle="modal" data-target="#gerenciarModal" style="color : #fff;">
             <i class="fas fa-cog"></i> Gerenciar
-        </a>
+        </a> -->
 
-        <button type="submit" class="btn btn-success margin">
+        <button type="submit" class="btn btn-outline-laranja margin">
             <i class="fas fa-check"></i> Gravar Dados
         </button>
 
@@ -233,34 +239,46 @@ if (!empty($id)) {
 
     <?php if (empty($id)) $id = 0; //verificar se id é vazio ?>
 
-        <script>
+    <script>
 
-            function verificarCpf(cpf) {
-                //ajax verificação CPF
-                //faz o get para o arquivo indicado e a variável e o retorno
-                $.get("verificarCpf.php", {
-                        cpf: cpf,
-                        id: <?= $id; ?>
-                    },
-                function(dados) {
-                    if (dados != "") {
-                        // retorno da mensagem da verificação de erro
-                        alert(dados);
-                        //zera o CPF
-                        $("#cpf").val("");
-                    }
-                })
-            };
+        function verificarCpf(cpf) {
+            //ajax verificação CPF
+            //faz o get para o arquivo indicado e a variável e o retorno
+            $.get("verificarCpf.php", {
+                    cpf: cpf,
+                    id: <?= $id; ?>
+                },
+            function(dados) {
+                if (dados != "") {
+                    // retorno da mensagem da verificação de erro
+                    alert(dados);
+                    //zera o CPF
+                    $("#cpf").val("");
+                }
+            })
+        };
 
-            $(document).ready(function() {
-                $("#data_nascimento").mask("99/99/9999");
-                $("#cpf").mask("999.999.999-99");
-                $("#telefone1").mask("(99) 9999-9999");
-                $("#telefone2").mask("(99) 99999-9999");
-                $("#cep").mask("99.999-999");
-            });
+        function verificarSenha() {
+            if ($('#senha').val() != $('#senha2').val()) {
+                $('#senha').val('')
+                $('#senha2').val('')
+                $('#senha2').removeClass('is-valid')
+                $('#senha2').addClass('is-invalid')
+                return alert('As senhas devem ser iguais.')
+            }
+            $('#senha2').removeClass('is-invalid')
+            $('#senha2').addClass('is-valid')
+        }
 
-            $("#cep").blur(function() {
+        $(document).ready(function() {
+            $("#data_nascimento").mask("99/99/9999");
+            $("#cpf").mask("999.999.999-99");
+            $("#telefone1").mask("(99) 9999-9999");
+            $("#telefone2").mask("(99) 99999-9999");
+            $("#cep").mask("99.999-999");
+        });
+
+        $("#cep").blur(function() {
             //pega valor do CEP
             cep = $("#cep").val();
             cep = cep.replace(/\D/g, '');
@@ -271,7 +289,7 @@ if (!empty($id)) {
                 $.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?", function(dados) {
                     $("#cidade").val(dados.localidade);
                     $("#estado").val(dados.uf);
-                    $("#endereco").val(dados.logradouro);
+                    $("#logradouro").val(dados.logradouro);
 
                     //buscar ID da cidade
                     $.get("buscarCidade.php", {
@@ -286,9 +304,9 @@ if (!empty($id)) {
                             }
                         })
                     //focar no endereço
-                    $("#endereco").focus();
+                    $("#logradouro").focus();
                 })
             }
         })
-        </script>
+    </script>
 </div>
