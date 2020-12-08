@@ -31,31 +31,43 @@ $base = "$h://$site:$porta/$url"
 
   <link rel="shortcut icon" href="../docs/assets/img/FE-icone.ico">
 
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <!-- <script>$(document).ready(function(){alert('funcionou a instalação!');});</script>  -->
+  <!-- <link rel="stylesheet" href="http://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"> -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
+
+  <!-- <script src="vendor/jquery/jquery.min.js"></script> -->
+  <!-- <script src="js/jquery.inputmask.min.js"></script> -->
+
+  <!-- <script src="js/bindings/inputmask.binding.js"></script> ***************** -->
+
+  <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script> -->
+
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
+
+  <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
   <!-- IonIcons -->
   <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- Tempusdominus Bbootstrap 4 -->
-  <link rel="stylesheet" href="../plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../dist/css/adminlte.min.css">
+
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <!-- Daterange picker -->
-  <link rel="stylesheet" href="../plugins/daterangepicker/daterangepicker.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="../dist/css/adminlte.min.css">
-  <link rel="stylesheet" href="../dist/css/style.css">
-
-  <link rel="stylesheet" href="http://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+  <!-- <link rel="stylesheet" href="../plugins/daterangepicker/daterangepicker.css"> -->
 
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
-    <script src="vendor/jquery/jquery.min.js"> </script>
-    <script src="js/jquery.inputmask.min.js"></script>
-    <script src="js/bindings/inputmask.binding.js"></script>
-    <script src="js/jquery.maskMoney.min.js"></script>
+  <!-- Bootstrap CSS -->
+  <link  rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
+  <link rel="stylesheet" href="../dist/css/style.css">
+  <!-- Tempusdominus Bbootstrap 4 -->
+  <!-- <link rel="stylesheet" href="../plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css"> -->
 </head>
 
 
@@ -289,29 +301,65 @@ $base = "$h://$site:$porta/$url"
   <?php
   }
   ?>
+
+<!-- ATENTION: OS LINKS A BAIXO SAO DO MEU TCC (RAFEL E JUÇINA) -->
+
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<!-- <script src="plugins/jquery/jquery.min.js"></script> -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="../plugins/mask/jquery.mask.min.js" ></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+<script src="../plugins/js/jquery.overlayScrollbars.min.js"></script>
+<script src="../dist/js/adminlte.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<!-- <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script> -->
+<!-- ChartJS -->
+<script src="../plugins/chart.js/Chart.min.js"></script>
+<!-- Sparkline -->
+<script src="../plugins/sparklines/sparkline.js"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<!-- <script src="dist/js/pages/dashboard.js"></script> -->
+<!-- AdminLTE for demo purposes -->
+<!-- <script src="dist/js/demo.js"></script> -->
+
+<!-- ATENÇÃO: OS SCRIPTS ACIMA É MEU TCC DO RAFEL E JU -->
+
+<!-- NOSSOS SCRIPTS ABAIXO -->
+
   <!-- REQUIRED SCRIPTS -->
+  <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="plugins/mask/jquery.mask.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script> -->
 
   <!-- jQuery -->
-  <script src="../plugins/jquery/jquery.js"></script>
+  <!-- <script src="../plugins/jquery/jquery.js"></script> -->
   <!-- Bootstrap -->
-  <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script> -->
   <!-- Parsley para validar -->
-  <script src="../dist/js/parsley.min.js"></script>
+  <!-- <script src="../dist/js/parsley.min.js"></script> **************--> 
   <!-- AdminLTE -->
-  <script src="../dist/js/adminlte.js"></script>
+  <!-- <script src="../dist/js/adminlte.js"></script> -->
   <!-- daterangepicker -->
-  <script src="../plugins/moment/moment.min.js"></script>
-  <script src="../plugins/daterangepicker/daterangepicker.js"></script>
+  <!-- <script src="../plugins/moment/moment.min.js"></script>
+  <script src="../plugins/daterangepicker/daterangepicker.js"></script> -->
   <!-- Tempusdominus Bootstrap 4 -->
-  <script src="../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+  <!-- <script src="../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script> -->
 
 
-  <script src="http://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+  <!-- <script src="http://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script> -->
+
+  <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script> -->
 
   <!-- OPTIONAL SCRIPTS -->
-  <script src="../plugins/chart.js/Chart.min.js"></script>
-  <script src="../dist/js/demo.js"></script>
-  <script src="../dist/js/pages/dashboard3.js"></script>
+  <!-- <script src="../plugins/chart.js/Chart.min.js"></script> -->
+  <!-- <script src="../dist/js/demo.js"></script>
+  <script src="../dist/js/pages/dashboard3.js"></script> -->
+  <!-- end -->
 </body>
 
 </html>

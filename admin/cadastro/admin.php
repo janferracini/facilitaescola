@@ -128,16 +128,16 @@ if (!empty($id)) {
                 required data-parsley-required-message="Selecione a cidade" value="<?= $cidade ?>">
             </div>
 
-            <div class="col-12 col-md-1">
+            <div class="col-12 col-md-2">
                 <label for="cidade_id"> ID Cidade</label>
-                <input type="text" class="form-control" id="cidade_id" name="cidade_id"
+                <input type="text" class="form-control" id="cidade_id" name="cidade_id" 
                 required data-parsley-required-message="Selecione a cidade" readonly value="<?= $cidade_id ?>">
             </div>
 
-            <div class="col-12 col-md-3">                
+            <div class="col-12 col-md-2">
                 <label for="cidade"> Estado </label>
                 <input type="text" class="form-control" id="estado"
-                required data-parsley-required-message="Selecione o estado" value="<?= $estado ?>">
+                required data-parsley-required-message="Selecione o estado" value="<?= $estado; ?>">
             </div>
 
             <!-- LINHA 5 -->
@@ -271,11 +271,11 @@ if (!empty($id)) {
         }
 
         $(document).ready(function() {
-            $("#data_nascimento").mask("99/99/9999");
-            $("#cpf").mask("999.999.999-99");
-            $("#telefone1").mask("(99) 9999-9999");
-            $("#telefone2").mask("(99) 99999-9999");
-            $("#cep").mask("99.999-999");
+            //$("#data_nascimento").mask("99/99/9999");
+            $("#cpf").mask("000.000.000-00");
+            $("#telefone1").mask("(00) 00000-0000");
+            $("#telefone2").mask("(00) 00000-0000");
+            $("#cep").mask("00.000-000");
         });
 
         $("#cep").blur(function() {

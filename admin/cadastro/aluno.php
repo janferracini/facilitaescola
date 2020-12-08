@@ -51,6 +51,9 @@ if (!empty($id)) {
 }
 ?>
 
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> -->
+  <!-- <script>$(document).ready(function(){alert('funcionou a instalação!');});</script>  -->
+
 <div class="content-header">
     <div class="container-fluid">
         <div class="row">
@@ -80,7 +83,7 @@ if (!empty($id)) {
             <div class="col-12 col-md-12">
                 <label for="nome"> Nome Completo </label>
                 <input type="text" class="form-control" id="nome" name="nome" 
-                required data-parsley-required-message="Preencha o nome" value="<?= $nome ?>">
+                required data-parsley-required-message="Preencha o nome" value="<?= $nome; ?>">
             </div>
 
             <!-- LINHA 2 -->
@@ -88,26 +91,26 @@ if (!empty($id)) {
                 <label for="login"> Login </label>
                 <input type="text" class="form-control" id="login" name="login" 
                 required data-parsley-required-message="Preencha o nome do login" 
-                placeholder="Insira com o login de acesso" value="<?= $login ?>">
+                placeholder="Insira com o login de acesso" value="<?= $login; ?>">
             </div>
 
             <div class="col-12 col-md-8">
                 <label for="email"> E-mail </label>
                 <input type="email" class="form-control" id="email" name="email" 
                 required data-parsley-required-message="Preencha com um e-mail válido" 
-                placeholder="Digite um e-mail válido" value="<?= $email ?>">
+                placeholder="Digite um e-mail válido" value="<?= $email; ?>">
             </div>
 
             <!-- LINHA 3-->
             <div class="col-12 col-md-4">
                 <label for="rg"> RG </label>
                 <input type="text" class="form-control" id="rg" name="rg" 
-                required data-parsley-required-message="Preencha o RG" value="<?= $rg ?>">
+                required data-parsley-required-message="Preencha o RG" value="<?= $rg; ?>">
             </div>
 
             <div class="col-12 col-md-4">
                 <label for="cpf"> CPF </label>
-                <input type="text" class="form-control" id="cpf" name="cpf" value="<?= $cpf ?>" 
+                <input type="text" class="form-control" name="cpf" id="cpf" value="<?=$cpf;?>" placeholder="000.000.000-00" 
                 onblur="verificarCpf(this.value)">
 
             </div>
@@ -116,14 +119,14 @@ if (!empty($id)) {
                 <label for="data_nascimento"> Data De Nascimento </label>
                 <input type="date" class="form-control" id="data_nascimento" name="data_nascimento" 
                 required data-parsley-required-message="Preencha a data de nascimento" 
-                value="<?= $data_nascimento ?>">
+                value="<?= $data_nascimento; ?>">
             </div>
 
             <!-- LINHA 4 -->
             <div class="col-12 col-md-4">
                 <label for="cep"> CEP </label>
                 <input type="text" class="form-control" id="cep" name="cep" 
-                required data-parsley-required-message="Preencha com um CEP válido" value="<?= $cep ?>">
+                required data-parsley-required-message="Preencha com um CEP válido" value="<?= $cep; ?>">
             </div>
 
             <div class="col-12 col-md-4">
@@ -132,49 +135,49 @@ if (!empty($id)) {
                 required data-parsley-required-message="Selecione a cidade" value="<?= $cidade ?>">
             </div>
 
-            <div class="col-12 col-md-1">
+            <div class="col-12 col-md-2">
                 <label for="cidade_id"> ID Cidade</label>
                 <input type="text" class="form-control" id="cidade_id" name="cidade_id" 
                 required data-parsley-required-message="Selecione a cidade" readonly value="<?= $cidade_id ?>">
             </div>
 
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-2">
                 <label for="cidade"> Estado </label>
                 <input type="text" class="form-control" id="estado"
-                required data-parsley-required-message="Selecione o estado" value="<?= $estado ?>">
+                required data-parsley-required-message="Selecione o estado" value="<?= $estado; ?>">
             </div>
 
             <!-- LINHA 5 -->
             <div class="col-12 col-md-8">
                 <label for="logradouro"> Endereço Completo </label>
                 <input type="text" class="form-control" id="logradouro" name="logradouro" 
-                required data-parsley-required-message="Preencha o endereço" value="<?= $logradouro ?>">
+                required data-parsley-required-message="Preencha o endereço" value="<?= $logradouro; ?>">
             </div>
 
             <div class="col-12 col-md-4">
                 <label for="numero"> Número </label>
                 <input type="text" class="form-control" id="numero" name="numero" 
                 required data-parsley-required-message="Preencha com o número da residência" 
-                placeholder="Insira o número da residência" value="<?= $numero ?>">
+                placeholder="Insira o número da residência" value="<?= $numero; ?>">
             </div>
 
             <!-- LINHA 6 -->
             <div class="col-12 col-md-12">
                 <label for="complemento"> Complemento </label>
                 <input type="text" class="form-control" id="complemento" name="complemento" 
-                value="<?= $complemento ?>">
+                value="<?= $complemento; ?>">
             </div>
 
             <!-- LINHA 7 -->
             <div class="col-12 col-md-6">
                 <label for="telefone1"> Telefone Obrigatório </label>
                 <input type="text" class="form-control" id="telefone1" name="telefone1" 
-                required data-parsley-required-message="Preencha com o número de telefone" value="<?= $telefone1 ?>">
+                required data-parsley-required-message="Preencha com o número de telefone" value="<?= $telefone1; ?>">
             </div>
 
             <div class="col-12 col-md-6">
                 <label for="telefone2"> Telefone Opcional </label>
-                <input type="text" class="form-control" id="telefone2" name="telefone2" value="<?= $telefone2 ?>">
+                <input type="text" class="form-control" id="telefone2" name="telefone2" value="<?= $telefone2; ?>">
             </div>
 
             <!-- <div class="col-12 col-md-4 custom-file">
@@ -208,7 +211,9 @@ if (!empty($id)) {
         <button type="submit" class="btn btn-outline-laranja">
             <i class="fas fa-check"></i> Gravar Dados
         </button>
-
+        <!-- <button type="button" id="teste" class="btn btn-info margin">
+			<i class="fas fa-check"></i> Jquery funcionou                
+        </button> -->
 
     </form>
 
@@ -282,7 +287,22 @@ if (!empty($id)) {
 
     <?php if (empty($id)) $id = 0; //verificar se id é vazio ?>
 
-    <script>
+    <script type="text/javascript">
+
+        $(document).ready(function(){
+
+            //$("#data_nascimento").mask("99/99/9999");
+            $("#cpf").mask("000.000.000-00");
+            $("#telefone1").mask("(00) 0000-0000");
+            $("#telefone2").mask("(00) 0000-0000");
+            $("#cep").mask("00.000-000");
+
+            //mostra se o jquery esta funcionando ou nao
+            $('#teste').click(function(){
+                console.log("Funcionando o Jquery");
+            });
+        });
+
         function verificarCpf(cpf) {
             //ajax verificação CPF
             //faz o get para o arquivo indicado e a variável e o retorno
@@ -311,14 +331,6 @@ if (!empty($id)) {
             $('#senha2').removeClass('is-invalid')
             $('#senha2').addClass('is-valid')
         }
-
-        $(document).ready(function() {
-            $("#data_nascimento").mask("99/99/9999");
-            $("#cpf").mask("999.999.999-99");
-            $("#telefone1").mask("(99) 9999-9999");
-            $("#telefone2").mask("(99) 99999-9999");
-            $("#cep").mask("99.999-999");
-        });
 
         $("#cep").blur(function() {
             //pega valor do CEP
@@ -349,6 +361,6 @@ if (!empty($id)) {
                     $("#logradouro").focus();
                 })
             }
-        })
+        });
     </script>
 </div>
