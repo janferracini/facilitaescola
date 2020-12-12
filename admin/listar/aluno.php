@@ -53,10 +53,12 @@
                         <td>' . $id . '</td>
                         <td>' . $nome . '</td>
                         <td><a href="cadastro/aluno/' . $id . '" class="btn btn-success btn-sm">
-                            <i class="fas fa-edit"></i></a>
+                                <i class="fas fa-edit"></i>
+                            </a>
                             
-                            <a href="javascript:excluir('.$id.')" class="btn btn-danger btn-sm">
-                            <i class="fas fa-trash"></i></a>
+                            <button type="button" class="btn btn-danger btn-sm" onclick="excluir('.$id.')">
+                                <i class="fas fa-trash"></i>
+                            </button>
                         </td>
                     </tr>';
             }
