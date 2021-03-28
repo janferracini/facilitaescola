@@ -47,6 +47,6 @@
             </script>";
     }
 
-    echo "<script>location.href='listar/admin'</script>"
+    echo "<script>alert('Registro excluído');location.href='listar/admin'</script>"
 
 ?>

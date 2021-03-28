@@ -19,8 +19,7 @@
 <div class="container">
 
     <div class="float-right">
-        <a href="cadastro/disciplina" class="btn btn-outline-laranja">Novo Registro</a>
-        <a href="listar/disciplina" class="btn btn-outline-info">Listar Registro</a>
+        <a href="cadastro/disciplina" class="btn btn-outline-laranja">Nova Disciplina</a>
     </div>
 
     <div class="clearfix"></div>
@@ -29,7 +28,6 @@
         <table id="tabDisciplina" class="table table-hover text-nowrap">
             <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Disciplina</th>
                     <th>Ações</th>
                 </tr>
@@ -51,7 +49,6 @@
 
                 // Mostrar na tela
                 echo '<tr>
-                        <td>' . $id . '</td>
                         <td>' . $disciplina . '</td>
                         <td><a href="cadastro/disciplina/' . $id . '" class="btn btn-success btn-sm">
                                 <i class="fas fa-edit"></i>

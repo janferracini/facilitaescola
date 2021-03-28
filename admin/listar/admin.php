@@ -20,7 +20,6 @@
 
     <div class="float-right">
         <a href="cadastro/admin" class="btn btn-outline-laranja">Novo Administrador</a>
-        <a href="listar/admin" class="btn btn-outline-info">Listar Administradores</a>
     </div>
 
     <div class="clearfix"></div>
@@ -29,7 +28,7 @@
         <table id="tabAdmin" class="table table-hover text-nowrap">
             <thead>
                 <tr>
-                    <th>ID</th>
+
                     <th>Nome</th>
                     <th>Ações</th>
                 </tr>
@@ -50,7 +49,6 @@
                 $nome = $dados->nome;
 
                 echo '<tr>
-                        <td>' . $id . '</td>
                         <td>' . $nome . '</td>
 
                         <td><a href="cadastro/admin/' . $id . '" class="btn btn-success btn-sm">

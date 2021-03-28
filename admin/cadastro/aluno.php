@@ -68,7 +68,6 @@ if (!empty($id)) {
 <div class="container">
 
     <div class="float-right">
-        <a href="cadastro/aluno" class="btn btn-outline-laranja">Novo Aluno</a>
         <a href="listar/aluno" class="btn btn-outline-info">Listar Alunos</a>
     </div>
 
@@ -131,17 +130,14 @@ if (!empty($id)) {
 
             <div class="col-12 col-md-4">
                 <label for="cidade"> Cidade</label>
-                <input type="text" class="form-control" id="cidade" 
+                <input type="text" class="form-control" id="cidade"
                 required data-parsley-required-message="Selecione a cidade" value="<?= $cidade ?>">
-            </div>
 
-            <div class="col-12 col-md-2">
-                <label for="cidade_id"> ID Cidade</label>
-                <input type="text" class="form-control" id="cidade_id" name="cidade_id" 
+                <input type="hidden" class="form-control" id="cidade_id" name="cidade_id" 
                 required data-parsley-required-message="Selecione a cidade" readonly value="<?= $cidade_id ?>">
             </div>
 
-            <div class="col-12 col-md-2">
+            <div class="col-12 col-md-4">
                 <label for="cidade"> Estado </label>
                 <input type="text" class="form-control" id="estado"
                 required data-parsley-required-message="Selecione o estado" value="<?= $estado; ?>">

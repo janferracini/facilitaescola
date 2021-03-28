@@ -19,8 +19,7 @@
 <div class="container">
 
     <div class="float-right">
-        <a href="cadastro/turma" class="btn btn-outline-laranja">Novo Registro</a>
-        <a href="listar/turma" class="btn btn-outline-info">Listar Registro</a>
+        <a href="cadastro/turma" class="btn btn-outline-laranja">Nova Tuema</a>
     </div>
 
     <div class="clearfix"></div>
@@ -29,7 +28,6 @@
         <table id="tabTurma" class="table table-hover text-nowrap">
             <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Série</th>
                     <th>Descrição</th>
                     <th>Período</th>
@@ -66,7 +64,6 @@
 
                 // Mostrar na tela
                 echo '<tr>
-                        <td>' . $id . '</td>
                         <td>' . $serie . '</td>
                         <td>' . $descricao . '</td>
                         <td>' . $periodo . '</td>

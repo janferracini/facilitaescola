@@ -20,7 +20,6 @@
 
     <div class="float-right">
         <a href="cadastro/professor" class="btn btn-outline-laranja">Novo Professor</a>
-        <a href="listar/professor" class="btn btn-outline-info">Listar Professores</a>
     </div>
 
     <div class="clearfix"></div>
@@ -29,7 +28,6 @@
         <table id="tabAdmin" class="table table-hover text-nowrap">
             <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Nome</th>
                     <th>Ações</th>
                 </tr>
@@ -50,7 +48,6 @@
                 $nome = $dados->nome;
 
                 echo '<tr>
-                        <td>' . $id . '</td>
                         <td>' . $nome . '</td>
                         <td><a href="cadastro/professor/' . $id . '" class="btn btn-success btn-sm">
                                 <i class="fas fa-edit"></i>

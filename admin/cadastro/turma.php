@@ -56,8 +56,7 @@ if (!empty($id)) {
 <div class="container">
 
     <div class="float-right">
-        <a href="cadastro/turma" class="btn btn-outline-laranja">Novo Registro</a>
-        <a href="listar/turma" class="btn btn-outline-info">Listar Registro</a>
+        <a href="listar/turma" class="btn btn-outline-info">Listar Turmas</a>
     </div>
 
     <div class="clearfix"></div> <!-- Ignora os floats -->

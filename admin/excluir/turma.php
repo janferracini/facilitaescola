@@ -47,6 +47,6 @@
     }
 
 
-    echo "<script>location.href='listar/turma'</script>"
+    echo "<script>alert('Registro excluído');location.href='listar/turma'</script>"
 
 ?>
