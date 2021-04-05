@@ -63,7 +63,7 @@ $base = "$h://$site:$porta/$url"
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
   <!-- Bootstrap CSS -->
-  <link  rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 
   <link rel="stylesheet" href="../dist/css/style.css">
   <!-- Tempusdominus Bbootstrap 4 -->
@@ -172,6 +172,15 @@ $base = "$h://$site:$porta/$url"
                       <p>Turmas</p>
                     </a>
                   </li>
+
+                  <li class="nav-item">
+                    <a href="cadastro/grade" class="nav-link">
+                      <i class="nav-icon fas fa-chalkboard-teacher"></i>
+                      <p>
+                        Grade
+                      </p>
+                    </a>
+                  </li>
                 </ul>
               </li>
 
@@ -207,15 +216,6 @@ $base = "$h://$site:$porta/$url"
                   <i class="nav-icon fas fa-envelope"></i>
                   <p>
                     Mensagens
-                  </p>
-                </a>
-              </li>
-
-              <li class="nav-item">
-                <a href="pages/calendar.html" class="nav-link">
-                  <i class="nav-icon fas fa-folder-open"></i>
-                  <p>
-                    Arquivos
                   </p>
                 </a>
               </li>
@@ -302,33 +302,33 @@ $base = "$h://$site:$porta/$url"
   }
   ?>
 
-<!-- ATENTION: OS LINKS A BAIXO SAO DO MEU TCC (RAFEL E JUÇINA) -->
+  <!-- ATENTION: OS LINKS A BAIXO SAO DO MEU TCC (RAFEL E JUÇINA) -->
 
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<!-- <script src="plugins/jquery/jquery.min.js"></script> -->
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="../plugins/mask/jquery.mask.min.js" ></script>
-<script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
-<script src="../plugins/js/jquery.overlayScrollbars.min.js"></script>
-<script src="../dist/js/adminlte.js"></script>
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <!-- <script src="plugins/jquery/jquery.min.js"></script> -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="../plugins/mask/jquery.mask.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+  <script src="../plugins/js/jquery.overlayScrollbars.min.js"></script>
+  <script src="../dist/js/adminlte.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-<!-- <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script> -->
-<!-- ChartJS -->
-<script src="../plugins/chart.js/Chart.min.js"></script>
-<!-- Sparkline -->
-<script src="../plugins/sparklines/sparkline.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<!-- <script src="dist/js/pages/dashboard.js"></script> -->
-<!-- AdminLTE for demo purposes -->
-<!-- <script src="dist/js/demo.js"></script> -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  <!-- <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script> -->
+  <!-- ChartJS -->
+  <script src="../plugins/chart.js/Chart.min.js"></script>
+  <!-- Sparkline -->
+  <script src="../plugins/sparklines/sparkline.js"></script>
+  <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+  <!-- <script src="dist/js/pages/dashboard.js"></script> -->
+  <!-- AdminLTE for demo purposes -->
+  <!-- <script src="dist/js/demo.js"></script> -->
 
-<!-- ATENÇÃO: OS SCRIPTS ACIMA É MEU TCC DO RAFEL E JU -->
+  <!-- ATENÇÃO: OS SCRIPTS ACIMA É MEU TCC DO RAFEL E JU -->
 
-<!-- NOSSOS SCRIPTS ABAIXO -->
+  <!-- NOSSOS SCRIPTS ABAIXO -->
 
   <!-- REQUIRED SCRIPTS -->
   <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
@@ -341,7 +341,7 @@ $base = "$h://$site:$porta/$url"
   <!-- Bootstrap -->
   <!-- <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script> -->
   <!-- Parsley para validar -->
-  <!-- <script src="../dist/js/parsley.min.js"></script> **************--> 
+  <!-- <script src="../dist/js/parsley.min.js"></script> **************-->
   <!-- AdminLTE -->
   <!-- <script src="../dist/js/adminlte.js"></script> -->
   <!-- daterangepicker -->

@@ -21,9 +21,9 @@ if ($_POST) {
 
     // verificar se existe disciplina de mesmo nome
     $sql = "SELECT id
-     FROM disciplina
-     WHERE disciplina = ? AND id <> ?
-     LIMIT 1 ";
+            FROM disciplina
+            WHERE disciplina = ? AND id <> ?
+            LIMIT 1 ";
 
     $consulta = $pdo->prepare($sql);
 
@@ -38,7 +38,7 @@ if ($_POST) {
         echo "<script>alert('Disciplina já existente');location.href='listar/disciplina';</script>;";
         exit;
     }
-    
+
     //iniciar uma transação com o DB toda alteração pra baixo, só será feito após o commit
     $pdo->beginTransaction();
 

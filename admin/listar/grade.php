@@ -10,7 +10,7 @@
     <div class="container-fluid">
         <div class="row">
             <div>
-                <h1 class="m-0 text-dark">Turmas Cadastradas</h1>
+                <h1 class="m-0 text-dark">Grade</h1>
             </div><!-- /.col -->
         </div><!-- /.row -->
     </div><!-- /.container-fluid -->
@@ -19,35 +19,25 @@
 <div class="container">
 
     <div class="float-right">
-        <a href="cadastro/turma" class="btn btn-outline-laranja">Nova Turma</a>
+        <a href="cadastro/disciplina" class="btn btn-outline-laranja">Nova Disciplina</a>
     </div>
 
     <div class="clearfix"></div>
 
     <div class="card-body table-responsive p-0 mt-3">
-        <table id="tabTurma" class="table table-hover text-nowrap">
+        <table id="tabDisciplina" class="table table-hover text-nowrap">
             <thead>
                 <tr>
-                    <th>Série</th>
-                    <th>Descrição</th>
-                    <th>Período</th>
-                    <th>Ano</th>
+                    <th>Disciplina</th>
                     <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
             <?php
 
-            $sql = "SELECT  t.id,
-                            t.serie,
-                            t.descricao,
-                            t.ano,
-                            t.periodo_id,
-                            p.id idperiodo,
-                            p.periodo
-                    FROM turma t
-                    INNER JOIN periodo p on (p.id = t.periodo_id)
-                    ORDER BY serie";
+            $sql = "SELECT  *
+                    FROM disciplina
+                    ORDER BY disciplina";
                     
             $consulta = $pdo->prepare($sql);
             $consulta->execute();
@@ -55,21 +45,12 @@
             while ($dados = $consulta->fetch(PDO::FETCH_OBJ)) {
                 // Separar os dados
                 $id = $dados->id;
-                $serie = $dados->serie;
-                $descricao = $dados->descricao;
-                $periodo_id = $dados->periodo_id;
-                $periodo = $dados->periodo;
-                $ano = $dados->ano;
-                $idperiodo = $dados->idperiodo;
+                $disciplina = $dados->disciplina;
 
                 // Mostrar na tela
                 echo '<tr>
-                        <td>' . $serie . '</td>
-                        <td>' . $descricao . '</td>
-                        <td>' . $periodo . '</td>
-                        <td>' . $ano . '</td>
-
-                        <td><a href="cadastro/turma/' . $id . '" class="btn btn-success btn-sm">
+                        <td>' . $disciplina . '</td>
+                        <td><a href="cadastro/disciplina/' . $id . '" class="btn btn-success btn-sm">
                                 <i class="fas fa-edit"></i>
                             </a>
                             
@@ -93,7 +74,7 @@
         //perguntar
         if (confirm("Deseja mesmo excluir?")) {
             //direcionar para exclusão
-            location.href = "excluir/turma/" + id;
+            location.href = "excluir/disciplina/" + id;
         }
     }
 </script>
