@@ -5,7 +5,7 @@ ini_set("display_errors", 1);
 ini_set("display_startup_erros", 1);
 error_reporting(E_ALL);
 
-$pagina = "home";
+$pagina = "../paginas/login";
 
 include "../config/conexao.php";
 
@@ -26,7 +26,7 @@ $base = "$h://$site:$porta/$url"
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title>Facilita Escola | Inicio</title>
+  <title>Facilita Escola</title>
   <base href="<?= $base; ?>">
 
   <link rel="shortcut icon" href="../docs/assets/img/FE-icone.ico">
@@ -46,6 +46,10 @@ $base = "$h://$site:$porta/$url"
   <link rel="stylesheet" href="../dist/css/style.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
 </head>
 
 
@@ -85,7 +89,7 @@ $base = "$h://$site:$porta/$url"
         </li>
         <!-- Botão SAIR -->
         <li class="nav-item dropdown">
-        <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
+          <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
             <i class="fas fa-sign-out-alt"></i>
           </a>
         </li>
@@ -142,10 +146,10 @@ $base = "$h://$site:$porta/$url"
             </li>
 
             <li class="nav-item">
-              <a href="pages/calendar.html" class="nav-link">
+              <a href="cadastro/mensagem" class="nav-link">
                 <i class="nav-icon fas fa-envelope"></i>
                 <p>
-                  Enviar Mensagens
+                  Enviar Mensagem
                 </p>
               </a>
             </li>
@@ -202,7 +206,7 @@ $base = "$h://$site:$porta/$url"
           if (file_exists($pagina)) {
             include $pagina;
           } else {
-            include "paginas/erro.php";
+            include $pagina = "../paginas/erro.php";
           }
           ?>
 
@@ -228,24 +232,24 @@ $base = "$h://$site:$porta/$url"
   <!-- ./wrapper -->
 
 
-<!-- Logout Modal-->
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Sair do Sistema?</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">Selecione SAIR para efetuar o logout do Sistema</div>
-          <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Voltar</button>
-            <a class="btn btn-primary" href="sair.php">Sair</a>
-          </div>
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Sair do Sistema?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Selecione SAIR para efetuar o logout do Sistema</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Voltar</button>
+          <a class="btn btn-primary" href="sair.php">Sair</a>
         </div>
       </div>
     </div>
+  </div>
 
 
   <?php
@@ -255,21 +259,22 @@ $base = "$h://$site:$porta/$url"
   <!-- REQUIRED SCRIPTS -->
 
   <!-- jQuery -->
-  <script src="../plugins/jquery/jquery.min.js"></script>
-  <!-- Bootstrap -->
-  <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <!-- AdminLTE -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <!-- <script src="plugins/jquery/jquery.min.js"></script> -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="../plugins/mask/jquery.mask.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+  <!-- <script src="../plugins/js/jquery.overlayScrollbars.min.js"></script> -->
   <script src="../dist/js/adminlte.js"></script>
-  <!-- daterangepicker -->
-  <script src="plugins/moment/moment.min.js"></script>
-  <script src="plugins/daterangepicker/daterangepicker.js"></script>
-  <!-- Tempusdominus Bootstrap 4 -->
-  <script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
 
-  <!-- OPTIONAL SCRIPTS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  <!-- <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script> -->
+  <!-- ChartJS -->
   <script src="../plugins/chart.js/Chart.min.js"></script>
-  <script src="../dist/js/demo.js"></script>
-  <script src="../dist/js/pages/dashboard3.js"></script>
+  <!-- Sparkline -->
+  <script src="../plugins/sparklines/sparkline.js"></script>
 </body>
 
 </html>
