@@ -128,17 +128,17 @@ if (!empty($id)) {
 
                 <input type="hidden" class="form-control" id="cidade_id" name="cidade_id" 
                 required data-parsley-required-message="Selecione a cidade" readonly value="<?= $cidade_id ?>">
-            </div>
+                </div>
 
-            <div class="col-12 col-md-4">
-                <label for="cidade"> Estado </label>
-                <input type="text" class="form-control" id="estado"
-                required data-parsley-required-message="Selecione o estado" value="<?= $estado; ?>">
-            </div>
+                <div class="col-12 col-md-4">
+                    <label for="cidade"> Estado </label>
+                    <input type="text" class="form-control" id="estado"
+                    required data-parsley-required-message="Selecione o estado" value="<?= $estado; ?>">
+                </div>
 
-            <!-- LINHA 5 -->
-            <div class="col-12 col-md-8">
-                <label for="logradouro"> Endereço Completo </label>
+                <!-- LINHA 5 -->
+                <div class="col-12 col-md-8">
+                    <label for="logradouro"> Endereço Completo </label>
                 <input type="text" class="form-control" id="logradouro" name="logradouro"
                 required data-parsley-required-message="Preencha o endereço" value="<?= $logradouro ?>">
             </div>

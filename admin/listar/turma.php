@@ -19,7 +19,7 @@
 <div class="container">
 
     <div class="float-right">
-        <a href="cadastro/turma" class="btn btn-outline-laranja">Nova Tuema</a>
+        <a href="cadastro/turma" class="btn btn-outline-laranja">Nova Turma</a>
     </div>
 
     <div class="clearfix"></div>

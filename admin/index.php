@@ -176,7 +176,7 @@ $base = "$h://$site:$porta/$url"
               </li>
 
               <li class="nav-item">
-                <a href="pages/calendar.html" class="nav-link">
+                <a href="cadastro/atividade" class="nav-link">
                   <i class="nav-icon fas fa-pencil-alt"></i>
                   <p>
                     Atividades
@@ -211,15 +211,6 @@ $base = "$h://$site:$porta/$url"
                 </a>
               </li>
 
-              <li class="nav-item">
-                <a href="pages/calendar.html" class="nav-link">
-                  <i class="nav-icon fas fa-folder-open"></i>
-                  <p>
-                    Arquivos
-                  </p>
-                </a>
-              </li>
-
             </ul>
           </nav>
           <!-- /.sidebar-menu -->
@@ -236,6 +227,7 @@ $base = "$h://$site:$porta/$url"
 
             $pagina = "home.php";
 
+            // referente a pagina que será aberta
             if (isset($_GET["parametro"])) {
               //recuperar o parametro
               $p = trim($_GET["parametro"]);
@@ -272,7 +264,7 @@ $base = "$h://$site:$porta/$url"
 
       <!-- Main Footer -->
       <footer class="main-footer">
-        Copyright &copy; 2020 <strong>Facilita Escola</strong>.
+        Copyright &copy; 2021 <strong>Facilita Escola</strong>.
     </div>
     </footer>
     </div>
