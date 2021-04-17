@@ -167,10 +167,6 @@ if (!empty($id)) {
                 <input type="text" class="form-control" id="telefone2" name="telefone2" value="<?= $telefone2 ?>">
             </div>
 
-            <!-- <div class="col-12 col-md-4 custom-file">
-                <label for="foto"> Foto </label>
-                <input type="file" class="form-control" id="foto" name="foto" accept=".jpeg, .jpg">
-            </div> -->
             <div class="clearfix"></div>
 
             <!-- LINHA 7 -->
@@ -187,10 +183,11 @@ if (!empty($id)) {
             </div>
         </div>
 
-<!-- 
-        <a class="btn btn-success margin" data-toggle="modal" data-target="#gerenciarModal" style="color : #fff;">
-            <i class="fas fa-cog"></i> Gerenciar
-        </a> -->
+        <?php if(!empty($id)) {
+            echo '<a class="btn btn-success margin" data-toggle="modal" data-target="#gerenciarModal" style="color : #fff;">
+                <i class="fas fa-cog"></i> Gerenciar
+            </a>';
+        } ?>
 
         <button type="submit" class="btn btn-outline-laranja">
             <i class="fas fa-check"></i> Gravar Dados
@@ -199,7 +196,7 @@ if (!empty($id)) {
         
     </form>
                     
-    <!-- <div class="modal fade" id="gerenciarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="gerenciarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -236,7 +233,7 @@ if (!empty($id)) {
                 </div>
             </div>
         </div>
-    </div> -->
+    </div>
 
     <?php if (empty($id)) $id = 0; //verificar se id é vazio ?>
 
