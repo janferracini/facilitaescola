@@ -4,8 +4,8 @@ if (!isset($id)) $id = "";
 
 // tabela pessoa
 $nome = $login = $senha = $rg = $cpf = $data_nascimento = $data_cadastro =
-$email = $logradouro = $numero  = $cep = $complemento = $telefone1 = $telefone2 = 
-$foto = $status = $cidade_id = $cidade = $estado = '';
+    $email = $logradouro = $numero  = $cep = $complemento = $telefone1 = $telefone2 =
+    $foto = $status = $cidade_id = $cidade = $estado = '';
 
 if (!empty($id)) {
     $sql = "SELECT  p.*, date_format(p.data_nascimento, '%d/%m/%Y') dt,
@@ -65,8 +65,7 @@ if (!empty($id)) {
 
     <div class="clearfix"></div> <!-- Ignora os floats -->
 
-    <form action="salvar/professor" name="formCadastro" method="post"
-    data-parsley-validate enctype="multipart/form-data" role="form">
+    <form action="salvar/professor" name="formCadastro" method="post" data-parsley-validate enctype="multipart/form-data" role="form">
         <div class="row mb-3">
 
             <input type="hidden" class="form-control" name="id" id="id" readonly value="<?= $id ?>">
@@ -74,79 +73,64 @@ if (!empty($id)) {
             <!-- LINHA 1 -->
             <div class="col-12 col-md-12">
                 <label for="nome"> Nome Completo </label>
-                <input type="text" class="form-control" id="nome" name="nome"
-                required data-parsley-required-message="Preencha o nome" value="<?= $nome ?>">
+                <input type="text" class="form-control" id="nome" name="nome" required data-parsley-required-message="Preencha o nome" value="<?= $nome ?>">
             </div>
 
             <!-- LINHA 2 -->
             <div class="col-12 col-md-4">
                 <label for="login"> Login </label>
-                <input type="text" class="form-control" id="login" name="login"
-                required data-parsley-required-message="Preencha o nome do login"
-                placeholder="Insira com o login de acesso" value="<?= $login ?>">
+                <input type="text" class="form-control" id="login" name="login" required data-parsley-required-message="Preencha o nome do login" placeholder="Insira com o login de acesso" value="<?= $login ?>">
             </div>
 
             <div class="col-12 col-md-8">
                 <label for="email"> E-mail </label>
-                <input type="email" class="form-control" id="email" name="email"
-                required data-parsley-required-message="Preencha com um e-mail válido"
-                placeholder="Digite um e-mail válido" value="<?= $email ?>">
+                <input type="email" class="form-control" id="email" name="email" required data-parsley-required-message="Preencha com um e-mail válido" placeholder="Digite um e-mail válido" value="<?= $email ?>">
             </div>
 
             <!-- LINHA 3-->
             <div class="col-12 col-md-4">
                 <label for="rg"> RG </label>
-                <input type="text" class="form-control" id="rg" name="rg"
-                required data-parsley-required-message="Preencha o RG" value="<?= $rg ?>">
+                <input type="text" class="form-control" id="rg" name="rg" required data-parsley-required-message="Preencha o RG" value="<?= $rg ?>">
             </div>
 
             <div class="col-12 col-md-4">
                 <label for="cpf"> CPF </label>
-                <input type="text" class="form-control" id="cpf" name="cpf" value="<?= $cpf ?>"
-                onblur="verificarCpf(this.value)">
+                <input type="text" class="form-control" id="cpf" name="cpf" value="<?= $cpf ?>" onblur="verificarCpf(this.value)">
 
             </div>
 
             <div class="col-12 col-md-4">
                 <label for="data_nascimento"> Data De Nascimento </label>
-                <input type="date" class="form-control" id="data_nascimento" name="data_nascimento"
-                required data-parsley-required-message="Preencha a data de nascimento" value="<?= $data_nascimento ?>">
+                <input type="date" class="form-control" id="data_nascimento" name="data_nascimento" required data-parsley-required-message="Preencha a data de nascimento" value="<?= $data_nascimento ?>">
             </div>
 
             <!-- LINHA 4 -->
             <div class="col-12 col-md-4">
                 <label for="cep"> CEP </label>
-                <input type="text" class="form-control" id="cep" name="cep"
-                required data-parsley-required-message="Preencha com um CEP válido" value="<?= $cep ?>">
+                <input type="text" class="form-control" id="cep" name="cep" required data-parsley-required-message="Preencha com um CEP válido" value="<?= $cep ?>">
             </div>
 
             <div class="col-12 col-md-4">
                 <label for="cidade"> Cidade</label>
-                <input type="text" class="form-control" id="cidade"
-                required data-parsley-required-message="Selecione a cidade" value="<?= $cidade ?>">
+                <input type="text" class="form-control" id="cidade" required data-parsley-required-message="Selecione a cidade" value="<?= $cidade ?>">
 
-                <input type="hidden" class="form-control" id="cidade_id" name="cidade_id" 
-                required data-parsley-required-message="Selecione a cidade" readonly value="<?= $cidade_id ?>">
+                <input type="hidden" class="form-control" id="cidade_id" name="cidade_id" required data-parsley-required-message="Selecione a cidade" readonly value="<?= $cidade_id ?>">
             </div>
 
-            <div class="col-12 col-md-4">               
+            <div class="col-12 col-md-4">
                 <label for="cidade"> Estado </label>
-                <input type="text" class="form-control" id="estado"
-                    required data-parsley-required-message="Selecione o estado" value="<?= $estado ?>">
+                <input type="text" class="form-control" id="estado" required data-parsley-required-message="Selecione o estado" value="<?= $estado ?>">
             </div>
 
             <!-- LINHA 5 -->
             <div class="col-12 col-md-8">
                 <label for="logradouro"> Endereço Completo</label>
-                <input type="text" class="form-control" id="logradouro" name="logradouro"
-                required data-parsley-required-message="Preencha o endereço" value="<?= $logradouro ?>">
+                <input type="text" class="form-control" id="logradouro" name="logradouro" required data-parsley-required-message="Preencha o endereço" value="<?= $logradouro ?>">
             </div>
 
             <div class="col-12 col-md-4">
                 <label for="numero"> Número </label>
-                <input type="text" class="form-control" id="numero" name="numero"
-                required data-parsley-required-message="Preencha com o número da residência"
-                placeholder="Insira o número da residência" value="<?= $numero ?>">
+                <input type="text" class="form-control" id="numero" name="numero" required data-parsley-required-message="Preencha com o número da residência" placeholder="Insira o número da residência" value="<?= $numero ?>">
             </div>
 
             <!-- LINHA 6 -->
@@ -158,8 +142,7 @@ if (!empty($id)) {
             <!-- LINHA 7 -->
             <div class="col-12 col-md-6">
                 <label for="telefone1"> Telefone Obrigatório</label>
-                <input type="text" class="form-control" id="telefone1" name="telefone1"
-                required data-parsley-required-message="Preencha com o número de telefone" value="<?= $telefone1 ?>">
+                <input type="text" class="form-control" id="telefone1" name="telefone1" required data-parsley-required-message="Preencha com o número de telefone" value="<?= $telefone1 ?>">
             </div>
 
             <div class="col-12 col-md-6">
@@ -172,18 +155,16 @@ if (!empty($id)) {
             <!-- LINHA 7 -->
             <div class="col-12 col-md-6">
                 <label for="senha"> Senha </label>
-                <input type="password" class="form-control" id="senha" name="senha"
-                require data-parsley-required-message="Insira uma senha" placeholder="Insira com a senha inicial de acesso">
+                <input type="password" class="form-control" id="senha" name="senha" require data-parsley-required-message="Insira uma senha" placeholder="Insira com a senha inicial de acesso">
             </div>
 
             <div class="col-12 col-md-6">
                 <label for="confirmaSenha">Confirmar Senha </label>
-                <input type="password" class="form-control" id="confirmaSenha" name="confirmaSenha" 
-                require data-parsley-required-message="Insira a senha novamente" placeholder="Insira com a senha inicial de acesso">
+                <input type="password" class="form-control" id="confirmaSenha" name="confirmaSenha" require data-parsley-required-message="Insira a senha novamente" placeholder="Insira com a senha inicial de acesso">
             </div>
         </div>
 
-        <?php if(!empty($id)) {
+        <?php if (!empty($id)) {
             echo '<a class="btn btn-success margin" data-toggle="modal" data-target="#gerenciarModal" style="color : #fff;">
                 <i class="fas fa-cog"></i> Gerenciar
             </a>';
@@ -193,10 +174,10 @@ if (!empty($id)) {
             <i class="fas fa-check"></i> Gravar Dados
         </button>
 
-        
+
     </form>
-                    
-<div class="modal fade" id="gerenciarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+    <div class="modal fade" id="gerenciarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -215,7 +196,7 @@ if (!empty($id)) {
                         </select>
 
                         <br>
-                        
+
                         <label class="col-12 col-md-6" style="float: left;"> Formação </label>
                         <select id="status" class="form-control col-12 col-md-6">
                             <option> </option>
@@ -235,17 +216,17 @@ if (!empty($id)) {
         </div>
     </div>
 
-    <?php if (empty($id)) $id = 0; //verificar se id é vazio ?>
+    <?php if (empty($id)) $id = 0; //verificar se id é vazio 
+    ?>
 
-        <script>
-
-            function verificarCpf(cpf) {
-                //ajax verificação CPF
-                //faz o get para o arquivo indicado e a variável e o retorno
-                $.get("verificarCpf.php", {
-                        cpf: cpf,
-                        id: <?= $id; ?>
-                    },
+    <script>
+        function verificarCpf(cpf) {
+            //ajax verificação CPF
+            //faz o get para o arquivo indicado e a variável e o retorno
+            $.get("verificarCpf.php", {
+                    cpf: cpf,
+                    id: <?= $id; ?>
+                },
                 function(dados) {
                     if (dados != "") {
                         // retorno da mensagem da verificação de erro
@@ -254,30 +235,44 @@ if (!empty($id)) {
                         $("#cpf").val("");
                     }
                 })
-            };
+        };
 
-            // verificador de senha no update
-            function verificarSenha() {
-                if ($('#senha').val() != $('#senha2').val()) {
-                    $('#senha').val('')
-                    $('#senha2').val('')
-                    $('#senha2').removeClass('is-valid')
-                    $('#senha2').addClass('is-invalid')
-                    return alert('As senhas devem ser iguais.')
+        // verificador de senha no update
+        function verificarSenha() {
+            if ($('#senha').val() != $('#senha2').val()) {
+                $('#senha').val('')
+                $('#senha2').val('')
+                $('#senha2').removeClass('is-valid')
+                $('#senha2').addClass('is-invalid')
+                return alert('As senhas devem ser iguais.')
             }
-                $('#senha2').removeClass('is-invalid')
-                $('#senha2').addClass('is-valid')
+            $('#senha2').removeClass('is-invalid')
+            $('#senha2').addClass('is-valid')
         }
 
-            $(document).ready(function() {
-                // $("#data_nascimento").mask("99/99/9999");
-                $("#cpf").mask("000.000.000-00");
-                $("#telefone1").mask("(00) 00000-0000");
-                $("#telefone2").mask("(00) 00000-0000");
-                $("#cep").mask("00.000-000");
-            });
+        $(document).ready(function() {
 
-            $("#cep").blur(function() {
+            $("#cpf").mask("000.000.000-00");
+            $("#telefone1").mask("(00) 0000-00009");
+            $('#telefone1').blur(function(event) {
+                if ($(this).val().length == 15) {
+                    $('#telefone1').mask('(00) 00000-0009');
+                } else {
+                    $('#telefone1').mask('(00) 0000-00009');
+                }
+            });
+            $("#telefone2").mask("(00) 0000-00009");
+            $('#telefone2').blur(function(event) {
+                if ($(this).val().length == 15) {
+                    $('#telefone2').mask('(00) 00000-0009');
+                } else {
+                    $('#telefone2').mask('(00) 0000-00009');
+                }
+            });
+            $("#cep").mask("00.000-000");
+        });
+
+        $("#cep").blur(function() {
             //pega valor do CEP
             cep = $("#cep").val();
             cep = cep.replace(/\D/g, '');
@@ -307,5 +302,5 @@ if (!empty($id)) {
                 })
             }
         })
-        </script>
+    </script>
 </div>
