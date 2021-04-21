@@ -5,11 +5,11 @@ if (!isset($id)) $id = "";
 // tabela pessoa
 $nome = $login = $senha = $rg = $cpf = $data_nascimento = $data_cadastro =
     $email = $logradouro = $numero  = $cep = $complemento = $telefone1 = $telefone2 =
-    $foto = $status = $cidade_id = $cidade = $estado = '';
+    $status = $cidade_id = $cidade = $estado = $idprof = '';
 
 if (!empty($id)) {
-    $sql = "SELECT  p.*,
-                    c.*, pr.*
+    $sql = "SELECT  p.id pid, p.*,
+                    c.*, pr.id prid, pr.*
             FROM pessoa p
             INNER JOIN cidade c ON (c.id = p.id_cidade)
             INNER JOIN professor pr ON (pr.pessoa_id = p.id)
@@ -25,26 +25,27 @@ if (!empty($id)) {
     // caso não existir professor cadastrado
     if (empty($dados->id)) {
         echo "<p class='alert alert-danger'> Professor não cadastrado </p>";
+    } else {
+        $id         = $dados->pid;
+        $nome       = $dados->nome;
+        $rg         = $dados->rg;
+        $cpf        = $dados->cpf;
+        $data_nascimento = $dados->data_nascimento;
+        $email       = $dados->email;
+        $login       = $dados->login;
+        $logradouro  = $dados->logradouro;
+        $numero      = $dados->numero;
+        $cep         = $dados->cep;
+        $complemento = $dados->complemento;
+        $cidade_id   = $dados->id_cidade;
+        $cidade      = $dados->cidade;
+        $telefone1  = $dados->telefone1;
+        $telefone2  = $dados->telefone2;
+        $estado     = $dados->estado;
+        $status      = $dados->status;
+        $formacao   = $dados->formacao;
+        $idprof     = $dados->prid;
     }
-
-    $id         = $dados->id;
-    $nome       = $dados->nome;
-    $rg         = $dados->rg;
-    $cpf        = $dados->cpf;
-    $data_nascimento = $dados->data_nascimento;
-    $email       = $dados->email;
-    $login       = $dados->login;
-    $logradouro  = $dados->logradouro;
-    $numero      = $dados->numero;
-    $cep         = $dados->cep;
-    $complemento = $dados->complemento;
-    $cidade_id   = $dados->id_cidade;
-    $cidade      = $dados->cidade;
-    $telefone1  = $dados->telefone1;
-    $telefone2  = $dados->telefone2;
-    $estado     = $dados->estado;
-    $status      = $dados->status;
-    $formacao   = $dados->formacao;
 }
 ?>
 
@@ -82,13 +83,13 @@ if (!empty($id)) {
                 <select id="status" name="status" class="form-control ">
 
                     <?php
-                    if ($status == 1) {
+                    if ($status == 1 || (empty($id))) {
                         echo "
                         <option value='1' selected>Ativo</option>
                         <option value='0'>Inativo</option>";
                     } else if ($status == 0) {
                         echo " 
-                        <option value='1' >Ativo</option>
+                        <option value='1'>Ativo</option>
                         <option value ='0' selected>Inativo</option>";
                     }
                     ?>
@@ -188,7 +189,8 @@ if (!empty($id)) {
             </div>
 
             <div class="col-12 col-md-12 mt-3">
-                <textarea type="text" style="height: 100px" class="form-control" id="formacao" name="formacao" required data-parsley-required-message="Preencha esse campo"><?php if (!empty($formacao)) $formacao ?></textarea>
+                <input type="hidden" class="form-control" name="idprof" id="idprof" readonly value="<?= $idprof ?>">
+                <textarea type="text" style="height: 100px" class="form-control" id="formacao" name="formacao" required data-parsley-required-message="Preencha esse campo"><?php if (!empty($formacao)) echo $formacao ?></textarea>
             </div>
         </div>
         <div class="float-right">
