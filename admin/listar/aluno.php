@@ -30,14 +30,20 @@
             <thead>
                 <tr>
                     <th>Nome</th>
-                    <th width=200px>Ações</th>
+                    <th width=200px>Matrícula</th>
+                    <th width=200px>Turma / Período</th>
+                    <th width=180px>Ações</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
 
-                $sql = "SELECT  id, nome
-                    FROM pessoa
+                $sql = "SELECT  p.id pid, p.nome, m.*, tm.*, t.*, pe.*
+                    FROM pessoa p
+                    INNER JOIN matricula m ON (m.pessoa_id = p.id)
+                    INNER JOIN turma_matricula tm ON (tm.matricula_id = m.id)
+                    INNER JOIN turma t ON (t.id = tm.turma_id)
+                    INNER JOIN periodo pe ON (pe.id = t.periodo_id)
                     WHERE tipo_cadastro = 2 AND status = 1
                     ORDER BY nome";
 
@@ -45,11 +51,16 @@
                 $consulta->execute();
 
                 while ($dados = $consulta->fetch(PDO::FETCH_OBJ)) {
-                    $id = $dados->id;
-                    $nome = $dados->nome;
+                    $id      = $dados->pid;
+                    $nome    = $dados->nome;
+                    $matricula = $dados->matricula;
+                    $serie   = $dados->serie;
+                    $periodo = $dados->periodo;
 
                     echo '<tr>
                         <td>' . $nome . '</td>
+                        <td>' . $matricula . '</td>
+                        <td>' . $serie . ' / ' . $periodo . '</td>
                         <td><a href="cadastro/aluno/' . $id . '" class="btn btn-success btn-sm">
                                 <i class="fas fa-edit"></i>
                             </a>

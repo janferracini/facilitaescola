@@ -6,15 +6,15 @@ if (!isset($id)) $id = "";
 $nome = $login = $senha = $rg = $cpf = $data_nascimento = $data_cadastro =
     $email = $logradouro = $numero  = $cep = $complemento = $telefone1 = $telefone2 =
     $status = $cidade_id = $cidade = $estado = $matricula = $data_matricula = $pessoa_id =
-    $turma_matricula = $serie = $descricao = $ano = $periodo = '';
+    $turma_matricula_id = $matricula_id = $serie = $descricao = $ano = $periodo = '';
 
 if (!empty($id)) {
-    $sql = "SELECT  p.*,
-                        c.*,
-                        m.*,
-                        tm.id tmid, tm.*,
-                        t.*,
-                        pd.*
+    $sql = "SELECT  p.id pid, p.*,
+                    c.*,
+                    m.id mid, m.*,
+                    tm.id tmid, tm.*,
+                    t.id tid, t.*,
+                    pd.*
                 FROM pessoa p
                 INNER JOIN cidade c ON (c.id = p.id_cidade)
                 INNER JOIN matricula m ON (m.pessoa_id = p.id)
@@ -23,7 +23,6 @@ if (!empty($id)) {
                 INNER JOIN periodo pd ON (pd.id = t.periodo_id)
                 WHERE p.id = :id
                 LIMIT 1";
-
     $consulta = $pdo->prepare($sql);
     $consulta->bindParam(":id", $id);
     $consulta->execute();
@@ -35,7 +34,7 @@ if (!empty($id)) {
         echo "<p class='alert alert-danger'> Aluno não cadastrado '$id' </p>";
     } else {
         //pessoa
-        $id         = $dados->id;
+        $id         = $dados->pid;
         $nome       = $dados->nome;
         $status     = $dados->status;
         $rg         = $dados->rg;
@@ -54,17 +53,18 @@ if (!empty($id)) {
         $estado      = $dados->estado;
 
         // //matricula
+        $matricula_id    = $dados->mid;
         $matricula       = $dados->matricula;
         $data_matricula  = $dados->data_matricula;
         $pessoa_id       = $dados->id;
-        $turma_matricula = $dados->tmid;
         // //turma_matricula
-
+        $turma_matricula_id = $dados->tmid;
         // //turma
         $serie     = $dados->serie;
         $descricao = $dados->descricao;
         $ano       = $dados->ano;
         $periodo   = $dados->periodo;
+        $turma_id  = $dados->tid;
     }
 }
 ?>
@@ -191,7 +191,8 @@ if (!empty($id)) {
             </div>
 
             <div class="col-12 col-md-4">
-                <label for="matricula">Número da matrícula </label>
+                <label for="matricula">Número da matrícula</label>
+                <input type="hidden" class="form-control" name="matricula_id" id="matricula_id" readonly value="<?= $matricula_id ?>">
                 <input type="text" class="form-control" id="matricula" name="matricula" require data-parsley-required-message="Insira o número da matrícula" value="<?= $matricula; ?>">
             </div>
 
@@ -201,8 +202,9 @@ if (!empty($id)) {
             </div>
 
             <div class="col-12 col-md-4">
-                <label for="turma_id">Turma </label>
-                <input id="turma_id" name="turma_id" class="form-control" list="listaTurma" data-parsley-required-message="Selecione a turma" value="<?php if (!empty($id)) echo "$serie $descricao / $periodo ($ano)"; ?>">
+                <label for="turma">Turma</label>
+                <input type="hidden" class="form-control" name="tmid" id="tmid" readonly value="<?= $turma_matricula_id ?>">
+                <input id="turma_id" name="turma_id" class="form-control" list="listaTurma" data-parsley-required-message="Selecione a turma" value="<?php if (!empty($id)) echo "$turma_id - $serie $descricao / $periodo ($ano)"; ?>">
                 <datalist id="listaTurma">
                     <?php
                     $sql = "SELECT t.*,t.id tid, p.*

@@ -17,7 +17,7 @@ if ($msg != 1) {
 }
 
 //verificar se cpf já existe = ningém pode ter esse CPF 
-if (($id == 0) or (empty($id))) {
+if (empty($id)) {
     //inserindo - não pode exixtir
     $sql = "SELECT id FROM pessoa WHERE cpf = :cpf LIMIT 1";
     $consulta = $pdo->prepare($sql);
