@@ -43,7 +43,6 @@ if (!empty($id)) {
         $data_nascimento = $dados->data_nascimento;
         $email       = $dados->email;
         $login       = $dados->login;
-        $foto        = $dados->foto;
         $logradouro  = $dados->logradouro;
         $numero      = $dados->numero;
         $cep         = $dados->cep;
@@ -202,11 +201,11 @@ if (!empty($id)) {
             </div>
 
             <div class="col-12 col-md-4">
-                <label for="turma">Turma </label>
-                <input id="turma" class="form-control" list="listaTurma" data-parsley-required-message="Selecione a turma" value="<?php if (!empty($id)) echo "$serie $descricao / $periodo ($ano)"; ?>">
+                <label for="turma_id">Turma </label>
+                <input id="turma_id" name="turma_id" class="form-control" list="listaTurma" data-parsley-required-message="Selecione a turma" value="<?php if (!empty($id)) echo "$serie $descricao / $periodo ($ano)"; ?>">
                 <datalist id="listaTurma">
                     <?php
-                    $sql = "SELECT t.*, p.*
+                    $sql = "SELECT t.*,t.id tid, p.*
                                         FROM turma t
                                         INNER JOIN periodo p ON (p.id = t.periodo_id)
                                         ORDER BY serie";
@@ -219,7 +218,8 @@ if (!empty($id)) {
                         $descricao = $dados->descricao;
                         $ano       = $dados->ano;
                         $periodo   = $dados->periodo;
-                        echo '<option value=" ' . $serie . ' ' . $descricao . ' / ' . $periodo . ' (' . $ano . ') - ' . $turma_id . '">';
+                        $turma_id       = $dados->tid;
+                        echo '<option value=" ' . $turma_id . ' - ' . $serie . ' ' . $descricao . ' / ' . $periodo . ' (' . $ano . ')">';
                     };
                     ?>
                 </datalist>
