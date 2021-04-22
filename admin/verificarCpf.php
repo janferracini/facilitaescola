@@ -7,7 +7,8 @@ if (!isset($_SESSION["facilita_escola"]["id"])) {
 $cpf = $_GET['cpf'] ?? "";
 $id = $_GET['id'] ?? "";
 
-include "../config/conexao.php";
+
+include "config/conexao.php";
 include "functions.php";
 
 $msg = validaCPF($cpf);
@@ -17,14 +18,15 @@ if ($msg != 1) {
 }
 
 //verificar se cpf já existe = ningém pode ter esse CPF 
-if (($id == 0) or (empty($id))) {
+if (empty($id)) {
     //inserindo - não pode exixtir
-    $sql = "SELECT id FROM cliente WHERE cpf = :cpf LIMIT 1";
+    $sql = "SELECT id FROM pessoa WHERE cpf = :cpf LIMIT 1";
+
     $consulta = $pdo->prepare($sql);
     $consulta->bindParam(":cpf", $cpf);
 } else {
     //atualizando- apenas essa id pode ter esse cpf
-    $sql = "SELECT id FROM cliente WHERE cpf = :cpf AND id <> :id LIMIT 1";
+    $sql = "SELECT id FROM pessoa WHERE cpf = :cpf AND id <> :id LIMIT 1";
     $consulta = $pdo->prepare($sql);
     $consulta->bindParam(":cpf", $cpf);
     $consulta->bindParam(":id", $id);

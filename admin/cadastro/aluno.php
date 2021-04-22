@@ -5,18 +5,24 @@ if (!isset($id)) $id = "";
 // tabela pessoa
 $nome = $login = $senha = $rg = $cpf = $data_nascimento = $data_cadastro =
     $email = $logradouro = $numero  = $cep = $complemento = $telefone1 = $telefone2 =
-    $foto = $status = $cidade_id = $cidade = $estado = '';
+    $status = $cidade_id = $cidade = $estado = $matricula = $data_matricula = $pessoa_id =
+    $turma_matricula_id = $matricula_id = $serie = $descricao = $ano = $periodo = '';
 
 if (!empty($id)) {
-    $sql = "SELECT  p.*, date_format(p.data_nascimento, '%d/%m/%Y') dt,
-                    c.cidade, c.estado
-            FROM pessoa p
-            INNER JOIN cidade c ON (c.id = p.id_cidade)
-            -- INNER JOIN matricula m ON (m.numero_matricula = p.pessoa_id)
-            -- INNER JOIN turma t ON (t.id = )
-            WHERE p.id = :id
-            LIMIT 1";
-
+    $sql = "SELECT  p.id pid, p.*,
+                    c.*,
+                    m.id mid, m.*,
+                    tm.id tmid, tm.*,
+                    t.id tid, t.*,
+                    pd.*
+                FROM pessoa p
+                INNER JOIN cidade c ON (c.id = p.id_cidade)
+                INNER JOIN matricula m ON (m.pessoa_id = p.id)
+                INNER JOIN turma_matricula tm ON (tm.matricula_id = m.id)
+                INNER JOIN turma t ON (t.id = tm.turma_id)
+                INNER JOIN periodo pd ON (pd.id = t.periodo_id)
+                WHERE p.id = :id
+                LIMIT 1";
     $consulta = $pdo->prepare($sql);
     $consulta->bindParam(":id", $id);
     $consulta->execute();
@@ -25,31 +31,41 @@ if (!empty($id)) {
 
     // caso não existir aluno cadastrado
     if (empty($dados->id)) {
-        echo "<p class='alert alert-danger'> Aluno não cadastrado </p>";
-    }
+        echo "<p class='alert alert-danger'> Aluno não cadastrado '$id' </p>";
+    } else {
+        //pessoa
+        $id         = $dados->pid;
+        $nome       = $dados->nome;
+        $status     = $dados->status;
+        $rg         = $dados->rg;
+        $cpf        = $dados->cpf;
+        $data_nascimento = $dados->data_nascimento;
+        $email       = $dados->email;
+        $login       = $dados->login;
+        $logradouro  = $dados->logradouro;
+        $numero      = $dados->numero;
+        $cep         = $dados->cep;
+        $complemento = $dados->complemento;
+        $cidade_id   = $dados->id_cidade;
+        $cidade      = $dados->cidade;
+        $telefone1   = $dados->telefone1;
+        $telefone2   = $dados->telefone2;
+        $estado      = $dados->estado;
 
-    $id         = $dados->id;
-    $nome       = $dados->nome;
-    $rg         = $dados->rg;
-    $cpf        = $dados->cpf;
-    $data_nascimento = $dados->data_nascimento;
-    $email       = $dados->email;
-    $login       = $dados->login;
-    $foto        = $dados->foto;
-    $logradouro  = $dados->logradouro;
-    $numero      = $dados->numero;
-    $cep         = $dados->cep;
-    $complemento = $dados->complemento;
-    $cidade_id   = $dados->id_cidade;
-    $cidade      = $dados->cidade;
-    $telefone1  = $dados->telefone1;
-    $telefone2  = $dados->telefone2;
-    $estado     = $dados->estado;
-    // tabela matricula
-    // $numero_matricula = $dados->numero_matricula;
-    // $pessoa_id        = $dados->pessoa_id;
-    // $data_matricula   = $dados->data_matricula;
-    // $situacao         = $dados->situacao;
+        // //matricula
+        $matricula_id    = $dados->mid;
+        $matricula       = $dados->matricula;
+        $data_matricula  = $dados->data_matricula;
+        $pessoa_id       = $dados->id;
+        // //turma_matricula
+        $turma_matricula_id = $dados->tmid;
+        // //turma
+        $serie     = $dados->serie;
+        $descricao = $dados->descricao;
+        $ano       = $dados->ano;
+        $periodo   = $dados->periodo;
+        $turma_id  = $dados->tid;
+    }
 }
 ?>
 
@@ -75,9 +91,7 @@ if (!empty($id)) {
 
     <form action="salvar/aluno" name="formCadastro" method="post" data-parsley-validate enctype="multipart/form-data" role="form">
         <div class="row mb-3">
-
             <input type="hidden" class="form-control" name="id" id="id" readonly value="<?= $id ?>">
-
             <!-- LINHA 1 -->
             <div class="col-12 col-md-12">
                 <label for="nome"> Nome Completo </label>
@@ -98,7 +112,7 @@ if (!empty($id)) {
             <!-- LINHA 3-->
             <div class="col-12 col-md-4">
                 <label for="rg"> RG </label>
-                <input type="text" class="form-control" id="rg" name="rg" required data-parsley-required-message="Preencha o RG" value="<?= $rg; ?>">
+                <input type="text" class="form-control" id="rg" name="rg" value="<?= $rg; ?>">
             </div>
 
             <div class="col-12 col-md-4">
@@ -170,87 +184,56 @@ if (!empty($id)) {
                 <label for="confirmaSenha">Confirmar Senha </label>
                 <input type="password" class="form-control" id="confirmaSenha" name="confirmaSenha" require data-parsley-required-message="Insira a senha novamente" placeholder="Insira a senha inicial de acesso">
             </div>
-        </div>
+            <div class="col-12 col-md-12 mt-3 text-dark">
+                <hr>
+                <h3>Gerenciar Matrícula</h3>
 
-        <?php if (!empty($id)) {
-            echo '<a class="btn btn-success margin" data-toggle="modal" data-target="#gerenciarModal" style="color : #fff;">
-                <i class="fas fa-cog"></i> Gerenciar
-            </a>';
-        } ?>
+            </div>
+
+            <div class="col-12 col-md-4">
+                <label for="matricula">Número da matrícula</label>
+                <input type="hidden" class="form-control" name="matricula_id" id="matricula_id" readonly value="<?= $matricula_id ?>">
+                <input type="text" class="form-control" id="matricula" name="matricula" require data-parsley-required-message="Insira o número da matrícula" value="<?= $matricula; ?>">
+            </div>
+
+            <div class="col-12 col-md-4">
+                <label for="data_matricula">Data da matrícula </label>
+                <input type="date" class="form-control " id="data_matricula" name="data_matricula" require data-parsley-required-message="Insira a data de matrícula" value="<?= $data_matricula; ?>">
+            </div>
+
+            <div class="col-12 col-md-4">
+                <label for="turma">Turma</label>
+                <input type="hidden" class="form-control" name="tmid" id="tmid" readonly value="<?= $turma_matricula_id ?>">
+                <input id="turma_id" name="turma_id" class="form-control" list="listaTurma" data-parsley-required-message="Selecione a turma" value="<?php if (!empty($id)) echo "$turma_id - $serie $descricao / $periodo ($ano)"; ?>">
+                <datalist id="listaTurma">
+                    <?php
+                    $sql = "SELECT t.*,t.id tid, p.*
+                                        FROM turma t
+                                        INNER JOIN periodo p ON (p.id = t.periodo_id)
+                                        ORDER BY serie";
+                    $consulta = $pdo->prepare($sql);
+                    $consulta->execute();
+
+                    while ($dados = $consulta->fetch(PDO::FETCH_OBJ)) {
+                        // separar os dados
+                        $serie     = $dados->serie;
+                        $descricao = $dados->descricao;
+                        $ano       = $dados->ano;
+                        $periodo   = $dados->periodo;
+                        $turma_id       = $dados->tid;
+                        echo '<option value=" ' . $turma_id . ' - ' . $serie . ' ' . $descricao . ' / ' . $periodo . ' (' . $ano . ')">';
+                    };
+                    ?>
+                </datalist>
+            </div>
+
+
+        </div>
 
         <button type="submit" class="btn btn-outline-laranja">
             <i class="fas fa-check"></i> Gravar Dados
         </button>
-
     </form>
-
-
-    <!-- MODAL EDITAR MATRICULA -->
-    <div class="modal fade" id="gerenciarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Gerenciar Matrícula</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-
-                    <form>
-                        <!-- LINHA 1 -->
-                        <label class="col-12 col-md-6" style="float: left;">Status do Usuário </label>
-                        <select id="status" class="form-control col-12 col-md-6">
-                            <option selected>Ativo </option>
-                            <option>Inativo </option>
-                        </select>
-
-                        <br>
-
-                        <!-- LINHA 2 -->
-                        <label class="col-12 col-md-6" style="float: left;">Número da matrícula </label>
-                        <input type="text" class="form-control col-12 col-md-6" id="matricula" name="matricula" require data-parsley-required-message="Insira o número da matrícula">
-
-                        <br>
-
-                        <!-- LINHA 3 -->
-                        <div class="form-group">
-                            <label class="col-12 col-md-6" style="float: left;">Turma </label>
-                            <input id="turma" class="form-control col-12 col-md-6" list="listaTurma" data-parsley-required-message="Selecione a turma" value="<?php
-                                                                                                                                                                if (!empty($serie_id)) echo "$serie - $descricao - $ano";
-                                                                                                                                                                ?>">
-                            <datalist id="listaTurma">
-                                <?php
-                                $sql = "SELECT serie, descricao, ano
-                                        FROM turma
-                                        ORDER BY serie";
-                                $consulta = $pdo->prepare($sql);
-                                $consulta->execute();
-
-                                while ($dados = $consulta->fetch(PDO::FETCH_OBJ)) {
-                                    // separar os dados
-                                    $serie     = $dados->serie;
-                                    $descricao = $dados->descricao;
-                                    $ano       = $dados->ano;
-                                    echo '<option value=" ' . $serie . ' - ' . $descricao . ' - ' . $ano . '">';
-                                };
-                                ?>
-                            </datalist>
-                        </div>
-
-                        <!-- LINHA 4 -->
-                        <label class="col-12 col-md-6" style="float: left;">Data da matrícula </label>
-                        <input type="date" class="form-control col-12 col-md-6" id="data_matricula" name="data_matricula" require data-parsley-required-message="Insira a data de matrícula">
-
-                        <div class="modal-footer mt-2">
-                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Voltar</button>
-                            <a class="btn btn-primary" href="#">Salvar</a>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <?php if (empty($id)) $id = 0; //verificar se id é vazio 
     ?>
@@ -258,10 +241,23 @@ if (!empty($id)) {
     <script type="text/javascript">
         $(document).ready(function() {
 
-            //$("#data_nascimento").mask("99/99/9999");
             $("#cpf").mask("000.000.000-00");
-            $("#telefone1").mask("(00) 0000-0000");
-            $("#telefone2").mask("(00) 0000-0000");
+            $("#telefone1").mask("(00) 0000-00009");
+            $('#telefone1').blur(function(event) {
+                if ($(this).val().length == 15) {
+                    $('#telefone1').mask('(00) 00000-0009');
+                } else {
+                    $('#telefone1').mask('(00) 0000-00009');
+                }
+            });
+            $("#telefone2").mask("(00) 0000-00009");
+            $('#telefone2').blur(function(event) {
+                if ($(this).val().length == 15) {
+                    $('#telefone2').mask('(00) 00000-0009');
+                } else {
+                    $('#telefone2').mask('(00) 0000-00009');
+                }
+            });
             $("#cep").mask("00.000-000");
 
             //mostra se o jquery esta funcionando ou nao

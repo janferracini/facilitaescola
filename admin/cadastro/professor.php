@@ -78,6 +78,7 @@ if (!empty($id)) {
                 <label for="nome"> Nome Completo </label>
                 <input type="text" class="form-control" id="nome" name="nome" required data-parsley-required-message="Preencha o nome" value="<?= $nome ?>">
             </div>
+          
             <div class="col-12 col-md-4">
                 <label for="status"> Status </label>
                 <select id="status" name="status" class="form-control ">
@@ -201,6 +202,7 @@ if (!empty($id)) {
         <div class="clearfix"></div> <!-- Ignora os floats -->
     </form>
 
+
     <?php if (empty($id)) $id = 0; //verificar se id é vazio 
     ?>
 
@@ -236,8 +238,8 @@ if (!empty($id)) {
         }
 
         $(document).ready(function() {
-            // $("#data_nascimento").mask("99/99/9999");
             $("#cpf").mask("000.000.000-00");
+            $("#telefone1").mask("(00) 0000-00009");
             $('#telefone1').blur(function(event) {
                 if ($(this).val().length == 15) {
                     $('#telefone1').mask('(00) 00000-0009');
