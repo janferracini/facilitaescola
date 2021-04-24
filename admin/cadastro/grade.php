@@ -25,7 +25,6 @@ if (!empty($id)) {
 
     $id             = $dados->id;
     $disciplina     = $dados->disciplina;
-
 }
 ?>
 
@@ -44,19 +43,87 @@ if (!empty($id)) {
 <div class="container">
 
     <div class="float-right">
-        <a href="listar/grade" class="btn btn-outline-info">Listar Disciplinas</a>
+        <a href="listar/grade" class="btn btn-outline-info">Novo Cadastro</a>
     </div>
 
     <div class="clearfix"></div> <!-- Ignora os floats -->
 
-    <form action="salvar/disciplina" name="formCadastro" method="post" data-parsley-validate enctype="multipart/form-data" role="form">
+    <form action="salvar/grade" name="formCadastro" method="post" data-parsley-validate enctype="multipart/form-data" role="form">
         <div class="row mb-3">
-            <div class="col-sm-12">
-                <input type="hidden" class="form-control" name="id" id="id" readonly value="<?= $id ?>">
-                <label for="disciplina">Disciplina:</label>
-                <input type="text" name="disciplina" id="disciplina" class="form-control" required data-parsley-required-message="Preencha a Disciplina" value="<?= $disciplina ?>" placeholder="Digite a Disciplina">
+
+            <!-- TURMA -->
+            <div class="col-12 col-md-4">
+                <label for="turma">Turma</label>
+                <input type="hidden" class="form-control" name="tmid" id="tmid" readonly value="<?= $turma_matricula_id ?>">
+                <input id="turma_id" name="turma_id" class="form-control" list="listaTurma" data-parsley-required-message="Selecione a turma" value="<?php if (!empty($id)) echo "$turma_id - $serie $descricao / $periodo ($ano)"; ?>">
+                <datalist id="listaTurma">
+                    <?php
+                    $sql = "SELECT t.*,t.id tid, p.*
+                                        FROM turma t
+                                        INNER JOIN periodo p ON (p.id = t.periodo_id)
+                                        ORDER BY serie";
+                    $consulta = $pdo->prepare($sql);
+                    $consulta->execute();
+
+                    while ($dados = $consulta->fetch(PDO::FETCH_OBJ)) {
+                        // separar os dados
+                        $serie     = $dados->serie;
+                        $descricao = $dados->descricao;
+                        $ano       = $dados->ano;
+                        $periodo   = $dados->periodo;
+                        $turma_id       = $dados->tid;
+                        echo '<option value=" ' . $turma_id . ' - ' . $serie . ' ' . $descricao . ' / ' . $periodo . ' (' . $ano . ')">';
+                    };
+                    ?>
+                </datalist>
             </div>
 
+            <!-- Disciplina -->
+            <div class="col-12 col-md-4">
+                <label for="disciplina">Disciplina</label>
+                <input type="hidden" class="form-control" name="disciplina_id" id="disciplina_id" readonly value="<?= $disciplina_id ?>">
+                <input id="disciplina_id" name="disciplina_id" class="form-control" list="listaDisciplina" data-parsley-required-message="Selecione a Disciplina" value="<?php if (!empty($id)) echo "$turma_id - $serie $descricao / $periodo ($ano)"; ?>">
+                <datalist id="listaDisciplina">
+                    <?php
+                    $sql = "SELECT d.id idd, d.*
+                            FROM disciplina d
+                            ORDER BY disciplina";
+                    $consulta = $pdo->prepare($sql);
+                    $consulta->execute();
+
+                    while ($dados = $consulta->fetch(PDO::FETCH_OBJ)) {
+                        // separar os dados
+                        $did     = $dados->idd;
+                        $disciplina = $dados->disciplina;
+                        echo '<option value=" ' . $did . ' - ' . $disciplina . '">';
+                    };
+                    ?>
+                </datalist>
+            </div>
+
+            <!-- PROFESSOR -->
+            <div class="col-12 col-md-4">
+                <label for="professor">Professor</label>
+                <input type="hidden" class="form-control" name="professor_id" id="professor_id" readonly value="<?= $professor_id ?>">
+                <input id="professor_id" name="professor_id" class="form-control" list="listaProfessor" data-parsley-required-message="Selecione o Professor" value="<?php if (!empty($pid)) echo "$pid - $nome"; ?>">
+                <datalist id="listaProfessor">
+                    <?php
+                    $sql = "SELECT p.id, p.nome, pr.id, pr.pessoa_id
+                                        FROM professor pr
+                                        INNER JOIN pessoa p ON (p.id = pr.pessoa_id)
+                                        ORDER BY p.nome";
+                    $consulta = $pdo->prepare($sql);
+                    $consulta->execute();
+
+                    while ($dados = $consulta->fetch(PDO::FETCH_OBJ)) {
+                        // separar os dados
+                        $pid     = $dados->id;
+                        $nome = $dados->nome;
+                        echo '<option value=" ' . $pid . ' - ' . $nome . '">';
+                    };
+                    ?>
+                </datalist>
+            </div>
         </div>
 
         <button type="submit" class="btn btn-success margin">
