@@ -7,7 +7,7 @@
     $cpf= $_GET['cpf'] ?? "";
     $id = $_GET['id'] ?? "";
 
-    include "config/conexao.php";
+    include "../config/conexao.php";
     include "functions.php";
 
     $msg = validaCPF($cpf) ;

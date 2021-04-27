@@ -18,11 +18,6 @@
 </div>
 <!-- /.content-header -->
 <div class="container">
-
-    <div class="float-right">
-        <a href="cadastro/recado" class="btn btn-outline-laranja">Novo Recado</a>
-    </div>
-
     <div class="card-body p-0 mt-3">
         <table id="tabRecado" class="table table-hover text-nowrap table-responsive-xxl">
             <thead>
@@ -49,37 +44,27 @@
                 while ($dados = $consulta->fetch(PDO::FETCH_OBJ)) {
                     // Separar os dados
                     $id       = $dados->rid;
-                    $titulo        = $dados->titulo;
-                    $conteudo      = $dados->conteudo;
-                    // tabela grade
-                    $grade_id      = $dados->gid;
-                    // tabela periodo
-                    $periodo       = $dados->periodo;
-                    $periodo_id    = $dados->pid;
-                    // tabela turma
-                    $turma_id      = $dados->tid;
-                    $serie         = $dados->serie;
-                    $descricao     = $dados->descricao;
-                    $ano           = $dados->turma;
+                    $titulo   = $dados->titulo;
+                    $conteudo = $dados->conteudo;
+                    $data_postagem = $dados->dp;
+
 
                     // Mostrar na tela
-                    echo '<tr>
-                        <td>' . $data_postagem . '</td>
-                        <td>' . $titulo . '</td>
-                        <td>' . substr($conteudo, 0, 35) . '(...)</td>
-                        <td><a href="cadastro/recado/' . $id . '" class="btn btn-success btn-sm">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                            
-                            <button type="button" class="btn btn-danger btn-sm" onclick="excluir(' . $id . ')">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </td>
-                    </tr>';
+                    echo "
+                        <tr>
+                            <td>" . $data_postagem . "</td>
+                            <td>" . $titulo . "</td>
+                            <td>" . substr($conteudo, 0, 35) . "(...)</td> 
+                            <td> 
+                                <a class='visualizar btn btn-success margin' data-conteudo='$conteudo' data-postagem='$data_postagem' data-titulo='$titulo' data-id='$id' data-toggle='modal' data-target='#mensagemModal' style='color : #fff;' id='visualizar'>
+                                    Visualizar 
+                                </a>
+                            </td>
+                        </tr>";
                 }
                 ?>
 
-                <!-- <div id="myModal" class="modal fade" role="dialog">
+                <div id="myModal" class="modal fade" role="dialog">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -100,14 +85,14 @@
                             </div>
                         </div>
                     </div>
-                </div> -->
+                </div>
 
 
             </tbody>
         </table>
     </div>
 
-    <!-- <script>
+    <script>
         $('.visualizar').on('click', function() {
             var nome = $(this).data('nome'); // vamos buscar o valor do atributo data-name que temos no botão que foi clicado
             var conteudo = $(this).data('conteudo');
@@ -120,6 +105,6 @@
             $('span.postagem').text(postagem);
             $('#myModal').modal('show'); // modal aparece
         });
-    </script> -->
+    </script>
     <!-- /.card-body -->
 </div>
