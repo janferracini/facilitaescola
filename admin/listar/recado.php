@@ -70,48 +70,7 @@
                     </tr>';
                 }
                 ?>
-
-                <!-- <div id="myModal" class="modal fade" role="dialog">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title"><span class="titulo"></h4>
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-
-                            </div>
-                            <div class="modal-body">
-                                <p>
-                                    <strong>Título: </strong><span class="titulo"></span> <br>
-                                    <strong>Data: </strong><span class="postagem"></span> <br>
-                                    <strong>Descrição: </strong><span class="conteudo"></span> <br>
-
-                                </p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-success" data-dismiss="modal">OK</button>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-
-
             </tbody>
         </table>
     </div>
-
-    <!-- <script>
-        $('.visualizar').on('click', function() {
-            var nome = $(this).data('nome'); // vamos buscar o valor do atributo data-name que temos no botão que foi clicado
-            var conteudo = $(this).data('conteudo');
-            var titulo = $(this).data('titulo');
-            var postagem = $(this).data('postagem')
-            var id = $(this).data('id'); // vamos buscar o valor do atributo data-id
-            $('span.nome').text(nome); // inserir na o nome na pergunta de confirmação dentro da modal
-            $('span.titulo').text(titulo);
-            $('span.conteudo').text(conteudo);
-            $('span.postagem').text(postagem);
-            $('#myModal').modal('show'); // modal aparece
-        });
-    </script> -->
-    <!-- /.card-body -->
 </div>
