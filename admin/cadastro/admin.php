@@ -94,7 +94,6 @@ if (!empty($id)) {
                 </select>
             </div>
 
-
             <!-- LINHA 2 -->
             <div class="col-12 col-md-4">
                 <label for="login"> Login </label>
@@ -133,7 +132,6 @@ if (!empty($id)) {
             <div class="col-12 col-md-4">
                 <label for="cidade"> Cidade</label>
                 <input type="text" class="form-control" id="cidade" required data-parsley-required-message="Selecione a cidade" value="<?= $cidade ?>">
-
                 <input type="hidden" class="form-control" id="cidade_id" name="cidade_id" required data-parsley-required-message="Selecione a cidade" readonly value="<?= $cidade_id ?>">
             </div>
 

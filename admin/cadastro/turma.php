@@ -8,7 +8,7 @@ if (!isset($id)) $id = "";
 $serie = $descricao = $periodo = $ano = $periodo_id = '';
 
 if (!empty($id)) {
-    //select nos dados do cliente
+    //select nos dados da turma
     $sql = "SELECT  t.id,
                     t.serie,
                     t.descricao,

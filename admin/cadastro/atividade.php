@@ -66,14 +66,13 @@ if (!empty($id)) {
             <div class="col-sm-12">
                 <label for="grade_id"> Selecione a turma: </label>
                 <input type="text" id="turma" name="turma" class="form-control" 
-                required data-parsley-required-message="Selecione uma turma" placeholder="Selecione a disciplina desejada">
+                required data-parsley-required-message="Selecione uma turma" placeholder="Selecione a turma desejada">
             </div>
 
             <div class="col-sm-12">
-                <label for="atividade">Atividade:</label>
-                <textarea type="text" name="atividade" id="atividade" class="form-control" 
-                    required data-parsley-required-message="Preencha a descrição da atividade" value="<?= $atividade ?>" placeholder="Informe a descrição da atividade">
-                </textarea>
+                <label for="atividade"> Atividade: </label>
+                <textarea type="text" id="atividade" name="atividade" class="form-control" 
+                required data-parsley-required-message="Preencha a descrição da atividade" placeholder="Insira a descrição da atividade"></textarea>
             </div>
             
             <div class="col-sm-12">
@@ -85,7 +84,7 @@ if (!empty($id)) {
 
         </div>
 
-        <button type="submit" class="btn btn-success margin">
+        <button type="submit" class="btn btn-outline-laranja">
             <i class="fas fa-check"></i> Gravar Dados
         </button>
     </form>
