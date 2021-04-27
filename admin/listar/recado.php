@@ -49,18 +49,10 @@
                 while ($dados = $consulta->fetch(PDO::FETCH_OBJ)) {
                     // Separar os dados
                     $id       = $dados->rid;
-                    $titulo        = $dados->titulo;
-                    $conteudo      = $dados->conteudo;
-                    // tabela grade
-                    $grade_id      = $dados->gid;
-                    // tabela periodo
-                    $periodo       = $dados->periodo;
-                    $periodo_id    = $dados->pid;
-                    // tabela turma
-                    $turma_id      = $dados->tid;
-                    $serie         = $dados->serie;
-                    $descricao     = $dados->descricao;
-                    $ano           = $dados->turma;
+                    $titulo   = $dados->titulo;
+                    $conteudo = $dados->conteudo;
+                    $data_postagem      = $dados->data_postagem;
+
 
                     // Mostrar na tela
                     echo '<tr>

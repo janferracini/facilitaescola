@@ -196,7 +196,7 @@ $base = "$h://$site:$porta/$url"
               </li>
 
               <li class="nav-item">
-                <a href="cadastro/recado" class="nav-link">
+                <a href="listar/recado" class="nav-link">
                   <i class="nav-icon fas fa-exclamation-triangle"></i>
                   <p>
                     Recados
