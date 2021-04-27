@@ -10,8 +10,10 @@ if ($_POST) {
     include "functions.php";
 
     $nome = $login = $senha = $rg = $cpf = $data_nascimento = $data_cadastro =
-    $email = $logradouro = $numero  = $cep = $complemento = $telefone1 = $telefone2 = 
-    $foto = $status = $cidade_id = '';
+        $email = $logradouro = $numero  = $cep = $complemento = $telefone1 = $telefone2 =
+        $foto = $cidade_id = '';
+
+    $status = $_POST["status"];
 
 
     foreach ($_POST as $key => $value) {
@@ -51,7 +53,7 @@ if ($_POST) {
         echo "<script>alert('Preencha a Senha');history.back();</script>";
         exit;
     }
-    
+
     //iniciar uma transação com o DB toda alteração pra baixo, só será feito após o commit
     $pdo->beginTransaction();
     // $data_nascimento   = formatarDN($data_nascimento);
@@ -65,7 +67,7 @@ if ($_POST) {
                     :nome, :login, :senha, :rg, :cpf, :data_nascimento, 
                     :email, :logradouro, :numero, :cep, :complemento,
                     :telefone1, :telefone2, :cidade_id, :tipo_cadastro, :status)";
-        
+
         $tipo_cadastro = 1; //1 - ADM, 2 - ALUNO, 3 - PROF
         $status = 1;       // 1 - ATIVO, 0 - INATIVO - Ativo como padrão
         $senha = password_hash($senha, PASSWORD_BCRYPT);
@@ -88,7 +90,6 @@ if ($_POST) {
         $consulta->bindParam(":cidade_id", $cidade_id);
         $consulta->bindParam(":tipo_cadastro", $tipo_cadastro);
         $consulta->bindParam(":status", $status);
-
     } else {
         $sql = "UPDATE pessoa    
                 SET nome = :nome,
@@ -104,12 +105,13 @@ if ($_POST) {
                     complemento = :complemento,
                     telefone1 = :telefone1,
                     telefone2 = :telefone2,
-                    id_cidade = :cidade_id
+                    id_cidade = :cidade_id,
+                    status = :status
                 WHERE id = :id 
                 LIMIT 1";
 
         $senha = password_hash($senha, PASSWORD_BCRYPT);
-        
+
         $consulta = $pdo->prepare($sql);
         $consulta->bindParam(":nome", $nome);
         $consulta->bindParam(":login", $login);
@@ -125,17 +127,17 @@ if ($_POST) {
         $consulta->bindParam(":telefone1", $telefone1);
         $consulta->bindParam(":telefone2", $telefone2);
         $consulta->bindParam(":cidade_id", $cidade_id);
+        $consulta->bindParam(":status", $status);
         $consulta->bindParam(":id", $id);
     }
 
     //executar SQL depois de ver qual ele vai passar
     if ($consulta->execute()) {
 
-            //gravar no DB se tudo estiver OK
-            $pdo->commit();
-            echo "<script>alert('Registro salvo');location.href='listar/admin';</script>;";
-            exit;
-        
+        //gravar no DB se tudo estiver OK
+        $pdo->commit();
+        echo "<script>alert('Registro salvo');location.href='listar/admin';</script>;";
+        exit;
     }
     echo $consulta->errorInfo()[2];
     exit;
