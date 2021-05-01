@@ -1,7 +1,7 @@
 <!-- row -->
 <div class="row">
     <div class="col-12 col-sm- col-md-3">
-        <div class="info-box">
+        <div class="info-box" href="cadastro/turma" class="nav-link">
             <span class="info-box-icon bg-info elevation-1"><i class="fas fa-chalkboard"></i></span>
 
             <div class="info-box-content">

@@ -38,7 +38,7 @@ $base = "$h://$site:$porta/$url"
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
-
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
   <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
   <!-- IonIcons -->
@@ -176,7 +176,7 @@ $base = "$h://$site:$porta/$url"
               </li>
 
               <li class="nav-item">
-                <a href="pages/calendar.html" class="nav-link">
+                <a href="cadastro/atividade" class="nav-link">
                   <i class="nav-icon fas fa-pencil-alt"></i>
                   <p>
                     Atividades
@@ -194,7 +194,7 @@ $base = "$h://$site:$porta/$url"
               </li>
 
               <li class="nav-item">
-                <a href="pages/calendar.html" class="nav-link">
+                <a href="listar/recado" class="nav-link">
                   <i class="nav-icon fas fa-exclamation-triangle"></i>
                   <p>
                     Recados
@@ -227,6 +227,7 @@ $base = "$h://$site:$porta/$url"
 
             $pagina = "home.php";
 
+            // referente a pagina que será aberta
             if (isset($_GET["parametro"])) {
               //recuperar o parametro
               $p = trim($_GET["parametro"]);
@@ -263,7 +264,7 @@ $base = "$h://$site:$porta/$url"
 
       <!-- Main Footer -->
       <footer class="main-footer">
-        Copyright &copy; 2020 <strong>Facilita Escola</strong>.
+        Copyright &copy; 2021 <strong>Facilita Escola</strong>.
     </div>
     </footer>
     </div>

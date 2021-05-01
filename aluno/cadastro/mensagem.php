@@ -34,7 +34,7 @@
                 <label for="mensagem">Título:</label>
                 <input type="text" name="titulo" id="titulo" class="form-control" required data-parsley-required-message="Preencha o título" placeholder="Digite o Título da mensagem">
                 <label for="mensagem">Mensagem:</label>
-                <textarea type="text" name="mensagem" id="mensagem" class="form-control" required data-parsley-required-message="Preencha a mensagem" placeholder="Digite a Mensagem"> </textarea>
+                <textarea type="text" name="mensagem" id="mensagem" class="form-control" required data-parsley-required-message="Preencha a mensagem" placeholder="Digite a Mensagem"></textarea>
             </div>
 
 
