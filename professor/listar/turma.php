@@ -10,10 +10,20 @@
 <div class="content-header">
     <div class="container-fluid">
         <?php
-        $sql = "SELECT  t.id tid, t.*, p.*
-                    FROM turma t
-                    INNER JOIN periodo p ON (t.periodo_id = p.id )
-                    WHERE t.id = :id";
+        $sql = "SELECT  g.id gid, g.*, 
+                        t.id tid, t.*, 
+                        d.id did, d.*, 
+                        pr.id pid, pr.*,
+                        p.nome,
+                        pe.periodo
+                FROM grade g
+                INNER JOIN turma t ON (t.id = g.turma_id)
+                INNER JOIN disciplina d ON (d.id = g.disciplina_id)
+                INNER JOIN professor pr ON (pr.id = g.professor_id)
+                INNER JOIN pessoa p ON (p.id = pr.pessoa_id)
+                INNER JOIN periodo pe ON (pe.id = t.periodo_id)
+                WHERE g.id = :id
+                LIMIT 1";
 
         $consulta = $pdo->prepare($sql);
         $consulta->bindParam("id", $id);
@@ -21,20 +31,21 @@
 
         $dados = $consulta->fetch(PDO::FETCH_OBJ);
         if (empty($dados->id)) {
-            echo "<p class='alert alert-danger'> Turma não encontrada</p>";
-            exit;
+            echo "<div class='pt-3'><p class='alert alert-danger'>Turma não encontrada</p></div>";
         } else {
-
-            $id = $dados->tid;
+            $id = $dados->gid;
             $serie = $dados->serie;
             $descricao = $dados->descricao;
             $ano = $dados->ano;
             $periodo = $dados->periodo;
+            $professor = $dados->nome;
+            $disciplina = $dados->disciplina;
+            $turma_id = $dados->tid;
         }
         ?>
         <div class="row">
             <div>
-                <h1 class="m-0 text-dark">Alunos <?php echo  $serie . " " . $descricao . " / " . $periodo; ?></h1>
+                <h1 class="m-0 text-dark">Turma <?php echo  $serie . " " . $descricao . " / " . $periodo . " - " . $disciplina; ?></h1>
             </div><!-- /.col -->
         </div><!-- /.row -->
     </div><!-- /.container-fluid -->
@@ -57,7 +68,7 @@
                         INNER JOIN turma_matricula tm ON (tm.turma_id = t.id)
                         INNER JOIN matricula m ON (m.id = tm.matricula_id)
                         INNER JOIN pessoa pe ON (pe.id = m.pessoa_id)
-                        WHERE t.id = $id
+                        WHERE t.id = $turma_id
                         ORDER BY pe.nome";
 
                 $consulta = $pdo->prepare($sql);
