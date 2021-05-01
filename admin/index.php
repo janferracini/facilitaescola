@@ -125,7 +125,6 @@ $base = "$h://$site:$porta/$url"
                   <p>Início</p>
                 </a>
               </li>
-
               <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                   <i class="nav-icon far fa-plus-square"></i>
@@ -165,7 +164,6 @@ $base = "$h://$site:$porta/$url"
                       <p>Turmas</p>
                     </a>
                   </li>
-
                   <li class="nav-item">
                     <a href="cadastro/grade" class="nav-link">
                       <i class="nav-icon fas fa-chalkboard-teacher"></i>
@@ -247,7 +245,7 @@ $base = "$h://$site:$porta/$url"
             if (file_exists($pagina)) {
               include $pagina;
             } else {
-              include "../paginas/erro.php";
+              include "../erro.php";
             }
             ?>
 

@@ -37,7 +37,6 @@ if (!empty($id)) {
     $ano            = $dados->ano;
     $periodo_id     = $dados->periodo_id;
     $idperiodo      = $dados->idperiodo;
-
 }
 ?>
 
@@ -78,24 +77,21 @@ if (!empty($id)) {
                 <!-- select -->
                 <div class="form-group">
                     <label for="periodo">Período</label>
-                    <input type="text" name="periodo_id" id="periodo_id" class="form-control" list="listaPeriodo"
-                    data-parsley-required-message="Selecione o período" value="<?php
-                                                if (!empty($periodo_id)) echo "$periodo - $periodo_id";
-                                                ?>">
+                    <input type="text" name="periodo_id" id="periodo_id" class="form-control" list="listaPeriodo" data-parsley-required-message="Selecione o período" value="<?php if (!empty($periodo_id)) echo "$periodo - $periodo_id"; ?>">
                     <datalist id="listaPeriodo">
                         <?php
-                            $sql = "SELECT id, periodo
+                        $sql = "SELECT id, periodo
                                     FROM periodo
                                     ORDER BY id";
-                            $consulta = $pdo->prepare($sql);
-                            $consulta->execute();
-                            
-                            while ($d = $consulta->fetch(PDO::FETCH_OBJ)) {
-                                //separar os dados
-                                $periodo_id    = $d->id;
-                                $periodo       = $d->periodo;
-                                echo '<option value=" ' . $periodo . ' - ' . $periodo_id . '">';
-                            };
+                        $consulta = $pdo->prepare($sql);
+                        $consulta->execute();
+
+                        while ($d = $consulta->fetch(PDO::FETCH_OBJ)) {
+                            //separar os dados
+                            $periodo_id    = $d->id;
+                            $periodo       = $d->periodo;
+                            echo '<option value=" ' . $periodo . ' - ' . $periodo_id . '">';
+                        };
                         ?>
                     </datalist>
                 </div>
