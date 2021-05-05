@@ -211,6 +211,15 @@ $base = "$h://$site:$porta/$url"
                 </a>
               </li>
 
+              <li class="nav-item">
+                <a href="listar/mensagem" class="nav-link">
+                  <i class="nav-icon fas fa-print"></i>
+                  <p>
+                    Relatórios
+                  </p>
+                </a>
+              </li>
+
             </ul>
           </nav>
           <!-- /.sidebar-menu -->
