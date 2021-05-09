@@ -89,15 +89,13 @@ $base = "$h://$site:$porta/$url"
 
         <!-- Right navbar links -->
         <ul class="navbar-nav ml-auto">
-          <!-- Botão CONFIG -->
-          <li class="nav-item dropdown">
-            <a class="nav-link" href="#">
-              <i class="fas fa-key"></i>
-            </a>
-
+          <li class="nav-item mt-2">
+            <span class="mr-2 d-none d-lg-inline text-gray-200 ">
+              <?= $_SESSION["facilita_escola"]["nome"]; ?>
+            </span>
           </li>
           <!-- Botão SAIR -->
-          <li class="nav-item dropdown">
+          <li class="nav-item">
             <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
               <i class="fas fa-sign-out-alt"></i>
             </a>
@@ -121,7 +119,7 @@ $base = "$h://$site:$porta/$url"
             <ul class="nav nav-pills nav-sidebar nav-legacy nav-flat nav-child-indent flex-column" data-widget="treeview" role="menu" data-accordion="false">
               <li class="nav-item">
                 <a href="#" class="nav-link active">
-                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <i class="nav-icon fas fa-home"></i>
                   <p>Início</p>
                 </a>
               </li>
@@ -185,15 +183,6 @@ $base = "$h://$site:$porta/$url"
               </li>
 
               <li class="nav-item">
-                <a href="pages/calendar.html" class="nav-link">
-                  <i class="nav-icon fas fa-calendar-alt"></i>
-                  <p>
-                    Eventos
-                  </p>
-                </a>
-              </li>
-
-              <li class="nav-item">
                 <a href="listar/recado" class="nav-link">
                   <i class="nav-icon fas fa-exclamation-triangle"></i>
                   <p>
@@ -221,7 +210,7 @@ $base = "$h://$site:$porta/$url"
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
         <!-- Main content -->
-        <div class="content pb-3">
+        <div class="content">
           <div class="container-fluid">
             <?php
 
@@ -256,12 +245,6 @@ $base = "$h://$site:$porta/$url"
       </div>
       <!-- /.content-wrapper -->
 
-      <!-- Control Sidebar -->
-      <aside class="control-sidebar control-sidebar-dark">
-        <!-- Control sidebar content goes here -->
-      </aside>
-      <!-- /.control-sidebar -->
-
       <!-- Main Footer -->
       <footer class="main-footer">
         Copyright &copy; 2021 <strong>Facilita Escola</strong>.
@@ -294,21 +277,15 @@ $base = "$h://$site:$porta/$url"
   }
   ?>
 
-  <!-- ATENTION: OS LINKS A BAIXO SAO DO MEU TCC (RAFEL E JUÇINA) -->
 
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-  <!-- <script src="plugins/jquery/jquery.min.js"></script> -->
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script src="../plugins/mask/jquery.mask.min.js"></script>
   <script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
-  <!-- <script src="../plugins/js/jquery.overlayScrollbars.min.js"></script> -->
   <script src="../dist/js/adminlte.js"></script>
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-  <!-- <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script> -->
   <!-- ChartJS -->
   <script src="../plugins/chart.js/Chart.min.js"></script>
   <!-- Sparkline -->
