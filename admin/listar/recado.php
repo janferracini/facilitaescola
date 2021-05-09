@@ -3,7 +3,7 @@
 // if (!isset($_SESSION['hqs']['id'])) {
 //     exit;
 // }
-// ?>
+?>
 
 <!-- Content Header (Page header) -->
 <div class="content-header">
@@ -28,12 +28,40 @@
         <table id="tabRecado" class="table table-hover text-nowrap">
             <thead>
                 <tr>
+                    <th>Data Postagem</th>
                     <th>Recados</th>
                     <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
-            
+                <?php
+                $sql = "SELECT id, titulo, date_format(data_postagem, '%d/%m/%Y') data_postagem
+                        FROM recado
+                        ORDER BY id DESC";
+
+                $consulta = $pdo->prepare($sql);
+                $consulta->execute();
+
+                while ($dados = $consulta->fetch(PDO::FETCH_OBJ)) {
+                    $id     = $dados->id;
+                    $titulo = $dados->titulo;
+                    $data_postagem = $dados->data_postagem;
+
+                    echo '<tr>
+                            <td>' . $data_postagem . '</td>
+                            <td>' . $titulo . '</td>
+                            
+                            <td><a href="cadastro/recado/' . $id . '" class="btn btn-success btn-sm">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+
+                                <button type="button" class="btn btn-danger btn-sm" onclick="excluir(' . $id . ')">
+                                <i class="fas fa-trash"></i>
+                            </td>
+                        </button>
+                    </tr>';
+                }
+                ?>
             </tbody>
         </table>
     </div>
