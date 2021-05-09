@@ -212,7 +212,7 @@ $base = "$h://$site:$porta/$url"
               </li>
 
               <li class="nav-item">
-                <a href="listar/mensagem" class="nav-link">
+                <a href="listar/relatorio" class="nav-link">
                   <i class="nav-icon fas fa-print"></i>
                   <p>
                     Relatórios
