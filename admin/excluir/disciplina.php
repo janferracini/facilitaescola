@@ -47,6 +47,4 @@
             </script>";
     }
 
-    echo "<script>alert('Registro excluído');location.href='listar/disciplina'</script>"
-
-?>
+    echo "<script>alert('Registro excluído');location.href='listar/disciplina'</script>";

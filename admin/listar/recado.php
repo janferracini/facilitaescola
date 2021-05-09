@@ -66,3 +66,15 @@
         </table>
     </div>
 </div>
+
+
+<script>
+    //função para perguntar se deseja excluir. Se sim, direcionar para o endereço de exclusão
+    function excluir(id) {
+        //perguntar
+        if (confirm("Deseja mesmo excluir?")) {
+            //direcionar para exclusão
+            location.href = "excluir/recado/" + id;
+        }
+    }
+</script>

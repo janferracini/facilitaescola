@@ -8,7 +8,7 @@ if (!isset($id)) $id = "";
 $disciplina = '';
 
 if (!empty($id)) {
-    //select nos dados do cliente
+    //select nos dados do disciplina
     $sql = "SELECT  *
             FROM disciplina
             WHERE id = :id
@@ -25,7 +25,6 @@ if (!empty($id)) {
 
     $id             = $dados->id;
     $disciplina     = $dados->disciplina;
-
 }
 ?>
 

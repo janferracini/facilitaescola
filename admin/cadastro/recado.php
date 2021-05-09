@@ -15,15 +15,14 @@ $serie = $descricao = $ano = $periodo_id = "";
 // tabela periodo
 $periodo = "";
 
-
 if (!empty($id)) {
     //select nos dados  
     $sql = "SELECT r.id rid, r.*, g.id gid, g.turma_id tid, 
-            t.*
+            t.*, p.id pid, p.*
             FROM recado r
-            -- alterar para enviar na grade e quem enviou
-            INNER JOIN turma t ON (t.id = g.turma_id) 
             INNER JOIN grade g ON (g.id = r.grade_id) 
+            INNER JOIN turma t ON (t.id = g.turma_id) 
+            INNER JOIN periodo p ON (p.id = t.periodo_id)
             WHERE r.id = :id
             LIMIT 1";
 
@@ -35,9 +34,9 @@ if (!empty($id)) {
 
     if (empty($dados->id)) {
         echo "<p class='alert alert-danger'>Recado inexistente.</p>";
+        exit;
     }
-
-    // fazer a listagem de recados 
+    // fazer a listagem de recados se id nao estiver vazio
     // tabela recado
     $id            = $dados->rid;
     $titulo        = $dados->titulo;
@@ -51,7 +50,7 @@ if (!empty($id)) {
     $turma_id      = $dados->tid;
     $serie         = $dados->serie;
     $descricao     = $dados->descricao;
-    $ano           = $dados->turma;
+    $ano           = $dados->ano;
 }
 ?>
 
@@ -77,8 +76,8 @@ if (!empty($id)) {
 
 
     <form action="salvar/recado" name="formCadastro" method="post" data-parsley-validate enctype="multipart/form-data" role="form">
-
         <div class="row mb-3">
+            <input type="hidden" class="form-control" name="id" id="id" readonly value="<?= $id ?>">
 
             <div class="col-sm-12">
                 <label for="titulo"> Título: </label>
@@ -87,37 +86,34 @@ if (!empty($id)) {
 
             <div class="col-sm-12">
                 <label for="conteudo"> Conteúdo: </label>
-                <textarea type="text" name="conteudo" id="conteudo" class="form-control" required data-parsley-required-message="Informe o conteúdo referente ao recado" placeholder="Insira a descrição do recado" value="<?= $conteudo ?>"></textarea>
+                <textarea type="text" name="conteudo" id="conteudo" class="form-control" required data-parsley-required-message="Informe o conteúdo referente ao recado" placeholder="Insira a descrição do recado"><?php if (!empty($id)) echo $conteudo ?></textarea>
             </div>
 
-            <div class=" col-12">
-                <!-- envio para qual turma será -->
-                <label for="turma_id"> Turma: </label>
-                <input type="hidden" class="form-control" name="trid" value="<?= $turma_recado_id ?>">
-                <select name="grade_id" id="grade_id" class="form-control" value="<?= $grade_id ?>">
-                    <option value="">Selecione a turma</option>
-
+            <!-- selecionar a turma -->
+            <div class="col-12 ">
+                <label for="turma">Turma</label>
+                <input type="hidden" class="form-control" name="tid" id="tid" readonly value="<?= $turma_id ?>">
+                <input id="grade_id" name="grade_id" class="form-control" list="listaTurma" data-parsley-required-message="Selecione a turma" value="<?php if (!empty($id)) echo "$turma_id - $serie $descricao / $periodo ($ano)"; ?>">
+                <datalist id="listaTurma">
                     <?php
-                    $sql = "SELECT serie, descricao, ano, p.periodo
-                            FROM turma t
-                            INNER JOIN periodo p ON (p.id = t.periodo_id)
-                            ORDER BY serie";
-
+                    $sql = "SELECT t.*,t.id tid, p.*
+                                        FROM turma t
+                                        INNER JOIN periodo p ON (p.id = t.periodo_id)
+                                        ORDER BY serie";
                     $consulta = $pdo->prepare($sql);
                     $consulta->execute();
 
                     while ($dados = $consulta->fetch(PDO::FETCH_OBJ)) {
-                        //separar os dados
-                        $serie       = $dados->serie;
-                        $descricao   = $dados->descricao;
-                        $ano         = $dados->ano;
-                        $periodo     = $dados->periodo;
-
-                        echo "<option> $serie $descricao - $periodo ($ano)</option>";
-                    }
+                        // separar os dados
+                        $serie     = $dados->serie;
+                        $descricao = $dados->descricao;
+                        $ano       = $dados->ano;
+                        $periodo   = $dados->periodo;
+                        $turma_id  = $dados->tid;
+                        echo '<option value="  ' . $serie . ' ' . $descricao . ' / ' . $periodo . ' (' . $ano . ')">';
+                    };
                     ?>
-                </select>
-
+                </datalist>
             </div>
         </div>
 
@@ -128,8 +124,5 @@ if (!empty($id)) {
         </div>
         <div class="clearfix"></div> <!-- Ignora os floats -->
     </form>
-
-    <?php if (empty($id)) $id = 0; //verificar se id é vazio 
-    ?>
 
 </div>
