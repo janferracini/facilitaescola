@@ -10,7 +10,7 @@
     <div class="container-fluid">
         <div class="row">
             <div>
-                <h1 class="m-0 text-dark">Recados Cadastradas</h1>
+                <h1 class="m-0 text-dark">Recados Cadastrados</h1>
             </div><!-- /.col -->
         </div><!-- /.row -->
     </div><!-- /.container-fluid -->
@@ -22,15 +22,14 @@
         <a href="cadastro/recado" class="btn btn-outline-laranja">Novo Recado</a>
     </div>
 
-    <div class="clearfix"></div>
-
-    <div class="card-body table-responsive p-0 mt-3">
-        <table id="tabRecado" class="table table-hover text-nowrap">
+    <div class="card-body p-0 mt-3">
+        <table id="tabRecado" class="table table-hover text-nowrap table-responsive-xxl">
             <thead>
                 <tr>
                     <th>Data Postagem</th>
                     <th>Recados</th>
                     <th>Ações</th>
+
                 </tr>
             </thead>
             <tbody>
@@ -38,6 +37,7 @@
                 $sql = "SELECT id, titulo, date_format(data_postagem, '%d/%m/%Y') data_postagem
                         FROM recado
                         ORDER BY id DESC";
+
 
                 $consulta = $pdo->prepare($sql);
                 $consulta->execute();
@@ -65,16 +65,4 @@
             </tbody>
         </table>
     </div>
-    <!-- /.card-body -->
 </div>
-
-<script>
-    //função para perguntar se deseja excluir. Se sim, direcionar para o endereço de exclusão
-    function excluir(id) {
-        //perguntar
-        if (confirm("Deseja mesmo excluir?")) {
-            //direcionar para exclusão
-            location.href = "excluir/atividade/" + id;
-        }
-    }
-</script>

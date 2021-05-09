@@ -113,18 +113,18 @@ $base = "$h://$site:$porta/$url"
             </li>
 
             <li class="nav-item">
-              <a href="../pages/layout/fixed-sidebar.html" class="nav-link">
+              <a href="listar/grade" class="nav-link">
                 <i class="fas fa-chalkboard nav-icon"></i>
                 <p>Turmas</p>
               </a>
             </li>
 
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a href="../pages/layout/fixed-sidebar.html" class="nav-link">
                 <i class="fas fa-grip-horizontal nav-icon"></i>
                 <p>Grade de Aula</p>
               </a>
-            </li>
+            </li> -->
 
             <li class="nav-item">
               <a href="pages/calendar.html" class="nav-link">
@@ -161,22 +161,7 @@ $base = "$h://$site:$porta/$url"
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-      <!-- Content Header (Page header) -->
-      <div class="content-header">
-        <div class="container-fluid">
-          <div class="row mb-2">
-            <div class="col-sm-6">
-              <h1 class="m-0 text-dark">Facilita Escola</h1>
-            </div><!-- /.col -->
-            <div class="col-sm-6">
-              <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item">Início</i></li>
-              </ol>
-            </div><!-- /.col -->
-          </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
-      </div>
-      <!-- /.content-header -->
+
 
       <!-- Main content -->
       <div class="content">
@@ -203,7 +188,7 @@ $base = "$h://$site:$porta/$url"
           if (file_exists($pagina)) {
             include $pagina;
           } else {
-            include "paginas/erro.php";
+            include "../erro.php";
           }
           ?>
 

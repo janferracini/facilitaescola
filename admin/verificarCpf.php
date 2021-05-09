@@ -7,7 +7,6 @@ if (!isset($_SESSION["facilita_escola"]["id"])) {
 $cpf = $_GET['cpf'] ?? "";
 $id = $_GET['id'] ?? "";
 
-
 include "config/conexao.php";
 include "functions.php";
 
