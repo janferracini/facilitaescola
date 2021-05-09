@@ -77,18 +77,22 @@
                         <thead>
                             <tr>
                                 <th style="width: 100px;">Data</th>
-                                <th style="width: 100px;">Turma</th>
+                                <th style="width: 100px;">Titulo</th>
                                 <th>Conteúdo</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
+                            $idprofessor = $_SESSION["facilita_escola"]["id"];
                             $sql = "SELECT  r.id rid, r.*, date_format(r.data_postagem, '%d/%m/%Y') dp,
                                             g.id gid,
-                                            t.id tid, t.*
+                                            t.id tid, t.*,
+                                            pr.*
                                     FROM recado r
                                     INNER JOIN grade g ON (g.id = r.grade_id)
                                     INNER JOIN turma t ON (t.id = g.turma_id)
+                                    INNER JOIN professor pr ON (g.professor_id = pr.id)
+                                    WHERE pr.pessoa_id = $idprofessor
                                     ORDER BY r.data_postagem DESC
                                     LIMIT 6";
 
@@ -101,15 +105,13 @@
                                 $titulo   = $dados->titulo;
                                 $conteudo = $dados->conteudo;
                                 $data      = $dados->dp;
-                                $serier = $dados->serie;
-                                $descricaor = $dados->descricao;
 
 
                                 // Mostrar na tela
                                 echo "
                                     <tr>
                                         <td>" . $data . "</td>
-                                        <td>" . $serier . " - " . $descricaor . "</td>
+                                        <td>" . $titulo . "</td>
                                         <td> " . substr($conteudo, 0, 60) . "(...)</td>
                                     </tr>";
                             }
