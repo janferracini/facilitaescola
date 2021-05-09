@@ -200,6 +200,15 @@ $base = "$h://$site:$porta/$url"
                 </a>
               </li>
 
+              <li class="nav-item">
+                <a href="listar/relatorio" class="nav-link">
+                  <i class="nav-icon fas fa-print"></i>
+                  <p>
+                    Relatórios
+                  </p>
+                </a>
+              </li>
+
             </ul>
           </nav>
           <!-- /.sidebar-menu -->
