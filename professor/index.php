@@ -74,14 +74,11 @@ $base = "$h://$site:$porta/$url"
 
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
-        <!-- Botão CONFIG -->
-        <li class="nav-item dropdown">
-          <a class="nav-link" data-toggle="dropdown" href="#">
-            <i class="fas fa-key"></i>
-          </a>
-
+        <li class="nav-item mt-2">
+          <span class="mr-2 d-none d-lg-inline text-gray-200 ">
+            <?= $_SESSION["facilita_escola"]["nome"]; ?>
+          </span>
         </li>
-        <!-- Botão SAIR -->
         <!-- Botão SAIR -->
         <li class="nav-item dropdown">
           <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
@@ -107,22 +104,15 @@ $base = "$h://$site:$porta/$url"
           <ul class="nav nav-pills nav-sidebar nav-legacy nav-flat nav-child-indent flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item">
               <a href="#" class="nav-link active">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
-                <p>Dashboard</p>
+                <i class="nav-icon fas fa-home"></i>
+                <p>Início</p>
               </a>
             </li>
 
             <li class="nav-item">
-              <a href="../pages/layout/fixed-sidebar.html" class="nav-link">
+              <a href="listar/grade" class="nav-link">
                 <i class="fas fa-chalkboard nav-icon"></i>
                 <p>Turmas</p>
-              </a>
-            </li>
-
-            <li class="nav-item">
-              <a href="../pages/layout/fixed-sidebar.html" class="nav-link">
-                <i class="fas fa-grip-horizontal nav-icon"></i>
-                <p>Grade de Aula</p>
               </a>
             </li>
 
@@ -137,21 +127,22 @@ $base = "$h://$site:$porta/$url"
 
             <li class="nav-item">
               <a href="pages/calendar.html" class="nav-link">
-                <i class="nav-icon fas fa-calendar-alt"></i>
-                <p>
-                  Eventos
-                </p>
-              </a>
-            </li>
-
-            <li class="nav-item">
-              <a href="pages/calendar.html" class="nav-link">
                 <i class="nav-icon fas fa-exclamation-triangle"></i>
                 <p>
                   Recados
                 </p>
               </a>
             </li>
+
+            <li class="nav-item">
+              <a href="listar/mensagem" class="nav-link">
+                <i class="nav-icon fas fa-print"></i>
+                <p>
+                  Relatórios
+                </p>
+              </a>
+            </li>
+
           </ul>
         </nav>
         <!-- /.sidebar-menu -->
@@ -161,22 +152,7 @@ $base = "$h://$site:$porta/$url"
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-      <!-- Content Header (Page header) -->
-      <div class="content-header">
-        <div class="container-fluid">
-          <div class="row mb-2">
-            <div class="col-sm-6">
-              <h1 class="m-0 text-dark">Facilita Escola</h1>
-            </div><!-- /.col -->
-            <div class="col-sm-6">
-              <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item">Início</i></li>
-              </ol>
-            </div><!-- /.col -->
-          </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
-      </div>
-      <!-- /.content-header -->
+
 
       <!-- Main content -->
       <div class="content">
@@ -203,7 +179,7 @@ $base = "$h://$site:$porta/$url"
           if (file_exists($pagina)) {
             include $pagina;
           } else {
-            include "paginas/erro.php";
+            include "../erro.php";
           }
           ?>
 

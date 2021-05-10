@@ -3,7 +3,8 @@
 // if (!isset($_SESSION['hqs']['id'])) {
 //     exit;
 // }
-// ?>
+// 
+?>
 
 <!-- Content Header (Page header) -->
 <div class="content-header">
@@ -29,38 +30,49 @@
             <thead>
                 <tr>
                     <th>Nome</th>
-                    <th>Ações</th>
+                    <th width=200px>Matrícula</th>
+                    <th width=200px>Turma / Período</th>
+                    <th width=180px>Ações</th>
                 </tr>
             </thead>
             <tbody>
-            <?php
+                <?php
 
-            $sql = "SELECT  id, nome
-                    FROM pessoa
+                $sql = "SELECT  p.id pid, p.nome, m.*, tm.*, t.*, pe.*
+                    FROM pessoa p
+                    INNER JOIN matricula m ON (m.pessoa_id = p.id)
+                    INNER JOIN turma_matricula tm ON (tm.matricula_id = m.id)
+                    INNER JOIN turma t ON (t.id = tm.turma_id)
+                    INNER JOIN periodo pe ON (pe.id = t.periodo_id)
                     WHERE tipo_cadastro = 2 AND status = 1
                     ORDER BY nome";
-                    
-            $consulta = $pdo->prepare($sql);
-            $consulta->execute();
 
-            while ($dados = $consulta->fetch(PDO::FETCH_OBJ)) {
-                $id = $dados->id;
-                $nome = $dados->nome;
+                $consulta = $pdo->prepare($sql);
+                $consulta->execute();
 
-                echo '<tr>
+                while ($dados = $consulta->fetch(PDO::FETCH_OBJ)) {
+                    $id      = $dados->pid;
+                    $nome    = $dados->nome;
+                    $matricula = $dados->matricula;
+                    $serie   = $dados->serie;
+                    $periodo = $dados->periodo;
+
+                    echo '<tr>
                         <td>' . $nome . '</td>
+                        <td>' . $matricula . '</td>
+                        <td>' . $serie . ' / ' . $periodo . '</td>
                         <td><a href="cadastro/aluno/' . $id . '" class="btn btn-success btn-sm">
                                 <i class="fas fa-edit"></i>
                             </a>
                             
-                            <button type="button" class="btn btn-danger btn-sm" onclick="excluir('.$id.')">
+                            <button type="button" class="btn btn-danger btn-sm" onclick="excluir(' . $id . ')">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </td>
                     </tr>';
-            }
+                }
 
-            ?>
+                ?>
             </tbody>
         </table>
     </div>

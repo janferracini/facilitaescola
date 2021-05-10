@@ -49,12 +49,12 @@ if ($_POST) {
 
             $tipo_cadastro = $dados->tipo_cadastro;
             $status = $dados->status;
-            
+
             $msg = "<p class='alert alert-danger'>Usuário inativo</p>";
             //javascript para recirecionar
-            if( $tipo_cadastro == 1 && $status == 1) {
+            if ($tipo_cadastro == 1 && $status == 1) {
                 echo '<script>location.href="admin/index.php";</script>';
-            } else if($tipo_cadastro == 2 && $status == 1) {
+            } else if ($tipo_cadastro == 2 && $status == 1) {
                 echo '<script>location.href="aluno/index.php";</script>';
             } else if ($tipo_cadastro == 3 && $status == 1) {
                 echo '<script>location.href="professor/index.php";</script>';
@@ -66,15 +66,15 @@ if ($_POST) {
 <div class="hold-transition login-page">
     <div class="login-box">
         <div class="login-logo">
-            <a href="index.html">
-                <img src="docs/assets/img/FE-logo.png" style="width: 250px;" />
+            <a href="#">
+                <img src="img/FE-logo.png" style="width: 250px;" />
             </a>
         </div>
         <!-- /.login-logo -->
         <div class="card">
             <div class="card-body login-card-body">
                 <p class="login-box-msg">Inicar seu acesso</p>
-                <?=$msg;?> 
+                <?= $msg; ?>
                 <form class="user" name="login" method="post" data-parsley-validate>
                     <div class="form-group">
                         <input type="text" name="login" class="form-control form-control-user" id="login" placeholder="Digite seu login" required data-parsley-required-message="Preencha seu login">

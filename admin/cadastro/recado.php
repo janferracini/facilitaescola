@@ -6,8 +6,8 @@
 
 if (!isset($id)) $id = "";
 
-// tabela arquivo
-$descricao = $arquivo = $data_postagem = $grade_id  = "";
+// tabela recado
+$titulo = $conteudo = $grade_id  = "";
 // tabela grade
 $turma_id = "";
 // tabela turma
@@ -16,14 +16,14 @@ $serie = $descricao = $ano = $periodo_id = "";
 $periodo = "";
 
 if (!empty($id)) {
-    //select nos dados do cliente
-    $sql = "SELECT a.id aid, a.*, g.id gid, g.turma_id tid, t.*, 
-                p.id pid, p.*
-            FROM atividade a
-            INNER JOIN grade g ON (g.id = a.grade_id) 
+    //select nos dados  
+    $sql = "SELECT r.id rid, r.*, g.id gid, g.turma_id tid, 
+            t.*, p.id pid, p.*
+            FROM recado r
+            INNER JOIN grade g ON (g.id = r.grade_id) 
             INNER JOIN turma t ON (t.id = g.turma_id) 
             INNER JOIN periodo p ON (p.id = t.periodo_id)
-            WHERE a.id = :id
+            WHERE r.id = :id
             LIMIT 1";
 
     $consulta = $pdo->prepare($sql);
@@ -33,22 +33,24 @@ if (!empty($id)) {
     $dados = $consulta->fetch(PDO::FETCH_OBJ);
 
     if (empty($dados->id)) {
-        echo "<p class='alert alert-danger'>Não há ativadades a serem listadas.</p>";
+        echo "<p class='alert alert-danger'>Recado inexistente.</p>";
+        exit;
     }
-
-    $id         = $dados->aid;
-    $descricao  = $dados->descricao;
-    $arquivo    = $dados->arquivo;
+    // fazer a listagem de recados se id nao estiver vazio
+    // tabela recado
+    $id            = $dados->rid;
+    $titulo        = $dados->titulo;
+    $conteudo      = $dados->conteudo;
     // tabela grade
-    $grade_id   = $dados->gid;
+    $grade_id      = $dados->gid;
     // tabela periodo
-    $periodo    = $dados->periodo;
-    $periodo_id = $dados->pid;
+    $periodo       = $dados->periodo;
+    $periodo_id    = $dados->pid;
     // tabela turma
-    $turma_id  = $dados->tid;
-    $serie     = $dados->serie;
-    $ano       = $dados->ano;
-    $data_postagem = $dados->data_postagem;
+    $turma_id      = $dados->tid;
+    $serie         = $dados->serie;
+    $descricao     = $dados->descricao;
+    $ano           = $dados->ano;
 }
 ?>
 
@@ -57,7 +59,7 @@ if (!empty($id)) {
     <div class="container-fluid">
         <div class="row">
             <div>
-                <h1 class="m-0 text-dark">Cadastro de Atividade</h1>
+                <h1 class="m-0 text-dark">Cadastro de Recados</h1>
             </div><!-- /.col -->
         </div><!-- /.row -->
     </div><!-- /.container-fluid -->
@@ -67,14 +69,26 @@ if (!empty($id)) {
 <div class="container">
 
     <div class="float-right">
-        <a href="listar/atividade" class="btn btn-outline-info">Listar Atividades</a>
+        <a href="listar/recado" class="btn btn-outline-info">Listar Recados</a>
     </div>
 
     <div class="clearfix"></div> <!-- Ignora os floats -->
 
 
-    <form action="salvar/atividade" name="formCadastro" method="post" data-parsley-validate enctype="multipart/form-data" role="form">
+    <form action="salvar/recado" name="formCadastro" method="post" data-parsley-validate enctype="multipart/form-data" role="form">
         <div class="row mb-3">
+            <input type="hidden" class="form-control" name="id" id="id" readonly value="<?= $id ?>">
+
+            <div class="col-sm-12">
+                <label for="titulo"> Título: </label>
+                <input type="text" id="titulo" name="titulo" class="form-control" required data-parsley-required-message="Preencha o título do recado" placeholder="Informe o título do recado" value="<?= $titulo ?>">
+            </div>
+
+            <div class="col-sm-12">
+                <label for="conteudo"> Conteúdo: </label>
+                <textarea type="text" name="conteudo" id="conteudo" class="form-control" required data-parsley-required-message="Informe o conteúdo referente ao recado" placeholder="Insira a descrição do recado"><?php if (!empty($id)) echo $conteudo ?></textarea>
+            </div>
+
             <!-- selecionar a turma -->
             <div class="col-12 ">
                 <label for="turma">Turma</label>
@@ -96,33 +110,19 @@ if (!empty($id)) {
                         $ano       = $dados->ano;
                         $periodo   = $dados->periodo;
                         $turma_id  = $dados->tid;
-                        echo '<option value="' . $serie . ' ' . $descricao . ' / ' . $periodo . ' (' . $ano . ')">';
+                        echo '<option value="  ' . $serie . ' ' . $descricao . ' / ' . $periodo . ' (' . $ano . ')">';
                     };
                     ?>
                 </datalist>
             </div>
-
-            <div class="col-sm-12">
-                <label for="atividade">Atividade:</label>
-                <textarea type="text" name="atividade" id="atividade" class="form-control" required data-parsley-required-message="Preencha a descrição da atividade" value="<?= $atividade ?>" placeholder="Informe a descrição da atividade"></textarea>
-            </div>
-
-            <div class="col-sm-12">
-                <label for="arquivo">Arquivo:</label>
-                <input type="file" name="arquivo" id="arquivo" class="form-control" accept=".jpg, .jpeg, .docx, .pdf" required data-parsley-required-message="Selecione o arquivo" value="<?= $arquivo ?>" placeholder="Selecione o arquivo da atividade">
-            </div>
-
         </div>
+
         <div class="float-right">
             <button type="submit" class="btn btn-outline-laranja margin">
                 <i class="fas fa-check"></i> Gravar Dados
             </button>
         </div>
-      
         <div class="clearfix"></div> <!-- Ignora os floats -->
-
-        <button type="submit" class="btn btn-outline-laranja">
-            <i class="fas fa-check"></i> Gravar Dados
-        </button>
     </form>
+
 </div>

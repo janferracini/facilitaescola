@@ -3,7 +3,8 @@
 // if (!isset($_SESSION['hqs']['id'])) {
 //     exit;
 // }
-// ?>
+// 
+?>
 
 <!-- Content Header (Page header) -->
 <div class="content-header">
@@ -19,7 +20,7 @@
 <div class="container">
 
     <div class="float-right">
-        <a href="cadastro/disciplina" class="btn btn-outline-laranja">Nova Disciplina</a>
+        <a href="cadastro/grade" class="btn btn-outline-laranja">Novo Cadastro</a>
     </div>
 
     <div class="clearfix"></div>
@@ -28,40 +29,52 @@
         <table id="tabDisciplina" class="table table-hover text-nowrap">
             <thead>
                 <tr>
+                    <th>Turma</th>
                     <th>Disciplina</th>
+                    <th>Professor</th>
                     <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
-            <?php
+                <?php
 
-            $sql = "SELECT  *
-                    FROM disciplina
-                    ORDER BY disciplina";
-                    
-            $consulta = $pdo->prepare($sql);
-            $consulta->execute();
+                $sql = "SELECT  g.id gid, g.*, t.*, d.*, p.*, pe.nome, pd.*
+                    FROM grade g
+                    INNER JOIN turma t ON (t.id = g.turma_id)
+                    INNER JOIN disciplina d ON (d.id = g.disciplina_id)
+                    INNER JOIN professor p ON (p.id = g.professor_id)
+                    INNER JOIN pessoa pe ON (pe.id = p.pessoa_id)
+                    INNER JOIN periodo pd ON (pd.id = t.periodo_id)";
 
-            while ($dados = $consulta->fetch(PDO::FETCH_OBJ)) {
-                // Separar os dados
-                $id = $dados->id;
-                $disciplina = $dados->disciplina;
+                $consulta = $pdo->prepare($sql);
+                $consulta->execute();
 
-                // Mostrar na tela
-                echo '<tr>
+                while ($dados = $consulta->fetch(PDO::FETCH_OBJ)) {
+                    // Separar os dados
+                    $id = $dados->gid;
+                    $serie = $dados->serie;
+                    $descricao = $dados->descricao;
+                    $ano = $dados->ano;
+                    $disciplina = $dados->disciplina;
+                    $nome = $dados->nome;
+                    $periodo = $dados->periodo;
+
+                    echo '<tr>
+                        <td> ' . $serie . ' ' . $descricao . ' / ' . $periodo . ' (' . $ano . ')</td>
                         <td>' . $disciplina . '</td>
-                        <td><a href="cadastro/disciplina/' . $id . '" class="btn btn-success btn-sm">
+                        <td> ' . $nome . '</td>
+                        <td><a href="cadastro/grade/' . $id . '" class="btn btn-success btn-sm">
                                 <i class="fas fa-edit"></i>
                             </a>
                             
-                            <button type="button" class="btn btn-danger btn-sm" onclick="excluir('.$id.')">
+                            <button type="button" class="btn btn-danger btn-sm" onclick="excluir(' . $id . ')">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </td>
                     </tr>';
-            }
+                }
 
-            ?>
+                ?>
             </tbody>
         </table>
     </div>

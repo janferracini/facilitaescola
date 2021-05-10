@@ -33,7 +33,6 @@ if (!empty($id)) {
     $data_nascimento = $dados->data_nascimento;
     $email       = $dados->email;
     $login       = $dados->login;
-    $foto        = $dados->foto;
     $logradouro  = $dados->logradouro;
     $numero      = $dados->numero;
     $cep         = $dados->cep;
@@ -43,6 +42,7 @@ if (!empty($id)) {
     $telefone1  = $dados->telefone1;
     $telefone2  = $dados->telefone2;
     $estado     = $dados->estado;
+    $status     = $dados->status;
 }
 ?>
 
@@ -58,6 +58,7 @@ if (!empty($id)) {
 <!-- /.content-header -->
 
 <div class="container">
+
     <div class="float-right">
         <a href="listar/admin" class="btn btn-outline-info">Listar Administradores</a>
     </div>
@@ -71,9 +72,26 @@ if (!empty($id)) {
             <input type="hidden" class="form-control" name="id" id="id" readonly value="<?= $id ?>">
 
             <!-- LINHA 1 -->
-            <div class="col-12 col-md-12">
+            <div class="col-12 col-md-8">
                 <label for="nome"> Nome Completo </label>
                 <input type="text" class="form-control" id="nome" name="nome" required data-parsley-required-message="Preencha o nome" value="<?= $nome ?>">
+            </div>
+            <div class="col-12 col-md-4">
+                <label for="status"> Status </label>
+                <select id="status" name="status" class="form-control ">
+
+                    <?php
+                    if ($status == 1) {
+                        echo "
+                        <option value='1' selected>Ativo</option>
+                        <option value='0'>Inativo</option>";
+                    } else if ($status == 0) {
+                        echo " 
+                        <option value='1' >Ativo</option>
+                        <option value ='0' selected>Inativo</option>";
+                    }
+                    ?>
+                </select>
             </div>
 
             <!-- LINHA 2 -->
@@ -114,7 +132,6 @@ if (!empty($id)) {
             <div class="col-12 col-md-4">
                 <label for="cidade"> Cidade</label>
                 <input type="text" class="form-control" id="cidade" required data-parsley-required-message="Selecione a cidade" value="<?= $cidade ?>">
-
                 <input type="hidden" class="form-control" id="cidade_id" name="cidade_id" required data-parsley-required-message="Selecione a cidade" readonly value="<?= $cidade_id ?>">
             </div>
 
@@ -164,47 +181,13 @@ if (!empty($id)) {
                 <input type="password" class="form-control" id="senha2" name="senha2" require data-parsley-required-message="Insira a senha novamente" placeholder="Insiran a senha inicial de acesso">
             </div>
         </div>
-
-        <?php if (!empty($id)) {
-            echo '<a class="btn btn-success margin" data-toggle="modal" data-target="#gerenciarModal" style="color : #fff;">
-                <i class="fas fa-cog"></i> Gerenciar
-            </a>';
-        } ?>
-
-        <button type="submit" class="btn btn-outline-laranja margin">
-            <i class="fas fa-check"></i> Gravar Dados
-        </button>
-
-
-    </form>
-
-    <div class="modal fade" id="gerenciarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Gerenciar Equipe Administrativa</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-
-                    <form action=salvarModal()>
-                        <label class="col-12 col-md-6" style="float: left;">Status do Usuário: </label>
-                        <select id="status" class="form-control col-12 col-md-6">
-                            <option value="1">Ativo </option>
-                            <option value="0">Inativo </option>
-                        </select>
-
-                        <div class="modal-footer mt-2">
-                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Voltar</button>
-                            <button type="submit" class="btn btn-primary">Salvar</a>
-                        </div>
-                    </form>
-                </div>
-            </div>
+        <div class="float-right">
+            <button type="submit" class="btn btn-outline-laranja margin">
+                <i class="fas fa-check"></i> Gravar Dados
+            </button>
         </div>
-    </div>
+        <div class="clearfix"></div> <!-- Ignora os floats -->
+    </form>
 
     <?php if (empty($id)) $id = 0; //verificar se id é vazio 
     ?>
@@ -245,8 +228,22 @@ if (!empty($id)) {
         $(document).ready(function() {
             //$("#data_nascimento").mask("99/99/9999");
             $("#cpf").mask("000.000.000-00");
-            $("#telefone1").mask("(00)00000-0000");
-            $("#telefone2").mask("(00)00000-0000");
+            $("#telefone1").mask("(00) 0000-00009");
+            $('#telefone1').blur(function(event) {
+                if ($(this).val().length == 15) {
+                    $('#telefone1').mask('(00) 00000-0009');
+                } else {
+                    $('#telefone1').mask('(00) 0000-00009');
+                }
+            });
+            $("#telefone2").mask("(00) 0000-00009");
+            $('#telefone2').blur(function(event) {
+                if ($(this).val().length == 15) {
+                    $('#telefone2').mask('(00) 00000-0009');
+                } else {
+                    $('#telefone2').mask('(00) 0000-00009');
+                }
+            });
             $("#cep").mask("00.000-000");
         });
 

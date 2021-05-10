@@ -80,12 +80,10 @@ $base = "$h://$site:$porta/$url"
 
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
-        <!-- Botão CONFIG -->
-        <li class="nav-item dropdown">
-          <a class="nav-link" data-toggle="dropdown" href="#">
-            <i class="fas fa-key"></i>
-          </a>
-
+        <li class="nav-item mt-2">
+          <span class="mr-2 d-none d-lg-inline text-gray-200 ">
+            <?= $_SESSION["facilita_escola"]["nome"]; ?>
+          </span>
         </li>
         <!-- Botão SAIR -->
         <li class="nav-item dropdown">
@@ -113,7 +111,7 @@ $base = "$h://$site:$porta/$url"
             <li class="nav-header"></li>
             <li class="nav-item">
               <a href="#" class="nav-link active">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <i class="nav-icon fas fa-home"></i>
                 <p>Início</p>
               </a>
             </li>
@@ -164,23 +162,6 @@ $base = "$h://$site:$porta/$url"
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-      <!-- Content Header (Page header) -->
-      <div class="content-header">
-        <div class="container-fluid">
-          <div class="row mb-2">
-            <div class="col-sm-6">
-              <h1 class="m-0 text-dark">Facilita Escola</h1>
-            </div><!-- /.col -->
-            <div class="col-sm-6">
-              <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item">Início</i></li>
-              </ol>
-            </div><!-- /.col -->
-          </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
-      </div>
-      <!-- /.content-header -->
-
       <!-- Main content -->
       <div class="content">
         <div class="container-fluid">
