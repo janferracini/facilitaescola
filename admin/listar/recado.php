@@ -10,7 +10,7 @@
     <div class="container-fluid">
         <div class="row">
             <div>
-                <h1 class="m-0 text-dark">Recados Cadastrados</h1>
+                <h1 class="m-0 text-dark">Recados Enviados</h1>
             </div><!-- /.col -->
         </div><!-- /.row -->
     </div><!-- /.container-fluid -->
