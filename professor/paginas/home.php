@@ -76,24 +76,23 @@
                     <table class="table table-hover m-0">
                         <thead>
                             <tr>
-                                <th style="width: 100px;">Data</th>
-                                <th style="width: 100px;">Titulo</th>
+                                <th style="width: 15%;">Data</th>
+                                <th style="width: 30%;">Titulo</th>
                                 <th>Conteúdo</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
                             $idprofessor = $_SESSION["facilita_escola"]["id"];
-                            $sql = "SELECT  r.id rid, r.*, date_format(r.data_postagem, '%d/%m/%Y') dp,
-                                            g.id gid,
-                                            t.id tid, t.*,
-                                            pr.*
+                            $sql = "SELECT r.id rid, r.*, DATE_FORMAT(r.data_postagem, '%d/%m/%Y') data_postagem,
+                                        t.*,g.*, p.*, pe.id
                                     FROM recado r
-                                    INNER JOIN grade g ON (g.id = r.grade_id)
-                                    INNER JOIN turma t ON (t.id = g.turma_id)
-                                    INNER JOIN professor pr ON (g.professor_id = pr.id)
-                                    WHERE pr.pessoa_id = $idprofessor
-                                    ORDER BY r.data_postagem DESC
+                                    INNER JOIN turma t ON (t.id = r.turma_id)
+                                    INNER JOIN grade g ON (t.id = g.turma_id)
+                                    INNER JOIN professor p ON (p.id = g.professor_id)
+                                    INNER JOIN pessoa pe ON (pe.id = p.pessoa_id)
+                                    WHERE pe.id = $idprofessor
+                                    ORDER BY  r.id DESC
                                     LIMIT 6";
 
                             $consulta = $pdo->prepare($sql);
@@ -104,7 +103,7 @@
                                 $id       = $dados->rid;
                                 $titulo   = $dados->titulo;
                                 $conteudo = $dados->conteudo;
-                                $data      = $dados->dp;
+                                $data      = $dados->data_postagem;
 
 
                                 // Mostrar na tela
