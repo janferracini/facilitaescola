@@ -75,7 +75,7 @@ if ($_POST) {
 
         $consulta = $pdo->prepare($sql);
         $consulta->bindParam(":nome", $nome);
-        $consulta->bindParam(":login", $login);
+        $consulta->bindParam(":login", strtolower($login));
         $consulta->bindParam(":senha", $senha);
         $consulta->bindParam(":rg", $rg);
         $consulta->bindParam(":cpf", $cpf);
@@ -114,7 +114,7 @@ if ($_POST) {
 
         $consulta = $pdo->prepare($sql);
         $consulta->bindParam(":nome", $nome);
-        $consulta->bindParam(":login", $login);
+        $consulta->bindParam(":login", strtolower($login));
         $consulta->bindParam(":senha", $senha);
         $consulta->bindParam(":rg", $rg);
         $consulta->bindParam(":cpf", $cpf);
