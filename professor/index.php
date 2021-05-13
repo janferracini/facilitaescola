@@ -117,7 +117,7 @@ $base = "$h://$site:$porta/$url"
             </li>
 
             <li class="nav-item">
-              <a href="pages/calendar.html" class="nav-link">
+              <a href="listar/atividade" class="nav-link">
                 <i class="nav-icon fas fa-pencil-alt"></i>
                 <p>
                   Atividades
@@ -126,7 +126,7 @@ $base = "$h://$site:$porta/$url"
             </li>
 
             <li class="nav-item">
-              <a href="pages/calendar.html" class="nav-link">
+              <a href="listar/recado" class="nav-link">
                 <i class="nav-icon fas fa-exclamation-triangle"></i>
                 <p>
                   Recados
