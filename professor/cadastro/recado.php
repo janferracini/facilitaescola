@@ -15,6 +15,8 @@ $serie = $descricao = $ano = $periodo_id = "";
 // tabela periodo
 $periodo = "";
 
+$idprofessor = $_SESSION["facilita_escola"]["id"];
+
 if (!empty($id)) {
     //select nos dados  
     $sql = "SELECT r.id rid, r.*, t.id tid, t.*, p.id pid, p.*
@@ -55,7 +57,7 @@ if (!empty($id)) {
     <div class="container-fluid">
         <div class="row">
             <div>
-                <h1 class="m-0 text-dark">Cadastro de Recados <?php echo $id; ?></h1>
+                <h1 class="m-0 text-dark">Cadastro de Recados <?php echo $idprofessor; ?></h1>
             </div><!-- /.col -->
         </div><!-- /.row -->
     </div><!-- /.container-fluid -->
@@ -92,10 +94,20 @@ if (!empty($id)) {
                 <input id="turma_id" name="turma_id" class="form-control" list="listaTurma" data-parsley-required-message="Selecione a turma" value="<?php if (!empty($id)) echo "$turma_id - $serie $descricao / $periodo ($ano)"; ?>">
                 <datalist id="listaTurma">
                     <?php
-                    $sql = "SELECT t.*,t.id tid, p.*
-                                        FROM turma t
-                                        INNER JOIN periodo p ON (p.id = t.periodo_id)
-                                        ORDER BY serie";
+
+                    $sql = "SELECT  g.id gid, g.*,
+                    t.id tid, t.*,
+                    pd.*, 
+                    d.*, 
+                    p.id, 
+                    pe.id 
+            FROM grade g
+            INNER JOIN turma t ON (t.id = g.turma_id)
+            INNER JOIN periodo pd ON (pd.id = t.periodo_id)
+            INNER JOIN disciplina d ON (d.id = g.disciplina_id)
+            INNER JOIN professor p ON (p.id = g.professor_id)
+            INNER JOIN pessoa pe ON (pe.id = p.pessoa_id)
+            WHERE p.pessoa_id = $idprofessor";
                     $consulta = $pdo->prepare($sql);
                     $consulta->execute();
 

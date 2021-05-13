@@ -15,6 +15,7 @@ function getPeriodo($periodo_id)
 }
 
 
+
 function validaCPF($cpf)
 {
 	// Extrai somente os números
