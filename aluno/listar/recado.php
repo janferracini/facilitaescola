@@ -1,9 +1,9 @@
 <?php
 //verificar se está logado
-// if (!isset($_SESSION['hqs']['id'])) {
-//     exit;
-// }
-// 
+if (!isset($_SESSION['facilita_escola']['id'])) {
+    exit;
+}
+
 ?>
 
 <!-- Content Header (Page header) -->
@@ -30,13 +30,16 @@
             </thead>
             <tbody>
                 <?php
+                $idaluno = $_SESSION["facilita_escola"]["id"];
                 $sql = "SELECT  r.id rid, r.*, date_format(r.data_postagem, '%d/%m/%Y') dp,
-                                g.id gid,
-                                t.id tid, t.*
+                                t.id tid, t.*, tm.*, m.*, p.id pid
                         FROM recado r
-                        INNER JOIN grade g ON (g.id = r.grade_id)
-                        INNER JOIN turma t ON (t.id = g.turma_id)
-                        ORDER BY r.data_postagem DESC";
+                        INNER JOIN turma t ON (t.id = r.turma_id)
+                        INNER JOIN turma_matricula tm ON (tm.id = t.id)
+                        INNER JOIN matricula m ON (m.id = tm.matricula_id)
+                        INNER JOIN pessoa p ON (p.id = m.pessoa_id)
+                        WHERE p.id = $idaluno
+                        ORDER BY r.id DESC";
 
                 $consulta = $pdo->prepare($sql);
                 $consulta->execute();
