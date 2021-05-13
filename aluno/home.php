@@ -80,8 +80,8 @@
                     <table class="table table-hover m-0">
                         <thead>
                             <tr>
-                                <th style="width: 100px;">Data</th>
-                                <th style="width: 100px;">Titulo</th>
+                                <th style="width: 15%;">Data</th>
+                                <th style="width: 30%;">Titulo</th>
                                 <th>Conteúdo</th>
                             </tr>
                         </thead>
@@ -89,17 +89,14 @@
                             <?php
                             $idaluno = $_SESSION["facilita_escola"]["id"];
                             $sql = "SELECT  r.id rid, r.*, date_format(r.data_postagem, '%d/%m/%Y') dp,
-                                            g.id gid,
-                                            t.id tid, t.*, 
-                                            tm.*, 
-                                            m.*
+                                        t.id tid, t.*, tm.*, m.*, p.id pid
                                     FROM recado r
-                                    INNER JOIN grade g ON (g.id = r.grade_id)
-                                    INNER JOIN turma t ON (t.id = g.turma_id)
-                                    INNER JOIN turma_matricula tm ON (tm.turma_id = t.id)
+                                    INNER JOIN turma t ON (t.id = r.turma_id)
+                                    INNER JOIN turma_matricula tm ON (tm.id = t.id)
                                     INNER JOIN matricula m ON (m.id = tm.matricula_id)
-                                    WHERE m.pessoa_id = $idaluno
-                                    ORDER BY r.data_postagem DESC 
+                                    INNER JOIN pessoa p ON (p.id = m.pessoa_id)
+                                    WHERE p.id = $idaluno
+                                    ORDER BY r.id DESC 
                                     LIMIT 6";
 
                             $consulta = $pdo->prepare($sql);
