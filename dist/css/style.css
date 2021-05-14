@@ -25,7 +25,7 @@
 }
 
 .btn-laranja:hover {
-  color: #1F2D3D;
+  color: #ffffff;
   background-color: var(--salmao);
   border-color: var(--salmao);
 }
@@ -62,7 +62,7 @@
 }
 
 .btn-outline-laranja:hover {
-  color: #1F2D3D;
+  color: #fff;
   background-color: var(--laranja);
   border-color: var(--laranja);
 }

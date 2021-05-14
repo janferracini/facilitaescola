@@ -1,0 +1,31 @@
+.container {
+    width: 100%;
+    padding-right: 7.5px;
+    padding-left: 7.5px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.cabecalho{
+text-align: center;
+font-weight: bold;
+font-size: 30;
+color: #ed8032;
+}
+
+.imagemlogo {
+width: 150px;
+margin-right: 150px; 
+}
+
+.data {
+text-align: right;
+}
+
+.float-left {
+float: left !important;
+}
+
+.float-right {
+float: right !important;
+}
