@@ -127,7 +127,7 @@ $base = "$h://$site:$porta/$url"
                 <a href="" class="nav-link">
                   <i class="nav-icon far fa-plus-square"></i>
                   <p>
-                    Cadastros
+                    Cadastro
                     <i class="fas fa-angle-left right"></i>
                   </p>
                 </a>
@@ -135,13 +135,13 @@ $base = "$h://$site:$porta/$url"
                   <li class="nav-item">
                     <a href="cadastro/aluno" class="nav-link">
                       <i class="fas fa-user-graduate nav-icon"></i>
-                      <p>Alunos</p>
+                      <p>Aluno</p>
                     </a>
                   </li>
                   <li class="nav-item">
                     <a href="cadastro/professor" class="nav-link">
                       <i class="fas fa-apple-alt nav-icon"></i>
-                      <p>Professores</p>
+                      <p>Professor</p>
                     </a>
                   </li>
                   <li class="nav-item">
@@ -159,7 +159,7 @@ $base = "$h://$site:$porta/$url"
                   <li class="nav-item">
                     <a href="cadastro/turma" class="nav-link">
                       <i class="fas fa-chalkboard nav-icon"></i>
-                      <p>Turmas</p>
+                      <p>Turma</p>
                     </a>
                   </li>
                   <li class="nav-item">
@@ -174,7 +174,7 @@ $base = "$h://$site:$porta/$url"
               </li>
 
               <li class="nav-item">
-                <a href="cadastro/atividade" class="nav-link">
+                <a href="listar/atividade" class="nav-link">
                   <i class="nav-icon fas fa-pencil-alt"></i>
                   <p>
                     Atividades
