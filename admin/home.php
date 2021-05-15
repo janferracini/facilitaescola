@@ -7,47 +7,43 @@
         </div><!-- /.row -->
     </div><!-- /.container-fluid -->
 </div>
-<!-- row 
+<!-- row -->
 <div class="row pt-2">
-    <div class="col-12 col-sm- col-md-3">
-        <div class="info-box" href="cadastro/turma" class="nav-link">
-            <span class="info-box-icon bg-info elevation-1"><i class="fas fa-chalkboard"></i></span>
-
-            <div class="info-box-content">
-                <span class="info-box-text"><strong>Turmas</strong></span>
+    <div class="col-12 col-sm- col-md-4">
+        <a href="listar/aluno" style="text-decoration: none;">
+            <div class="info-box" href="listar/aluno" class="nav-link">
+                <span class="info-box-icon bg-info elevation-1"><i class="fas fa-user-graduate"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text"><strong>Alunos</strong></span>
+                </div>
             </div>
-            
-        </div>
-        
+        </a>
     </div>
 
-    <div class="col-12 col-sm-6 col-md-3">
-        <div class="info-box">
-            <span class="info-box-icon bg-info elevation-1"><i class="fas fa-exclamation-triangle"></i></span>
-
-            <div class="info-box-content">
-                <span class="info-box-text"><strong>Recados</strong></span>
+    <div class="col-12 col-sm-6 col-md-4">
+        <a href="listar/professor" style="text-decoration: none;">
+            <div class="info-box">
+                <span class="info-box-icon bg-info elevation-1"><i class="fas fa-apple-alt"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text"><strong>Professores</strong></span>
+                </div>
             </div>
-            
-        </div>
-        
+        </a>
     </div>
 
-    <div class="col-12 col-sm-6 col-md-3">
-        <div class="info-box">
-            <span class="info-box-icon bg-info elevation-1"><i class="fas fa-envelope"></i></span>
-
-            <div class="info-box-content">
-                <span class="info-box-text"><strong>Mensagens</strong></span>
+    <div class="col-12 col-sm-6 col-md-4">
+        <a href="listar/admin" style="text-decoration: none;">
+            <div class="info-box">
+                <span class="info-box-icon bg-info elevation-1"><i class="fas fa-laptop-code"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text"><strong>Equipe Administrativa</strong></span>
+                </div>
             </div>
-            
-        </div>
-        
+        </a>
     </div>
-
 
 </div>
-/.row -->
+<!--/.row -->
 
 <!-- Primeira linha de cards -->
 <div class="row">
