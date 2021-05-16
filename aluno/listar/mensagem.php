@@ -59,7 +59,7 @@
                             <td>" . $titulo . "</td>
                             <td>" . substr($mensagem, 0, 35) . "(...)</td>
                             <td> 
-                                <a href='$idmensagem' class='visualizar btn btn-success margin' data-mensagem='$mensagem' data-postagem='$data_postagem' data-titulo='$titulo'data-nome='$aluno' data-id='$idmensagem' data-toggle='modal' data-target='#mensagemModal' style='color : #fff;' id='visualizar'>
+                                <a href='$idmensagem' class='visualizar btn btn-outline-laranja margin' data-mensagem='$mensagem' data-postagem='$data_postagem' data-titulo='$titulo'data-nome='$aluno' data-id='$idmensagem' data-toggle='modal' data-target='#mensagemModal' style='color : #ed8032;' id='visualizar'>
                                     Visualizar 
                                 </a>
                             </td>

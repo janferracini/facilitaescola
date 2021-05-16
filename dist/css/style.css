@@ -25,11 +25,7 @@
 }
 
 .btn-laranja:hover {
-<<<<<<< HEAD
   color: #ffffff;
-=======
-  color: #fff;
->>>>>>> correcoes
   background-color: var(--salmao);
   border-color: var(--salmao);
 }
@@ -101,6 +97,13 @@ a:hover {
   text-decoration: underline;
 }
 
+.visualizar {
+  color: var(--laranja);
+}
+
+.visualizar:hover {
+  color: #ffffff;
+}
 .form-control:focus {
   color: #495057;
   background-color: #ffffff;
