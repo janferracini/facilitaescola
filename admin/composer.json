@@ -1,0 +1,13 @@
+{
+    "name": "janaina/tcc",
+    "description": "TCC",
+    "authors": [
+        {
+            "name": "Jan Ferracini",
+            "email": "janferracini@gmail.com"
+        }
+    ],
+    "require": {
+        "mpdf/mpdf": "8.0.10"
+    }
+}
