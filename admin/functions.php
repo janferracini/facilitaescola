@@ -13,6 +13,11 @@ function getPeriodo($periodo_id)
 	$periodo_id = explode("-", $periodo_id);
 	return $periodo_id[1];
 }
+function getGradeId($grade_id)
+{
+	$grade_id = explode('-', $grade_id);
+	return $grade_id[0];
+}
 
 
 

@@ -1,9 +1,9 @@
 <?php
 //verificar se está logado
-// if (!isset($_SESSION['hqs']['id'])) {
-//     exit;
-// }
-// ?>
+if (!isset($_SESSION['facilita_escola']['id'])) {
+    exit;
+}
+?>
 
 <!-- Content Header (Page header) -->
 <div class="content-header">
@@ -28,12 +28,60 @@
         <table id="tabDisciplina" class="table table-hover text-nowrap">
             <thead>
                 <tr>
+                    <th style="width: 20%;">Data de Postagem</th>
                     <th>Atividade</th>
-                    <th>Ações</th>
+                    <th>Turma</th>
+                    <th style="width: 20%;">Ações</th>
                 </tr>
             </thead>
             <tbody>
-            
+                <?php
+                $sql = "SELECT a.id aid, a.*, date_format(a.data_postagem, '%d/%m/%Y') data_postagem,
+                                g.*, t.*, p.*, d.*
+                        FROM atividade a
+                        INNER JOIN grade g ON (g.id = a.grade_id) 
+                        INNER JOIN disciplina d ON (d.id = g.disciplina_id)
+                        INNER JOIN turma t ON (t.id = g.turma_id) 
+                        INNER JOIN periodo p ON (p.id = t.periodo_id)
+                        ORDER BY a.id DESC";
+
+                $consulta = $pdo->prepare($sql);
+                $consulta->execute();
+
+                while ($dados = $consulta->fetch(PDO::FETCH_OBJ)) {
+                    //atividade
+                    $id         = $dados->aid;
+                    $atividade  = $dados->atividade;
+                    $arquivo    = $dados->arquivo;
+                    $data       = $dados->data_postagem;
+                    //discilina
+                    $disciplina = $dados->disciplina;
+                    //turma
+                    $serie      = $dados->serie;
+                    $descricao  = $dados->descricao;
+                    //periodo
+                    $periodo    = $dados->periodo;
+
+                    echo '<tr>
+                <td>' . $data . '</td>
+                <td>' . $atividade . '</td>
+                <td>' . $disciplina . ' - ' . $serie . ' ' . $descricao . ' / ' . $periodo . ' </td>
+                
+                <td>
+                <a href="../atividades/' . $arquivo . '" download="Atividade ' . $disciplina . '-' . $serie . '' . $descricao . '(' . $periodo . ')" class="btn btn-success btn-sm">
+                        <i class="fas fa-file-download"></i>
+                    </a>
+
+                <a href="cadastro/atividade/' . $id . '" class="btn btn-success btn-sm">
+                        <i class="fas fa-edit"></i>
+                    </a>
+
+                    <button type="button" class="btn btn-danger btn-sm" onclick="excluir(' . $id . ')">
+                    <i class="fas fa-trash"></i></button>
+                </td>
+                </tr>';
+                }
+                ?>
             </tbody>
         </table>
     </div>
