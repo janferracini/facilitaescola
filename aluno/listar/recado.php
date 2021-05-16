@@ -59,7 +59,9 @@ if (!isset($_SESSION['facilita_escola']['id'])) {
                             <td>" . $titulo . "</td>
                             <td>" . substr($conteudo, 0, 35) . "(...)</td> 
                             <td> 
-                                <a class='visualizar btn btn-success margin' data-conteudo='$conteudo' data-postagem='$data_postagem' data-titulo='$titulo' data-id='$id' data-toggle='modal' data-target='#mensagemModal' style='color : #fff;' id='visualizar'>
+                                <a class='visualizar btn btn-outline-laranja margin' data-conteudo='$conteudo' 
+                                data-postagem='$data_postagem' data-titulo='$titulo' data-id='$id' data-toggle='modal' 
+                                data-target='#mensagemModal' id='visualizar'>
                                     Visualizar 
                                 </a>
                             </td>
@@ -84,7 +86,8 @@ if (!isset($_SESSION['facilita_escola']['id'])) {
                                 </p>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-success" data-dismiss="modal">OK</button>
+                                <button type="button" class="btn btn-outline-laranja
+                                " data-dismiss="modal">OK</button>
                             </div>
                         </div>
                     </div>

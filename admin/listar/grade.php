@@ -30,9 +30,9 @@
             <thead>
                 <tr>
                     <th>Turma</th>
-                    <th>Disciplina</th>
-                    <th>Professor</th>
-                    <th>Ações</th>
+                    <th style="width: 25%;">Disciplina</th>
+                    <th style="width: 25%;">Professor</th>
+                    <th style="width: 20%;">Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -63,11 +63,11 @@
                         <td> ' . $serie . ' ' . $descricao . ' / ' . $periodo . ' (' . $ano . ')</td>
                         <td>' . $disciplina . '</td>
                         <td> ' . $nome . '</td>
-                        <td><a href="cadastro/grade/' . $id . '" class="btn btn-success btn-sm">
+                        <td><a href="cadastro/grade/' . $id . '" class="btn btn-outline-info btn-sm">
                                 <i class="fas fa-edit"></i>
                             </a>
                             
-                            <button type="button" class="btn btn-danger btn-sm" onclick="excluir(' . $id . ')">
+                            <button type="button" class="btn btn-outline-danger btn-sm" onclick="excluir(' . $id . ')">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </td>

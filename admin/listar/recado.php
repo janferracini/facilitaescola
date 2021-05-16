@@ -65,11 +65,11 @@
                             <td>' . $titulo . '</td>
                             <td>' . $disciplina . ' - ' . $serie . ' ' . $descricao . ' / ' . $periodo . ' </td>
                 
-                            <td><a href="cadastro/recado/' . $id . '" class="btn btn-success btn-sm">
+                            <td><a href="cadastro/recado/' . $id . '" class="btn btn-outline-info btn-sm">
                                     <i class="fas fa-edit"></i>
                                 </a>
 
-                                <button type="button" class="btn btn-danger btn-sm" onclick="excluir(' . $id . ')">
+                                <button type="button" class="btn btn-outline-danger btn-sm" onclick="excluir(' . $id . ')">
                                 <i class="fas fa-trash"></i>
                             </td>
                         </button>

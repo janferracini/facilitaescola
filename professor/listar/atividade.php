@@ -68,15 +68,15 @@ if (!isset($_SESSION['facilita_escola']['id'])) {
                 <td>' . $disciplina . ' - ' . $serie . ' ' . $descricao . ' / ' . $periodo . ' </td>
                 
                 <td>
-                <a href="../atividades/' . $arquivo . '" download="Atividade ' . $disciplina . '-' . $serie . '' . $descricao . '(' . $periodo . ')" class="btn btn-success btn-sm">
-                        <i class="fas fa-file-download"></i>
+                <a href="../atividades/' . $arquivo . '" download="Atividade ' . $disciplina . '-' . $serie . '' . $descricao . '(' . $periodo . ')" class="btn btn-outline-secondary btn-sm">
+                        <i class="fas fa-arrow-down"></i>
                     </a>
 
-                <a href="cadastro/atividade/' . $id . '" class="btn btn-success btn-sm">
+                <a href="cadastro/atividade/' . $id . '" class="btn btn-outline-info btn-sm">
                         <i class="fas fa-edit"></i>
                     </a>
 
-                    <button type="button" class="btn btn-danger btn-sm" onclick="excluir(' . $id . ')">
+                    <button type="button" class="btn btn-outline-danger btn-sm" onclick="excluir(' . $id . ')">
                     <i class="fas fa-trash"></i></button>
                 </td>
                 </tr>';

@@ -67,8 +67,8 @@ $idaluno = $_SESSION['facilita_escola']['id'];
                 <td>' . $atividade . '</td>
                 <td>' . $disciplina . ' </td>
                 <td>
-                <a href="../atividades/' . $arquivo . '" download="Atividade de ' . $disciplina . '(' . $data . ')" class="btn btn-success btn-sm">
-                        <i class="fas fa-file-download"></i>
+                <a href="../atividades/' . $arquivo . '" download="Atividade de ' . $disciplina . '(' . $data . ')" class="btn btn-outline-laranja btn-sm">
+                <i class="fas fa-arrow-down"></i>
                     </a>
                 </td>
                 </tr>';

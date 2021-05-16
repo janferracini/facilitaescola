@@ -186,7 +186,7 @@ if (!empty($id)) {
             </div>
             <div class="col-12 col-md-12 mt-3 text-dark">
                 <hr>
-                <h3>Gerenciar Matrícula</h3>
+                <h3>Matrícula</h3>
 
             </div>
 

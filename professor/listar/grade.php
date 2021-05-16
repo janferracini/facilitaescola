@@ -10,11 +10,11 @@
     </div><!-- /.container-fluid -->
 </div>
 <!-- /.content-header -->
-
-<div class="row">
-    <?php
-    $idprofessor = $_SESSION["facilita_escola"]["id"];
-    $sql = "SELECT  g.id idgrade, g.*,
+<div class="container">
+    <div class="row">
+        <?php
+        $idprofessor = $_SESSION["facilita_escola"]["id"];
+        $sql = "SELECT  g.id idgrade, g.*,
                         t.*,
                         pd.*, 
                         d.*, 
@@ -29,18 +29,18 @@
                 WHERE p.pessoa_id = $idprofessor
                 ORDER BY t.descricao";
 
-    $consulta = $pdo->prepare($sql);
-    $consulta->execute();
+        $consulta = $pdo->prepare($sql);
+        $consulta->execute();
 
-    while ($dados = $consulta->fetch(PDO::FETCH_OBJ)) {
+        while ($dados = $consulta->fetch(PDO::FETCH_OBJ)) {
 
-        $id = $dados->idgrade;
-        $turma = $dados->serie;
-        $descricao = $dados->descricao;
-        $periodo = $dados->periodo;
-        $disciplina = $dados->disciplina;
+            $id = $dados->idgrade;
+            $turma = $dados->serie;
+            $descricao = $dados->descricao;
+            $periodo = $dados->periodo;
+            $disciplina = $dados->disciplina;
 
-        echo "<div class='col-12 col-sm- col-md-3'>
+            echo "<div class='col-12 col-sm- col-md-3'>
                 <a href='listar/turma/" . $id . "'><div class='info-box text-center'>
                     <span class='info-box-icon  elevation-1'>
                         <i class='fas fa-chalkboard'></i>
@@ -53,8 +53,9 @@
                     </div>
                 </div></a>
             </div>";
-    }
-    ?>
+        }
+        ?>
 
 
+    </div>
 </div>

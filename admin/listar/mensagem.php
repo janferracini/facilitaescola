@@ -57,10 +57,10 @@
                             <td>" . $titulo . "</td>
                             <td>" . substr($mensagem, 0, 35) . "(...)</td>
                             <td> 
-                                <a class='visualizar btn btn-success margin' data-mensagem='$mensagem'
+                                <a class='btn btn-outline-laranja visualizar' data-mensagem='$mensagem'
                                 data-postagem='$data_postagem' data-titulo='$titulo'data-nome='$aluno' 
                                 data-id='$idmensagem' data-toggle='modal' data-target='#mensagemModal' 
-                                style='color : #fff;' id='visualizar'>
+                                id='visualizar'>
                                     Visualizar 
                                 </a>
                             </td>
@@ -74,24 +74,20 @@
                             <div class="modal-header">
                                 <h4 class="modal-title"><span class="titulo"></h4>
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-
                             </div>
                             <div class="modal-body">
                                 <p>
                                     <strong>Aluno: </strong><span class="nome"></span> <br>
                                     <strong>Data: </strong><span class="postagem"></span> <br>
                                     <strong>Mensagem: </strong><span class="mensagem"></span> <br>
-
                                 </p>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-success" data-dismiss="modal">OK</button>
+                                <button type="button" class="btn btn-outline-laranja" data-dismiss="modal">OK</button>
                             </div>
                         </div>
                     </div>
                 </div>
-
-
             </tbody>
         </table>
     </div>

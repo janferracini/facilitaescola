@@ -30,9 +30,9 @@
             <thead>
                 <tr>
                     <th>Nome</th>
-                    <th width=200px>Matrícula</th>
-                    <th width=200px>Turma / Período</th>
-                    <th width=180px>Ações</th>
+                    <th width=20%>Matrícula</th>
+                    <th width=20%>Turma / Período</th>
+                    <th width=20%>Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -61,11 +61,11 @@
                         <td>' . $nome . '</td>
                         <td>' . $matricula . '</td>
                         <td>' . $serie . ' / ' . $periodo . '</td>
-                        <td><a href="cadastro/aluno/' . $id . '" class="btn btn-success btn-sm">
+                        <td><a href="cadastro/aluno/' . $id . '" class="btn btn-outline-info btn-sm">
                                 <i class="fas fa-edit"></i>
                             </a>
                             
-                            <button type="button" class="btn btn-danger btn-sm" onclick="excluir(' . $id . ')">
+                            <button type="button" class="btn btn-outline-danger btn-sm" onclick="excluir(' . $id . ')">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </td>

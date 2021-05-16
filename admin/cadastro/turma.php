@@ -105,9 +105,12 @@ if (!empty($id)) {
 
         </div>
 
-        <button type="submit" class="btn btn-outline-laranja">
-            <i class="fas fa-check"></i> Gravar Dados
-        </button>
+        <div class="float-right">
+            <button type="submit" class="btn btn-outline-laranja margin">
+                <i class="fas fa-check"></i> Gravar Dados
+            </button>
+        </div>
+        <div class="clearfix"></div> <!-- Ignora os floats -->
     </form>
 
 </div>

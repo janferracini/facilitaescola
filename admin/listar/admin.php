@@ -30,7 +30,7 @@
             <thead>
                 <tr>
                     <th>Nome</th>
-                    <th>Ações</th>
+                    <th style="width: 20%;">Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -51,11 +51,11 @@
                     echo '<tr>
                         <td>' . $nome . '</td>
 
-                        <td><a href="cadastro/admin/' . $id . '" class="btn btn-success btn-sm">
+                        <td><a href="cadastro/admin/' . $id . '" class="btn btn-outline-info btn-sm">
                                 <i class="fas fa-edit"></i>
                             </a>
 
-                            <button type="button" class="btn btn-danger btn-sm" onclick="excluir(' . $id . ')">
+                            <button type="button" class="btn btn-outline-danger btn-sm" onclick="excluir(' . $id . ')">
 									<i class="fas fa-trash"></i>
 							</button>
                         </td>
