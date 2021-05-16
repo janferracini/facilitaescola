@@ -47,13 +47,13 @@ if (!isset($_SESSION['facilita_escola']['id'])) {
                     </td>
                 </tr>
                 <tr>
-                    <td>Recados por período </td>
+                    <td>Recados por mês </td>
                     <td style="width: 200px;">
                         <a href="" class="btn btn-outline-laranja btn-sm ">Gerar <i class="fas fa-check"></i> </a>
                     </td>
                 </tr>
                 <tr>
-                    <td>Mensagens recebidas por período</td>
+                    <td>Mensagens recebidas por mês</td>
                     <td style="width: 200px;">
                         <a href="" class="btn btn-outline-laranja btn-sm ">Gerar <i class="fas fa-check"></i> </a>
                     </td>
