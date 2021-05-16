@@ -26,31 +26,45 @@
         <table id="tabRecado" class="table table-hover text-nowrap table-responsive-xxl">
             <thead>
                 <tr>
-                    <th>Data Postagem</th>
+                    <th style="width: 20%;">Data Postagem</th>
                     <th>Recados</th>
-                    <th>Ações</th>
-
+                    <th>Turma</th>
+                    <th style="width: 20%;">Ações</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
-                $sql = "SELECT id, titulo, date_format(data_postagem, '%d/%m/%Y') data_postagem
-                        FROM recado
-                        ORDER BY id DESC";
+                $sql = "SELECT r.id rid, r.*, date_format(r.data_postagem, '%d/%m/%Y') data_postagem,
+                                t.*, p.*, d.*, g.*
+                        FROM recado r
+                        INNER JOIN turma t ON (t.id = r.turma_id) 
+                        INNER JOIN grade g ON (g.turma_id = t.id) 
+                        INNER JOIN disciplina d ON (d.id = g.disciplina_id)
+                        INNER JOIN periodo p ON (p.id = t.periodo_id)
+                        GROUP BY r.id DESC";
 
 
                 $consulta = $pdo->prepare($sql);
                 $consulta->execute();
 
                 while ($dados = $consulta->fetch(PDO::FETCH_OBJ)) {
-                    $id     = $dados->id;
+                    //recado
+                    $id     = $dados->rid;
                     $titulo = $dados->titulo;
                     $data_postagem = $dados->data_postagem;
+                    //disciplina
+                    $disciplina = $dados->disciplina;
+                    //turma
+                    $serie      = $dados->serie;
+                    $descricao  = $dados->descricao;
+                    //periodo
+                    $periodo    = $dados->periodo;
 
                     echo '<tr>
                             <td>' . $data_postagem . '</td>
                             <td>' . $titulo . '</td>
-                            
+                            <td>' . $disciplina . ' - ' . $serie . ' ' . $descricao . ' / ' . $periodo . ' </td>
+                
                             <td><a href="cadastro/recado/' . $id . '" class="btn btn-success btn-sm">
                                     <i class="fas fa-edit"></i>
                                 </a>

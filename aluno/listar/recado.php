@@ -22,10 +22,10 @@ if (!isset($_SESSION['facilita_escola']['id'])) {
         <table id="tabRecado" class="table table-hover text-nowrap table-responsive-xxl">
             <thead>
                 <tr>
-                    <th>Data de Postagem</th>
+                    <th style="width: 20%;">Data de Postagem</th>
                     <th>Título</th>
                     <th>Descrição</th>
-                    <th></th>
+                    <th style="width: 20%;"></th>
                 </tr>
             </thead>
             <tbody>

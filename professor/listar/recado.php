@@ -26,38 +26,26 @@
         <table id="tabRecado" class="table table-hover text-nowrap table-responsive-xxl">
             <thead>
                 <tr>
-                    <th>Data Postagem</th>
+                    <th style="width: 20%;">Data Postagem</th>
                     <th>Recados</th>
-                    <th>Ações</th>
-
+                    <th>Turma</th>
+                    <th style="width: 20%;">Ações</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
                 $idprofessor = $_SESSION["facilita_escola"]["id"];
-                $sql = "SELECT
-                r.id rid,
-                r.titulo,
-                DATE_FORMAT(r.data_postagem, '%d/%m/%Y') data_postagem,
-                t.*,
-                g.*,
-                p.*,
-                pe.id
-            FROM
-                recado r
-            INNER JOIN turma t ON
-                (t.id = r.turma_id)
-            INNER JOIN grade g ON
-                (t.id = g.turma_id)
-            INNER JOIN professor p ON
-                (p.id = g.professor_id)
-            INNER JOIN pessoa pe ON
-                (pe.id = p.pessoa_id)
-            WHERE
-                pe.id = $idprofessor
-            ORDER BY 
-                r.id
-            DESC";
+                $sql = "SELECT r.id rid, r.titulo, DATE_FORMAT(r.data_postagem, '%d/%m/%Y') data_postagem,
+                t.*, g.*, p.*, pe.id, d.*, pr.*
+            FROM recado r
+            INNER JOIN turma t ON (t.id = r.turma_id)
+            INNER JOIN grade g ON (t.id = g.turma_id)
+            INNER JOIN disciplina d ON (d.id = g.disciplina_id)
+            INNER JOIN periodo pr ON (pr.id = t.periodo_id)
+            INNER JOIN professor p ON (p.id = g.professor_id)
+            INNER JOIN pessoa pe ON (pe.id = p.pessoa_id)
+            WHERE pe.id = $idprofessor
+            ORDER BY r.id DESC";
 
 
 
@@ -68,11 +56,18 @@
                     $id     = $dados->rid;
                     $titulo = $dados->titulo;
                     $data_postagem = $dados->data_postagem;
+                    //disciplina
+                    $disciplina = $dados->disciplina;
+                    //turma
+                    $serie      = $dados->serie;
+                    $descricao  = $dados->descricao;
+                    //periodo
+                    $periodo    = $dados->periodo;
 
                     echo '<tr>
                             <td>' . $data_postagem . '</td>
                             <td>' . $titulo . '</td>
-                            
+                            <td>' . $disciplina . ' - ' . $serie . ' ' . $descricao . ' / ' . $periodo . ' </td>
                             <td><a href="cadastro/recado/' . $id . '" class="btn btn-success btn-sm">
                                     <i class="fas fa-edit"></i>
                                 </a>
