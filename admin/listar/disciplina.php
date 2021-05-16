@@ -3,7 +3,8 @@
 // if (!isset($_SESSION['hqs']['id'])) {
 //     exit;
 // }
-// ?>
+// 
+?>
 
 <!-- Content Header (Page header) -->
 <div class="content-header">
@@ -29,39 +30,39 @@
             <thead>
                 <tr>
                     <th>Disciplina</th>
-                    <th>Ações</th>
+                    <th style="width: 20%;">Ações</th>
                 </tr>
             </thead>
             <tbody>
-            <?php
+                <?php
 
-            $sql = "SELECT  *
+                $sql = "SELECT  *
                     FROM disciplina
                     ORDER BY disciplina";
-                    
-            $consulta = $pdo->prepare($sql);
-            $consulta->execute();
 
-            while ($dados = $consulta->fetch(PDO::FETCH_OBJ)) {
-                // Separar os dados
-                $id = $dados->id;
-                $disciplina = $dados->disciplina;
+                $consulta = $pdo->prepare($sql);
+                $consulta->execute();
 
-                // Mostrar na tela
-                echo '<tr>
+                while ($dados = $consulta->fetch(PDO::FETCH_OBJ)) {
+                    // Separar os dados
+                    $id = $dados->id;
+                    $disciplina = $dados->disciplina;
+
+                    // Mostrar na tela
+                    echo '<tr>
                         <td>' . $disciplina . '</td>
-                        <td><a href="cadastro/disciplina/' . $id . '" class="btn btn-success btn-sm">
+                        <td><a href="cadastro/disciplina/' . $id . '" class="btn btn-outline-info btn-sm">
                                 <i class="fas fa-edit"></i>
                             </a>
                             
-                            <button type="button" class="btn btn-danger btn-sm" onclick="excluir('.$id.')">
+                            <button type="button" class="btn btn-outline-danger btn-sm" onclick="excluir(' . $id . ')">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </td>
                     </tr>';
-            }
+                }
 
-            ?>
+                ?>
             </tbody>
         </table>
     </div>

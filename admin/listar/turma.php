@@ -3,7 +3,8 @@
 // if (!isset($_SESSION['hqs']['id'])) {
 //     exit;
 // }
-// ?>
+// 
+?>
 
 <!-- Content Header (Page header) -->
 <div class="content-header">
@@ -28,17 +29,17 @@
         <table id="tabTurma" class="table table-hover text-nowrap">
             <thead>
                 <tr>
-                    <th>Série</th>
-                    <th>Descrição</th>
-                    <th>Período</th>
-                    <th>Ano</th>
-                    <th>Ações</th>
+                    <th style="width: 20%;">Série</th>
+                    <th style="width: 20%;">Descrição</th>
+                    <th style="width: 20%;">Período</th>
+                    <th style="width: 20%;">Ano</th>
+                    <th style="width: 20%;">Ações</th>
                 </tr>
             </thead>
             <tbody>
-            <?php
+                <?php
 
-            $sql = "SELECT  t.id,
+                $sql = "SELECT  t.id,
                             t.serie,
                             t.descricao,
                             t.ano,
@@ -48,39 +49,39 @@
                     FROM turma t
                     INNER JOIN periodo p on (p.id = t.periodo_id)
                     ORDER BY serie";
-                    
-            $consulta = $pdo->prepare($sql);
-            $consulta->execute();
 
-            while ($dados = $consulta->fetch(PDO::FETCH_OBJ)) {
-                // Separar os dados
-                $id = $dados->id;
-                $serie = $dados->serie;
-                $descricao = $dados->descricao;
-                $periodo_id = $dados->periodo_id;
-                $periodo = $dados->periodo;
-                $ano = $dados->ano;
-                $idperiodo = $dados->idperiodo;
+                $consulta = $pdo->prepare($sql);
+                $consulta->execute();
 
-                // Mostrar na tela
-                echo '<tr>
+                while ($dados = $consulta->fetch(PDO::FETCH_OBJ)) {
+                    // Separar os dados
+                    $id = $dados->id;
+                    $serie = $dados->serie;
+                    $descricao = $dados->descricao;
+                    $periodo_id = $dados->periodo_id;
+                    $periodo = $dados->periodo;
+                    $ano = $dados->ano;
+                    $idperiodo = $dados->idperiodo;
+
+                    // Mostrar na tela
+                    echo '<tr>
                         <td>' . $serie . '</td>
                         <td>' . $descricao . '</td>
                         <td>' . $periodo . '</td>
                         <td>' . $ano . '</td>
 
-                        <td><a href="cadastro/turma/' . $id . '" class="btn btn-success btn-sm">
+                        <td><a href="cadastro/turma/' . $id . '" class="btn btn-outline-info btn-sm">
                                 <i class="fas fa-edit"></i>
                             </a>
                             
-                            <button type="button" class="btn btn-danger btn-sm" onclick="excluir('.$id.')">
+                            <button type="button" class="btn btn-outline-danger btn-sm" onclick="excluir(' . $id . ')">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </td>
                     </tr>';
-            }
+                }
 
-            ?>
+                ?>
             </tbody>
         </table>
     </div>

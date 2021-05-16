@@ -3,7 +3,8 @@
 // if (!isset($_SESSION['hqs']['id'])) {
 //     exit;
 // }
-// ?>
+// 
+?>
 
 <!-- Content Header (Page header) -->
 <div class="content-header">
@@ -29,38 +30,38 @@
             <thead>
                 <tr>
                     <th>Nome</th>
-                    <th>Ações</th>
+                    <th style="width: 20%;">Ações</th>
                 </tr>
             </thead>
             <tbody>
-            <?php
+                <?php
 
-            $sql = "SELECT  id, nome
+                $sql = "SELECT  id, nome
                     FROM pessoa
                     WHERE tipo_cadastro = 3 AND status = 1
                     ORDER BY nome";
-                    
-            $consulta = $pdo->prepare($sql);
-            $consulta->execute();
 
-            while ($dados = $consulta->fetch(PDO::FETCH_OBJ)) {
-                $id = $dados->id;
-                $nome = $dados->nome;
+                $consulta = $pdo->prepare($sql);
+                $consulta->execute();
 
-                echo '<tr>
+                while ($dados = $consulta->fetch(PDO::FETCH_OBJ)) {
+                    $id = $dados->id;
+                    $nome = $dados->nome;
+
+                    echo '<tr>
                         <td>' . $nome . '</td>
-                        <td><a href="cadastro/professor/' . $id . '" class="btn btn-success btn-sm">
+                        <td><a href="cadastro/professor/' . $id . '" class="btn btn-outline-info btn-sm">
                                 <i class="fas fa-edit"></i>
                             </a>
                             
-                            <button type="button" class="btn btn-danger btn-sm" onclick="excluir('.$id.')">
+                            <button type="button" class="btn btn-outline-danger btn-sm" onclick="excluir(' . $id . ')">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </td>
                     </tr>';
-            }
+                }
 
-            ?>
+                ?>
             </tbody>
         </table>
     </div>
