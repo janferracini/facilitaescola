@@ -1,5 +1,5 @@
 <?php
-if (!isset($_SESSION["hqs"]["id"]) && (($_SESSION["facilita_escola"]["tipo_cadastro"] != 1))) {
+if (!isset($_SESSION["hqs"]["id"]) && (($_SESSION["facilita_escola"]["tipo_cadastro"] != 3))) {
     echo "<script>alert('Erro na requisição da página');location.href='javascript:history.back()'</script>";
     exit;
 }
@@ -15,8 +15,9 @@ $serie = $descricao = $ano = $periodo_id = "";
 // tabela periodo
 $periodo = "";
 
+$idprofessor = $_SESSION["facilita_escola"]["id"];
+
 if (!empty($id)) {
-    //select nos dados do cliente
     $sql = "SELECT a.id aid, a.*, g.id gid, g.turma_id tid, t.*, 
                 p.id pid, p.*, d.*, pr.*, pe.id, pe.nome
             FROM atividade a
@@ -88,6 +89,7 @@ if (!empty($id)) {
                             INNER JOIN disciplina d ON (d.id = g.disciplina_id)
                             INNER JOIN professor p ON (p.id = g.professor_id)
                             INNER JOIN pessoa pe ON (pe.id = p.pessoa_id)
+                            WHERE pe.id = $idprofessor
                             ORDER BY t.descricao";
 
                     $consulta = $pdo->prepare($sql);

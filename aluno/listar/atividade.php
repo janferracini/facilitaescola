@@ -1,8 +1,11 @@
 <?php
 //verificar se está logado
-if (!isset($_SESSION['facilita_escola']['id'])) {
+if (!isset($_SESSION["hqs"]["id"]) && (($_SESSION["facilita_escola"]["tipo_cadastro"] != 2))) {
+    echo "<script>alert('Erro na requisição da página');location.href='javascript:history.back()'</script>";
     exit;
 }
+
+$idaluno = $_SESSION['facilita_escola']['id'];
 ?>
 
 <!-- Content Header (Page header) -->
@@ -17,33 +20,30 @@ if (!isset($_SESSION['facilita_escola']['id'])) {
 </div>
 <!-- /.content-header -->
 <div class="container">
-
-    <div class="float-right">
-        <a href="cadastro/atividade" class="btn btn-outline-laranja">Nova Atividade</a>
-    </div>
-
-    <div class="clearfix"></div>
-
     <div class="card-body table-responsive p-0 mt-3">
         <table id="tabDisciplina" class="table table-hover text-nowrap">
             <thead>
                 <tr>
                     <th style="width: 20%;">Data de Postagem</th>
-                    <th>Atividade</th>
-                    <th>Turma</th>
-                    <th style="width: 20%;">Ações</th>
+                    <th style="width: 30%;">Atividade</th>
+                    <th style="width: 30%;">Disciplina</th>
+                    <th style="width: 20%;">Salvar</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
-                $sql = "SELECT a.id aid, a.*, date_format(a.data_postagem, '%d/%m/%Y') data_postagem,
-                                g.*, t.*, p.*, d.*
+                $sql = "SELECT a.id aid, a.atividade, a.arquivo, a.grade_id, date_format(a.data_postagem, '%d/%m/%Y') data_postagem,
+                                g.*, t.*, p.*, d.*, t.*, tm.*, m.*, pe.id
                         FROM atividade a
-                        INNER JOIN grade g ON (g.id = a.grade_id) 
+                        INNER JOIN grade g ON ( a.grade_id = g.id) 
                         INNER JOIN disciplina d ON (d.id = g.disciplina_id)
                         INNER JOIN turma t ON (t.id = g.turma_id) 
                         INNER JOIN periodo p ON (p.id = t.periodo_id)
-                        ORDER BY a.id DESC";
+                        INNER JOIN turma_matricula tm ON (tm.turma_id = t.id)
+                        INNER JOIN matricula m ON (tm.matricula_id)
+                        INNER JOIN pessoa pe ON (pe.id = m.pessoa_id)
+                        WHERE pe.id = $idaluno
+                        GROUP BY aid DESC";
 
                 $consulta = $pdo->prepare($sql);
                 $consulta->execute();
@@ -65,19 +65,11 @@ if (!isset($_SESSION['facilita_escola']['id'])) {
                     echo '<tr>
                 <td>' . $data . '</td>
                 <td>' . $atividade . '</td>
-                <td>' . $disciplina . ' - ' . $serie . ' ' . $descricao . ' / ' . $periodo . ' </td>
-                
+                <td>' . $disciplina . ' </td>
                 <td>
-                <a href="../atividades/' . $arquivo . '" download="Atividade ' . $disciplina . '-' . $serie . '' . $descricao . '(' . $periodo . ')" class="btn btn-success btn-sm">
+                <a href="../atividades/' . $arquivo . '" download="Atividade de ' . $disciplina . '(' . $data . ')" class="btn btn-success btn-sm">
                         <i class="fas fa-file-download"></i>
                     </a>
-
-                <a href="cadastro/atividade/' . $id . '" class="btn btn-success btn-sm">
-                        <i class="fas fa-edit"></i>
-                    </a>
-
-                    <button type="button" class="btn btn-danger btn-sm" onclick="excluir(' . $id . ')">
-                    <i class="fas fa-trash"></i></button>
                 </td>
                 </tr>';
                 }
