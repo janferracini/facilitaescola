@@ -25,13 +25,13 @@
 }
 
 .btn-laranja:hover {
-  color: #1F2D3D;
+  color: #fff;
   background-color: var(--salmao);
   border-color: var(--salmao);
 }
 
 .btn-laranja:focus, .btn-laranja.focus {
-  color: #1F2D3D;
+  color: #fff;
   background-color: #e0a800;
   border-color: #d39e00;
   box-shadow: none, 0 0 0 0 rgba(221, 171, 15, 0.5);
@@ -59,10 +59,11 @@
 .btn-outline-laranja {
   color: var(--laranja);
   border-color: var(--laranja);
+  margin-bottom: 1em;
 }
 
 .btn-outline-laranja:hover {
-  color: #1F2D3D;
+  color: #fff;
   background-color: var(--laranja);
   border-color: var(--laranja);
 }
@@ -78,7 +79,7 @@
 
 .btn-outline-laranja:not(:disabled):not(.disabled):active, .btn-outline-laranja:not(:disabled):not(.disabled).active,
 .show > .btn-outline-laranja.dropdown-toggle {
-  color: #1F2D3D;
+  color: #fff;
   background-color: var(--salmao);
   border-color: var(--salmao);
 }
