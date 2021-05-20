@@ -128,25 +128,30 @@ if ($_POST) {
 
     $consulta = $pdo->prepare($sql);
     $consulta->execute();
+    if ($consulta->rowCount() == 0) {
+        echo '
+        <tr>
+        <td colspan="3" class="centralizar"><p style="color:#333; font-size:16px;"> 
+        <b>Não existem registros </b></p> </td>
+    </tr> ';
+    } else {
+        while ($dados = $consulta->fetch(PDO::FETCH_OBJ)) {
+            $data = $dados->dp;
+            $titulo = $dados->titulo;
+            $serie     = $dados->serie;
+            $descricao = $dados->descricao;
+            $periodo   = $dados->periodo;
+            $turma_id = $dados->turma_id;
 
-
-    while ($dados = $consulta->fetch(PDO::FETCH_OBJ)) {
-        $data = $dados->dp;
-        $titulo = $dados->titulo;
-        $serie     = $dados->serie;
-        $descricao = $dados->descricao;
-        $periodo   = $dados->periodo;
-        $turma_id = $dados->turma_id;
-
-        echo  '
+            echo  '
         <tr >
             <td> ' . $data . ' </td>
             <td>' . $serie . ' ' . $descricao . ' / ' . $periodo . '</td>
             <td>' . $titulo . '</td>
         </tr>
         ';
+        }
     }
-
     echo '
                 <tbody>
                 <tfoot >

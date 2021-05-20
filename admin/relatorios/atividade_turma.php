@@ -117,18 +117,26 @@ if ($_POST) {
     $consulta = $pdo->prepare($sql);
     $consulta->execute();
 
-    while ($dados = $consulta->fetch(PDO::FETCH_OBJ)) {
-        $data = $dados->dp;
-        $atividade = $dados->atividade;
-        $disciplina = $dados->disciplina;
+    if ($consulta->rowCount() == 0) {
+        echo '
+        <tr>
+        <td colspan="3" class="centralizar"><p style="color:#333; font-size:16px;"> 
+        <b>Não existem registros </b></p> </td>
+    </tr> ';
+    } else {
+        while ($dados = $consulta->fetch(PDO::FETCH_OBJ)) {
+            $data = $dados->dp;
+            $atividade = $dados->atividade;
+            $disciplina = $dados->disciplina;
 
-        echo  '
+            echo  '
         <tr >
             <td style="width: 25%;"> ' . $data . ' </td>
             <td style="width: 25%;">' . $disciplina . '</td>
             <td>' . $atividade . '</td>
         </tr>
         ';
+        }
     }
 
     echo '

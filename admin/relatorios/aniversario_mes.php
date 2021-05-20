@@ -95,7 +95,6 @@ if ($_POST) {
         }
     </style>
     <body>
-        
         <div class="container">
         <table style="width:100%">
             <tr>
@@ -110,7 +109,6 @@ if ($_POST) {
         </table>
             <h2 class="centralizar mt-1">Relatório de Aniversariantes do mês
             <br>' . $nomeMes . '</h2>
-
             <h4>Alunos:</h4>
             <table class="busca table">
                 <thead border="1">
@@ -120,33 +118,38 @@ if ($_POST) {
                 </thead>
                 <tbody>';
     $sql = "SELECT p.nome, date_format(p.data_nascimento, '%d/%m/%Y') dp, t.*, pe.*
-                            FROM pessoa AS p
-                            INNER JOIN matricula AS m ON (m.pessoa_id = p.id)
-                            INNER JOIN turma_matricula AS tm ON (tm.matricula_id = m.id)
-                            INNER JOIN turma AS t ON (t.id = tm.turma_id)
-                            INNER JOIN periodo AS pe ON (pe.id = t.periodo_id)
-                            WHERE MONTH(p.data_nascimento) = $mes
-                            ORDER BY p.data_nascimento ASC";
-
+            FROM pessoa AS p
+            INNER JOIN matricula AS m ON (m.pessoa_id = p.id)
+            INNER JOIN turma_matricula AS tm ON (tm.matricula_id = m.id)
+            INNER JOIN turma AS t ON (t.id = tm.turma_id)
+            INNER JOIN periodo AS pe ON (pe.id = t.periodo_id)
+            WHERE MONTH(p.data_nascimento) = $mes
+            ORDER BY p.data_nascimento ASC";
     $consulta = $pdo->prepare($sql);
     $consulta->execute();
-
-    while ($dados = $consulta->fetch(PDO::FETCH_OBJ)) {
-        $data      = $dados->dp;
-        $nome    = $dados->nome;
-        $serie     = $dados->serie;
-        $descricao = $dados->descricao;
-        $periodo   = $dados->periodo;
-
-        echo  '
-                    <tr >
-                        <td> ' . $data . ' </td>
-                        <td> ' . $nome . ' </td>
-                        <td>' . $serie . ' ' . $descricao . ' / ' . $periodo . '</td>
-                    </tr>
-                    ';
+    if ($consulta->rowCount() == 0) {
+        echo '
+        <tr>
+        <td colspan="3" class="centralizar"><p style="color:#333; font-size:16px;"> 
+        <b>Não existem registros </b></p> </td>
+    </tr> ';
+    } else {
+        while ($dados = $consulta->fetch(PDO::FETCH_OBJ)) {
+            $data      = $dados->dp;
+            $nome    = $dados->nome;
+            $serie     = $dados->serie;
+            $descricao = $dados->descricao;
+            $periodo   = $dados->periodo;
+            echo  '
+                <tr >
+                    <td> ' . $data . ' </td>
+                    <td> ' . $nome . ' </td>
+                    <td>' . $serie . ' ' . $descricao . ' / ' . $periodo . '</td>
+                </tr>
+                ';
+        }
     }
-    echo '
+    echo ' 
                 </tbody>
             </table> 
             
@@ -164,21 +167,27 @@ if ($_POST) {
     $consulta = $pdo->prepare($sql);
     $consulta->execute();
 
-    while ($dados = $consulta->fetch(PDO::FETCH_OBJ)) {
-        $data      = $dados->dp;
-        $nome    = $dados->nome;
+    if ($consulta->rowCount() == 0) {
+        echo '
+        <tr>
+        <td colspan="3" class="centralizar"><p style="color:#333; font-size:16px;"> 
+        <b>Não existem registros </b></p> </td>
+    </tr> ';
+    } else {
 
-        echo  '
+        while ($dados = $consulta->fetch(PDO::FETCH_OBJ)) {
+            $data      = $dados->dp;
+            $nome    = $dados->nome;
+            echo  '
                 <tr >
                     <td> ' . $data . ' </td>
                     <td> ' . $nome . ' </td>
                 </tr>';
+        }
     }
-
     echo '
                 </tbody>
             </table>
-            
             <h4>Equipe Administrativa:</h4>
             <table class="busca table">
                 <thead border="1">
@@ -192,16 +201,23 @@ if ($_POST) {
             ORDER BY p.data_nascimento ASC";
     $consulta = $pdo->prepare($sql);
     $consulta->execute();
+    if ($consulta->rowCount() == 0) {
+        echo '
+        <tr>
+        <td colspan="3" class="centralizar"><p style="color:#333; font-size:16px;"> 
+        <b>Não existem registros </b></p> </td>
+    </tr> ';
+    } else {
+        while ($dados = $consulta->fetch(PDO::FETCH_OBJ)) {
+            $data      = $dados->dp;
+            $nome    = $dados->nome;
 
-    while ($dados = $consulta->fetch(PDO::FETCH_OBJ)) {
-        $data      = $dados->dp;
-        $nome    = $dados->nome;
-
-        echo  '
+            echo  '
                 <tr >
                     <td> ' . $data . ' </td>
                     <td> ' . $nome . ' </td>
                 </tr>';
+        }
     }
 
     echo '
