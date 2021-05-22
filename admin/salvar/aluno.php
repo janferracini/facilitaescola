@@ -1,6 +1,11 @@
 <?php
-//Verificar se não está logado
-if (!isset($_SESSION['facilita_escola']['id'])) {
+if (!isset($_SESSION["facilita_escola"]["id"])) {
+    echo "<script>alert('Erro na requisição da página');location.href='javascript:history.back()'</script>";
+    exit;
+}
+
+if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
+    echo "<script>alert('Erro na requisição da página');location.href='javascript:history.back()'</script>";
     exit;
 }
 
@@ -70,7 +75,6 @@ if ($_POST) {
     $pdo->beginTransaction();
 
     if (empty($id)) {
-
         $sql = "SELECT cpf 
                 FROM pessoa
                 WHERE cpf = :cpf
@@ -80,7 +84,7 @@ if ($_POST) {
         $consulta->execute();
         $dados = $consulta->fetch(PDO::FETCH_OBJ);
         if (!empty($dados->cpf)) {
-            echo "<script>alert('CPF já cadastradooooo');history.back();</script>";
+            echo "<script>alert('CPF já cadastrado');history.back();</script>";
             exit;
         }
 
@@ -97,8 +101,6 @@ if ($_POST) {
         $status = 1;       // 1 - ATIVO, 0 - INATIVO - Ativo como padrão
         $senha = password_hash($senha, PASSWORD_BCRYPT);
         $login = strtolower($login);
-        if (empty($cpf)) $cpf = null;
-
         $consulta = $pdo->prepare($sql);
         $consulta->bindParam(":nome", $nome);
         $consulta->bindParam(":login", $login);
@@ -118,9 +120,7 @@ if ($_POST) {
         $consulta->bindParam(":status", $status);
 
         if ($consulta->execute()) {
-
             $ultimoId = $pdo->lastInsertId();
-
             $sql2 = "INSERT INTO matricula (pessoa_id, data_matricula, matricula)
                     VALUES (:pessoa_id, :data_matricula, :matricula)";
             $consulta2 = $pdo->prepare($sql2);
@@ -129,18 +129,14 @@ if ($_POST) {
             $consulta2->bindParam(":matricula", $matricula);
 
             if ($consulta2->execute()) {
-
                 $ultimoId = $pdo->lastInsertId();
-
                 $sql3 = "INSERT INTO turma_matricula (turma_id, matricula_id)
                         VALUES (:turma_id, :matricula_id)";
-
                 $consulta3 = $pdo->prepare($sql3);
                 $consulta3->bindParam(":turma_id", $turma_id);
                 $consulta3->bindParam(":matricula_id", $ultimoId);
 
                 if (!$consulta3->execute()) {
-
                     $pdo->rollBack();
                     echo "<p class='alert alert-danger'>Erro ao realizar requisição.</p>";
                     echo "Consulta 3 :" . $consulta3->errorInfo()[2] . ' - ' . print_r($_POST);
@@ -153,7 +149,6 @@ if ($_POST) {
             exit;
         }
     } else {
-
         $sql = "SELECT cpf 
                 FROM pessoa
                 WHERE cpf = :cpf
@@ -164,7 +159,7 @@ if ($_POST) {
         $consulta->bindParam(":id", $id);
         $consulta->execute();
         $dados = $consulta->fetch(PDO::FETCH_OBJ);
-        if (!empty($dados->id)) {
+        if (!empty($dados->cpf)) {
             echo "<script>alert('CPF já cadastrado');history.back();</script>";
             exit;
         }
@@ -183,7 +178,8 @@ if ($_POST) {
                     complemento = :complemento,
                     telefone1 = :telefone1,
                     telefone2 = :telefone2,
-                    id_cidade = :cidade_id
+                    id_cidade = :cidade_id,
+                    status = :status
                 WHERE id = :id 
                 LIMIT 1";
 
@@ -204,20 +200,19 @@ if ($_POST) {
         $consulta->bindParam(":telefone1", $telefone1);
         $consulta->bindParam(":telefone2", $telefone2);
         $consulta->bindParam(":cidade_id", $cidade_id);
+        $consulta->bindParam(":status", $status);
         $consulta->bindParam(":id", $id);
 
         if ($consulta->execute()) {
             $sql2 = "UPDATE matricula
             SET data_matricula = :data_matricula, matricula = :matricula
             WHERE pessoa_id = :id";
-
             $consulta2 = $pdo->prepare($sql2);
             $consulta2->bindParam(":id", $id);
             $consulta2->bindParam(":data_matricula", $data_matricula);
             $consulta2->bindParam(":matricula", $matricula);
 
             if ($consulta2->execute()) {
-
                 $sql3 = "UPDATE turma_matricula 
                     SET turma_id = :turma_id, matricula_id = :matricula_id
                     WHERE id = :tmid";
@@ -226,7 +221,6 @@ if ($_POST) {
                 $consulta3->bindParam(":turma_id", $turma_id);
                 $consulta3->bindParam(":matricula_id", $matricula_id);
                 $consulta3->bindParam(":tmid", $tmid);
-
                 if (!$consulta3->execute()) {
                     $pdo->rollBack();
                     echo "<p class='alert alert-danger'>Erro ao realizar requisição.</p>";
@@ -238,6 +232,7 @@ if ($_POST) {
                 exit;
             }
         }
+
         echo $consulta->errorInfo()[2] . '-' . $consulta2->errorInfo()[2] .  $consulta3->errorInfo()[2];
         print_r($_POST);
         //exit;

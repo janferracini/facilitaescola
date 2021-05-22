@@ -1,9 +1,13 @@
 <?php
-//verificar se está logado
-// if (!isset($_SESSION['hqs']['id'])) {
-//     exit;
-// }
-// 
+if (!isset($_SESSION["facilita_escola"]["id"])) {
+    echo "<script>alert('Erro na requisição da página');location.href='javascript:history.back()'</script>";
+    exit;
+}
+
+if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
+    echo "<script>alert('Erro na requisição da página');location.href='javascript:history.back()'</script>";
+    exit;
+}
 ?>
 
 <!-- Content Header (Page header) -->
@@ -44,7 +48,7 @@
                     INNER JOIN turma_matricula tm ON (tm.matricula_id = m.id)
                     INNER JOIN turma t ON (t.id = tm.turma_id)
                     INNER JOIN periodo pe ON (pe.id = t.periodo_id)
-                    WHERE tipo_cadastro = 2 AND status = 1
+                    WHERE p.tipo_cadastro = 2 AND p.status = 1
                     ORDER BY nome";
 
                 $consulta = $pdo->prepare($sql);

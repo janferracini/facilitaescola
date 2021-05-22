@@ -1,4 +1,13 @@
 <?php
+if (!isset($_SESSION["facilita_escola"]["id"])) {
+    echo "<script>alert('Erro na requisição da página');location.href='javascript:history.back()'</script>";
+    exit;
+}
+
+if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
+    echo "<script>alert('Erro na requisição da página');location.href='javascript:history.back()'</script>";
+    exit;
+}
 
 if (!isset($id)) $id = "";
 
@@ -235,6 +244,7 @@ if (!empty($id)) {
                     $sql = "SELECT t.*,t.id tid, p.*
                                         FROM turma t
                                         INNER JOIN periodo p ON (p.id = t.periodo_id)
+                                        WHERE status = 1
                                         ORDER BY serie";
                     $consulta = $pdo->prepare($sql);
                     $consulta->execute();
