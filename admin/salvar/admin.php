@@ -1,8 +1,13 @@
 <?php
-// Verificar se não está logado
-// if (!isset($_SESSION['facilita_escola']['id'])) {
-//     exit;
-// }
+if (!isset($_SESSION["facilita_escola"]["id"])) {
+    echo "<script>alert('Erro na requisição da página');location.href='javascript:history.back()'</script>";
+    exit;
+}
+
+if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
+    echo "<script>alert('Erro na requisição da página');location.href='javascript:history.back()'</script>";
+    exit;
+}
 
 // Verificar se existem dados no POST
 if ($_POST) {
@@ -11,7 +16,7 @@ if ($_POST) {
 
     $nome = $login = $senha = $rg = $cpf = $data_nascimento = $data_cadastro =
         $email = $logradouro = $numero  = $cep = $complemento = $telefone1 = $telefone2 =
-        $foto = $cidade_id = '';
+        $cidade_id = '';
 
     $status = $_POST["status"];
 
@@ -56,9 +61,21 @@ if ($_POST) {
 
     //iniciar uma transação com o DB toda alteração pra baixo, só será feito após o commit
     $pdo->beginTransaction();
-    // $data_nascimento   = formatarDN($data_nascimento);
-
     if (empty($id)) {
+        //caso INSERIR
+        $sql = "SELECT cpf 
+                FROM pessoa
+                WHERE cpf = :cpf
+            LIMIT 1";
+        $consulta = $pdo->prepare($sql);
+        $consulta->bindParam(":cpf", $cpf);
+        $consulta->execute();
+        $dados = $consulta->fetch(PDO::FETCH_OBJ);
+        if (!empty($dados->cpf)) {
+            echo "<script>alert('CPF já cadastrado');history.back();</script>";
+            exit;
+        }
+
         $sql = "INSERT INTO pessoa (
                     nome, login, senha, rg, cpf, data_nascimento, 
                     email, logradouro, numero, cep, complemento,
@@ -71,11 +88,11 @@ if ($_POST) {
         $tipo_cadastro = 1; //1 - ADM, 2 - ALUNO, 3 - PROF
         $status = 1;       // 1 - ATIVO, 0 - INATIVO - Ativo como padrão
         $senha = password_hash($senha, PASSWORD_BCRYPT);
-
+        $login = strtolower($login);
 
         $consulta = $pdo->prepare($sql);
         $consulta->bindParam(":nome", $nome);
-        $consulta->bindParam(":login", strtolower($login));
+        $consulta->bindParam(":login", $login);
         $consulta->bindParam(":senha", $senha);
         $consulta->bindParam(":rg", $rg);
         $consulta->bindParam(":cpf", $cpf);
@@ -91,7 +108,23 @@ if ($_POST) {
         $consulta->bindParam(":tipo_cadastro", $tipo_cadastro);
         $consulta->bindParam(":status", $status);
     } else {
-        $sql = "UPDATE pessoa    
+
+        //caso EDITAR
+        $sql = "SELECT cpf 
+                FROM pessoa
+                WHERE cpf = :cpf AND id <> :id
+            LIMIT 1";
+        $consulta = $pdo->prepare($sql);
+        $consulta->bindParam(":cpf", $cpf);
+        $consulta->bindParam(":id", $id);
+        $consulta->execute();
+        $dados = $consulta->fetch(PDO::FETCH_OBJ);
+        if (!empty($dados->cpf)) {
+            echo "<script>alert('CPF já cadastrado');history.back();</script>";
+            exit;
+        }
+
+        $sql = "UPDATE pessoa
                 SET nome = :nome,
                     login = :login,
                     senha = :senha,
@@ -111,10 +144,11 @@ if ($_POST) {
                 LIMIT 1";
 
         $senha = password_hash($senha, PASSWORD_BCRYPT);
+        $login = strtolower($login);
 
         $consulta = $pdo->prepare($sql);
         $consulta->bindParam(":nome", $nome);
-        $consulta->bindParam(":login", strtolower($login));
+        $consulta->bindParam(":login", $login);
         $consulta->bindParam(":senha", $senha);
         $consulta->bindParam(":rg", $rg);
         $consulta->bindParam(":cpf", $cpf);
@@ -139,7 +173,7 @@ if ($_POST) {
         echo "<script>alert('Registro salvo');location.href='listar/admin';</script>;";
         exit;
     }
-    echo $consulta->errorInfo()[2];
+    echo 'ERRO: ' . $consulta->errorInfo()[2];
     exit;
 }
 // Mensagem de erro

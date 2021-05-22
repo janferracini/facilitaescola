@@ -1,4 +1,13 @@
 <?php
+if (!isset($_SESSION["facilita_escola"]["id"])) {
+    echo "<script>alert('Erro na requisição da página');location.href='javascript:history.back()'</script>";
+    exit;
+}
+
+if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
+    echo "<script>alert('Erro na requisição da página');location.href='javascript:history.back()'</script>";
+    exit;
+}
 
 if (!isset($id)) $id = "";
 
@@ -76,21 +85,21 @@ if (!empty($id)) {
             <!-- LINHA 1 -->
             <div class="col-12 col-md-8">
                 <label for="nome"> Nome Completo </label>
-                <input type="text" class="form-control" id="nome" name="nome" required data-parsley-required-message="Preencha o nome" value="<?= $nome ?>">
+                <input type="text" class="form-control" autocomplete="off" id="nome" name="nome" required data-parsley-required-message="Preencha o nome" value="<?= $nome ?>">
             </div>
-          
+
             <div class="col-12 col-md-4">
                 <label for="status"> Status </label>
                 <select id="status" name="status" class="form-control ">
 
                     <?php
-                    if ($status == 1 || (empty($id))) {
+                    if ($status == 1 || empty($id)) {
                         echo "
                         <option value='1' selected>Ativo</option>
                         <option value='0'>Inativo</option>";
                     } else if ($status == 0) {
                         echo " 
-                        <option value='1'>Ativo</option>
+                        <option value='1' >Ativo</option>
                         <option value ='0' selected>Inativo</option>";
                     }
                     ?>
@@ -100,88 +109,96 @@ if (!empty($id)) {
             <!-- LINHA 2 -->
             <div class="col-12 col-md-4">
                 <label for="login"> Login </label>
-                <input type="text" class="form-control" id="login" name="login" required data-parsley-required-message="Preencha o nome do login" placeholder="Insira com o login de acesso" value="<?= $login ?>">
+                <input type="text" class="form-control" autocomplete="off" id="login" name="login" required data-parsley-required-message="Preencha o nome do login" placeholder="Insira com o login de acesso" value="<?= $login ?>">
             </div>
 
             <div class="col-12 col-md-8">
                 <label for="email"> E-mail </label>
-                <input type="email" class="form-control" id="email" name="email" required data-parsley-required-message="Preencha com um e-mail válido" placeholder="Digite um e-mail válido" value="<?= $email ?>">
+                <input type="email" class="form-control" autocomplete="off" id="email" name="email" required data-parsley-required-message="Preencha com um e-mail válido" placeholder="Digite um e-mail válido" value="<?= $email ?>">
             </div>
 
             <!-- LINHA 3-->
             <div class="col-12 col-md-4">
                 <label for="rg"> RG </label>
-                <input type="text" class="form-control" id="rg" name="rg" required data-parsley-required-message="Preencha o RG" value="<?= $rg ?>">
+                <input type="text" class="form-control" autocomplete="off" id="rg" name="rg" required data-parsley-required-message="Preencha o RG" value="<?= $rg ?>">
             </div>
 
             <div class="col-12 col-md-4">
                 <label for="cpf"> CPF </label>
-                <input type="text" class="form-control" id="cpf" name="cpf" value="<?= $cpf ?>" onblur="verificarCpf(this.value)">
+                <input type="text" class="form-control" autocomplete="off" id="cpf" name="cpf" value="<?= $cpf ?>" onblur="verificarCpf(this.value)">
 
             </div>
 
             <div class="col-12 col-md-4">
                 <label for="data_nascimento"> Data De Nascimento </label>
-                <input type="date" class="form-control" id="data_nascimento" name="data_nascimento" required data-parsley-required-message="Preencha a data de nascimento" value="<?= $data_nascimento ?>">
+                <input type="date" class="form-control" autocomplete="off" id="data_nascimento" name="data_nascimento" required data-parsley-required-message="Preencha a data de nascimento" value="<?= $data_nascimento ?>">
             </div>
 
             <!-- LINHA 4 -->
             <div class="col-12 col-md-4">
                 <label for="cep"> CEP </label>
-                <input type="text" class="form-control" id="cep" name="cep" required data-parsley-required-message="Preencha com um CEP válido" value="<?= $cep ?>">
+                <input type="text" class="form-control" autocomplete="off" id="cep" name="cep" required data-parsley-required-message="Preencha com um CEP válido" value="<?= $cep ?>">
             </div>
 
             <div class="col-12 col-md-4">
                 <label for="cidade"> Cidade</label>
-                <input type="text" class="form-control" id="cidade" required data-parsley-required-message="Selecione a cidade" value="<?= $cidade ?>">
+                <input type="text" class="form-control" autocomplete="off" id="cidade" required data-parsley-required-message="Selecione a cidade" value="<?= $cidade ?>">
 
                 <input type="hidden" class="form-control" id="cidade_id" name="cidade_id" required data-parsley-required-message="Selecione a cidade" readonly value="<?= $cidade_id ?>">
             </div>
 
             <div class="col-12 col-md-4">
                 <label for="cidade"> Estado </label>
-                <input type="text" class="form-control" id="estado" required data-parsley-required-message="Selecione o estado" value="<?= $estado ?>">
+                <input type="text" class="form-control" autocomplete="off" id="estado" required data-parsley-required-message="Selecione o estado" value="<?= $estado ?>">
             </div>
 
             <!-- LINHA 5 -->
             <div class="col-12 col-md-8">
                 <label for="logradouro"> Endereço Completo</label>
-                <input type="text" class="form-control" id="logradouro" name="logradouro" required data-parsley-required-message="Preencha o endereço" value="<?= $logradouro ?>">
+                <input type="text" class="form-control" autocomplete="off" id="logradouro" name="logradouro" required data-parsley-required-message="Preencha o endereço" value="<?= $logradouro ?>">
             </div>
 
             <div class="col-12 col-md-4">
                 <label for="numero"> Número </label>
-                <input type="text" class="form-control" id="numero" name="numero" required data-parsley-required-message="Preencha com o número da residência" placeholder="Insira o número da residência" value="<?= $numero ?>">
+                <input type="text" class="form-control" autocomplete="off" id="numero" name="numero" required data-parsley-required-message="Preencha com o número da residência" placeholder="Insira o número da residência" value="<?= $numero ?>">
             </div>
 
             <!-- LINHA 6 -->
             <div class="col-12 col-md-12">
                 <label for="complemento"> Complemento </label>
-                <input type="text" class="form-control" id="complemento" name="complemento" value="<?= $complemento ?>">
+                <input type="text" class="form-control" autocomplete="off" id="complemento" name="complemento" value="<?= $complemento ?>">
             </div>
 
             <!-- LINHA 7 -->
             <div class="col-12 col-md-6">
                 <label for="telefone1"> Telefone Obrigatório</label>
-                <input type="text" class="form-control" id="telefone1" name="telefone1" required data-parsley-required-message="Preencha com o número de telefone" value="<?= $telefone1 ?>">
+                <input type="text" class="form-control" autocomplete="off" id="telefone1" name="telefone1" required data-parsley-required-message="Preencha com o número de telefone" value="<?= $telefone1 ?>">
             </div>
 
             <div class="col-12 col-md-6">
                 <label for="telefone2"> Telefone Opcional </label>
-                <input type="text" class="form-control" id="telefone2" name="telefone2" value="<?= $telefone2 ?>">
+                <input type="text" class="form-control" autocomplete="off" id="telefone2" name="telefone2" value="<?= $telefone2 ?>">
             </div>
 
             <div class="clearfix"></div>
 
             <!-- LINHA 7 -->
             <div class="col-12 col-md-6">
+                <?php
+                $r = 'required data-parsley-required-message="Insira uma senha"';
+                if (!empty($id)) $r = '';
+                ?>
                 <label for="senha"> Senha </label>
-                <input type="password" class="form-control" id="senha" name="senha" require data-parsley-required-message="Insira uma senha" placeholder="Insira com a senha inicial de acesso">
+                <input type="password" autocomplete="off" class="form-control" id="senha" name="senha" <?= $r; ?> placeholder="Insira a senha inicial de acesso">
             </div>
 
             <div class="col-12 col-md-6">
+                <?php
+                $r = 'required data-parsley-required-message="Insira uma senha" onblur="verificarSenha(this.value)" ';
+                if (!empty($id)) $r = '';
+                ?>
                 <label for="confirmaSenha">Confirmar Senha </label>
-                <input type="password" class="form-control" id="confirmaSenha" name="confirmaSenha" require data-parsley-required-message="Insira a senha novamente" placeholder="Insira com a senha inicial de acesso">
+                <input type="password" autocomplete="off" class="form-control" id="senha2" name="senha2" <?= $r; ?> placeholder="Insira a senha inicial de acesso">
             </div>
 
             <div class="col-12 col-md-12 mt-3 text-dark">

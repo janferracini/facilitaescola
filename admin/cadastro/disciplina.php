@@ -1,8 +1,13 @@
 <?php
-//verificar se não está logado
-// if (!isset($_SESSION["hqs"]["id"])) {
-//     exit;
-// }
+if (!isset($_SESSION["facilita_escola"]["id"])) {
+    echo "<script>alert('Erro na requisição da página');location.href='javascript:history.back()'</script>";
+    exit;
+}
+
+if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
+    echo "<script>alert('Erro na requisição da página');location.href='javascript:history.back()'</script>";
+    exit;
+}
 
 if (!isset($id)) $id = "";
 $disciplina = '';
@@ -53,7 +58,7 @@ if (!empty($id)) {
             <div class="col-sm-12">
                 <input type="hidden" class="form-control" name="id" id="id" readonly value="<?= $id ?>">
                 <label for="disciplina">Disciplina:</label>
-                <input type="text" name="disciplina" id="disciplina" class="form-control" required data-parsley-required-message="Preencha a Disciplina" value="<?= $disciplina ?>" placeholder="Digite a Disciplina">
+                <input type="text" autocomplete="off" name="disciplina" id="disciplina" class="form-control" required data-parsley-required-message="Preencha a Disciplina" value="<?= $disciplina ?>" placeholder="Digite a Disciplina">
             </div>
 
         </div>

@@ -1,6 +1,14 @@
 <?php
 session_start();
+if (!isset($_SESSION["facilita_escola"]["id"])) {
+  echo "<script>alert('Erro na requisição da página');location.href='javascript:history.back()'</script>";
+  exit;
+}
 
+if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
+  echo "<script>alert('Erro na requisição da página');location.href='javascript:history.back()'</script>";
+  exit;
+}
 ini_set("display_errors", 1);
 ini_set("display_startup_erros", 1);
 error_reporting(E_ALL);

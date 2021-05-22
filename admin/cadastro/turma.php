@@ -1,8 +1,13 @@
 <?php
-//verificar se não está logado
-// if (!isset($_SESSION["hqs"]["id"])) {
-//     exit;
-// }
+if (!isset($_SESSION["facilita_escola"]["id"])) {
+    echo "<script>alert('Erro na requisição da página');location.href='javascript:history.back()'</script>";
+    exit;
+}
+
+if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
+    echo "<script>alert('Erro na requisição da página');location.href='javascript:history.back()'</script>";
+    exit;
+}
 
 if (!isset($id)) $id = "";
 $serie = $descricao = $periodo = $ano = $periodo_id = '';
@@ -65,19 +70,19 @@ if (!empty($id)) {
             <div class="col-sm-6">
                 <input type="hidden" class="form-control" name="id" id="id" readonly value="<?= $id ?>">
                 <label for="serie">Série:</label>
-                <input type="text" name="serie" id="serie" class="form-control" required data-parsley-required-message="Preencha a Série" value="<?= $serie ?>" placeholder="Digite a Série: Pré, 1, 2, 3 ...">
+                <input type="text" autocomplete="off" name="serie" id="serie" class="form-control" required data-parsley-required-message="Preencha a Série" value="<?= $serie ?>" placeholder="Digite a Série: Pré, 1, 2, 3 ...">
             </div>
 
             <div class="col-sm-6">
                 <label for="descricao">Descrição:</label>
-                <input type="text" name="descricao" id="descricao" class="form-control" required data-parsley-required-message="Preencha a Descrição" value="<?= $descricao ?>" placeholder="Digite a Descrição: A, B, C ...">
+                <input type="text" autocomplete="off" name="descricao" id="descricao" class="form-control" required data-parsley-required-message="Preencha a Descrição" value="<?= $descricao ?>" placeholder="Digite a Descrição: A, B, C ...">
             </div>
 
             <div class="col-sm-6">
                 <!-- select -->
                 <div class="form-group">
                     <label for="periodo">Período</label>
-                    <input type="text" name="periodo_id" id="periodo_id" class="form-control" list="listaPeriodo" data-parsley-required-message="Selecione o período" value="<?php if (!empty($periodo_id)) echo "$periodo - $periodo_id"; ?>">
+                    <input type="text" autocomplete="off" name="periodo_id" id="periodo_id" class="form-select" list="listaPeriodo" data-parsley-required-message="Selecione o período" value="<?php if (!empty($periodo_id)) echo "$periodo - $periodo_id"; ?>">
                     <datalist id="listaPeriodo">
                         <?php
                         $sql = "SELECT id, periodo
@@ -99,7 +104,7 @@ if (!empty($id)) {
 
             <div class="col-sm-6">
                 <label for="ano">Ano:</label>
-                <input type="text" name="ano" id="ano" class="form-control" required data-parsley-required-message="Preencha o Ano" value="<?= $ano ?>" placeholder="Digite o Ano">
+                <input type="text" autocomplete="off" name="ano" id="ano" class="form-control" required data-parsley-required-message="Preencha o Ano" value="<?= $ano ?>" placeholder="Digite o Ano">
             </div>
 
 

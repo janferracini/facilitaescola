@@ -11,7 +11,7 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
 }
 
 
-$sql = "UPDATE pessoa
+$sql = "UPDATE grade
         SET status = 0
         WHERE id = :id
         LIMIT 1";
@@ -24,4 +24,4 @@ if (!$consulta->execute()) {
             </script>";
 }
 
-echo "<script>alert('Registro inativado');location.href='listar/admin'</script>";
+echo "<script>alert('Registro inativado');location.href='listar/grade'</script>";

@@ -20,7 +20,6 @@ if ($msg != 1) {
 if (empty($id)) {
     //inserindo - não pode exixtir
     $sql = "SELECT id FROM pessoa WHERE cpf = :cpf LIMIT 1";
-
     $consulta = $pdo->prepare($sql);
     $consulta->bindParam(":cpf", $cpf);
 } else {

@@ -1,8 +1,13 @@
 <?php
-//verificar se não está logado
-// if (!isset($_SESSION["hqs"]["id"])) {
-//     exit;
-// }
+if (!isset($_SESSION["facilita_escola"]["id"])) {
+    echo "<script>alert('Erro na requisição da página');location.href='javascript:history.back()'</script>";
+    exit;
+}
+
+if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
+    echo "<script>alert('Erro na requisição da página');location.href='javascript:history.back()'</script>";
+    exit;
+}
 
 if (!isset($id)) $id = "";
 $disciplina = '';
@@ -78,7 +83,7 @@ if (!empty($id)) {
             <div class="col-12 col-md-4">
                 <label for="turma">Turma</label>
                 <input type="hidden" class="form-control" name="tid" id="tid" readonly value="<?= $turma_id ?>">
-                <input id="turma_id" name="turma_id" class="form-control" list="listaTurma" data-parsley-required-message="Selecione a turma" value="<?php if (!empty($id)) echo "$turma_id - $serie $descricao / $periodo ($ano)"; ?>">
+                <input id="turma_id" name="turma_id" class="form-select" list="listaTurma" required data-parsley-required-message="Selecione a turma" value="<?php if (!empty($id)) echo "$turma_id - $serie $descricao / $periodo ($ano)"; ?>">
                 <datalist id="listaTurma">
                     <?php
                     $sql = "SELECT t.*,t.id tid, p.*
@@ -105,7 +110,7 @@ if (!empty($id)) {
             <div class="col-12 col-md-4">
                 <label for="disciplina">Disciplina</label>
                 <input type="hidden" class="form-control" name="disciplina_id" id="disciplina_id" readonly value="<?= $disciplina_id ?>">
-                <input id="disciplina_id" name="disciplina_id" class="form-control" list="listaDisciplina" data-parsley-required-message="Selecione a Disciplina" value="<?php if (!empty($id)) echo "$disciplina"; ?>">
+                <input id="disciplina_id" name="disciplina_id" class="form-select" list="listaDisciplina" required data-parsley-required-message="Selecione a Disciplina" value="<?php if (!empty($id)) echo "$disciplina"; ?>">
                 <datalist id="listaDisciplina">
                     <?php
                     $sql = "SELECT d.id did, d.*
@@ -128,7 +133,7 @@ if (!empty($id)) {
             <div class="col-12 col-md-4">
                 <label for="professor">Professor</label>
                 <input type="hidden" class="form-control" name="professor_id" id="professor_id" readonly value="<?= $professor_id ?>">
-                <input id="professor_id" name="professor_id" class="form-control" list="listaProfessor" data-parsley-required-message="Selecione o Professor" value="<?php if (!empty($id)) echo "$professor_id - $professor"; ?>">
+                <input id="professor_id" name="professor_id" class="form-select" list="listaProfessor" required data-parsley-required-message="Selecione o Professor" value="<?php if (!empty($id)) echo "$professor_id - $professor"; ?>">
                 <datalist id="listaProfessor">
                     <?php
                     $sql = "SELECT p.id, p.nome, pr.id, pr.pessoa_id
