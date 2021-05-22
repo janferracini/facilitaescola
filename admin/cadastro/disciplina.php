@@ -53,7 +53,7 @@ if (!empty($id)) {
             <div class="col-sm-12">
                 <input type="hidden" class="form-control" name="id" id="id" readonly value="<?= $id ?>">
                 <label for="disciplina">Disciplina:</label>
-                <input type="text" name="disciplina" id="disciplina" class="form-control" required data-parsley-required-message="Preencha a Disciplina" value="<?= $disciplina ?>" placeholder="Digite a Disciplina">
+                <input type="text" autocomplete="off" name="disciplina" id="disciplina" class="form-control" required data-parsley-required-message="Preencha a Disciplina" value="<?= $disciplina ?>" placeholder="Digite a Disciplina">
             </div>
 
         </div>

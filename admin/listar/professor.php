@@ -54,8 +54,8 @@
                                 <i class="fas fa-edit"></i>
                             </a>
                             
-                            <button type="button" class="btn btn-outline-danger btn-sm" onclick="excluir(' . $id . ')">
-                                <i class="fas fa-trash"></i>
+                            <button type="button" class="btn btn-outline-danger btn-sm" onclick="inativar(' . $id . ')">
+                                <i class="fas fa-times-circle"></i>
                             </button>
                         </td>
                     </tr>';
@@ -70,9 +70,9 @@
 
 <script>
     //função para perguntar se deseja excluir. Se sim, direcionar para o endereço de exclusão
-    function excluir(id) {
+    function inativar(id) {
         //perguntar
-        if (confirm("Deseja mesmo excluir?")) {
+        if (confirm("Deseja mesmo inativar?")) {
             //direcionar para exclusão
             location.href = "excluir/professor/" + id;
         }

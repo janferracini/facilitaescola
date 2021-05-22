@@ -22,16 +22,12 @@ if ($_POST) {
     // verificar se existe disciplina de mesmo nome
     $sql = "SELECT id
             FROM disciplina
-            WHERE disciplina = ? AND id <> ?
+            WHERE disciplina = :disciplina AND id <> :id
             LIMIT 1 ";
-
     $consulta = $pdo->prepare($sql);
-
-    $consulta->bindParam(1, $disciplina);
-    $consulta->bindParam(2, $id);
-
+    $consulta->bindParam(":disciplina", $disciplina);
+    $consulta->bindParam(":id", $id);
     $consulta->execute();
-
     $dados = $consulta->fetch(PDO::FETCH_OBJ);
 
     if (!empty($dados->id)) {
@@ -39,16 +35,15 @@ if ($_POST) {
         exit;
     }
 
-    //iniciar uma transação com o DB toda alteração pra baixo, só será feito após o commit
     $pdo->beginTransaction();
 
     if (empty($id)) {
-        $sql = "INSERT INTO disciplina
-                    (disciplina)
-                VALUES 
-                    (:disciplina)";
+        $status = 1;       // 1 - ATIVO, 0 - INATIVO - Ativo como padrão
+        $sql = "INSERT INTO disciplina (disciplina, status)
+                VALUES (:disciplina, :status)";
         $consulta = $pdo->prepare($sql);
         $consulta->bindParam(":disciplina", $disciplina);
+        $consulta->bindParam(":status", $status);
     } else {
         $sql = "UPDATE disciplina    
                 SET disciplina = :disciplina

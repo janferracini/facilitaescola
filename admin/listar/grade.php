@@ -32,7 +32,7 @@
                     <th>Turma</th>
                     <th style="width: 25%;">Disciplina</th>
                     <th style="width: 25%;">Professor</th>
-                    <th style="width: 20%;">Ações</th>
+                    <th style="width: 20%;">Inativar</th>
                 </tr>
             </thead>
             <tbody>
@@ -44,7 +44,8 @@
                     INNER JOIN disciplina d ON (d.id = g.disciplina_id)
                     INNER JOIN professor p ON (p.id = g.professor_id)
                     INNER JOIN pessoa pe ON (pe.id = p.pessoa_id)
-                    INNER JOIN periodo pd ON (pd.id = t.periodo_id)";
+                    INNER JOIN periodo pd ON (pd.id = t.periodo_id)
+                    WHERE g.status = 1";
 
                 $consulta = $pdo->prepare($sql);
                 $consulta->execute();
@@ -63,12 +64,9 @@
                         <td> ' . $serie . ' ' . $descricao . ' / ' . $periodo . ' (' . $ano . ')</td>
                         <td>' . $disciplina . '</td>
                         <td> ' . $nome . '</td>
-                        <td><a href="cadastro/grade/' . $id . '" class="btn btn-outline-info btn-sm">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                            
-                            <button type="button" class="btn btn-outline-danger btn-sm" onclick="excluir(' . $id . ')">
-                                <i class="fas fa-trash"></i>
+                        <td>
+                            <button type="button" class="btn btn-outline-danger btn-sm" onclick="inativar(' . $id . ')">
+                                <i class="fas fa-times-circle"></i>
                             </button>
                         </td>
                     </tr>';
@@ -82,12 +80,11 @@
 </div>
 
 <script>
-    //função para perguntar se deseja excluir. Se sim, direcionar para o endereço de exclusão
-    function excluir(id) {
+    function inativar(id) {
         //perguntar
-        if (confirm("Deseja mesmo excluir?")) {
+        if (confirm("Deseja mesmo inativar?")) {
             //direcionar para exclusão
-            location.href = "excluir/disciplina/" + id;
+            location.href = "excluir/grade/" + id;
         }
     }
 </script>

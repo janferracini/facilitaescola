@@ -1,12 +1,4 @@
 <?php
-/* GDLIB biblioteca para manipular imagens
-	    validaCPF - função para validar CPF
-	    Como usar: 
-	    $cpf = "123.123.123-34";
-	    $msg = validaCPF($cpf);
-	    if ( $msg != 1 ) echo $msg; //deu erro
-	    retornando 1 o documento é inválido
-	*/
 
 function getPeriodo($periodo_id)
 {
@@ -18,8 +10,6 @@ function getGradeId($grade_id)
 	$grade_id = explode('-', $grade_id);
 	return $grade_id[0];
 }
-
-
 
 function validaCPF($cpf)
 {
@@ -45,73 +35,6 @@ function validaCPF($cpf)
 		}
 	}
 	return true;
-}
-
-/*
-		Função para redimensionar imagens JPG
-		Irá criar 3 imagens: 
-		- G Largura de 800px 
-		- M Largura de 640px
-		- P Largura de 250px
-		A altura será proporcional a altura para que a imagem não fique deslocada
-
-		Parâmetros: arquivo da imagem (Ex.: fotos/imagem.jpg), novo nome para renomear (Ex.: 12345)
-	*/
-
-function redimensionarImagem($pastaFotos, $imagem, $nome)
-{
-
-	$imagem = $pastaFotos . $imagem;
-
-	list($largura1, $altura1) = getimagesize($imagem);
-
-	$largura = 800;
-	$percent = ($largura / $largura1);
-	$altura = $altura1 * $percent;
-
-	$imagem_gerada = $pastaFotos . $nome . "g.jpg";
-	$path = $imagem;
-	$imagem_orig = ImageCreateFromJPEG($path);
-	$pontoX = ImagesX($imagem_orig);
-	$pontoY = ImagesY($imagem_orig);
-	$imagem_fin = ImageCreateTrueColor($largura, $altura);
-	ImageCopyResampled($imagem_fin, $imagem_orig, 0, 0, 0, 0, $largura + 1, $altura + 1, $pontoX, $pontoY);
-	ImageJPEG($imagem_fin, $imagem_gerada, 100);
-	ImageDestroy($imagem_orig);
-	ImageDestroy($imagem_fin);
-
-	$largura = 640;
-	$percent = ($largura / $largura1);
-	$altura = $altura1 * $percent;
-
-	$imagem_gerada = $pastaFotos . $nome . "m.jpg";
-	$path = $imagem;
-	$imagem_orig = ImageCreateFromJPEG($path);
-	$pontoX = ImagesX($imagem_orig);
-	$pontoY = ImagesY($imagem_orig);
-	$imagem_fin = ImageCreateTrueColor($largura, $altura);
-	ImageCopyResampled($imagem_fin, $imagem_orig, 0, 0, 0, 0, $largura + 1, $altura + 1, $pontoX, $pontoY);
-	ImageJPEG($imagem_fin, $imagem_gerada, 80);
-	ImageDestroy($imagem_orig);
-	ImageDestroy($imagem_fin);
-
-	$largura = 250;
-	$percent = ($largura / $largura1);
-	$altura = $altura1 * $percent;
-
-	$imagem_gerada = $pastaFotos . $nome . "p.jpg";
-	$path = $imagem;
-	$imagem_orig = ImageCreateFromJPEG($path);
-	$pontoX = ImagesX($imagem_orig);
-	$pontoY = ImagesY($imagem_orig);
-	$imagem_fin = ImageCreateTrueColor($largura, $altura);
-	ImageCopyResampled($imagem_fin, $imagem_orig, 0, 0, 0, 0, $largura + 1, $altura + 1, $pontoX, $pontoY);
-	ImageJPEG($imagem_fin, $imagem_gerada, 80);
-	ImageDestroy($imagem_orig);
-	ImageDestroy($imagem_fin);
-
-	//apagar a imagem antiga
-	unlink($imagem);
 }
 
 function formatarDN($data_nascimento)

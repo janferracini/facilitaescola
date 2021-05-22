@@ -70,6 +70,20 @@ if ($_POST) {
     $pdo->beginTransaction();
 
     if (empty($id)) {
+
+        $sql = "SELECT cpf 
+                FROM pessoa
+                WHERE cpf = :cpf
+            LIMIT 1";
+        $consulta = $pdo->prepare($sql);
+        $consulta->bindParam(":cpf", $cpf);
+        $consulta->execute();
+        $dados = $consulta->fetch(PDO::FETCH_OBJ);
+        if (!empty($dados->cpf)) {
+            echo "<script>alert('CPF já cadastradooooo');history.back();</script>";
+            exit;
+        }
+
         $sql = "INSERT INTO pessoa (
                     nome, login, senha, rg, cpf, data_nascimento, 
                     email, logradouro, numero, cep, complemento,
@@ -82,10 +96,12 @@ if ($_POST) {
         $tipo_cadastro = 2; //1 - ADM, 2 - ALUNO, 3 - PROF
         $status = 1;       // 1 - ATIVO, 0 - INATIVO - Ativo como padrão
         $senha = password_hash($senha, PASSWORD_BCRYPT);
+        $login = strtolower($login);
+        if (empty($cpf)) $cpf = null;
 
         $consulta = $pdo->prepare($sql);
         $consulta->bindParam(":nome", $nome);
-        $consulta->bindParam(":login", strtolower($login));
+        $consulta->bindParam(":login", $login);
         $consulta->bindParam(":senha", $senha);
         $consulta->bindParam(":rg", $rg);
         $consulta->bindParam(":cpf", $cpf);
@@ -137,6 +153,22 @@ if ($_POST) {
             exit;
         }
     } else {
+
+        $sql = "SELECT cpf 
+                FROM pessoa
+                WHERE cpf = :cpf
+                AND id <> :id
+            LIMIT 1";
+        $consulta = $pdo->prepare($sql);
+        $consulta->bindParam(":cpf", $cpf);
+        $consulta->bindParam(":id", $id);
+        $consulta->execute();
+        $dados = $consulta->fetch(PDO::FETCH_OBJ);
+        if (!empty($dados->id)) {
+            echo "<script>alert('CPF já cadastrado');history.back();</script>";
+            exit;
+        }
+
         $sql = "UPDATE pessoa    
                 SET nome = :nome,
                     login = :login,
@@ -156,9 +188,10 @@ if ($_POST) {
                 LIMIT 1";
 
         $senha = password_hash($senha, PASSWORD_BCRYPT);
+        $login = strtolower($login);
         $consulta = $pdo->prepare($sql);
         $consulta->bindParam(":nome", $nome);
-        $consulta->bindParam(":login", strtolower($login));
+        $consulta->bindParam(":login", $login);
         $consulta->bindParam(":senha", $senha);
         $consulta->bindParam(":rg", $rg);
         $consulta->bindParam(":cpf", $cpf);

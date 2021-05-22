@@ -53,10 +53,21 @@ if ($_POST) {
         exit;
     }
 
-    $cidade_id = 3172;
 
     $pdo->beginTransaction();
     if (empty($id)) {
+        $sql = "SELECT cpf 
+                FROM pessoa
+                WHERE cpf = :cpf
+            LIMIT 1";
+        $consulta = $pdo->prepare($sql);
+        $consulta->bindParam(":cpf", $cpf);
+        $consulta->execute();
+        $dados = $consulta->fetch(PDO::FETCH_OBJ);
+        if (!empty($dados->cpf)) {
+            echo "<script>alert('CPF já cadastradooooo');history.back();</script>";
+            exit;
+        }
         $sql = "INSERT INTO pessoa (
                     nome, login, senha, rg, cpf, data_nascimento, 
                     email, logradouro, numero, cep, complemento,
@@ -69,10 +80,11 @@ if ($_POST) {
         $tipo_cadastro = 3; //1 - ADM, 2 - ALUNO, 3 - PROF
         $status = 1;       // 1 - ATIVO, 0 - INATIVO - Ativo como padrão
         $senha = password_hash($senha, PASSWORD_BCRYPT);
+        $login = strtolower($login);
 
         $consulta = $pdo->prepare($sql);
         $consulta->bindParam(":nome", $nome);
-        $consulta->bindParam(":login", strtolower($login));
+        $consulta->bindParam(":login", $login);
         $consulta->bindParam(":senha", $senha);
         $consulta->bindParam(":rg", $rg);
         $consulta->bindParam(":cpf", $cpf);
@@ -110,10 +122,27 @@ if ($_POST) {
             $pdo->commit();
             echo "<script>alert('Registro salvo');location.href='listar/professor';</script>;";
             exit;
+        } else {
+            echo 'Consulta1: ' . $consulta->errorInfo()[2];
         }
 
         //edição
     } else {
+        $sql = "SELECT cpf 
+                FROM pessoa
+                WHERE cpf = :cpf
+                AND id <> :id
+            LIMIT 1";
+        $consulta = $pdo->prepare($sql);
+        $consulta->bindParam(":cpf", $cpf);
+        $consulta->bindParam(":id", $id);
+        $consulta->execute();
+        $dados = $consulta->fetch(PDO::FETCH_OBJ);
+        if (!empty($dados->id)) {
+            echo "<script>alert('CPF já cadastraduuuuuuu');history.back();</script>";
+            exit;
+        }
+
         $sql = "UPDATE pessoa    
                 SET nome = :nome,
                     login = :login,
@@ -134,12 +163,11 @@ if ($_POST) {
                 LIMIT 1";
 
         $senha = password_hash($senha, PASSWORD_BCRYPT);
-
-
+        $login = strtolower($login);
 
         $consulta = $pdo->prepare($sql);
         $consulta->bindParam(":nome", $nome);
-        $consulta->bindParam(":login", strtolower($login));
+        $consulta->bindParam(":login", $login);
         $consulta->bindParam(":senha", $senha);
         $consulta->bindParam(":rg", $rg);
         $consulta->bindParam(":cpf", $cpf);
@@ -156,8 +184,6 @@ if ($_POST) {
         $consulta->bindParam(":id", $id);
 
         if ($consulta->execute()) {
-
-
             $sql2 = "UPDATE professor
             SET formacao = :formacao
             WHERE pessoa_id = :id";
@@ -181,7 +207,7 @@ if ($_POST) {
         }
     }
 
-    echo $consulta->errorInfo()[2] . '-' . $consulta2->errorInfo()[2] .  '~>ultimoID = ' . print($ultimoId);
+    echo 'Consulta1: ' . $consulta->errorInfo()[2] . '- Consulta2: ' . $consulta2->errorInfo()[2] .  '~>ultimoID = ' . print($ultimoId);
     echo  'var_dump: ' . var_dump($ultimoId) . ' - print: ' . print($ultimoId);
     exit;
 }

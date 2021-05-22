@@ -77,7 +77,7 @@ if (!empty($id)) {
 
             <div class="col-sm-12">
                 <label for="titulo"> Título: </label>
-                <input type="text" id="titulo" name="titulo" class="form-control" required data-parsley-required-message="Preencha o título do recado" placeholder="Informe o título do recado" value="<?= $titulo ?>">
+                <input type="text" autocomplete="off" id="titulo" name="titulo" class="form-control" required data-parsley-required-message="Preencha o título do recado" placeholder="Informe o título do recado" value="<?= $titulo ?>">
             </div>
 
             <div class="col-sm-12">
@@ -89,7 +89,7 @@ if (!empty($id)) {
             <div class="col-12">
                 <label for="turma">Turma</label>
                 <input type="hidden" class="form-control" name="tid" id="tid" readonly value="<?= $turma_id ?>">
-                <input id="turma_id" name="turma_id" class="form-control" list="listaTurma" data-parsley-required-message="Selecione a turma" value="<?php if (!empty($id)) echo "$turma_id - $serie $descricao / $periodo ($ano)"; ?>">
+                <input id="turma_id" autocomplete="off" name="turma_id" class="form-control" list="listaTurma" data-parsley-required-message="Selecione a turma" value="<?php if (!empty($id)) echo "$turma_id - $serie $descricao / $periodo ($ano)"; ?>">
                 <datalist id="listaTurma">
                     <?php
                     $sql = "SELECT t.*,t.id tid, p.*
