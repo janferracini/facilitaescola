@@ -11,6 +11,73 @@ function getGradeId($grade_id)
 	return $grade_id[0];
 }
 
+function getTurmaId($turma_id)
+{
+	$turma_id = explode("-", $turma_id);
+	return $turma_id[0];
+}
+
+function getTurma($turma_id)
+{
+	$turma_id = explode("-", $turma_id);
+	return $turma_id[1];
+}
+
+function getProfessorId($professor_id)
+{
+	$professor_id = explode("-", $professor_id);
+	return $professor_id[0];
+}
+
+function getProfessor($professor_id)
+{
+	$professor_id = explode("-", $professor_id);
+	return $professor_id[1];
+}
+
+function getNomeMes($mes)
+{
+	switch ($mes) {
+		case $mes == 1;
+			$nomeMes = "Janeiro";
+			break;
+		case $mes == 2;
+			$nomeMes = "Fevereiro";
+			break;
+		case $mes == 3;
+			$nomeMes = "Março";
+			break;
+		case $mes == 4;
+			$nomeMes = "Abril";
+			break;
+		case $mes == 5;
+			$nomeMes = "Maio";
+			break;
+		case $mes == 6;
+			$nomeMes = "Junho";
+			break;
+		case $mes == 7;
+			$nomeMes = "Julho";
+			break;
+		case $mes == 8;
+			$nomeMes = "Agosto";
+			break;
+		case $mes == 9;
+			$nomeMes = "Setembro";
+			break;
+		case $mes == 10;
+			$nomeMes = "Outubro";
+			break;
+		case $mes == 11;
+			$nomeMes = "Novembro";
+			break;
+		case $mes == 12;
+			$nomeMes = "Dezembro";
+			break;
+	}
+
+	return $nomeMes;
+}
 function validaCPF($cpf)
 {
 	// Extrai somente os números
