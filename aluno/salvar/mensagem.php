@@ -1,9 +1,13 @@
 <?php
-// Verificar se não está logado
-// if (!isset($_SESSION['facilita_escola']['id'])) {
-//     exit;
-// }
+if (!isset($_SESSION["facilita_escola"]["id"])) {
+    echo "<script>alert('Erro na requisição da página');location.href='javascript:history.back()'</script>";
+    exit;
+}
 
+if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 2) {
+    echo "<script>alert('Erro na requisição da página');location.href='javascript:history.back()'</script>";
+    exit;
+}
 // Verificar se existem dados no POST
 if ($_POST) {
     include "../config/conexao.php";
