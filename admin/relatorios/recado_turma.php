@@ -112,9 +112,11 @@ if ($_POST) {
                     ';
     $turma_id = getTurmaId($turma_id);
 
-    $sql = "SELECT r.*, date_format(r.data_postagem, '%d/%m/%Y') dp, t.*
+    $sql = "SELECT r.*, date_format(r.data_postagem, '%d/%m/%Y') dp, g.*, t.*, d.*
     FROM recado r
-    INNER JOIN turma t ON (t.id = r.turma_id)
+    INNER JOIN grade g ON (r.grade_id = g.id)
+    INNER JOIN turma t ON (t.id = g.turma_id)
+    INNER JOIN disciplina d ON (d.id = g.disciplina_id)
     WHERE t.id = $turma_id
     ORDER BY r.data_postagem DESC";
 
