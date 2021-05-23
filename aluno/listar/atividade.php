@@ -68,7 +68,7 @@ $idaluno = $_SESSION['facilita_escola']['id'];
 
                     echo '<tr>
                 <td>' . $data . '</td>
-                <td>' . $atividade . '</td>
+                <td>' . substr($atividade, 0, 50) . '</td>
                 <td>' . $disciplina . ' </td>
                 <td>
                 <a href="../atividades/' . $arquivo . '" download="Atividade de ' . $disciplina . '(' . $data . ')" class="btn btn-outline-laranja btn-sm">

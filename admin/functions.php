@@ -11,6 +11,12 @@ function getGradeId($grade_id)
 	return $grade_id[0];
 }
 
+function getExtensao($nomeArquivo)
+{
+	$nomeArquivo = explode(".", $nomeArquivo);
+	return $nomeArquivo;
+}
+
 function validaCPF($cpf)
 {
 	// Extrai somente os números

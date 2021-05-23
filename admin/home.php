@@ -59,7 +59,7 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
 <!-- Primeira linha de cards -->
 <div class="row">
     <!-- div mensagens -->
-    <div class="col-lg-6">
+    <div class="col-lg-12">
         <div class="card">
             <div class="card-header border-transparent">
                 <h3 class="card-title">Últimas Mensagens</h3>
@@ -129,8 +129,8 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
         <!-- /.card -->
     </div>
     <!-- fim div mensagens -->
-
-    <div class="col-lg-6">
+    <!-- div recados -->
+    <div class="col-lg-12">
         <div class="card">
             <div class="card-header border-transparent">
                 <h3 class="card-title">Recados</h3>
@@ -193,6 +193,6 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
         </div>
         <!-- /.card -->
     </div>
-    <!-- fim div eventos -->
+    <!-- fim div recados -->
 </div>
 <!-- fim primeira linha de cars -->

@@ -21,13 +21,13 @@ $periodo = "";
 
 if (!empty($id)) {
     //select nos dados  
-    $sql = "SELECT r.id rid, r.*, t.id tid, t.*, p.id pid, p.*
-            FROM recado r 
-            INNER JOIN turma t ON (t.id = r.turma_id) 
+    $sql = "SELECT r.id rid, r.*, g.id gid, g.turma_id tid, t.*, p.id pid, p.*
+            FROM recado r
+            INNER JOIN grade g ON (g.id = r.grade_id) 
+            INNER JOIN turma t ON (t.id = g.turma_id) 
             INNER JOIN periodo p ON (p.id = t.periodo_id)
             WHERE r.id = :id
             LIMIT 1";
-
     $consulta = $pdo->prepare($sql);
     $consulta->bindParam(":id", $id);
     $consulta->execute();
@@ -43,14 +43,16 @@ if (!empty($id)) {
     $id            = $dados->rid;
     $titulo        = $dados->titulo;
     $conteudo      = $dados->conteudo;
-    // tabela periodo
+    $data_postagem = $dados->data_postagem;
+    $grade_id      = $dados->gid;
+
     $periodo       = $dados->periodo;
     $periodo_id    = $dados->pid;
-    // tabela turma
     $turma_id      = $dados->tid;
+    $ano           = $dados->ano;
+
     $serie         = $dados->serie;
     $descricao     = $dados->descricao;
-    $ano           = $dados->ano;
 }
 ?>
 
@@ -81,7 +83,7 @@ if (!empty($id)) {
 
             <div class="col-sm-12">
                 <label for="titulo"> Título: </label>
-                <input type="text" autocomplete="off" id="titulo" name="titulo" class="form-control" required data-parsley-required-message="Preencha o título do recado" placeholder="Informe o título do recado" value="<?= $titulo ?>">
+                <input type="text" id="titulo" name="titulo" class="form-control" required data-parsley-required-message="Preencha o título do recado" placeholder="Informe o título do recado" value="<?= $titulo ?>">
             </div>
 
             <div class="col-sm-12">
@@ -92,25 +94,23 @@ if (!empty($id)) {
             <!-- selecionar a turma -->
             <div class="col-12">
                 <label for="turma">Turma</label>
-                <input type="hidden" class="form-control" name="tid" id="tid" readonly value="<?= $turma_id ?>">
-                <input id="turma_id" autocomplete="off" name="turma_id" class="form-control" list="listaTurma" data-parsley-required-message="Selecione a turma" value="<?php if (!empty($id)) echo "$turma_id - $serie $descricao / $periodo ($ano)"; ?>">
+                <input type="hidden" class="form-control" name="id" id="id" readonly value="<?= $grade_id ?>">
+                <input id="grade_id" autocomplete="off" name="grade_id" class="form-control" autocomplete="off" list="listaTurma" data-parsley-required-message="Selecione a grade" value="<?php if (!empty($id)) echo "$grade_id - $serie $descricao / $periodo"; ?>">
                 <datalist id="listaTurma">
                     <?php
-                    $sql = "SELECT t.*,t.id tid, p.*
-                                        FROM turma t
-                                        INNER JOIN periodo p ON (p.id = t.periodo_id)
-                                        ORDER BY serie";
+                    $sql = "SELECT  g.id idgrade, g.*, t.*, pd.*
+                            FROM grade g
+                            INNER JOIN turma t ON (t.id = g.turma_id)
+                            INNER JOIN periodo pd ON (pd.id = t.periodo_id)
+                            ORDER BY t.descricao";
                     $consulta = $pdo->prepare($sql);
                     $consulta->execute();
-
                     while ($dados = $consulta->fetch(PDO::FETCH_OBJ)) {
-                        // separar os dados
-                        $serie     = $dados->serie;
+                        $grade_id = $dados->idgrade;
+                        $serie = $dados->serie;
                         $descricao = $dados->descricao;
-                        $ano       = $dados->ano;
-                        $periodo   = $dados->periodo;
-                        $turma_id  = $dados->tid;
-                        echo '<option value=" ' . $turma_id . ' - ' . $serie . ' ' . $descricao . ' / ' . $periodo . ' (' . $ano . ')">';
+                        $periodo = $dados->periodo;
+                        echo '<option value="' . $grade_id . ' - ' . $serie . ' ' . $descricao . ' / ' . $periodo . '">';
                     };
                     ?>
                 </datalist>

@@ -68,14 +68,13 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
                     $periodo    = $dados->periodo;
 
                     echo '<tr>
-                <td>' . $data . '</td>
-                <td>' . $atividade . '</td>
-                <td>' . $disciplina . ' - ' . $serie . ' ' . $descricao . ' / ' . $periodo . ' </td>
-                
-                <td>
-                <a href="../atividades/' . $arquivo . '" download="Atividade ' . $disciplina . '-' . $serie . '' . $descricao . '(' . $periodo . ')" class="btn btn-outline-secondary btn-sm">
-                        <i class="fas fa-arrow-down"></i>
-                    </a>
+                            <td>' . $data . '</td>
+                            <td>' . substr($atividade, 0, 50) . '</td>
+                            <td>' . $disciplina . ' - ' . $serie . ' ' . $descricao . ' / ' . $periodo . ' </td>
+                            <td>
+                            <a href="../atividades/' . $arquivo . '" download="Atividade ' . $disciplina . '-' . $serie . '' . $descricao . '(' . $periodo . ')" class="btn btn-outline-secondary btn-sm">
+                                    <i class="fas fa-arrow-down"></i>
+                                </a>
 
                 <a href="cadastro/atividade/' . $id . '" class="btn btn-outline-info btn-sm">
                         <i class="fas fa-edit"></i>
