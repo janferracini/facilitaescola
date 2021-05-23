@@ -1,11 +1,12 @@
 <?php
+
 if (!isset($_SESSION["facilita_escola"]["id"])) {
-    echo "<script>alert('Erro na requisição da página');location.href='javascript:history.back()'</script>";
+    echo "<script>alert('Erro na requisição da página, faça login novamente para continuar');location.href='sair.php'</script>";
     exit;
 }
 
 if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 2) {
-    echo "<script>alert('Erro na requisição da página');location.href='javascript:history.back()'</script>";
+    echo "<script>alert('Erro na requisição da página, faça login novamente para continuar');location.href='sair.php'</script>";
     exit;
 }
 ?>
@@ -15,7 +16,7 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 2) {
     <div class="container-fluid">
         <div class="row">
             <div>
-                <h1 class="m-0 text-dark">Recados Cadastrados</h1>
+                <h1 class="m-0 text-dark">Recados Recebidos</h1>
             </div><!-- /.col -->
         </div><!-- /.row -->
     </div><!-- /.container-fluid -->
