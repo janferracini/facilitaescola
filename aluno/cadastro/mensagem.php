@@ -37,7 +37,7 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 2) {
         <div class="row mb-3">
             <div class="col-sm-12">
                 <label for="mensagem">Título:</label>
-                <input type="text" name="titulo" id="titulo" class="form-control" required data-parsley-required-message="Preencha o título" placeholder="Digite o Título da mensagem">
+                <input type="text" name="titulo" id="titulo" maxlength="60" minlength="12" class="form-control" required data-parsley-required-message="Preencha o título" placeholder="Digite o Título da mensagem">
                 <label for="mensagem">Mensagem:</label>
                 <textarea type="text" name="mensagem" id="mensagem" class="form-control" required data-parsley-required-message="Preencha a mensagem" placeholder="Digite a Mensagem"></textarea>
             </div>
