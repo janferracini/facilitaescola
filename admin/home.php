@@ -76,8 +76,8 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
                     <table class="table table-hover m-0">
                         <thead>
                             <tr>
-                                <th>Nome</th>
-                                <th>Turma</th>
+                                <th style="width: 20%;">Nome</th>
+                                <th style="width: 30%;">Turma</th>
                                 <th>Mensagem</th>
                             </tr>
                         </thead>
@@ -147,8 +147,8 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
                     <table class="table table-hover m-0">
                         <thead>
                             <tr>
-                                <th style="width: 25%;">Data</th>
-                                <th style="width: 30%;">Turma</th>
+                                <th style="width: 20%;">Data</th>
+                                <th style="width: 30%;">Título</th>
                                 <th>Conteúdo</th>
                             </tr>
                         </thead>
@@ -157,7 +157,7 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
                             $sql = "SELECT *,  date_format(data_postagem, '%d/%m/%Y') data_postagem
                             FROM recado
                             ORDER BY id DESC
-                                    LIMIT 6";
+                            LIMIT 6";
 
                             $consulta = $pdo->prepare($sql);
                             $consulta->execute();
@@ -169,14 +169,12 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
                                 $conteudo = $dados->conteudo;
                                 $data      = $dados->data_postagem;
 
-
-
                                 // Mostrar na tela
                                 echo "
                                     <tr>
                                         <td>" . $data . "</td>
                                         <td>" . $titulo . "</td>
-                                        <td> " . substr($conteudo, 0, 35) . "(...)</td>
+                                        <td> " . substr($conteudo, 0, 40) . "(...)</td>
                                     </tr>";
                             }
                             ?>

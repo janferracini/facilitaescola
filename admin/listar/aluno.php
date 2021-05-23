@@ -34,8 +34,8 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
             <thead>
                 <tr>
                     <th>Nome</th>
-                    <th width=20%>Matrícula</th>
-                    <th width=20%>Turma / Período</th>
+                    <th width=15%>Matrícula</th>
+                    <th width=25%>Turma / Período</th>
                     <th width=20%>Ações</th>
                 </tr>
             </thead>
@@ -59,12 +59,13 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
                     $nome    = $dados->nome;
                     $matricula = $dados->matricula;
                     $serie   = $dados->serie;
+                    $descricao = $dados->descricao;
                     $periodo = $dados->periodo;
 
                     echo '<tr>
                         <td>' . $nome . '</td>
                         <td>' . $matricula . '</td>
-                        <td>' . $serie . ' / ' . $periodo . '</td>
+                        <td>' . $serie . ' ' . $descricao . ' / ' . $periodo . '</td>
                         <td><a href="cadastro/aluno/' . $id . '" class="btn btn-outline-info btn-sm">
                                 <i class="fas fa-edit"></i>
                             </a>

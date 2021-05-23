@@ -27,7 +27,6 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 2) {
             <thead>
                 <tr>
                     <th>Data de Envio</th>
-                    <th>Aluno</th>
                     <th>Título</th>
                     <th>Mensagem</th>
                     <th></th>
@@ -59,7 +58,6 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 2) {
                     echo "
                         <tr>
                             <td>" . $data_postagem . "</td>
-                            <td>" . $aluno . "</td>
                             <td>" . $titulo . "</td>
                             <td>" . substr($mensagem, 0, 35) . "(...)</td>
                             <td> 

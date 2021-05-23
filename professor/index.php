@@ -52,13 +52,6 @@ $base = "$h://$site:$porta/$url"
 
   <?php
   $pagina = $pagina . ".php";
-
-  // if (!isset($_SESSION["facilita_escola"]["id"])) {
-  //   //incluir login
-  //   include $pagina;
-
-  // } else {
-
   ?>
 
 
@@ -133,16 +126,6 @@ $base = "$h://$site:$porta/$url"
                 </p>
               </a>
             </li>
-
-            <li class="nav-item">
-              <a href="listar/mensagem" class="nav-link">
-                <i class="nav-icon fas fa-print"></i>
-                <p>
-                  Relatórios
-                </p>
-              </a>
-            </li>
-
           </ul>
         </nav>
         <!-- /.sidebar-menu -->

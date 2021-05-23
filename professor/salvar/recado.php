@@ -28,35 +28,27 @@ if ($_POST) {
         exit;
     }
 
-    if (empty($turma_id)) {
-        echo "<script>alert('Selecione a Turma');history.back();</script>";
-        exit;
-    }
+    //
 
     $pdo->beginTransaction();
 
     if (empty($id)) {
-
-        $sql = "INSERT INTO recado
-                        (titulo, conteudo, turma_id)
-                    VALUES 
-                        (:titulo, :conteudo, :turma_id)";
-
+        $sql = "INSERT INTO recado  (titulo, conteudo, grade_id)
+                    VALUES (:titulo, :conteudo, :grade_id)";
         $consulta = $pdo->prepare($sql);
         $consulta->bindParam(":titulo", $titulo);
         $consulta->bindParam(":conteudo", $conteudo);
-        $consulta->bindParam(":turma_id", $turma_id);
+        $consulta->bindParam(":grade_id", $grade_id);
     } else {
         $sql = "UPDATE recado
-            SET titulo = :titulo, conteudo = :conteudo, turma_id = :turma_id
+            SET titulo = :titulo, conteudo = :conteudo, grade_id = :grade_id
             WHERE id = :id
             LIMIT 1";
-
         $consulta = $pdo->prepare($sql);
         $consulta->bindParam(":id", $id);
         $consulta->bindParam(":titulo", $titulo);
         $consulta->bindParam(":conteudo", $conteudo);
-        $consulta->bindParam(":turma_id", $turma_id);
+        $consulta->bindParam(":grade_id", $grade_id);
     }
     // Executar e verificar se deu certo
     if ($consulta->execute()) {
@@ -67,5 +59,4 @@ if ($_POST) {
     echo $consulta->errorInfo()[2];
     exit;
 }
-
 echo "<p class='alert alert-danger'>Erro ao realizar requisição.</p>";

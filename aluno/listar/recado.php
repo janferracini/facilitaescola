@@ -35,11 +35,12 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 2) {
             <tbody>
                 <?php
                 $idaluno = $_SESSION["facilita_escola"]["id"];
-                $sql = "SELECT  r.id rid, r.*, date_format(r.data_postagem, '%d/%m/%Y') dp,
+                $sql = "SELECT  r.id rid, r.*, date_format(r.data_postagem, '%d/%m/%Y') dp, g.*,
                                 t.id tid, t.*, tm.*, m.*, p.id pid
                         FROM recado r
-                        INNER JOIN turma t ON (t.id = r.turma_id)
-                        INNER JOIN turma_matricula tm ON (tm.id = t.id)
+                        INNER JOIN grade g ON (g.id = r.grade_id)
+                        INNER JOIN turma t ON (t.id = g.turma_id)
+                        INNER JOIN turma_matricula tm ON (tm.turma_id = t.id)
                         INNER JOIN matricula m ON (m.id = tm.matricula_id)
                         INNER JOIN pessoa p ON (p.id = m.pessoa_id)
                         WHERE p.id = $idaluno

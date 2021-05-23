@@ -34,7 +34,7 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 3) {
                     <th style="width: 20%;">Data Postagem</th>
                     <th>Recados</th>
                     <th>Turma</th>
-                    <th style="width: 20%;">Ações</th>
+                    <th style="width: 10%;">Editar</th>
                 </tr>
             </thead>
             <tbody>
@@ -43,8 +43,8 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 3) {
                 $sql = "SELECT r.id rid, r.titulo, DATE_FORMAT(r.data_postagem, '%d/%m/%Y') data_postagem,
                 t.*, g.*, p.*, pe.id, d.*, pr.*
             FROM recado r
-            INNER JOIN turma t ON (t.id = r.turma_id)
-            INNER JOIN grade g ON (t.id = g.turma_id)
+            INNER JOIN grade g ON (g.id = r.grade_id)
+            INNER JOIN turma t ON (t.id = g.turma_id)
             INNER JOIN disciplina d ON (d.id = g.disciplina_id)
             INNER JOIN periodo pr ON (pr.id = t.periodo_id)
             INNER JOIN professor p ON (p.id = g.professor_id)
@@ -76,9 +76,6 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 3) {
                             <td><a href="cadastro/recado/' . $id . '" class="btn btn-outline-info btn-sm">
                                     <i class="fas fa-edit"></i>
                                 </a>
-
-                                <button type="button" class="btn btn-outline-danger btn-sm" onclick="excluir(' . $id . ')">
-                                <i class="fas fa-trash"></i>
                             </td>
                         </button>
                     </tr>';
@@ -89,15 +86,3 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 3) {
         </table>
     </div>
 </div>
-
-
-<script>
-    //função para perguntar se deseja excluir. Se sim, direcionar para o endereço de exclusão
-    function excluir(id) {
-        //perguntar
-        if (confirm("Deseja mesmo excluir?")) {
-            //direcionar para exclusão
-            location.href = "excluir/recado/" + id;
-        }
-    }
-</script>

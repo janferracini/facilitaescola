@@ -99,8 +99,8 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 3) {
                             $sql = "SELECT r.id rid, r.*, DATE_FORMAT(r.data_postagem, '%d/%m/%Y') data_postagem,
                                         t.*,g.*, p.*, pe.id
                                     FROM recado r
-                                    INNER JOIN turma t ON (t.id = r.turma_id)
-                                    INNER JOIN grade g ON (t.id = g.turma_id)
+                                    INNER JOIN grade g ON (g.id = r.grade_id)
+                                    INNER JOIN turma t ON (t.id = g.turma_id)
                                     INNER JOIN professor p ON (p.id = g.professor_id)
                                     INNER JOIN pessoa pe ON (pe.id = p.pessoa_id)
                                     WHERE pe.id = $idprofessor

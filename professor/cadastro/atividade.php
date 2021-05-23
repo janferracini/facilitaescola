@@ -84,7 +84,7 @@ if (!empty($id)) {
             <div class="col-12 ">
                 <label for="turma">Grade</label>
                 <input type="hidden" class="form-control" name="id" id="id" readonly value="<?= $id ?>">
-                <input id="grade_id" name="grade_id" class="form-control" list="listaTurma" data-parsley-required-message="Selecione a grade" value="<?php if (!empty($id)) echo "$grade_id - $disciplina - $serie $descricao / $periodo ($professor)"; ?>">
+                <input id="grade_id" name="grade_id" autocomplete="off" class="form-control" list="listaTurma" data-parsley-required-message="Selecione a grade" value="<?php if (!empty($id)) echo "$grade_id - $disciplina - $serie $descricao / $periodo ($professor)"; ?>">
                 <datalist id="listaTurma">
                     <?php
                     $sql = "SELECT  g.id idgrade, g.*, t.*, pd.*, d.*, p.id, pe.id , pe.nome

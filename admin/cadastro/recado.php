@@ -11,7 +11,7 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
 if (!isset($id)) $id = "";
 
 // tabela recado
-$titulo = $conteudo = $turma_id  = "";
+$titulo = $conteudo = $grade_id  = "";
 // tabela grade
 $turma_id = "";
 // tabela turma
@@ -95,7 +95,7 @@ if (!empty($id)) {
             <div class="col-12">
                 <label for="turma">Turma</label>
                 <input type="hidden" class="form-control" name="id" id="id" readonly value="<?= $grade_id ?>">
-                <input id="grade_id" autocomplete="off" name="grade_id" class="form-control" autocomplete="off" list="listaTurma" data-parsley-required-message="Selecione a grade" value="<?php if (!empty($id)) echo "$grade_id - $serie $descricao / $periodo"; ?>">
+                <input id="grade_id" autocomplete="off" name="grade_id" class="form-control" list="listaTurma" required data-parsley-required-message="Selecione a grade" value="<?php if (!empty($id)) echo "$grade_id - $serie $descricao / $periodo"; ?>">
                 <datalist id="listaTurma">
                     <?php
                     $sql = "SELECT  g.id idgrade, g.*, t.*, pd.*

@@ -70,7 +70,7 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 3) {
 
                     echo '<tr>
                 <td>' . $data . '</td>
-                <td>' . $atividade . '</td>
+                <td>' . substr($atividade, 0, 50) . '</td>
                 <td>' . $disciplina . ' - ' . $serie . ' ' . $descricao . ' / ' . $periodo . ' </td>
                 
                 <td>
