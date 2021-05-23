@@ -119,12 +119,13 @@ if ($_POST) {
                 <thead>
                 <tbody>
                     ';
-    $sql = "SELECT r.*, date_format(r.data_postagem, '%d/%m/%Y') dp, t.*,  p.*
-    FROM recado r
-    INNER JOIN turma t ON (t.id = r.turma_id)
-    INNER JOIN periodo p ON (p.id = t.periodo_id)
-    WHERE MONTH(r.data_postagem) = $mes AND YEAR(r.data_postagem) = $ano
-    ORDER BY r.data_postagem DESC";
+    $sql = "SELECT r.*, date_format(r.data_postagem, '%d/%m/%Y') dp, g.*, t.*, p.*
+            FROM recado r
+            INNER JOIN grade g ON (r.grade_id = g.id)
+            INNER JOIN turma t ON (t.id = g.turma_id)
+            INNER JOIN periodo p ON (p.id = t.periodo_id)
+            WHERE MONTH(r.data_postagem) = $mes AND YEAR(r.data_postagem) = $ano
+            ORDER BY r.data_postagem DESC";
 
     $consulta = $pdo->prepare($sql);
     $consulta->execute();
