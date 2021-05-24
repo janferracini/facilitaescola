@@ -219,37 +219,37 @@ $base = "$h://$site:$porta/$url"
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="cadastro/aluno" class="nav-link">
+                    <a href="inativo/aluno" class="nav-link">
                       <i class="fas fa-user-graduate nav-icon"></i>
                       <p>Alunos</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="cadastro/professor" class="nav-link">
+                    <a href="inativo/professor" class="nav-link">
                       <i class="fas fa-apple-alt nav-icon"></i>
                       <p>Professores</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="cadastro/admin" class="nav-link">
+                    <a href="inativo/admin" class="nav-link">
                       <i class="fas fa-laptop-code nav-icon"></i>
                       <p>Equipe Administrativa</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="cadastro/disciplina" class="nav-link">
+                    <a href="inativo/disciplina" class="nav-link">
                       <i class="fas fa-book-open nav-icon"></i>
                       <p>Disciplina</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="cadastro/turma" class="nav-link">
+                    <a href="inativo/turma" class="nav-link">
                       <i class="fas fa-chalkboard nav-icon"></i>
                       <p>Turmas</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="cadastro/grade" class="nav-link">
+                    <a href="inativo/grade" class="nav-link">
                       <i class="nav-icon fas fa-chalkboard-teacher"></i>
                       <p>
                         Grade
