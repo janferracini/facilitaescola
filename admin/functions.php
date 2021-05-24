@@ -1,5 +1,12 @@
 <?php
 
+function apagaImagem($arquivo)
+{
+	$pasta = "../atividades/";
+	$caminho =  $pasta . $arquivo;
+	unlink($caminho);
+}
+
 function getPeriodo($periodo_id)
 {
 	$periodo_id = explode("-", $periodo_id);
