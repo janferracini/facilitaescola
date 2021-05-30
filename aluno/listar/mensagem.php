@@ -1,9 +1,13 @@
 <?php
-//verificar se está logado
-// if (!isset($_SESSION['hqs']['id'])) {
-//     exit;
-// }
-// 
+if (!isset($_SESSION["facilita_escola"]["id"])) {
+    echo "<script>alert('Erro na requisição da página');location.href='javascript:history.back()'</script>";
+    exit;
+}
+
+if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 2) {
+    echo "<script>alert('Erro na requisição da página');location.href='javascript:history.back()'</script>";
+    exit;
+}
 ?>
 
 <!-- Content Header (Page header) -->
@@ -23,7 +27,6 @@
             <thead>
                 <tr>
                     <th>Data de Envio</th>
-                    <th>Aluno</th>
                     <th>Título</th>
                     <th>Mensagem</th>
                     <th></th>
@@ -55,7 +58,6 @@
                     echo "
                         <tr>
                             <td>" . $data_postagem . "</td>
-                            <td>" . $aluno . "</td>
                             <td>" . $titulo . "</td>
                             <td>" . substr($mensagem, 0, 35) . "(...)</td>
                             <td> 

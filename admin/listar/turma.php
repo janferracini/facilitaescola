@@ -1,9 +1,13 @@
 <?php
-//verificar se está logado
-// if (!isset($_SESSION['hqs']['id'])) {
-//     exit;
-// }
-// 
+if (!isset($_SESSION["facilita_escola"]["id"])) {
+    echo "<script>alert('Erro na requisição da página');location.href='javascript:history.back()'</script>";
+    exit;
+}
+
+if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
+    echo "<script>alert('Erro na requisição da página');location.href='javascript:history.back()'</script>";
+    exit;
+}
 ?>
 
 <!-- Content Header (Page header) -->
@@ -48,6 +52,7 @@
                             p.periodo
                     FROM turma t
                     INNER JOIN periodo p on (p.id = t.periodo_id)
+                    WHERE status = 1
                     ORDER BY serie";
 
                 $consulta = $pdo->prepare($sql);
@@ -74,8 +79,8 @@
                                 <i class="fas fa-edit"></i>
                             </a>
                             
-                            <button type="button" class="btn btn-outline-danger btn-sm" onclick="excluir(' . $id . ')">
-                                <i class="fas fa-trash"></i>
+                            <button type="button" class="btn btn-outline-danger btn-sm" onclick="inativar(' . $id . ')">
+                                <i class="fas fa-times-circle"></i>
                             </button>
                         </td>
                     </tr>';
@@ -89,10 +94,9 @@
 </div>
 
 <script>
-    //função para perguntar se deseja excluir. Se sim, direcionar para o endereço de exclusão
-    function excluir(id) {
+    function inativar(id) {
         //perguntar
-        if (confirm("Deseja mesmo excluir?")) {
+        if (confirm("Deseja mesmo inativar?")) {
             //direcionar para exclusão
             location.href = "excluir/turma/" + id;
         }

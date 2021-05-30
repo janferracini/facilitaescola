@@ -1,5 +1,10 @@
 <?php
-if (!isset($_SESSION["hqs"]["id"]) && (($_SESSION["facilita_escola"]["tipo_cadastro"] != 1))) {
+if (!isset($_SESSION["facilita_escola"]["id"])) {
+    echo "<script>alert('Erro na requisição da página');location.href='javascript:history.back()'</script>";
+    exit;
+}
+
+if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
     echo "<script>alert('Erro na requisição da página');location.href='javascript:history.back()'</script>";
     exit;
 }
@@ -78,7 +83,7 @@ if (!empty($id)) {
             <div class="col-12 ">
                 <label for="turma">Grade</label>
                 <input type="hidden" class="form-control" name="id" id="id" readonly value="<?= $id ?>">
-                <input id="grade_id" name="grade_id" class="form-control" list="listaTurma" data-parsley-required-message="Selecione a grade" value="<?php if (!empty($id)) echo "$grade_id - $disciplina - $serie $descricao / $periodo ($professor)"; ?>">
+                <input id="grade_id" autocomplete="off" name="grade_id" class="form-control" autocomplete="off" list="listaTurma" data-parsley-required-message="Selecione a grade" value="<?php if (!empty($id)) echo "$grade_id - $disciplina - $serie $descricao / $periodo ($professor)"; ?>">
                 <datalist id="listaTurma">
                     <?php
                     $sql = "SELECT  g.id idgrade, g.*, t.*, pd.*, d.*, p.id, pe.id , pe.nome
@@ -118,15 +123,14 @@ if (!empty($id)) {
                 if (!empty($id)) $r = '';
                 ?>
                 <label for="arquivo">Arquivo: </label>
-                <spam>(Tipos permitidos: .jpg, .jpeg, .docx, .doc ou .pdf, tamanho máximo: 3Mb)</spam>
+                <spam>(Tipos permitidos: .jpg, .jpeg, .doc, .docx, .odt ou .pdf, tamanho máximo: 3Mb)</spam>
                 <!-- guarda o nome do arquivo para quando editar -->
-                <input type="hidden" name="capa" value="<?= $arquivo; ?>">
+                <input type="hidden" name="arquivo" value="<?= $arquivo; ?>">
                 <input type="file" name="arquivo" id="arquivo" class="form-control" accept=".jpg, .jpeg, .docx, .pdf, .doc, .odt" <?= $r; ?> placeholder="Selecione o arquivo da atividade">
             </div>
 
             <?php
             if (!empty($id)) {
-
                 echo "<div class='col-sm-12 mt-2'>
                 <p>Arquivo já encaminhado: <a href='../atividades/$arquivo' download='Atividade $disciplina-$serie $descricao($periodo)'>Download</a></p>
                 </div>";

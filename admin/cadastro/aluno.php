@@ -1,4 +1,13 @@
 <?php
+if (!isset($_SESSION["facilita_escola"]["id"])) {
+    echo "<script>alert('Erro na requisição da página');location.href='javascript:history.back()'</script>";
+    exit;
+}
+
+if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
+    echo "<script>alert('Erro na requisição da página');location.href='javascript:history.back()'</script>";
+    exit;
+}
 
 if (!isset($id)) $id = "";
 
@@ -58,7 +67,7 @@ if (!empty($id)) {
         $data_matricula  = $dados->data_matricula;
         $pessoa_id       = $dados->id;
         // //turma_matricula
-        $turma_matricula_id = $dados->tmid;
+        $tmid = $dados->tmid;
         // //turma
         $serie     = $dados->serie;
         $descricao = $dados->descricao;
@@ -93,96 +102,121 @@ if (!empty($id)) {
         <div class="row mb-3">
             <input type="hidden" class="form-control" name="id" id="id" readonly value="<?= $id ?>">
             <!-- LINHA 1 -->
-            <div class="col-12 col-md-12">
+            <div class="col-12 col-md-8">
                 <label for="nome"> Nome Completo </label>
-                <input type="text" class="form-control" id="nome" name="nome" required data-parsley-required-message="Preencha o nome" value="<?= $nome; ?>">
+                <input type="text" autocomplete="off" class="form-control" id="nome" name="nome" required data-parsley-required-message="Preencha o nome" value="<?= $nome ?>">
+            </div>
+            <div class="col-12 col-md-4">
+                <label for="status"> Status </label>
+                <select id="status" autocomplete="off" name="status" class="form-control ">
+
+                    <?php
+                    if ($status == 1 || empty($id)) {
+                        echo "
+                        <option value='1' selected>Ativo</option>
+                        <option value='0'>Inativo</option>";
+                    } else if ($status == 0) {
+                        echo " 
+                        <option value='1' >Ativo</option>
+                        <option value ='0' selected>Inativo</option>";
+                    }
+                    ?>
+                </select>
             </div>
 
             <!-- LINHA 2 -->
             <div class="col-12 col-md-4">
                 <label for="login"> Login </label>
-                <input type="text" class="form-control" id="login" name="login" required data-parsley-required-message="Preencha o nome do login" placeholder="Insira com o login de acesso" value="<?= $login; ?>">
+                <input type="text" autocomplete="off" class="form-control" id="login" name="login" required data-parsley-required-message="Preencha o nome do login" placeholder="Insira com o login de acesso" value="<?= $login; ?>">
             </div>
 
             <div class="col-12 col-md-8">
                 <label for="email"> E-mail </label>
-                <input type="email" class="form-control" id="email" name="email" required data-parsley-required-message="Preencha com um e-mail válido" placeholder="Digite um e-mail válido" value="<?= $email; ?>">
+                <input type="email" autocomplete="off" class="form-control" id="email" name="email" required data-parsley-required-message="Preencha com um e-mail válido" placeholder="Digite um e-mail válido" value="<?= $email; ?>">
             </div>
 
             <!-- LINHA 3-->
             <div class="col-12 col-md-4">
                 <label for="rg"> RG </label>
-                <input type="text" class="form-control" id="rg" name="rg" value="<?= $rg; ?>">
+                <input type="text" autocomplete="off" class="form-control" id="rg" name="rg" value="<?= $rg; ?>">
             </div>
 
             <div class="col-12 col-md-4">
                 <label for="cpf"> CPF </label>
-                <input type="text" class="form-control" name="cpf" id="cpf" value="<?= $cpf; ?>" placeholder="000.000.000-00" onblur="verificarCpf(this.value)">
+                <input type="text" autocomplete="off" class="form-control" name="cpf" id="cpf" value="<?= $cpf; ?>" placeholder="000.000.000-00" onblur="if(this.value) verificarCpf(this.value)">
 
             </div>
 
             <div class="col-12 col-md-4">
                 <label for="data_nascimento"> Data De Nascimento </label>
-                <input type="date" class="form-control" id="data_nascimento" name="data_nascimento" required data-parsley-required-message="Preencha a data de nascimento" value="<?= $data_nascimento; ?>">
+                <input type="date" autocomplete="off" class="form-control" id="data_nascimento" name="data_nascimento" required data-parsley-required-message="Preencha a data de nascimento" value="<?= $data_nascimento; ?>">
             </div>
 
             <!-- LINHA 4 -->
             <div class="col-12 col-md-4">
                 <label for="cep"> CEP </label>
-                <input type="text" class="form-control" id="cep" name="cep" required data-parsley-required-message="Preencha com um CEP válido" value="<?= $cep; ?>">
+                <input type="text" autocomplete="off" class="form-control" id="cep" name="cep" required data-parsley-required-message="Preencha com um CEP válido" value="<?= $cep; ?>">
             </div>
 
             <div class="col-12 col-md-4">
                 <label for="cidade"> Cidade</label>
-                <input type="text" class="form-control" id="cidade" required data-parsley-required-message="Selecione a cidade" value="<?= $cidade ?>">
+                <input type="text" autocomplete="off" class="form-control" id="cidade" required data-parsley-required-message="Selecione a cidade" value="<?= $cidade ?>">
 
                 <input type="hidden" class="form-control" id="cidade_id" name="cidade_id" required data-parsley-required-message="Selecione a cidade" readonly value="<?= $cidade_id ?>">
             </div>
 
             <div class="col-12 col-md-4">
                 <label for="cidade"> Estado </label>
-                <input type="text" class="form-control" id="estado" required data-parsley-required-message="Selecione o estado" value="<?= $estado; ?>">
+                <input type="text" autocomplete="off" class="form-control" id="estado" required data-parsley-required-message="Selecione o estado" value="<?= $estado; ?>">
             </div>
 
             <!-- LINHA 5 -->
             <div class="col-12 col-md-8">
                 <label for="logradouro"> Endereço Completo </label>
-                <input type="text" class="form-control" id="logradouro" name="logradouro" required data-parsley-required-message="Preencha o endereço" value="<?= $logradouro; ?>">
+                <input type="text" autocomplete="off" class="form-control" id="logradouro" name="logradouro" required data-parsley-required-message="Preencha o endereço" value="<?= $logradouro; ?>">
             </div>
 
             <div class="col-12 col-md-4">
                 <label for="numero"> Número </label>
-                <input type="text" class="form-control" id="numero" name="numero" required data-parsley-required-message="Preencha com o número da residência" placeholder="Insira o número da residência" value="<?= $numero; ?>">
+                <input type="text" autocomplete="off" class="form-control" id="numero" name="numero" required data-parsley-required-message="Preencha com o número da residência" placeholder="Insira o número da residência" value="<?= $numero; ?>">
             </div>
 
             <!-- LINHA 6 -->
             <div class="col-12 col-md-12">
                 <label for="complemento"> Complemento </label>
-                <input type="text" class="form-control" id="complemento" name="complemento" value="<?= $complemento; ?>">
+                <input type="text" autocomplete="off" class="form-control" id="complemento" name="complemento" value="<?= $complemento; ?>">
             </div>
 
             <!-- LINHA 7 -->
             <div class="col-12 col-md-6">
                 <label for="telefone1"> Telefone Obrigatório </label>
-                <input type="text" class="form-control" id="telefone1" name="telefone1" required data-parsley-required-message="Preencha com o número de telefone" value="<?= $telefone1; ?>">
+                <input type="text" autocomplete="off" class="form-control" id="telefone1" name="telefone1" required data-parsley-required-message="Preencha com o número de telefone" value="<?= $telefone1; ?>">
             </div>
 
             <div class="col-12 col-md-6">
                 <label for="telefone2"> Telefone Opcional </label>
-                <input type="text" class="form-control" id="telefone2" name="telefone2" value="<?= $telefone2; ?>">
+                <input type="text" autocomplete="off" class="form-control" id="telefone2" name="telefone2" value="<?= $telefone2; ?>">
             </div>
 
             <div class="clearfix"></div>
 
             <!-- LINHA 7 -->
             <div class="col-12 col-md-6">
+                <?php
+                $r = 'required data-parsley-required-message="Insira uma senha"';
+                if (!empty($id)) $r = '';
+                ?>
                 <label for="senha"> Senha </label>
-                <input type="password" class="form-control" id="senha" name="senha" require data-parsley-required-message="Insira uma senha" placeholder="Insira a senha inicial de acesso">
+                <input type="password" autocomplete="off" class="form-control" id="senha" name="senha" <?= $r; ?> placeholder="Insira a senha inicial de acesso">
             </div>
 
             <div class="col-12 col-md-6">
+                <?php
+                $r = 'required data-parsley-required-message="Insira uma senha" onblur="verificarSenha(this.value)" ';
+                if (!empty($id)) $r = '';
+                ?>
                 <label for="confirmaSenha">Confirmar Senha </label>
-                <input type="password" class="form-control" id="confirmaSenha" name="confirmaSenha" require data-parsley-required-message="Insira a senha novamente" placeholder="Insira a senha inicial de acesso">
+                <input type="password" autocomplete="off" class="form-control" id="senha2" name="senha2" <?= $r; ?> placeholder="Insira a senha inicial de acesso">
             </div>
             <div class="col-12 col-md-12 mt-3 text-dark">
                 <hr>
@@ -193,23 +227,24 @@ if (!empty($id)) {
             <div class="col-12 col-md-4">
                 <label for="matricula">Número da matrícula</label>
                 <input type="hidden" class="form-control" name="matricula_id" id="matricula_id" readonly value="<?= $matricula_id ?>">
-                <input type="text" class="form-control" id="matricula" name="matricula" require data-parsley-required-message="Insira o número da matrícula" value="<?= $matricula; ?>">
+                <input type="text" autocomplete="off" class="form-control" id="matricula" name="matricula" require data-parsley-required-message="Insira o número da matrícula" value="<?= $matricula; ?>">
             </div>
 
             <div class="col-12 col-md-4">
                 <label for="data_matricula">Data da matrícula </label>
-                <input type="date" class="form-control " id="data_matricula" name="data_matricula" require data-parsley-required-message="Insira a data de matrícula" value="<?= $data_matricula; ?>">
+                <input type="date" autocomplete="off" class="form-control " id="data_matricula" name="data_matricula" require data-parsley-required-message="Insira a data de matrícula" value="<?= $data_matricula; ?>">
             </div>
 
             <div class="col-12 col-md-4">
                 <label for="turma">Turma</label>
-                <input type="hidden" class="form-control" name="tmid" id="tmid" readonly value="<?= $turma_matricula_id ?>">
-                <input id="turma_id" name="turma_id" class="form-control" list="listaTurma" data-parsley-required-message="Selecione a turma" value="<?php if (!empty($id)) echo "$turma_id - $serie $descricao / $periodo ($ano)"; ?>">
+                <input type="hidden" class="form-control" name="tmid" id="tmid" readonly value="<?= $tmid ?>">
+                <input id="turma_id" autocomplete="off" name="turma_id" class="form-select" list="listaTurma" data-parsley-required-message="Selecione a turma" value="<?php if (!empty($id)) echo "$turma_id - $serie $descricao / $periodo ($ano)"; ?>">
                 <datalist id="listaTurma">
                     <?php
                     $sql = "SELECT t.*,t.id tid, p.*
                                         FROM turma t
                                         INNER JOIN periodo p ON (p.id = t.periodo_id)
+                                        WHERE status = 1
                                         ORDER BY serie";
                     $consulta = $pdo->prepare($sql);
                     $consulta->execute();
@@ -242,28 +277,24 @@ if (!empty($id)) {
         $(document).ready(function() {
 
             $("#cpf").mask("000.000.000-00");
-            $("#telefone1").mask("(00) 0000-00009");
+            $("#telefone1").mask("(00)0000-00009");
             $('#telefone1').blur(function(event) {
                 if ($(this).val().length == 15) {
-                    $('#telefone1').mask('(00) 00000-0009');
+                    $('#telefone1').mask('(00)00000-0009');
                 } else {
-                    $('#telefone1').mask('(00) 0000-00009');
+                    $('#telefone1').mask('(00)0000-00009');
                 }
             });
-            $("#telefone2").mask("(00) 0000-00009");
+            $("#telefone2").mask("(00)0000-00009");
             $('#telefone2').blur(function(event) {
                 if ($(this).val().length == 15) {
-                    $('#telefone2').mask('(00) 00000-0009');
+                    $('#telefone2').mask('(00)00000-0009');
                 } else {
-                    $('#telefone2').mask('(00) 0000-00009');
+                    $('#telefone2').mask('(00)0000-00009');
                 }
             });
             $("#cep").mask("00.000-000");
 
-            //mostra se o jquery esta funcionando ou nao
-            $('#teste').click(function() {
-                console.log("Funcionando o Jquery");
-            });
         });
 
         function verificarCpf(cpf) {

@@ -1,8 +1,13 @@
 <?php
-//verificar se está logado
-// if (!isset($_SESSION['hqs']['id'])) {
-//     exit;
-// }
+if (!isset($_SESSION["facilita_escola"]["id"])) {
+    echo "<script>alert('Erro na requisição da página');location.href='javascript:history.back()'</script>";
+    exit;
+}
+
+if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
+    echo "<script>alert('Erro na requisição da página');location.href='javascript:history.back()'</script>";
+    exit;
+}
 ?>
 
 <!-- Content Header (Page header) -->
@@ -21,7 +26,7 @@
     <div class="float-right">
         <a href="cadastro/recado" class="btn btn-outline-laranja">Novo Recado</a>
     </div>
-
+    <div class="clearfix"></div>
     <div class="card-body p-0 mt-3">
         <table id="tabRecado" class="table table-hover text-nowrap table-responsive-xxl">
             <thead>
@@ -35,14 +40,13 @@
             <tbody>
                 <?php
                 $sql = "SELECT r.id rid, r.*, date_format(r.data_postagem, '%d/%m/%Y') data_postagem,
-                                t.*, p.*, d.*, g.*
+                                g.*, t.*, p.*, d.*
                         FROM recado r
-                        INNER JOIN turma t ON (t.id = r.turma_id) 
-                        INNER JOIN grade g ON (g.turma_id = t.id) 
+                        INNER JOIN grade g ON (g.id = r.grade_id) 
                         INNER JOIN disciplina d ON (d.id = g.disciplina_id)
+                        INNER JOIN turma t ON (t.id = g.turma_id) 
                         INNER JOIN periodo p ON (p.id = t.periodo_id)
-                        GROUP BY r.id DESC";
-
+                        ORDER BY r.id DESC";
 
                 $consulta = $pdo->prepare($sql);
                 $consulta->execute();
@@ -52,8 +56,6 @@
                     $id     = $dados->rid;
                     $titulo = $dados->titulo;
                     $data_postagem = $dados->data_postagem;
-                    //disciplina
-                    $disciplina = $dados->disciplina;
                     //turma
                     $serie      = $dados->serie;
                     $descricao  = $dados->descricao;
@@ -63,7 +65,7 @@
                     echo '<tr>
                             <td>' . $data_postagem . '</td>
                             <td>' . $titulo . '</td>
-                            <td>' . $disciplina . ' - ' . $serie . ' ' . $descricao . ' / ' . $periodo . ' </td>
+                            <td>' . $serie . ' ' . $descricao . ' / ' . $periodo . ' </td>
                 
                             <td><a href="cadastro/recado/' . $id . '" class="btn btn-outline-info btn-sm">
                                     <i class="fas fa-edit"></i>
