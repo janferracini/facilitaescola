@@ -53,7 +53,7 @@
                         <td>' . $nome . '</td>
                         <td>                            
                             <button type="button" class="btn btn-outline-laranja btn-sm" onclick="ativar(' . $id . ')">
-                                <i class="fas fa-trash"></i>
+                                <i class="fas fa-check"></i>
                             </button>
                         </td>
                     </tr>';
