@@ -24,7 +24,7 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
 <div class="container">
 
     <div class="float-right">
-        <a href="lsitar/admin" class="btn btn-outline-laranja">Administradores Ativos</a>
+        <a href="listar/admin" class="btn btn-outline-laranja">Administradores Ativos</a>
     </div>
 
     <div class="clearfix"></div>

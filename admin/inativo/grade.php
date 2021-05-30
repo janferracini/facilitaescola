@@ -49,7 +49,7 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
                     INNER JOIN professor p ON (p.id = g.professor_id)
                     INNER JOIN pessoa pe ON (pe.id = p.pessoa_id)
                     INNER JOIN periodo pd ON (pd.id = t.periodo_id)
-                    WHERE status = 1";
+                    WHERE g.status = 0";
 
                 $consulta = $pdo->prepare($sql);
                 $consulta->execute();
@@ -68,12 +68,9 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
                         <td> ' . $serie . ' ' . $descricao . ' / ' . $periodo . ' (' . $ano . ')</td>
                         <td>' . $disciplina . '</td>
                         <td> ' . $nome . '</td>
-                        <td><a href="cadastro/grade/' . $id . '" class="btn btn-outline-info btn-sm">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                            
-                            <button type="button" class="btn btn-outline-danger btn-sm" onclick="excluir(' . $id . ')">
-                                <i class="fas fa-trash"></i>
+                        <td>
+                            <button type="button" class="btn btn-outline-laranja btn-sm" onclick="ativar(' . $id . ')">
+                                <i class="fas fa-check"></i>
                             </button>
                         </td>
                     </tr>';
@@ -87,12 +84,12 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
 </div>
 
 <script>
-    //função para perguntar se deseja excluir. Se sim, direcionar para o endereço de exclusão
-    function excluir(id) {
+    //função para perguntar se deseja ativar. Se sim, direcionar para o endereço de ativação
+    function ativar(id) {
         //perguntar
-        if (confirm("Deseja mesmo excluir?")) {
+        if (confirm("Deseja mesmo ativar?")) {
             //direcionar para exclusão
-            location.href = "excluir/disciplina/" + id;
+            location.href = "ativar/grade/" + id;
         }
     }
 </script>
