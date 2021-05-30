@@ -1,11 +1,11 @@
 <?php
 if (!isset($_SESSION["facilita_escola"]["id"])) {
-    echo "<script>alert('Erro na requisição da página');location.href='javascript:history.back()'</script>";
+    echo "<script>alert('Erro na requisição da página, faça login novamente para continuar');location.href='sair.php'</script>";
     exit;
 }
 
 if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 3) {
-    echo "<script>alert('Erro na requisição da página');location.href='javascript:history.back()'</script>";
+    echo "<script>alert('Erro na requisição da página, faça login novamente para continuar');location.href='sair.php'</script>";
     exit;
 }
 
@@ -85,7 +85,7 @@ if (!empty($id)) {
 
             <div class="col-sm-12">
                 <label for="titulo"> Título: </label>
-                <input type="text" id="titulo" name="titulo" class="form-control" required data-parsley-required-message="Preencha o título do recado" placeholder="Informe o título do recado" value="<?= $titulo ?>">
+                <input type="text" id="titulo" maxlength="60" minlength="12" name="titulo" class="form-control" required data-parsley-required-message="Preencha o título do recado" placeholder="Informe o título do recado" value="<?= $titulo ?>">
             </div>
 
             <div class="col-sm-12">

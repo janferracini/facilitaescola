@@ -1,11 +1,11 @@
 <?php
 if (!isset($_SESSION["facilita_escola"]["id"])) {
-    echo "<script>alert('Erro na requisição da página');location.href='javascript:history.back()'</script>";
+    echo "<script>alert('Erro na requisição da página, faça login novamente para continuar');location.href='sair.php'</script>";
     exit;
 }
 
 if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
-    echo "<script>alert('Erro na requisição da página');location.href='javascript:history.back()'</script>";
+    echo "<script>alert('Erro na requisição da página, faça login novamente para continuar');location.href='sair.php'</script>";
     exit;
 }
 
@@ -113,7 +113,7 @@ if (!empty($id)) {
             </div>
             <div class="col-sm-12">
                 <label for="atividade">Atividade:</label>
-                <textarea type="text" name="atividade" id="atividade" class="form-control" required data-parsley-required-message="Preencha a descrição da atividade" placeholder="Informe a descrição da atividade"><?php if (!empty($id)) echo $atividade ?></textarea>
+                <textarea type="text" maxlength="1024" name="atividade" id="atividade" class="form-control" required data-parsley-required-message="Preencha a descrição da atividade" placeholder="Informe a descrição da atividade"><?php if (!empty($id)) echo $atividade ?></textarea>
             </div>
             <div class="col-sm-12">
                 <?php

@@ -1,11 +1,11 @@
 <?php
 if (!isset($_SESSION["facilita_escola"]["id"])) {
-    echo "<script>alert('Erro na requisição da página');location.href='javascript:history.back()'</script>";
+    echo "<script>alert('Erro na requisição da página, faça login novamente para continuar');location.href='sair.php'</script>";
     exit;
 }
 
 if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
-    echo "<script>alert('Erro na requisição da página');location.href='javascript:history.back()'</script>";
+    echo "<script>alert('Erro na requisição da página, faça login novamente para continuar');location.href='sair.php'</script>";
     exit;
 }
 
@@ -185,23 +185,24 @@ if (!empty($id)) {
             <!-- LINHA 7 -->
             <div class="col-12 col-md-6">
                 <?php
-                $r = 'required data-parsley-required-message="Insira uma senha"';
-                if (!empty($id)) $r = '';
+                $r = 'required data-parsley-required-message="Insira uma senha" placeholder="Insira a senha inicial de acesso';
+                if (!empty($id)) $r = 'placeholder="Digite a senha caso queira trocar';
                 ?>
                 <label for="senha"> Senha </label>
-                <input type="password" autocomplete="off" class="form-control" id="senha" name="senha" <?= $r; ?> placeholder="Insira a senha inicial de acesso">
+
+                <input type="password" maxlength="25" minlength="6" autocomplete="off" class="form-control" id="senha" name="senha" <?= $r; ?> ">
             </div>
 
-            <div class="col-12 col-md-6">
+            <div class=" col-12 col-md-6">
                 <?php
-                $r = 'required data-parsley-required-message="Insira uma senha" onblur="verificarSenha(this.value)" ';
-                if (!empty($id)) $r = '';
+                $r = 'required data-parsley-required-message="Insira uma senha" onblur="verificarSenha(this.value)" placeholder="Repita a senha inicial de acesso';
+                if (!empty($id)) $r = 'placeholder="Repita a senha caso queira trocar';
                 ?>
                 <label for="confirmaSenha">Confirmar Senha </label>
-                <input type="password" autocomplete="off" class="form-control" id="senha2" name="senha2" <?= $r; ?> placeholder="Insira a senha inicial de acesso">
+                <input type="password" maxlength="25" minlength="6" autocomplete="off" class="form-control" id="senha2" name="senha2" <?= $r; ?> ">
             </div>
 
-            <div class="col-12 col-md-12 mt-3 text-dark">
+            <div class=" col-12 col-md-12 mt-3 text-dark">
                 <hr>
                 <h3>Formação</h3>
             </div>
