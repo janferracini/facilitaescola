@@ -24,7 +24,7 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
 <div class="container">
 
     <div class="float-right">
-        <a href="cadastro/grade" class="btn btn-outline-laranja">Novo Cadastro</a>
+        <a href="listar/grade" class="btn btn-outline-laranja">Grades Ativas</a>
     </div>
 
     <div class="clearfix"></div>
