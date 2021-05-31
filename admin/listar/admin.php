@@ -30,7 +30,7 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
     <div class="clearfix"></div>
 
     <div class="card-body table-responsive p-0 mt-3">
-        <table id="tabAdmin" class="table table-hover text-nowrap">
+        <table id="tabAdmin" class="table table-striped table-bordered table-hover">
             <thead>
                 <tr>
                     <th>Nome</th>
@@ -82,4 +82,23 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
             location.href = "excluir/admin/" + id;
         }
     }
+
+    $(document).ready(function() {
+        $("#tabAdmin").DataTable({
+            "language": {
+                "search": "Filtrar ",
+                "lengthMenu": "Mostrar _MENU_ resultados por página",
+                "zeroRecords": "Registro não encontrado ",
+                "info": "Página _PAGE_ de _PAGES_",
+                "infoEmpty": "Registro não encontrado ",
+                "infoFiltered": "(Busca feita em _MAX_ registros)",
+                "paginate": {
+                    "first": "Primeira",
+                    "last": "Última",
+                    "next": ">",
+                    "previous": "<"
+                }
+            }
+        });
+    })
 </script>
