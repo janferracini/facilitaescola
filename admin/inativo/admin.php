@@ -79,4 +79,23 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
             location.href = "ativar/admin/" + id;
         }
     }
+
+    $(document).ready(function() {
+        $("#tabAdmin").DataTable({
+            "language": {
+                "search": "Filtrar ",
+                "lengthMenu": "Mostrar _MENU_ resultados por página",
+                "zeroRecords": "Registro não encontrado ",
+                "info": "Página _PAGE_ de _PAGES_",
+                "infoEmpty": "Registro não encontrado ",
+                "infoFiltered": "(Busca feita em _MAX_ registros)",
+                "paginate": {
+                    "first": "Primeira",
+                    "last": "Última",
+                    "next": ">",
+                    "previous": "<"
+                }
+            }
+        });
+    })
 </script>
