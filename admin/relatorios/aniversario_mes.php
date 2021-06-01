@@ -93,6 +93,31 @@ if ($_POST) {
             text-align: right !important;
             margin-bottom:30px;
         }
+
+        
+        .btn-outline-laranja {
+            color: var(--laranja);
+            border-color: var(--laranja);
+        }
+
+        .btn-outline-laranja:hover {
+            color: #fff;
+            background-color: var(--laranja);
+            border-color: var(--laranja);
+        }
+
+        @media print {
+            .btn-imprimir {
+                display: none;
+            }
+            .cabecalho{
+                color: #000 !important;
+            }
+
+            footer {
+                display: none;
+            }
+        }
     </style>
     <body>
         <div class="container">
@@ -226,9 +251,14 @@ if ($_POST) {
             </table>';
 
     echo '    
-    <footer class="text-end">
+    <div class="text-end">
         <td>Gerado em ' . date("d/m/Y H:i") . ', por ' . $usuario . ' </td>
-    </footer>
+        
+</div>
+<form>
+            <input type="button" class="float-right btn mb-3 btn-outline-laranja btn-imprimir" value="Imprimir" onClick="window.print()"/>
+            <div class="clearfix"></div>
+        </form>
     </div>
     </body>';
 } else {
