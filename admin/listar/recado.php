@@ -31,7 +31,7 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
     </div>
 
 
-    <div class="card-body p-0 mt-3">
+    <div class="card-body p-0 mt-3 pb-3">
         <table id="tabRecado" class="table ui celled table table-striped table-bordered table-hover">
             <thead>
                 <tr>

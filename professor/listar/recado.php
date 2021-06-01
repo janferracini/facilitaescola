@@ -23,12 +23,16 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 3) {
 <!-- /.content-header -->
 <div class="container">
 
-    <div class="float-right">
-        <a href="cadastro/recado" class="btn btn-outline-laranja">Novo Recado</a>
+    <div class="container">
+        <div class="float-right">
+            <a href="cadastro/recado" class="btn btn-outline-laranja">Novo Recado</a>
+        </div>
+
+        <div class="clearfix"></div>
     </div>
 
-    <div class="card-body p-0 mt-3">
-        <table id="tabRecado" class="table table-hover text-nowrap table-responsive-xxl">
+    <div class="card-body p-0 mt-3 pb-3">
+        <table id="tabRecado" class="table ui celled table table-striped table-bordered table-hover">
             <thead>
                 <tr>
                     <th style="width: 20%;">Data Postagem</th>
@@ -85,4 +89,25 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 3) {
             </tbody>
         </table>
     </div>
+
+    <script>
+        $(document).ready(function() {
+            $("#tabRecado").DataTable({
+                "language": {
+                    "search": "Filtrar ",
+                    "lengthMenu": "Mostrar _MENU_ resultados por página",
+                    "zeroRecords": "Registro não encontrado ",
+                    "info": "Página _PAGE_ de _PAGES_",
+                    "infoEmpty": "Registro não encontrado ",
+                    "infoFiltered": "(Busca feita em _MAX_ registros)",
+                    "paginate": {
+                        "first": "Primeira",
+                        "last": "Última",
+                        "next": "PRÓXIMO",
+                        "previous": "ANTERIOR"
+                    }
+                }
+            });
+        })
+    </script>
 </div>

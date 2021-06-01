@@ -56,6 +56,8 @@ $base = "$h://$site:$porta/$url"
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.semanticui.min.css">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
@@ -244,7 +246,7 @@ $base = "$h://$site:$porta/$url"
   <!-- <script src="plugins/jquery/jquery.min.js"></script> -->
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script src="../plugins/mask/jquery.mask.min.js"></script>
-  <script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+  <!-- <script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script> -->
   <!-- <script src="../plugins/js/jquery.overlayScrollbars.min.js"></script> -->
   <script src="../dist/js/adminlte.js"></script>
 
@@ -256,6 +258,11 @@ $base = "$h://$site:$porta/$url"
   <script src="../plugins/chart.js/Chart.min.js"></script>
   <!-- Sparkline -->
   <script src="../plugins/sparklines/sparkline.js"></script>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.24/js/dataTables.semanticui.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
 </body>
 
 </html>

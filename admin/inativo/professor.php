@@ -27,7 +27,7 @@
         <div class="clearfix"></div>
     </div>
 
-    <div class="card-body p-0 mt-3">
+    <div class="card-body p-0 mt-3 pb-3">
         <table id="tabProfessor" class="table ui celled table table-striped table-bordered table-hover">
             <thead>
                 <tr>

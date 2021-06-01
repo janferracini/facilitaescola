@@ -24,8 +24,8 @@ $idaluno = $_SESSION['facilita_escola']['id'];
 </div>
 <!-- /.content-header -->
 <div class="container">
-    <div class="card-body table-responsive p-0 mt-3">
-        <table id="tabDisciplina" class="table table-hover text-nowrap">
+    <div class="card-body p-0 mt-3 pb-3">
+        <table id="tabAtividade" class="table ui celled table table-striped table-bordered table-hover">
             <thead>
                 <tr>
                     <th style="width: 20%;">Data de Postagem</th>
@@ -93,4 +93,23 @@ $idaluno = $_SESSION['facilita_escola']['id'];
             location.href = "excluir/atividade/" + id;
         }
     }
+
+    $(document).ready(function() {
+        $("#tabAtividade").DataTable({
+            "language": {
+                "search": "Filtrar ",
+                "lengthMenu": "Mostrar _MENU_ resultados por página",
+                "zeroRecords": "Registro não encontrado ",
+                "info": "Página _PAGE_ de _PAGES_",
+                "infoEmpty": "Registro não encontrado ",
+                "infoFiltered": "(Busca feita em _MAX_ registros)",
+                "paginate": {
+                    "first": "Primeira",
+                    "last": "Última",
+                    "next": "PRÓXIMO",
+                    "previous": "ANTERIOR"
+                }
+            }
+        });
+    })
 </script>
