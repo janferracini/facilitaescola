@@ -23,7 +23,7 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
 <!-- /.content-header -->
 <div class="container">
     <div class="card-body p-0 mt-3">
-        <table id="tabMensagem" class="table table-hover text-nowrap table-responsive-xxl">
+        <table id="tabMensagem" class="table ui celled table table-striped table-bordered table-hover">
             <thead>
                 <tr>
                     <th>Data de Envio</th>
@@ -122,8 +122,8 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
                     "paginate": {
                         "first": "Primeira",
                         "last": "Última",
-                        "next": ">",
-                        "previous": "<"
+                        "next": "PRÓXIMO",
+                        "previous": "ANTERIOR"
                     }
                 }
             });

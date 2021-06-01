@@ -23,14 +23,16 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
 <!-- /.content-header -->
 <div class="container">
 
-    <div class="float-right">
-        <a href="listar/grade" class="btn btn-outline-laranja">Grades Ativas</a>
+    <div class="container">
+        <div class="float-right">
+            <a href="listar/grade" class="btn btn-outline-laranja">Grades Ativas</a>
+        </div>
+
+        <div class="clearfix"></div>
     </div>
 
-    <div class="clearfix"></div>
-
-    <div class="card-body table-responsive p-0 mt-3">
-        <table id="tabGrade" class="table table-hover text-nowrap">
+    <div class="card-body p-0 mt-3">
+        <table id="tabGrade" class="table ui celled table table-striped table-bordered table-hover">
             <thead>
                 <tr>
                     <th>Turma</th>
@@ -105,8 +107,8 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
                 "paginate": {
                     "first": "Primeira",
                     "last": "Última",
-                    "next": ">",
-                    "previous": "<"
+                    "next": "PRÓXIMO",
+                    "previous": "ANTERIOR"
                 }
             }
         });
