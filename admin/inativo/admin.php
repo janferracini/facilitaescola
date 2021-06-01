@@ -23,18 +23,20 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
 <!-- /.content-header -->
 <div class="container">
 
-    <div class="float-right">
-        <a href="listar/admin" class="btn btn-outline-laranja">Administradores Ativos</a>
+    <div class="container">
+        <div class="float-right">
+            <a href="listar/admin" class="btn btn-outline-laranja">Administradores Ativos</a>
+        </div>
+
+        <div class="clearfix"></div>
     </div>
 
-    <div class="clearfix"></div>
-
-    <div class="card-body table-responsive p-0 mt-3">
-        <table id="tabAdmin" class="table table-hover text-nowrap">
+    <div class="card-body p-0 mt-3">
+        <table id="tabAdmin" class="table ui celled table table-striped table-bordered table-hover">
             <thead>
                 <tr>
                     <th>Nome</th>
-                    <th style="width: 20%;">Ação</th>
+                    <th width=20%>Ação</th>
                 </tr>
             </thead>
             <tbody>
@@ -92,8 +94,8 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
                 "paginate": {
                     "first": "Primeira",
                     "last": "Última",
-                    "next": ">",
-                    "previous": "<"
+                    "next": "PRÓXIMO",
+                    "previous": "ANTERIOR"
                 }
             }
         });
