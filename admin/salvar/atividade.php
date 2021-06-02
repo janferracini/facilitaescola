@@ -46,8 +46,8 @@ if ($_POST) {
 
     $extencoes = ['jpg', 'jpeg', 'doc', 'docx', 'odt', 'pdf'];
     if (!in_array($extensao, $extencoes) === true) {
-        echo "<script>alert('Selecione um arquivo válido');</script>";
-        echo print_r($_FILES);
+        echo "<script>alert('Selecione um arquivo válido. Caso necessite, exporte seu documento no formato PDF antes de fazer o envio.');history.back();</script>";
+        //echo print_r($_FILES);
         exit;
     }
 
