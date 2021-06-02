@@ -33,13 +33,7 @@ if ($_POST) {
         exit;
     }
 
-    // $tipo = strrchr(".", $_FILES['arquivo']['type']);
-    // $extencoes = ['image/jpeg', 'application/msword', 'application/pdf', 'application/vnd.oasis.opendocument.text'];
-    // if (in_array($tipo, $extencoes) === true) {
-    //     echo "<script>alert('Selecione um arquivo válido');</script>";
-    //     echo print_r($_FILES);
-    //     exit;
-    // }
+
 
     $pdo->beginTransaction();
     //salva a hora da máquina + a id de quem está na sessão como nome do arquivo
@@ -48,6 +42,14 @@ if ($_POST) {
     $extensao = end($getExtensao);
     $arquivo = time() . "-" . $_SESSION["facilita_escola"]["nome"] . "." . $extensao;
     $pasta = "../atividades/";
+
+
+    $extencoes = ['jpg', 'jpeg', 'doc', 'docx', 'odt', 'pdf'];
+    if (!in_array($extensao, $extencoes) === true) {
+        echo "<script>alert('Selecione um arquivo válido');</script>";
+        echo print_r($_FILES);
+        exit;
+    }
 
     if (empty($id)) {
 
