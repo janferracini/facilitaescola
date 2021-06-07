@@ -23,11 +23,13 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
 <!-- /.content-header -->
 <div class="container">
 
-    <div class="float-right">
-        <a href="cadastro/aluno" class="btn btn-outline-laranja">Novo Aluno</a>
-    </div>
+    <div class="container">
+        <div class="float-right">
+            <a href="cadastro/aluno" class="btn btn-outline-laranja">Novo Aluno</a>
+        </div>
 
-    <div class="clearfix"></div>
+        <div class="clearfix"></div>
+    </div>
 
     <div class="card-body p-0 mt-3 pb-3">
         <table id="tabAluno" class="table ui celled table table-bordered table-hover">

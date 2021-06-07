@@ -41,7 +41,7 @@ $base = "$h://$site:$porta/$url"
 
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
+  <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css"> -->
 
 
   <!-- Font Awesome Icons -->
@@ -71,8 +71,6 @@ $base = "$h://$site:$porta/$url"
   <!-- <link rel="stylesheet" href="../plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css"> -->
 
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/dataTables.semanticui.min.css">
-</head>
-
 
 <body class="hold-transition sidebar-mini">
   <?php
@@ -360,9 +358,7 @@ $base = "$h://$site:$porta/$url"
   <!-- Sparkline -->
   <script src="../plugins/sparklines/sparkline.js"></script>
 
-
   <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-
 </body>
 
 </html>

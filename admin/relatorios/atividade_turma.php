@@ -81,6 +81,31 @@ if ($_POST) {
         .mt-1 {
             margin-top: 1em;
         }
+
+        
+        .btn-outline-laranja {
+            color: var(--laranja);
+            border-color: var(--laranja);
+        }
+
+        .btn-outline-laranja:hover {
+            color: #fff;
+            background-color: var(--laranja);
+            border-color: var(--laranja);
+        }
+
+        @media print {
+            .btn-imprimir {
+                display: none;
+            }
+            .cabecalho{
+                color: #000 !important;
+            }
+
+            footer {
+                display: none;
+            }
+        }
     </style>
     <body >
         <table style="width:100%">
@@ -146,6 +171,9 @@ if ($_POST) {
     </tfoot>
     
 </table>
+<form>
+<input type="button" class="float-right btn btn-outline-laranja btn-imprimir" value="Imprimir" onClick="window.print()"/>
+</form>
         </div>
     </body>';
 }

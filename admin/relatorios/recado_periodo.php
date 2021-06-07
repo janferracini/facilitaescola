@@ -95,6 +95,31 @@ if ($_POST) {
         .text-end {
             text-align: right !important;
         }
+
+        
+        .btn-outline-laranja {
+            color: var(--laranja);
+            border-color: var(--laranja);
+        }
+
+        .btn-outline-laranja:hover {
+            color: #fff;
+            background-color: var(--laranja);
+            border-color: var(--laranja);
+        }
+
+        @media print {
+            .btn-imprimir {
+                display: none;
+            }
+            .cabecalho{
+                color: #000 !important;
+            }
+
+            footer {
+                display: none;
+            }
+        }
     </style>
     <body >
         <table style="width:100%">
@@ -158,7 +183,11 @@ if ($_POST) {
                 <tfoot >
                 <td colspan="3" class="text-end" >Gerado em ' . date("d/m/Y H:i") . ', por ' . $usuario . ' </td>
                 </tfoot>
-            </table> </div>
+            </table>
+            <form>
+<input type="button" class="float-right btn btn-outline-laranja btn-imprimir" value="Imprimir" onClick="window.print()"/>
+</form>
+</div>
     </body>';
 } else {
     echo "
