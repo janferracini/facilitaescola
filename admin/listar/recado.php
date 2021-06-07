@@ -23,8 +23,11 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
 <!-- /.content-header -->
 <div class="container">
 
-    <div class="float-right">
-        <a href="cadastro/recado" class="btn btn-outline-laranja">Novo Recado</a>
+    <div class="container">
+        <div class="float-right">
+            <a href="cadastro/recado" class="btn btn-outline-laranja">Novo Recado</a>
+        </div>
+        <div class="clearfix"></div>
     </div>
 
     <div class="clearfix"></div>
