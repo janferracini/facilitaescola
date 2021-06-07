@@ -119,7 +119,7 @@ if ($_POST) {
             </tr>
         </table>
         <div class="container">
-            <h2 class="centralizar mt-1">Relatório de Alunor por Professor <br>' . $professor . '</h2>
+            <h2 class="centralizar mt-1">Relatório de Alunos por Professor <br>' . $professor . '</h2>
             <table class="busca table">
                 <thead border="1">
                     <th>Aluno</th>
