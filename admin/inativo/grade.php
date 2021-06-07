@@ -31,14 +31,14 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
         <div class="clearfix"></div>
     </div>
 
-    <div class="card-body p-0 mt-3">
-        <table id="tabGrade" class="table ui celled table table-striped table-bordered table-hover">
+    <div class="card-body p-0 mt-3 pb-3">
+        <table id="tabGrade" class="table ui celled table table-bordered table-hover">
             <thead>
                 <tr>
                     <th>Turma</th>
                     <th style="width: 25%;">Disciplina</th>
                     <th style="width: 25%;">Professor</th>
-                    <th style="width: 20%;">Ações</th>
+                    <th style="width: 20%;">Ativar</th>
                 </tr>
             </thead>
             <tbody>

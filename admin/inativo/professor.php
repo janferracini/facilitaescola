@@ -27,12 +27,12 @@
         <div class="clearfix"></div>
     </div>
 
-    <div class="card-body p-0 mt-3">
-        <table id="tabProfessor" class="table ui celled table table-striped table-bordered table-hover">
+    <div class="card-body p-0 mt-3 pb-3">
+        <table id="tabProfessor" class="table ui celled table table-bordered table-hover">
             <thead>
                 <tr>
                     <th>Nome</th>
-                    <th style="width: 20%;">Ação</th>
+                    <th style="width: 20%;">Ativar</th>
                 </tr>
             </thead>
             <tbody>

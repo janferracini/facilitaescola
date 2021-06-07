@@ -28,11 +28,8 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
             <a href="cadastro/grade" class="btn btn-outline-laranja">Novo Cadastro</a>
         </div>
 
-        <div class="clearfix"></div>
-    </div>
-
-    <div class="card-body p-0 mt-3">
-        <table id="tabGrade" class="table ui celled table table-striped table-bordered table-hover">
+    <div class="card-body p-0 mt-3 pb-3">
+        <table id="tabGrade" class="table ui celled table table-bordered table-hover">
             <thead>
                 <tr>
                     <th>Turma</th>
