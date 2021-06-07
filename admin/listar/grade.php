@@ -28,20 +28,22 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
             <a href="cadastro/grade" class="btn btn-outline-laranja">Novo Cadastro</a>
         </div>
 
-    <div class="card-body p-0 mt-3 pb-3">
-        <table id="tabGrade" class="table ui celled table table-bordered table-hover">
-            <thead>
-                <tr>
-                    <th>Turma</th>
-                    <th style="width: 25%;">Disciplina</th>
-                    <th style="width: 25%;">Professor</th>
-                    <th style="width: 20%;">Inativar</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
+        <div class="clearfix"></div>
 
-                $sql = "SELECT  g.id gid, g.*, t.*, d.*, p.*, pe.nome, pd.*
+        <div class="card-body p-0 mt-3 pb-3">
+            <table id="tabGrade" class="table ui celled table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Turma</th>
+                        <th style="width: 25%;">Disciplina</th>
+                        <th style="width: 25%;">Professor</th>
+                        <th style="width: 20%;">Inativar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+
+                    $sql = "SELECT  g.id gid, g.*, t.*, d.*, p.*, pe.nome, pd.*
                     FROM grade g
                     INNER JOIN turma t ON (t.id = g.turma_id)
                     INNER JOIN disciplina d ON (d.id = g.disciplina_id)
@@ -50,20 +52,20 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
                     INNER JOIN periodo pd ON (pd.id = t.periodo_id)
                     WHERE g.status = 1";
 
-                $consulta = $pdo->prepare($sql);
-                $consulta->execute();
+                    $consulta = $pdo->prepare($sql);
+                    $consulta->execute();
 
-                while ($dados = $consulta->fetch(PDO::FETCH_OBJ)) {
-                    // Separar os dados
-                    $id = $dados->gid;
-                    $serie = $dados->serie;
-                    $descricao = $dados->descricao;
-                    $ano = $dados->ano;
-                    $disciplina = $dados->disciplina;
-                    $nome = $dados->nome;
-                    $periodo = $dados->periodo;
+                    while ($dados = $consulta->fetch(PDO::FETCH_OBJ)) {
+                        // Separar os dados
+                        $id = $dados->gid;
+                        $serie = $dados->serie;
+                        $descricao = $dados->descricao;
+                        $ano = $dados->ano;
+                        $disciplina = $dados->disciplina;
+                        $nome = $dados->nome;
+                        $periodo = $dados->periodo;
 
-                    echo '<tr>
+                        echo '<tr>
                         <td> ' . $serie . ' ' . $descricao . ' / ' . $periodo . ' (' . $ano . ')</td>
                         <td>' . $disciplina . '</td>
                         <td> ' . $nome . '</td>
@@ -73,40 +75,40 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
                             </button>
                         </td>
                     </tr>';
-                }
+                    }
 
-                ?>
-            </tbody>
-        </table>
+                    ?>
+                </tbody>
+            </table>
+        </div>
+        <!-- /.card-body -->
     </div>
-    <!-- /.card-body -->
-</div>
 
-<script>
-    function inativar(id) {
-        //perguntar
-        if (confirm("Deseja mesmo inativar?")) {
-            //direcionar para exclusão
-            location.href = "excluir/grade/" + id;
-        }
-    }
-
-    $(document).ready(function() {
-        $("#tabGrade").DataTable({
-            "language": {
-                "search": "Filtrar ",
-                "lengthMenu": "Mostrar _MENU_ resultados por página",
-                "zeroRecords": "Registro não encontrado ",
-                "info": "Página _PAGE_ de _PAGES_",
-                "infoEmpty": "Registro não encontrado ",
-                "infoFiltered": "(Busca feita em _MAX_ registros)",
-                "paginate": {
-                    "first": "Primeira",
-                    "last": "Última",
-                    "next": "PRÓXIMO",
-                    "previous": "ANTERIOR"
-                }
+    <script>
+        function inativar(id) {
+            //perguntar
+            if (confirm("Deseja mesmo inativar?")) {
+                //direcionar para exclusão
+                location.href = "excluir/grade/" + id;
             }
-        });
-    })
-</script>
+        }
+
+        $(document).ready(function() {
+            $("#tabGrade").DataTable({
+                "language": {
+                    "search": "Filtrar ",
+                    "lengthMenu": "Mostrar _MENU_ resultados por página",
+                    "zeroRecords": "Registro não encontrado ",
+                    "info": "Página _PAGE_ de _PAGES_",
+                    "infoEmpty": "Registro não encontrado ",
+                    "infoFiltered": "(Busca feita em _MAX_ registros)",
+                    "paginate": {
+                        "first": "Primeira",
+                        "last": "Última",
+                        "next": "PRÓXIMO",
+                        "previous": "ANTERIOR"
+                    }
+                }
+            });
+        })
+    </script>
