@@ -1,11 +1,11 @@
 <?php
 if (!isset($_SESSION["facilita_escola"]["id"])) {
-    echo "<script>alert('Erro na requisição da página, faça login novamente para continuar');location.href='sair.php'</script>";
+    echo "<script>alert('Erro na requisição da página');location.href='javascript:history.back()'</script>";
     exit;
 }
 
 if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
-    echo "<script>alert('Erro na requisição da página, faça login novamente para continuar');location.href='sair.php'</script>";
+    echo "<script>alert('Erro na requisição da página');location.href='javascript:history.back()'</script>";
     exit;
 }
 ?>
@@ -15,7 +15,7 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
     <div class="container-fluid">
         <div class="row">
             <div>
-                <h1 class="m-0 text-dark">Alunos Cadastrados</h1>
+                <h1 class="m-0 text-dark">Alunos Inativos</h1>
             </div><!-- /.col -->
         </div><!-- /.row -->
     </div><!-- /.container-fluid -->
@@ -24,7 +24,7 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
 <div class="container">
 
     <div class="float-right">
-        <a href="cadastro/aluno" class="btn btn-outline-laranja">Novo Aluno</a>
+        <a href="listar/aluno" class="btn btn-outline-laranja">Alunos Ativos</a>
     </div>
 
     <div class="clearfix"></div>
@@ -36,7 +36,7 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
                     <th>Nome</th>
                     <th width=15%>Matrícula</th>
                     <th width=25%>Turma / Período</th>
-                    <th width=20%>Ações</th>
+                    <th width=20%>Ativar</th>
                 </tr>
             </thead>
             <tbody>
@@ -48,7 +48,7 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
                     INNER JOIN turma_matricula tm ON (tm.matricula_id = m.id)
                     INNER JOIN turma t ON (t.id = tm.turma_id)
                     INNER JOIN periodo pe ON (pe.id = t.periodo_id)
-                    WHERE p.tipo_cadastro = 2 AND p.status = 1
+                    WHERE p.tipo_cadastro = 2 AND p.status = 0
                     ORDER BY nome";
 
                 $consulta = $pdo->prepare($sql);
@@ -66,12 +66,9 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
                         <td>' . $nome . '</td>
                         <td>' . $matricula . '</td>
                         <td>' . $serie . ' ' . $descricao . ' / ' . $periodo . '</td>
-                        <td><a href="cadastro/aluno/' . $id . '" class="btn btn-outline-info btn-sm">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                            
-                            <button type="button" class="btn btn-outline-danger btn-sm" onclick="inativar(' . $id . ')">
-                                <i class="fas fa-times-circle"></i>
+                        <td>                            
+                            <button type="button" class="btn btn-outline-laranja btn-sm" onclick="ativar(' . $id . ')">
+                                <i class="fas fa-check-circle"></i>
                             </button>
                         </td>
                     </tr>';
@@ -85,12 +82,12 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
 </div>
 
 <script>
-    //função para perguntar se deseja excluir. Se sim, direcionar para o endereço de exclusão
-    function inativar(id) {
+    //função para perguntar se deseja ativar. Se sim, direcionar para o endereço de ativação
+    function ativar(id) {
         //perguntar
-        if (confirm("Deseja mesmo inativar?")) {
+        if (confirm("Deseja mesmo ativar?")) {
             //direcionar para exclusão
-            location.href = "excluir/aluno/" + id;
+            location.href = "ativar/aluno/" + id;
         }
     }
 

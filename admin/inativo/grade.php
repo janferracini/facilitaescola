@@ -1,11 +1,11 @@
 <?php
 if (!isset($_SESSION["facilita_escola"]["id"])) {
-    echo "<script>alert('Erro na requisição da página, faça login novamente para continuar');location.href='sair.php'</script>";
+    echo "<script>alert('Erro na requisição da página');location.href='javascript:history.back()'</script>";
     exit;
 }
 
 if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
-    echo "<script>alert('Erro na requisição da página, faça login novamente para continuar');location.href='sair.php'</script>";
+    echo "<script>alert('Erro na requisição da página');location.href='javascript:history.back()'</script>";
     exit;
 }
 ?>
@@ -15,7 +15,7 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
     <div class="container-fluid">
         <div class="row">
             <div>
-                <h1 class="m-0 text-dark">Grade</h1>
+                <h1 class="m-0 text-dark">Grades Inativas</h1>
             </div><!-- /.col -->
         </div><!-- /.row -->
     </div><!-- /.container-fluid -->
@@ -24,8 +24,10 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
 <div class="container">
 
     <div class="float-right">
-        <a href="cadastro/grade" class="btn btn-outline-laranja">Novo Cadastro</a>
+        <a href="listar/grade" class="btn btn-outline-laranja">Grades Ativas</a>
     </div>
+
+    <div class="clearfix"></div>
 
     <div class="card-body p-0 mt-3 pb-3">
         <table id="tabGrade" class="table ui celled table table-bordered table-hover">
@@ -34,7 +36,7 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
                     <th>Turma</th>
                     <th style="width: 25%;">Disciplina</th>
                     <th style="width: 25%;">Professor</th>
-                    <th style="width: 20%;">Inativar</th>
+                    <th style="width: 20%;">Ativar</th>
                 </tr>
             </thead>
             <tbody>
@@ -47,28 +49,28 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
                     INNER JOIN professor p ON (p.id = g.professor_id)
                     INNER JOIN pessoa pe ON (pe.id = p.pessoa_id)
                     INNER JOIN periodo pd ON (pd.id = t.periodo_id)
-                    WHERE g.status = 1";
+                    WHERE g.status = 0";
 
                 $consulta = $pdo->prepare($sql);
                 $consulta->execute();
 
                 while ($dados = $consulta->fetch(PDO::FETCH_OBJ)) {
                     // Separar os dados
-                    $id = $dados->gid;
-                    $serie = $dados->serie;
-                    $descricao = $dados->descricao;
-                    $ano = $dados->ano;
+                    $id         = $dados->gid;
+                    $serie      = $dados->serie;
+                    $descricao  = $dados->descricao;
+                    $ano        = $dados->ano;
                     $disciplina = $dados->disciplina;
-                    $nome = $dados->nome;
-                    $periodo = $dados->periodo;
+                    $nome       = $dados->nome;
+                    $periodo    = $dados->periodo;
 
                     echo '<tr>
                         <td> ' . $serie . ' ' . $descricao . ' / ' . $periodo . ' (' . $ano . ')</td>
                         <td>' . $disciplina . '</td>
                         <td> ' . $nome . '</td>
                         <td>
-                            <button type="button" class="btn btn-outline-danger btn-sm" onclick="inativar(' . $id . ')">
-                                <i class="fas fa-times-circle"></i>
+                            <button type="button" class="btn btn-outline-laranja btn-sm" onclick="ativar(' . $id . ')">
+                                <i class="fas fa-check-circle"></i>
                             </button>
                         </td>
                     </tr>';
@@ -82,11 +84,12 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
 </div>
 
 <script>
-    function inativar(id) {
+    //função para perguntar se deseja ativar. Se sim, direcionar para o endereço de ativação
+    function ativar(id) {
         //perguntar
-        if (confirm("Deseja mesmo inativar?")) {
+        if (confirm("Deseja mesmo ativar?")) {
             //direcionar para exclusão
-            location.href = "excluir/grade/" + id;
+            location.href = "ativar/grade/" + id;
         }
     }
 

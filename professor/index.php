@@ -55,7 +55,10 @@ $base = "$h://$site:$porta/$url"
   <link rel="stylesheet" href="../dist/css/style.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-</head>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
 
 <body class="hold-transition sidebar-mini">
 
@@ -235,6 +238,8 @@ $base = "$h://$site:$porta/$url"
   <script src="../plugins/chart.js/Chart.min.js"></script>
   <script src="../dist/js/demo.js"></script>
   <script src="../dist/js/pages/dashboard3.js"></script>
+
+  <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 </body>
 
 </html>

@@ -57,7 +57,7 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 3) {
 <!-- /.content-header -->
 <div class="container">
     <div class="card-body table-responsive p-0 mt-3">
-        <table id="tabAluno" class="table table-hover text-nowrap">
+        <table id="tabTurma" class="table ui celled table table-bordered table-hover">
             <thead>
                 <tr>
                     <th>Nome</th>
@@ -93,5 +93,25 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 3) {
             </tbody>
         </table>
     </div>
-
 </div>
+
+<script>
+    $(document).ready(function() {
+        $("#tabTurma").DataTable({
+            "language": {
+                "search": "Filtrar ",
+                "lengthMenu": "Mostrar _MENU_ resultados por página",
+                "zeroRecords": "Registro não encontrado ",
+                "info": "Página _PAGE_ de _PAGES_",
+                "infoEmpty": "Registro não encontrado ",
+                "infoFiltered": "(Busca feita em _MAX_ registros)",
+                "paginate": {
+                    "first": "Primeira",
+                    "last": "Última",
+                    "next": "PRÓXIMO",
+                    "previous": "ANTERIOR"
+                }
+            }
+        });
+    })
+</script>
