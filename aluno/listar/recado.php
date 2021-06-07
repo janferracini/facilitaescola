@@ -24,7 +24,7 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 2) {
 <!-- /.content-header -->
 <div class="container">
     <div class="card-body p-0 mt-3 pb-3">
-        <table id="tabRecado" class="table ui celled table table-striped table-bordered table-hover">
+        <table id="tabRecado" class="table ui celled table table-bordered table-hover">
             <thead>
                 <tr>
                     <th style="width: 20%;">Data de Postagem</th>
@@ -119,7 +119,7 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 2) {
         });
 
         $(document).ready(function() {
-            $("#tabAluno").DataTable({
+            $("#tabRecado").DataTable({
                 "language": {
                     "search": "Filtrar ",
                     "lengthMenu": "Mostrar _MENU_ resultados por página",

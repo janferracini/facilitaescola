@@ -19,20 +19,18 @@
 <!-- /.content-header -->
 <div class="container">
 
-    <div class="container">
-        <div class="float-right">
-            <a href="listar/professor" class="btn btn-outline-laranja">Professores Ativos</a>
-        </div>
-
-        <div class="clearfix"></div>
+    <div class="float-right">
+        <a href="listar/professor" class="btn btn-outline-laranja">Professores Ativos</a>
     </div>
 
+    <div class="clearfix"></div>
+
     <div class="card-body p-0 mt-3 pb-3">
-        <table id="tabProfessor" class="table ui celled table table-striped table-bordered table-hover">
+        <table id="tabProfessor" class="table ui celled table table-bordered table-hover">
             <thead>
                 <tr>
                     <th>Nome</th>
-                    <th style="width: 20%;">Ação</th>
+                    <th style="width: 20%;">Ativar</th>
                 </tr>
             </thead>
             <tbody>

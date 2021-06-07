@@ -40,6 +40,10 @@ $base = "$h://$site:$porta/$url"
 
   <link rel="shortcut icon" href="../docs/assets/img/FE-icone.ico">
 
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
+
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
   <!-- IonIcons -->
@@ -55,9 +59,6 @@ $base = "$h://$site:$porta/$url"
   <link rel="stylesheet" href="../dist/css/style.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.semanticui.min.css">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
@@ -243,10 +244,10 @@ $base = "$h://$site:$porta/$url"
 
   <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-  <!-- <script src="plugins/jquery/jquery.min.js"></script> -->
+  <script src="plugins/jquery/jquery.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script src="../plugins/mask/jquery.mask.min.js"></script>
-  <!-- <script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script> -->
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
   <!-- <script src="../plugins/js/jquery.overlayScrollbars.min.js"></script> -->
   <script src="../dist/js/adminlte.js"></script>
 
@@ -259,10 +260,7 @@ $base = "$h://$site:$porta/$url"
   <!-- Sparkline -->
   <script src="../plugins/sparklines/sparkline.js"></script>
 
-  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-  <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
-  <script src="https://cdn.datatables.net/1.10.24/js/dataTables.semanticui.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 </body>
 
 </html>

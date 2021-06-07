@@ -25,7 +25,7 @@ $idaluno = $_SESSION['facilita_escola']['id'];
 <!-- /.content-header -->
 <div class="container">
     <div class="card-body p-0 mt-3 pb-3">
-        <table id="tabAtividade" class="table ui celled table table-striped table-bordered table-hover">
+        <table id="tabAtividade" class="table ui celled table table-bordered table-hover">
             <thead>
                 <tr>
                     <th style="width: 20%;">Data de Postagem</th>

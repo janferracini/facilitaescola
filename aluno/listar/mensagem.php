@@ -23,7 +23,7 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 2) {
 <!-- /.content-header -->
 <div class="container">
     <div class="card-body p-0 mt-3 pb-3">
-        <table id="tabMensagem" class="table ui celled table table-striped table-bordered table-hover">
+        <table id="tabMensagem" class="table ui celled table table-bordered table-hover">
             <thead>
                 <tr>
                     <th>Data de Envio</th>

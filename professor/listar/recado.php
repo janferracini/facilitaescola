@@ -32,7 +32,7 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 3) {
     </div>
 
     <div class="card-body p-0 mt-3 pb-3">
-        <table id="tabRecado" class="table ui celled table table-striped table-bordered table-hover">
+        <table id="tabRecado" class="table ui celled table table-bordered table-hover">
             <thead>
                 <tr>
                     <th style="width: 20%;">Data Postagem</th>
