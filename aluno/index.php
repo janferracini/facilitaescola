@@ -70,14 +70,6 @@ $base = "$h://$site:$porta/$url"
   <?php
   $pagina = $pagina . ".php";
 
-
-  /* VALIDAÇÃO DE LOGADO. SE NÃO TIVER, IR PARA PÁGINA DE LOGIN
-  if (!isset($_SESSION["facilita_escola"]["id"])) {
-    //incluir login
-    include $pagina;
-  } else { 
-  */
-
   ?>
 
   <div class="wrapper">
@@ -164,15 +156,12 @@ $base = "$h://$site:$porta/$url"
     </aside>
 
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
+    <div class="content-wrapper pb-3">
       <!-- Main content -->
       <div class="content">
         <div class="container-fluid">
-
           <?php
-
           $pagina = "home.php";
-
           if (isset($_GET["parametro"])) {
             //recuperar o parametro
             $p = trim($_GET["parametro"]);
