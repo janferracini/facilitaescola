@@ -69,8 +69,8 @@ $base = "$h://$site:$porta/$url"
   <link rel="stylesheet" href="../dist/css/style.css">
   <!-- Tempusdominus Bbootstrap 4 -->
   <!-- <link rel="stylesheet" href="../plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css"> -->
+</head>
 
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/dataTables.semanticui.min.css">
 
 <body class="hold-transition sidebar-mini">
   <?php
@@ -275,7 +275,7 @@ $base = "$h://$site:$porta/$url"
       </aside>
 
       <!-- Content Wrapper. Contains page content -->
-      <div class="content-wrapper pb-3">
+      <div class="content-wrapper">
         <!-- Main content -->
         <div class="content">
           <div class="container-fluid">
@@ -358,7 +358,6 @@ $base = "$h://$site:$porta/$url"
   <!-- Sparkline -->
   <script src="../plugins/sparklines/sparkline.js"></script>
 
-  <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 </body>
 
 </html>
