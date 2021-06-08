@@ -17,7 +17,7 @@ if ($_POST) {
     $id = $serie = $descricao = $ano = $periodo_id = "";
 
     foreach ($_POST as $key => $value) {
-        $$key = trim($value);
+        $$key = trim(strip_tags($value));
     }
     $periodo_id = getPeriodo($periodo_id);
     if (empty($serie)) {
