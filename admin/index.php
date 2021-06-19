@@ -135,7 +135,7 @@ $base = "$h://$site:$porta/$url"
                 <a href="" class="nav-link">
                   <i class="nav-icon far fa-plus-square"></i>
                   <p>
-                    Cadastro
+                    Cadastros
                     <i class="fas fa-angle-left right"></i>
                   </p>
                 </a>
@@ -182,7 +182,7 @@ $base = "$h://$site:$porta/$url"
               </li>
 
               <li class="nav-item">
-                <a href="listar/atividade" class="nav-link">
+                <a href="cadastro/atividade" class="nav-link">
                   <i class="nav-icon fas fa-pencil-alt"></i>
                   <p>
                     Atividades
