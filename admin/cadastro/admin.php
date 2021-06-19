@@ -81,7 +81,6 @@ if (!empty($id)) {
         <div class="row mb-3">
 
             <input type="hidden" class="form-control" name="id" id="id" readonly value="<?= $id ?>">
-            <input type="hidden" class="form-control" name="senha" id="senha" readonly value="<?= $senha ?>">
             <!-- LINHA 1 -->
             <div class="col-12 col-md-8">
                 <label for="nome"> Nome Completo </label>
@@ -181,7 +180,7 @@ if (!empty($id)) {
 
             <div class="clearfix"></div>
 
-            <!-- LINHA 7 -->
+            <!-- LINHA 8 -->
             <div class="col-12 col-md-6">
                 <?php
                 $r = 'required data-parsley-required-message="Insira uma senha" placeholder="Insira a senha inicial de acesso';
@@ -189,7 +188,7 @@ if (!empty($id)) {
                 ?>
                 <label for="senha"> Senha </label>
 
-                <input type="password" maxlength="25" minlength="6" autocomplete="off" class="form-control" id="senha" name="senha" <?= $r; ?> ">
+                <input type="password" maxlength="12" minlength="6" autocomplete="off" class="form-control" id="senha" name="senha" <?= $r; ?> ">
             </div>
 
             <div class=" col-12 col-md-6">
@@ -213,7 +212,6 @@ if (!empty($id)) {
     ?>
 
     <script>
-        //validar CPF 
         function verificarCpf(cpf) {
             //ajax verificação CPF
             //faz o get para o arquivo indicado e a variável e o retorno
@@ -231,7 +229,7 @@ if (!empty($id)) {
                 })
         };
 
-        // validar senhas
+        // verificador de senha no update
         function verificarSenha() {
             if ($('#senha').val() != $('#senha2').val()) {
                 $('#senha').val('')
@@ -244,9 +242,7 @@ if (!empty($id)) {
             $('#senha2').addClass('is-valid')
         }
 
-        // Mascaras 
         $(document).ready(function() {
-            //$("#data_nascimento").mask("99/99/9999");
             $("#cpf").mask("000.000.000-00");
             $("#telefone1").mask("(00) 0000-00009");
             $('#telefone1').blur(function(event) {
@@ -267,7 +263,6 @@ if (!empty($id)) {
             $("#cep").mask("00.000-000");
         });
 
-        // Busca CEP
         $("#cep").blur(function() {
             //pega valor do CEP
             cep = $("#cep").val();
@@ -297,23 +292,6 @@ if (!empty($id)) {
                     $("#logradouro").focus();
                 })
             }
-        })
-
-        var gerenciarModal = document.getElementById('gerenciarModal')
-        gerenciarModal.addEventListener('show.bs.modal', function(event) {
-
-
-            var button = event.relatedTarget
-
-
-            var recipient = button.getAttribute('data-bs-whatever')
-
-
-            var modalTitle = exampleModal.querySelector('.modal-title')
-            var modalBodyInput = exampleModal.querySelector('.modal-body input')
-
-            modalTitle.textContent = 'New message to ' + recipient
-            modalBodyInput.value = recipient
         })
     </script>
 </div>
