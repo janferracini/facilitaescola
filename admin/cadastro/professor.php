@@ -182,7 +182,7 @@ if (!empty($id)) {
 
             <div class="clearfix"></div>
 
-            <!-- LINHA 7 -->
+            <!-- LINHA 8 -->
             <div class="col-12 col-md-6">
                 <?php
                 $r = 'required data-parsley-required-message="Insira uma senha" placeholder="Insira a senha inicial de acesso';
@@ -190,7 +190,7 @@ if (!empty($id)) {
                 ?>
                 <label for="senha"> Senha </label>
 
-                <input type="password" maxlength="25" minlength="6" autocomplete="off" class="form-control" id="senha" name="senha" <?= $r; ?> ">
+                <input type="password" maxlength="12" minlength="6" autocomplete="off" class="form-control" id="senha" name="senha" <?= $r; ?> ">
             </div>
 
             <div class=" col-12 col-md-6">
@@ -199,7 +199,7 @@ if (!empty($id)) {
                 if (!empty($id)) $r = 'placeholder="Repita a senha caso queira trocar';
                 ?>
                 <label for="confirmaSenha">Confirmar Senha </label>
-                <input type="password" maxlength="25" minlength="6" autocomplete="off" class="form-control" id="senha2" name="senha2" <?= $r; ?> ">
+                <input type="password" maxlength="12" minlength="6" autocomplete="off" class="form-control" id="senha2" name="senha2" <?= $r; ?> ">
             </div>
 
             <div class=" col-12 col-md-12 mt-3 text-dark">
