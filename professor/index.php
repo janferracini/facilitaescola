@@ -67,7 +67,7 @@ $base = "$h://$site:$porta/$url"
   ?>
 
 
-  <div class="wrapper">
+  <div class="wrapper pb-3">
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
       <!-- Left navbar links -->

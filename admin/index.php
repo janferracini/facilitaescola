@@ -275,7 +275,7 @@ $base = "$h://$site:$porta/$url"
       </aside>
 
       <!-- Content Wrapper. Contains page content -->
-      <div class="content-wrapper">
+      <div class="content-wrapper pb-3">
         <!-- Main content -->
         <div class="content">
           <div class="container-fluid">
