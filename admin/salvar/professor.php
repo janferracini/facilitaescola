@@ -70,13 +70,13 @@ if ($_POST) {
         $consulta->execute();
         $dados = $consulta->fetch(PDO::FETCH_OBJ);
         if (!empty($dados->cpf)) {
-            echo "<script>alert('CPF já cadastradooooo');history.back();</script>";
+            echo "<script>alert('CPF já cadastrado');history.back();</script>";
             exit;
         }
 
         $sql = "SELECT login 
-                    FROM pessoa
-                    WHERE login = :login
+                FROM pessoa
+                WHERE login = :login
                 LIMIT 1";
         $consulta = $pdo->prepare($sql);
         $consulta->bindParam(":login", $login);
@@ -158,7 +158,7 @@ if ($_POST) {
         $consulta->execute();
         $dados = $consulta->fetch(PDO::FETCH_OBJ);
         if (!empty($dados->id)) {
-            echo "<script>alert('CPF já cadastraduuuuuuu');history.back();</script>";
+            echo "<script>alert('CPF já cadastrado');history.back();</script>";
             exit;
         }
 

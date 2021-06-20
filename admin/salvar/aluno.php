@@ -89,8 +89,8 @@ if ($_POST) {
         }
 
         $sql = "SELECT login 
-                    FROM pessoa
-                    WHERE login
+                FROM pessoa
+                WHERE login = :login
                 LIMIT 1";
         $consulta = $pdo->prepare($sql);
         $consulta->bindParam(":login", $login);
