@@ -163,11 +163,12 @@ if ($_POST) {
         }
 
         $sql = "SELECT login 
-                    FROM pessoa
-                    WHERE login = :login
+                FROM pessoa
+                WHERE login = :login AND id != :id
                 LIMIT 1";
         $consulta = $pdo->prepare($sql);
         $consulta->bindParam(":login", $login);
+        $consulta->bindParam(":id", $id);
         $consulta->execute();
         $dados = $consulta->fetch(PDO::FETCH_OBJ);
         if (!empty($dados->login)) {
