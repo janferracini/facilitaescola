@@ -22,7 +22,7 @@ if ($_POST) {
 
 
     foreach ($_POST as $key => $value) {
-        $$key = trim($value);
+        $$key = trim(strip_tags($value));
     }
 
     if (empty($nome)) {
@@ -76,6 +76,21 @@ if ($_POST) {
             exit;
         }
 
+        $sql = "SELECT login 
+                    FROM pessoa
+                    WHERE login = :login
+                LIMIT 1";
+        $consulta = $pdo->prepare($sql);
+        $consulta->bindParam(":login", $login);
+        $consulta->execute();
+        $dados = $consulta->fetch(PDO::FETCH_OBJ);
+        if (!empty($dados->login)) {
+            echo "<script>alert('Login já cadastrado');history.back();</script>";
+            exit;
+        }
+
+
+
         $sql = "INSERT INTO pessoa (
                     nome, login, senha, rg, cpf, data_nascimento, 
                     email, logradouro, numero, cep, complemento,
@@ -121,6 +136,19 @@ if ($_POST) {
         $dados = $consulta->fetch(PDO::FETCH_OBJ);
         if (!empty($dados->cpf)) {
             echo "<script>alert('CPF já cadastrado');history.back();</script>";
+            exit;
+        }
+
+        $sql = "SELECT login 
+                    FROM pessoa
+                    WHERE login = :login
+                LIMIT 1";
+        $consulta = $pdo->prepare($sql);
+        $consulta->bindParam(":login", $login);
+        $consulta->execute();
+        $dados = $consulta->fetch(PDO::FETCH_OBJ);
+        if (!empty($dados->login)) {
+            echo "<script>alert('Login já cadastrado');history.back();</script>";
             exit;
         }
 

@@ -2,12 +2,12 @@
 if (!isset($_SESSION["facilita_escola"]["id"])) {
     echo "<script>alert('Erro na requisição da página, faça login novamente para continuar');location.href='sair.php'</script>";
     exit;
-  }
-  
-  if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
+}
+
+if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
     echo "<script>alert('Erro na requisição da página, faça login novamente para continuar');location.href='sair.php'</script>";
     exit;
-  }
+}
 
 // Verificar se existem dados no POST
 if ($_POST) {
@@ -20,7 +20,7 @@ if ($_POST) {
         $turma_matricula = $tmid = $serie = $descricao = $ano = $periodo = $turma_id = '';
 
     foreach ($_POST as $key => $value) {
-        $$key = trim($value);
+        $$key = trim(strip_tags($value));
     }
     if (empty($nome)) {
         echo "<script>alert('Preencha o Nome');history.back();</script>";
@@ -85,6 +85,19 @@ if ($_POST) {
         $dados = $consulta->fetch(PDO::FETCH_OBJ);
         if (!empty($dados->cpf)) {
             echo "<script>alert('CPF já cadastrado');history.back();</script>";
+            exit;
+        }
+
+        $sql = "SELECT login 
+                    FROM pessoa
+                    WHERE login = :login
+                LIMIT 1";
+        $consulta = $pdo->prepare($sql);
+        $consulta->bindParam(":login", $login);
+        $consulta->execute();
+        $dados = $consulta->fetch(PDO::FETCH_OBJ);
+        if (!empty($dados->login)) {
+            echo "<script>alert('Login já cadastrado');history.back();</script>";
             exit;
         }
 
@@ -161,6 +174,19 @@ if ($_POST) {
         $dados = $consulta->fetch(PDO::FETCH_OBJ);
         if (!empty($dados->cpf)) {
             echo "<script>alert('CPF já cadastrado');history.back();</script>";
+            exit;
+        }
+
+        $sql = "SELECT login 
+                    FROM pessoa
+                    WHERE login = :login
+                LIMIT 1";
+        $consulta = $pdo->prepare($sql);
+        $consulta->bindParam(":login", $login);
+        $consulta->execute();
+        $dados = $consulta->fetch(PDO::FETCH_OBJ);
+        if (!empty($dados->login)) {
+            echo "<script>alert('Login já cadastrado');history.back();</script>";
             exit;
         }
 

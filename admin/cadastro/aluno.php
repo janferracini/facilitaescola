@@ -198,9 +198,7 @@ if (!empty($id)) {
                 <input type="text" autocomplete="off" class="form-control" id="telefone2" name="telefone2" value="<?= $telefone2; ?>">
             </div>
 
-            <div class="clearfix"></div>
-
-            <!-- LINHA 7 -->
+            <!-- LINHA 8 -->
             <div class="col-12 col-md-6">
                 <?php
                 $r = 'required data-parsley-required-message="Insira uma senha" placeholder="Insira a senha inicial de acesso';
@@ -208,7 +206,7 @@ if (!empty($id)) {
                 ?>
                 <label for="senha"> Senha </label>
 
-                <input type="password" maxlength="25" minlength="6" autocomplete="off" class="form-control" id="senha" name="senha" <?= $r; ?> ">
+                <input type="password" maxlength="12" minlength="6" autocomplete="off" class="form-control" id="senha" name="senha" <?= $r; ?> ">
             </div>
 
             <div class=" col-12 col-md-6">
@@ -217,7 +215,7 @@ if (!empty($id)) {
                 if (!empty($id)) $r = 'placeholder="Repita a senha caso queira trocar';
                 ?>
                 <label for="confirmaSenha">Confirmar Senha </label>
-                <input type="password" maxlength="25" minlength="6" autocomplete="off" class="form-control" id="senha2" name="senha2" <?= $r; ?> ">
+                <input type="password" maxlength="12" minlength="6" autocomplete="off" class="form-control" id="senha2" name="senha2" <?= $r; ?> ">
             </div>
 
             <div class=" col-12 col-md-12 mt-3 text-dark">
@@ -275,30 +273,7 @@ if (!empty($id)) {
     <?php if (empty($id)) $id = 0; //verificar se id é vazio 
     ?>
 
-    <script type="text/javascript">
-        $(document).ready(function() {
-
-            $("#cpf").mask("000.000.000-00");
-            $("#telefone1").mask("(00)0000-00009");
-            $('#telefone1').blur(function(event) {
-                if ($(this).val().length == 15) {
-                    $('#telefone1').mask('(00)00000-0009');
-                } else {
-                    $('#telefone1').mask('(00)0000-00009');
-                }
-            });
-            $("#telefone2").mask("(00)0000-00009");
-            $('#telefone2').blur(function(event) {
-                if ($(this).val().length == 15) {
-                    $('#telefone2').mask('(00)00000-0009');
-                } else {
-                    $('#telefone2').mask('(00)0000-00009');
-                }
-            });
-            $("#cep").mask("00.000-000");
-
-        });
-
+    <script>
         function verificarCpf(cpf) {
             //ajax verificação CPF
             //faz o get para o arquivo indicado e a variável e o retorno
@@ -316,6 +291,7 @@ if (!empty($id)) {
                 })
         };
 
+        // verificador de senha no update
         function verificarSenha() {
             if ($('#senha').val() != $('#senha2').val()) {
                 $('#senha').val('')
@@ -327,6 +303,27 @@ if (!empty($id)) {
             $('#senha2').removeClass('is-invalid')
             $('#senha2').addClass('is-valid')
         }
+
+        $(document).ready(function() {
+            $("#cpf").mask("000.000.000-00");
+            $("#telefone1").mask("(00) 0000-00009");
+            $('#telefone1').blur(function(event) {
+                if ($(this).val().length == 15) {
+                    $('#telefone1').mask('(00) 00000-0009');
+                } else {
+                    $('#telefone1').mask('(00) 0000-00009');
+                }
+            });
+            $("#telefone2").mask("(00) 0000-00009");
+            $('#telefone2').blur(function(event) {
+                if ($(this).val().length == 15) {
+                    $('#telefone2').mask('(00) 00000-0009');
+                } else {
+                    $('#telefone2').mask('(00) 0000-00009');
+                }
+            });
+            $("#cep").mask("00.000-000");
+        });
 
         $("#cep").blur(function() {
             //pega valor do CEP
@@ -357,6 +354,6 @@ if (!empty($id)) {
                     $("#logradouro").focus();
                 })
             }
-        });
+        })
     </script>
 </div>

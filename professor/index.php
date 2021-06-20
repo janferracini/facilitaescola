@@ -67,7 +67,7 @@ $base = "$h://$site:$porta/$url"
   ?>
 
 
-  <div class="wrapper">
+  <div class="wrapper pb-3">
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
       <!-- Left navbar links -->
@@ -122,7 +122,7 @@ $base = "$h://$site:$porta/$url"
             </li>
 
             <li class="nav-item">
-              <a href="listar/atividade" class="nav-link">
+              <a href="cadastro/atividade" class="nav-link">
                 <i class="nav-icon fas fa-pencil-alt"></i>
                 <p>
                   Atividades

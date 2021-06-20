@@ -149,7 +149,7 @@ if ($_POST) {
             INNER JOIN turma AS t ON (t.id = tm.turma_id)
             INNER JOIN periodo AS pe ON (pe.id = t.periodo_id)
             WHERE MONTH(p.data_nascimento) = $mes
-            ORDER BY p.data_nascimento ASC";
+            ORDER BY DAY(p.data_nascimento) DESC";
     $consulta = $pdo->prepare($sql);
     $consulta->execute();
     if ($consulta->rowCount() == 0) {
@@ -188,7 +188,7 @@ if ($_POST) {
     $sql = "SELECT p.nome, date_format(p.data_nascimento, '%d/%m/%Y') dp
             FROM pessoa AS p
             WHERE MONTH(p.data_nascimento) = $mes AND p.tipo_cadastro = 3
-            ORDER BY p.data_nascimento ASC";
+            ORDER BY DAY(p.data_nascimento) ASC";
     $consulta = $pdo->prepare($sql);
     $consulta->execute();
 
@@ -223,7 +223,7 @@ if ($_POST) {
     $sql = "SELECT p.nome, date_format(p.data_nascimento, '%d/%m/%Y') dp
             FROM pessoa AS p
             WHERE MONTH(p.data_nascimento) = $mes AND p.tipo_cadastro = 1
-            ORDER BY p.data_nascimento ASC";
+            ORDER BY DAY(p.data_nascimento) ASC";
     $consulta = $pdo->prepare($sql);
     $consulta->execute();
     if ($consulta->rowCount() == 0) {

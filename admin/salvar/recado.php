@@ -15,7 +15,7 @@ if ($_POST) {
     $id = $titulo = $conteudo = $data_postagem = $turma_id = "";
 
     foreach ($_POST as $key => $value) {
-        $$key = trim($value);
+        $$key = trim(strip_tags($value));
     }
 
     if (empty($titulo)) {

@@ -69,8 +69,8 @@ $base = "$h://$site:$porta/$url"
   <link rel="stylesheet" href="../dist/css/style.css">
   <!-- Tempusdominus Bbootstrap 4 -->
   <!-- <link rel="stylesheet" href="../plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css"> -->
+</head>
 
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/dataTables.semanticui.min.css">
 
 <body class="hold-transition sidebar-mini">
   <?php
@@ -135,7 +135,7 @@ $base = "$h://$site:$porta/$url"
                 <a href="" class="nav-link">
                   <i class="nav-icon far fa-plus-square"></i>
                   <p>
-                    Cadastro
+                    Cadastros
                     <i class="fas fa-angle-left right"></i>
                   </p>
                 </a>
@@ -182,7 +182,7 @@ $base = "$h://$site:$porta/$url"
               </li>
 
               <li class="nav-item">
-                <a href="listar/atividade" class="nav-link">
+                <a href="cadastro/atividade" class="nav-link">
                   <i class="nav-icon fas fa-pencil-alt"></i>
                   <p>
                     Atividades
@@ -358,7 +358,6 @@ $base = "$h://$site:$porta/$url"
   <!-- Sparkline -->
   <script src="../plugins/sparklines/sparkline.js"></script>
 
-  <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 </body>
 
 </html>

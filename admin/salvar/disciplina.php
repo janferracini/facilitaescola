@@ -16,7 +16,7 @@ if ($_POST) {
     $id = $disciplina = "";
 
     foreach ($_POST as $key => $value) {
-        $$key = trim($value);
+        $$key = trim(strip_tags($value));
     }
 
     if (empty($disciplina)) {

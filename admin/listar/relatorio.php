@@ -84,7 +84,7 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
                 <div class="modal-body">
                     <form action="relatorios/aluno_turma" method="POST">
                         <label for="turma">Turma</label>
-                        <input id="turma_id" name="turma_id" class="form-control" list="listaTurma" required data-parsley-required-message="Selecione a turma">
+                        <input id="turma_id" autocomplete="off" name="turma_id" class="form-control" list="listaTurma" required data-parsley-required-message="Selecione a turma">
                         <datalist id="listaTurma">
                             <?php
                             $sql = "SELECT t.*,t.id tid, p.*
@@ -126,7 +126,7 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
                 <div class="modal-body">
                     <form action="relatorios/aluno_professor" method="POST">
                         <label for="professor">Professor</label>
-                        <input id="professor_id" name="professor_id" class="form-control" list="listaProfessor" required data-parsley-required-message="Selecione o professor">
+                        <input id="professor_id" autocomplete="off" name="professor_id" class="form-control" list="listaProfessor" required data-parsley-required-message="Selecione o professor">
                         <datalist id="listaProfessor">
                             <?php
                             $sql = "SELECT p.id pid, p.*, pe.id, pe.nome
@@ -165,7 +165,7 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
                 <div class="modal-body">
                     <form action="relatorios/atividade_turma" method="POST">
                         <label for="turma">Turma</label>
-                        <input id="turma_id" name="turma_id" class="form-control" list="listaTurma" required data-parsley-required-message="Selecione a turma">
+                        <input id="turma_id" autocomplete="off" name="turma_id" class="form-control" list="listaTurma" required data-parsley-required-message="Selecione a turma">
                         <datalist id="listaTurma">
                             <?php
                             $sql = "SELECT t.*,t.id tid, p.*
@@ -207,7 +207,7 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
                 <div class="modal-body">
                     <form action="relatorios/recado_turma" method="POST">
                         <label for="turma">Turma</label>
-                        <input id="turma_id" name="turma_id" class="form-control" list="listaTurma" required data-parsley-required-message="Selecione a turma">
+                        <input id="turma_id" autocomplete="off" name="turma_id" class="form-control" list="listaTurma" required data-parsley-required-message="Selecione a turma">
                         <datalist id="listaTurma">
                             <?php
                             $sql = "SELECT t.*,t.id tid, p.*
