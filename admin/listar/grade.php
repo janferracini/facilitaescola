@@ -112,3 +112,4 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
             });
         })
     </script>
+</div>
