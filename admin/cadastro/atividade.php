@@ -93,6 +93,7 @@ if (!empty($id)) {
                             INNER JOIN disciplina d ON (d.id = g.disciplina_id)
                             INNER JOIN professor p ON (p.id = g.professor_id)
                             INNER JOIN pessoa pe ON (pe.id = p.pessoa_id)
+                            WHERE g.status = 1
                             ORDER BY t.descricao";
 
                     $consulta = $pdo->prepare($sql);
