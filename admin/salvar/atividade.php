@@ -29,7 +29,7 @@ if ($_POST) {
     }
 
     if (empty($grade_id)) {
-        echo "<script>alert('Preencha a Atividade');history.back();</script>";
+        echo "<script>alert('Preencha a Grade');history.back();</script>";
         exit;
     }
 
@@ -109,4 +109,4 @@ if ($_POST) {
 }
 
 echo "<p class='alert alert-danger'>Erro ao realizar requisição.</p>";
-echo print_r($_FILES);
+//echo print_r($_FILES);

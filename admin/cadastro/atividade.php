@@ -21,7 +21,6 @@ $serie = $descricao = $ano = $periodo_id = "";
 $periodo = "";
 
 if (!empty($id)) {
-    //select nos dados do cliente
     $sql = "SELECT a.id aid, a.*, g.id gid, g.turma_id tid, t.*, 
                 p.id pid, p.*, d.*, pr.*, pe.id, pe.nome
             FROM atividade a
@@ -93,7 +92,8 @@ if (!empty($id)) {
                             INNER JOIN disciplina d ON (d.id = g.disciplina_id)
                             INNER JOIN professor p ON (p.id = g.professor_id)
                             INNER JOIN pessoa pe ON (pe.id = p.pessoa_id)
-                            ORDER BY t.descricao";
+                            WHERE g.status = 1
+                            ORDER BY t.descricao ASC";
 
                     $consulta = $pdo->prepare($sql);
                     $consulta->execute();

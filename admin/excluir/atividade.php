@@ -34,5 +34,5 @@ if (!$consulta->execute()) {
     echo "<script> alert('Erro ao excluir');javascript:history.back();</script>";
 }
 
-echo "<script>alert('Registro excluído')'</script>";
+echo "<script>alert('Registro excluído');location.href='listar/atividade'</script>";
 apagaImagem($arquivo);

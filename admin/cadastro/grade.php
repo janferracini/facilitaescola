@@ -13,7 +13,7 @@ if (!isset($id)) $id = "";
 $disciplina = '';
 
 if (!empty($id)) {
-    //select nos dados do cliente
+    //select nos dados do grade
     $sql = "SELECT  g.id gid, g.*, 
                     t.id tid, t.*, 
                     d.id did, d.*, 

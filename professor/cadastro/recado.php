@@ -95,8 +95,8 @@ if (!empty($id)) {
 
             <!-- selecionar a turma -->
             <div class="col-12">
-                <label for="turma">Turma</label>
-                <input type="hidden" class="form-control" name="tid" id="tid" readonly value="<?= $grade_id ?>">
+                <label for="grade">Grade</label>
+                <input type="hidden" class="form-control" name="gid" id="gid" readonly value="<?= $grade_id ?>">
                 <input id="grade_id" name="grade_id" autocomplete="off" class="form-control" list="listaTurma" required data-parsley-required-message="Selecione a turma" value="<?php if (!empty($id)) echo "$grade_id - $serie $descricao / $periodo ($ano)"; ?>">
                 <datalist id="listaTurma">
                     <?php

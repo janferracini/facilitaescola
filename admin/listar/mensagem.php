@@ -61,7 +61,7 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
                             <td>" . $titulo . "</td>
                             <td>" . substr($mensagem, 0, 35) . "(...)</td>
                             <td> 
-                                <a class='btn btn-outline-laranja visualizar' data-mensagem='$mensagem'
+                                <a href='$idmensagem' class='btn btn-outline-laranja visualizar' data-mensagem='$mensagem'
                                 data-postagem='$data_postagem' data-titulo='$titulo'data-nome='$aluno' 
                                 data-id='$idmensagem' data-toggle='modal' data-target='#mensagemModal' 
                                 id='visualizar'>
