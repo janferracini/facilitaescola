@@ -12,7 +12,7 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 3) {
 // Verificar se existem dados no POST
 if ($_POST) {
     include "../config/conexao.php";
-    include "functions.php";
+    include "../config/functions.php";
 
     $id = $atividade = $arquivo = $data_postagem = $grade_id  = "";
     // tabela grade
