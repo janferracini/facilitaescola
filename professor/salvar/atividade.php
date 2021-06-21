@@ -12,6 +12,7 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 3) {
 // Verificar se existem dados no POST
 if ($_POST) {
     include "../config/conexao.php";
+    include "functions.php";
 
     $id = $atividade = $arquivo = $data_postagem = $grade_id  = "";
     // tabela grade
@@ -28,23 +29,24 @@ if ($_POST) {
     }
 
     if (empty($grade_id)) {
-        echo "<script>alert('Preencha a Atividade');history.back();</script>";
+        echo "<script>alert('Preencha a Grade');history.back();</script>";
         exit;
     }
 
-    // $tipo = strrchr(".", $_FILES['arquivo']['type']);
-    // $extencoes = ['image/jpeg', 'application/msword', 'application/pdf', 'application/vnd.oasis.opendocument.text'];
-    // if (in_array($tipo, $extencoes) === true) {
-    //     echo "<script>alert('Selecione um arquivo válido');</script>";
-    //     echo print_r($_FILES);
-    //     exit;
-    // }
-
     $pdo->beginTransaction();
     //salva a hora da máquina + a id de quem está na sessão como nome do arquivo
-    $extensao = substr($_FILES["arquivo"]["name"], -4, 5);
-    $arquivo = time() . "-" . $_SESSION["facilita_escola"]["nome"] . "" . $extensao;
+    $nomeArquivo = $_FILES["arquivo"]["name"];
+    $getExtensao = getExtensao($nomeArquivo);
+    $extensao = end($getExtensao);
+    $arquivo = time() . "-" . $_SESSION["facilita_escola"]["nome"] . "." . $extensao;
     $pasta = "../atividades/";
+
+    $extencoes = ['jpg', 'jpeg', 'doc', 'docx', 'odt', 'pdf'];
+    if (!in_array($extensao, $extencoes) === true) {
+        echo "<script>alert('Selecione um arquivo válido. Caso necessite, exporte seu documento no formato PDF antes de fazer o envio.');history.back();</script>";
+        //echo print_r($_FILES);
+        exit;
+    }
 
     if (empty($id)) {
 
@@ -80,11 +82,11 @@ if ($_POST) {
             exit;
         }
 
-        // $tamanho   = $_FILES['arquivo']['size'];
-        // if ($tamanho <= 3145728) {
-        //     echo "<script>alert('Arquivo exede o tamanho suportado');history.back();</script>";
-        //     exit;
-        // }
+        $tamanho   = $_FILES['arquivo']['size'];
+        if ($tamanho >= 3145728) {
+            echo '<script>alert("Arquivo exede o tamanho suportado");history.back();</script>';
+            exit;
+        }
 
 
 
@@ -104,4 +106,4 @@ if ($_POST) {
 }
 
 echo "<p class='alert alert-danger'>Erro ao realizar requisição.</p>";
-echo print_r($_FILES);
+//echo print_r($_FILES);
