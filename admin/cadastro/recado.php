@@ -83,7 +83,7 @@ if (!empty($id)) {
 
             <div class="col-sm-12">
                 <label for="titulo"> Título: </label>
-                <input type="text" id="titulo" maxlength="60" minlength="12" name="titulo" class="form-control" required data-parsley-required-message="Preencha o título do recado" placeholder="Informe o título do recado" value="<?= $titulo ?>">
+                <input type="text" id="titulo" maxlength="60" minlength="10" name="titulo" class="form-control" required data-parsley-required-message="Preencha o título do recado" placeholder="Informe o título do recado" value="<?= $titulo ?>">
             </div>
 
             <div class="col-sm-12">
@@ -94,7 +94,7 @@ if (!empty($id)) {
             <!-- selecionar a turma -->
             <div class="col-12">
                 <label for="turma">Turma</label>
-                <input type="hidden" class="form-control" name="id" id="id" readonly value="<?= $grade_id ?>">
+                <input type="hidden" class="form-control" name="gid" id="gid" readonly value="<?= $grade_id ?>">
                 <input id="grade_id" autocomplete="off" name="grade_id" class="form-control" list="listaTurma" required data-parsley-required-message="Selecione a grade" value="<?php if (!empty($id)) echo "$grade_id - $serie $descricao / $periodo"; ?>">
                 <datalist id="listaTurma">
                     <?php

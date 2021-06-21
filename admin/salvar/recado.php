@@ -12,7 +12,7 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
 if ($_POST) {
     include "../config/conexao.php";
 
-    $id = $titulo = $conteudo = $data_postagem = $turma_id = "";
+    $titulo = $conteudo = $data_postagem = $grade_id = "";
 
     foreach ($_POST as $key => $value) {
         $$key = trim(strip_tags($value));
@@ -37,8 +37,9 @@ if ($_POST) {
 
     if (empty($id)) {
 
-        $sql = "INSERT INTO recado  (titulo, conteudo, grade_id)
-                    VALUES (:titulo, :conteudo, :grade_id)";
+        $sql = "INSERT 
+                INTO recado (titulo, conteudo, grade_id)
+                VALUES (:titulo, :conteudo, :grade_id)";
 
         $consulta = $pdo->prepare($sql);
         $consulta->bindParam(":titulo", $titulo);
@@ -46,8 +47,10 @@ if ($_POST) {
         $consulta->bindParam(":grade_id", $grade_id);
     } else {
         $sql = "UPDATE recado
-            SET titulo = :titulo, conteudo = :conteudo, grade_id = :grade_id
-            WHERE id = :id
+                    SET titulo = :titulo, 
+                    conteudo = :conteudo, 
+                    grade_id = :grade_id
+                WHERE id = :id
             LIMIT 1";
 
         $consulta = $pdo->prepare($sql);
@@ -56,8 +59,10 @@ if ($_POST) {
         $consulta->bindParam(":conteudo", $conteudo);
         $consulta->bindParam(":grade_id", $grade_id);
     }
+    // var_dump($id, $titulo, $conteudo, $grade_id);
     // Executar e verificar se deu certo
     if ($consulta->execute()) {
+
         $pdo->commit();
         echo '<script>alert("Registro salvo");location.href="listar/recado";</script>';
         exit;
