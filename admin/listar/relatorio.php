@@ -249,7 +249,7 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
                     <form action="relatorios/recado_periodo" method="POST">
                         <label for="mes">Mês</label>
                         <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="mes">
-                            <option selected>Selecione o mês</option>
+                            <option hidden disabled selected value>Selecione o mês</option>
                             <option value="1">Janeiro</option>
                             <option value="2">Fevereiro</option>
                             <option value="3">Março</option>
@@ -286,7 +286,7 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
                     <form action="relatorios/mensagem_periodo" method="POST">
                         <label for="mes">Mês</label>
                         <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="mes">
-                            <option selected>Selecione o mês</option>
+                            <option hidden disabled selected value>Selecione o mês</option>
                             <option value="1">Janeiro</option>
                             <option value="2">Fevereiro</option>
                             <option value="3">Março</option>
@@ -323,7 +323,7 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
                     <form action="relatorios/aniversario_mes" method="POST">
                         <label for="mes">Mês</label>
                         <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="mes">
-                            <option selected>Selecione o mês</option>
+                            <option hidden disabled selected value>Selecione o mês</option>
                             <option value="1">Janeiro</option>
                             <option value="2">Fevereiro</option>
                             <option value="3">Março</option>

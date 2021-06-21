@@ -26,6 +26,12 @@ if ($_POST) {
             font-size: 14px;
         }
 
+        .clearfix::after {
+            display: block;
+            clear: both;
+            content: "";
+        }
+
         .table{
             width: 100%;
             margin-bottom: 1rem;
@@ -173,6 +179,7 @@ if ($_POST) {
 </table>
 <form>
 <input type="button" class="float-right btn btn-outline-laranja btn-imprimir" value="Imprimir" onClick="window.print()"/>
+<div class="clearfix"></div></form>
 </form>
         </div>
     </body>';
