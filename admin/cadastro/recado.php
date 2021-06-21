@@ -93,16 +93,17 @@ if (!empty($id)) {
 
             <!-- selecionar a turma -->
             <div class="col-12">
-                <label for="turma">Turma</label>
+                <label for="turma">Grade</label>
                 <input type="hidden" class="form-control" name="id" id="id" readonly value="<?= $grade_id ?>">
                 <input id="grade_id" autocomplete="off" name="grade_id" class="form-control" list="listaTurma" required data-parsley-required-message="Selecione a grade" value="<?php if (!empty($id)) echo "$grade_id - $serie $descricao / $periodo"; ?>">
                 <datalist id="listaTurma">
                     <?php
-                    $sql = "SELECT  g.id idgrade, g.*, t.*, pd.*
+                    $sql = "SELECT  g.id idgrade, g.*, t.*, pd.*, d.*
                             FROM grade g
                             INNER JOIN turma t ON (t.id = g.turma_id)
                             INNER JOIN periodo pd ON (pd.id = t.periodo_id)
-                            ORDER BY t.descricao";
+                            INNER JOIN disciplina d ON (d.id = g.turma_id)
+                            ORDER BY t.descricao ASC";
                     $consulta = $pdo->prepare($sql);
                     $consulta->execute();
                     while ($dados = $consulta->fetch(PDO::FETCH_OBJ)) {
@@ -110,7 +111,9 @@ if (!empty($id)) {
                         $serie = $dados->serie;
                         $descricao = $dados->descricao;
                         $periodo = $dados->periodo;
-                        echo '<option value="' . $grade_id . ' - ' . $serie . ' ' . $descricao . ' / ' . $periodo . '">';
+                        $disciplina = $dados->disciplina;
+
+                        echo '<option value="ID:' . $grade_id . ' Turma: ' . $serie . ' ' . $descricao . ' - ' . $periodo . ' Disciplina: ' . $disciplina . '">';
                     };
                     ?>
                 </datalist>
