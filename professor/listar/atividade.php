@@ -42,13 +42,17 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 3) {
             </thead>
             <tbody>
                 <?php
+                $idprofessor = $_SESSION["facilita_escola"]["id"];
                 $sql = "SELECT a.id aid, a.*, date_format(a.data_postagem, '%d/%m/%Y') data_postagem,
-                                g.*, t.*, p.*, d.*
+                                g.*, t.*, p.*, d.*, pr.*, pe.id
                         FROM atividade a
                         INNER JOIN grade g ON (g.id = a.grade_id) 
                         INNER JOIN disciplina d ON (d.id = g.disciplina_id)
                         INNER JOIN turma t ON (t.id = g.turma_id) 
                         INNER JOIN periodo p ON (p.id = t.periodo_id)
+                        INNER JOIN professor pr ON (pr.id = g.professor_id)
+                        INNER JOIN pessoa pe ON (pe.id = pr.pessoa_id)
+                        WHERE pr.pessoa_id = $idprofessor
                         ORDER BY a.id DESC";
 
                 $consulta = $pdo->prepare($sql);
@@ -67,6 +71,7 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 3) {
                     $descricao  = $dados->descricao;
                     //periodo
                     $periodo    = $dados->periodo;
+                    //
 
                     echo '<tr>
                 <td>' . $data . '</td>
