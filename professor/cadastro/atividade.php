@@ -127,7 +127,7 @@ if (!empty($id)) {
                 <label for="arquivo">Arquivo: </label>
                 <spam>(Tipos permitidos: .jpg, .jpeg, .docx, .doc ou .pdf, tamanho máximo: 3Mb)</spam>
                 <!-- guarda o nome do arquivo para quando editar -->
-                <input type="hidden" name="capa" value="<?= $arquivo; ?>">
+                <input type="hidden" name="arquivo" value="<?= $arquivo; ?>">
                 <input type="file" name="arquivo" id="arquivo" class="form-control" accept=".jpg, .jpeg, .docx, .pdf, .doc, .odt" <?= $r; ?> placeholder="Selecione o arquivo da atividade">
             </div>
 

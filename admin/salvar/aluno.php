@@ -101,6 +101,19 @@ if ($_POST) {
             exit;
         }
 
+        $sql = "SELECT matricula 
+                FROM matricula
+                WHERE matricula = :matricula
+                LIMIT 1";
+        $consulta = $pdo->prepare($sql);
+        $consulta->bindParam(":matricula", $matricula);
+        $consulta->execute();
+        $dados = $consulta->fetch(PDO::FETCH_OBJ);
+        if (!empty($dados->matricula)) {
+            echo "<script>alert('Matricula já cadastrada');history.back();</script>";
+            exit;
+        }
+
         $sql = "INSERT INTO pessoa (
                     nome, login, senha, rg, cpf, data_nascimento, 
                     email, logradouro, numero, cep, complemento,
@@ -188,6 +201,21 @@ if ($_POST) {
         $dados = $consulta->fetch(PDO::FETCH_OBJ);
         if (!empty($dados->login)) {
             echo "<script>alert('Login já cadastrado');history.back();</script>";
+            exit;
+        }
+
+        $sql = "SELECT m.*, p.id 
+                FROM matricula as m
+                INNER JOIN pessoa as p ON (p.id = m.pessoa_id)
+                WHERE m.matricula = :matricula AND p.id != :id
+                LIMIT 1";
+        $consulta = $pdo->prepare($sql);
+        $consulta->bindParam(":matricula", $matricula);
+        $consulta->bindParam(":id", $id);
+        $consulta->execute();
+        $dados = $consulta->fetch(PDO::FETCH_OBJ);
+        if (!empty($dados->matricula)) {
+            echo "<script>alert('Matricula já cadastrada');history.back();</script>";
             exit;
         }
 

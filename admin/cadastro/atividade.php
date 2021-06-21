@@ -21,7 +21,6 @@ $serie = $descricao = $ano = $periodo_id = "";
 $periodo = "";
 
 if (!empty($id)) {
-    //select nos dados do cliente
     $sql = "SELECT a.id aid, a.*, g.id gid, g.turma_id tid, t.*, 
                 p.id pid, p.*, d.*, pr.*, pe.id, pe.nome
             FROM atividade a
