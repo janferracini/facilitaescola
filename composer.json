@@ -1,6 +1,6 @@
 {
     "name": "camila-janaina/facilita_escola",
-    "description": "Projeto de Conclus\u0000o de Curso. Sistemas para Internet 2019-2021",
+    "description": "Projeto de Conclusão de Curso. Sistemas para Internet 2019-2021",
     "require": {
         "mpdf/mpdf": "8.0.4"
     }
