@@ -10,17 +10,16 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
 }
 ?>
 
-<!-- Content Header (Page header) -->
 <div class="content-header">
     <div class="container-fluid">
         <div class="row">
             <div>
                 <h1 class="m-0 text-dark">Mensagens Recebidas</h1>
-            </div><!-- /.col -->
-        </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
+            </div>
+        </div>
+    </div>
 </div>
-<!-- /.content-header -->
+
 <div class="container">
     <div class="card-body p-0 mt-3 pb-3">
         <table id="tabMensagem" class="table ui celled table table-bordered table-hover">
@@ -46,14 +45,12 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
                 $consulta->execute();
 
                 while ($dados = $consulta->fetch(PDO::FETCH_OBJ)) {
-                    // Separar os dados
                     $idmensagem = $dados->id;
                     $data_postagem = $dados->dp;
                     $aluno = $dados->nome;
                     $titulo = $dados->titulo;
                     $mensagem = $dados->mensagem;
 
-                    // Mostrar na tela
                     echo "
                         <tr>
                             <td>" . $data_postagem . "</td>
@@ -98,16 +95,16 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
 
     <script>
         $('.visualizar').on('click', function() {
-            var nome = $(this).data('nome'); // vamos buscar o valor do atributo data-name que temos no botão que foi clicado
+            var nome = $(this).data('nome');
             var mensagem = $(this).data('mensagem');
             var titulo = $(this).data('titulo');
             var postagem = $(this).data('postagem')
-            var id = $(this).data('id'); // vamos buscar o valor do atributo data-id
-            $('span.nome').text(nome); // inserir na o nome na pergunta de confirmação dentro da modal
+            var id = $(this).data('id');
+            $('span.nome').text(nome);
             $('span.titulo').text(titulo);
             $('span.mensagem').text(mensagem);
             $('span.postagem').text(postagem);
-            $('#myModal').modal('show'); // modal aparece
+            $('#myModal').modal('show');
         });
 
         $(document).ready(function() {
@@ -129,5 +126,4 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
             });
         });
     </script>
-    <!-- /.card-body -->
 </div>

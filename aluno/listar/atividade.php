@@ -12,17 +12,16 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 2) {
 $idaluno = $_SESSION['facilita_escola']['id'];
 ?>
 
-<!-- Content Header (Page header) -->
 <div class="content-header">
     <div class="container-fluid">
         <div class="row">
             <div>
                 <h1 class="m-0 text-dark">Atividades Cadastradas</h1>
-            </div><!-- /.col -->
-        </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
+            </div>
+        </div>
+    </div>
 </div>
-<!-- /.content-header -->
+
 <div class="container">
     <div class="card-body p-0 mt-3 pb-3">
         <table id="tabAtividade" class="table ui celled table table-bordered table-hover">
@@ -53,17 +52,13 @@ $idaluno = $_SESSION['facilita_escola']['id'];
                 $consulta->execute();
 
                 while ($dados = $consulta->fetch(PDO::FETCH_OBJ)) {
-                    //atividade
                     $id         = $dados->aid;
                     $atividade  = $dados->atividade;
                     $arquivo    = $dados->arquivo;
                     $data       = $dados->data_postagem;
-                    //discilina
                     $disciplina = $dados->disciplina;
-                    //turma
                     $serie      = $dados->serie;
                     $descricao  = $dados->descricao;
-                    //periodo
                     $periodo    = $dados->periodo;
 
                     echo '<tr>
@@ -81,15 +76,11 @@ $idaluno = $_SESSION['facilita_escola']['id'];
             </tbody>
         </table>
     </div>
-    <!-- /.card-body -->
 </div>
 
 <script>
-    //função para perguntar se deseja excluir. Se sim, direcionar para o endereço de exclusão
     function excluir(id) {
-        //perguntar
         if (confirm("Deseja mesmo excluir?")) {
-            //direcionar para exclusão
             location.href = "excluir/atividade/" + id;
         }
     }

@@ -16,14 +16,11 @@ if ($msg != 1) {
     exit;
 }
 
-//verificar se cpf já existe = ningém pode ter esse CPF 
 if (empty($id)) {
-    //inserindo - não pode exixtir
     $sql = "SELECT id FROM pessoa WHERE cpf = :cpf LIMIT 1";
     $consulta = $pdo->prepare($sql);
     $consulta->bindParam(":cpf", $cpf);
 } else {
-    //atualizando- apenas essa id pode ter esse cpf
     $sql = "SELECT id FROM pessoa WHERE cpf = :cpf AND id <> :id LIMIT 1";
     $consulta = $pdo->prepare($sql);
     $consulta->bindParam(":cpf", $cpf);

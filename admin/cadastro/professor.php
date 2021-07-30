@@ -11,7 +11,6 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
 
 if (!isset($id)) $id = "";
 
-// tabela pessoa
 $nome = $login = $senha = $rg = $cpf = $data_nascimento = $data_cadastro =
     $email = $logradouro = $numero  = $cep = $complemento = $telefone1 = $telefone2 =
     $status = $cidade_id = $cidade = $estado = $idprof = '';
@@ -31,7 +30,6 @@ if (!empty($id)) {
 
     $dados = $consulta->fetch(PDO::FETCH_OBJ);
 
-    // caso não existir professor cadastrado
     if (empty($dados->id)) {
         echo "<p class='alert alert-danger'> Professor não cadastrado </p>";
     } else {
@@ -48,12 +46,12 @@ if (!empty($id)) {
         $complemento = $dados->complemento;
         $cidade_id   = $dados->id_cidade;
         $cidade      = $dados->cidade;
-        $telefone1  = $dados->telefone1;
-        $telefone2  = $dados->telefone2;
-        $estado     = $dados->estado;
+        $telefone1   = $dados->telefone1;
+        $telefone2   = $dados->telefone2;
+        $estado      = $dados->estado;
         $status      = $dados->status;
-        $formacao   = $dados->formacao;
-        $idprof     = $dados->prid;
+        $formacao    = $dados->formacao;
+        $idprof      = $dados->prid;
     }
 }
 ?>
@@ -63,11 +61,10 @@ if (!empty($id)) {
         <div class="row">
             <div>
                 <h1 class="m-0 text-dark">Cadastro de Professor</h1>
-            </div><!-- /.col -->
-        </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
+            </div>
+        </div>
+    </div>
 </div>
-<!-- /.content-header -->
 
 <div class="container">
 
@@ -75,14 +72,13 @@ if (!empty($id)) {
         <a href="listar/professor" class="btn btn-outline-info">Listar Professores</a>
     </div>
 
-    <div class="clearfix"></div> <!-- Ignora os floats -->
+    <div class="clearfix"></div>
 
     <form action="salvar/professor" name="formCadastro" method="post" data-parsley-validate enctype="multipart/form-data" role="form">
         <div class="row mb-3">
 
             <input type="hidden" class="form-control" name="id" id="id" readonly value="<?= $id ?>">
 
-            <!-- LINHA 1 -->
             <div class="col-12 col-md-8">
                 <label for="nome"> Nome Completo </label>
                 <input type="text" class="form-control" autocomplete="off" id="nome" name="nome" required data-parsley-required-message="Preencha o nome" value="<?= $nome ?>">
@@ -106,7 +102,6 @@ if (!empty($id)) {
                 </select>
             </div>
 
-            <!-- LINHA 2 -->
             <div class="col-12 col-md-4">
                 <label for="login"> Login </label>
                 <input type="text" class="form-control" autocomplete="off" id="login" name="login" required data-parsley-required-message="Preencha o nome do login" placeholder="Insira com o login de acesso" value="<?= $login ?>">
@@ -117,7 +112,6 @@ if (!empty($id)) {
                 <input type="email" class="form-control" autocomplete="off" id="email" name="email" required data-parsley-required-message="Preencha com um e-mail válido" placeholder="Digite um e-mail válido" value="<?= $email ?>">
             </div>
 
-            <!-- LINHA 3-->
             <div class="col-12 col-md-4">
                 <label for="rg"> RG </label>
                 <input type="text" class="form-control" autocomplete="off" id="rg" name="rg" required data-parsley-required-message="Preencha o RG" value="<?= $rg ?>">
@@ -134,7 +128,6 @@ if (!empty($id)) {
                 <input type="date" class="form-control" autocomplete="off" id="data_nascimento" name="data_nascimento" required data-parsley-required-message="Preencha a data de nascimento" value="<?= $data_nascimento ?>">
             </div>
 
-            <!-- LINHA 4 -->
             <div class="col-12 col-md-4">
                 <label for="cep"> CEP </label>
                 <input type="text" class="form-control" autocomplete="off" id="cep" name="cep" required data-parsley-required-message="Preencha com um CEP válido" value="<?= $cep ?>">
@@ -152,7 +145,6 @@ if (!empty($id)) {
                 <input type="text" class="form-control" autocomplete="off" id="estado" required data-parsley-required-message="Selecione o estado" value="<?= $estado ?>">
             </div>
 
-            <!-- LINHA 5 -->
             <div class="col-12 col-md-8">
                 <label for="logradouro"> Endereço Completo</label>
                 <input type="text" class="form-control" autocomplete="off" id="logradouro" name="logradouro" required data-parsley-required-message="Preencha o endereço" value="<?= $logradouro ?>">
@@ -163,13 +155,11 @@ if (!empty($id)) {
                 <input type="text" class="form-control" autocomplete="off" id="numero" name="numero" required data-parsley-required-message="Preencha com o número da residência" placeholder="Insira o número da residência" value="<?= $numero ?>">
             </div>
 
-            <!-- LINHA 6 -->
             <div class="col-12 col-md-12">
                 <label for="complemento"> Complemento </label>
                 <input type="text" class="form-control" autocomplete="off" id="complemento" name="complemento" value="<?= $complemento ?>">
             </div>
 
-            <!-- LINHA 7 -->
             <div class="col-12 col-md-6">
                 <label for="telefone1"> Telefone Obrigatório</label>
                 <input type="text" class="form-control" autocomplete="off" id="telefone1" name="telefone1" required data-parsley-required-message="Preencha com o número de telefone" value="<?= $telefone1 ?>">
@@ -182,7 +172,6 @@ if (!empty($id)) {
 
             <div class="clearfix"></div>
 
-            <!-- LINHA 8 -->
             <div class="col-12 col-md-6">
                 <?php
                 $r = 'required data-parsley-required-message="Insira uma senha" placeholder="Insira a senha inicial de acesso';
@@ -217,32 +206,27 @@ if (!empty($id)) {
                 <i class="fas fa-check"></i> Gravar Dados
             </button>
         </div>
-        <div class="clearfix"></div> <!-- Ignora os floats -->
+        <div class="clearfix"></div>
     </form>
 
 
-    <?php if (empty($id)) $id = 0; //verificar se id é vazio 
+    <?php if (empty($id)) $id = 0;
     ?>
 
     <script>
         function verificarCpf(cpf) {
-            //ajax verificação CPF
-            //faz o get para o arquivo indicado e a variável e o retorno
             $.get("verificarCpf.php", {
                     cpf: cpf,
                     id: <?= $id; ?>
                 },
                 function(dados) {
                     if (dados != "") {
-                        // retorno da mensagem da verificação de erro
                         alert(dados);
-                        //zera o CPF
                         $("#cpf").val("");
                     }
                 })
         };
 
-        // verificador de senha no update
         function verificarSenha() {
             if ($('#senha').val() != $('#senha2').val()) {
                 $('#senha').val('')
@@ -277,31 +261,27 @@ if (!empty($id)) {
         });
 
         $("#cep").blur(function() {
-            //pega valor do CEP
             cep = $("#cep").val();
             cep = cep.replace(/\D/g, '');
             if (cep == "") {
                 alert("Preencha o CEP");
             } else {
-                //Consulta o webservice viacep.com.br/
                 $.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?", function(dados) {
                     $("#cidade").val(dados.localidade);
                     $("#estado").val(dados.uf);
                     $("#logradouro").val(dados.logradouro);
 
-                    //buscar ID da cidade
                     $.get("buscarCidade.php", {
                             cidade: dados.localidade,
                             estado: dados.uf
                         },
                         function(dados) {
                             if (dados != "Erro") {
-                                $("#cidade_id").val(dados) //coloca o Valor de dados
+                                $("#cidade_id").val(dados)
                             } else {
                                 alert(dados);
                             }
                         })
-                    //focar no endereço
                     $("#logradouro").focus();
                 })
             }

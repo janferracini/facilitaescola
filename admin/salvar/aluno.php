@@ -9,11 +9,9 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
     exit;
 }
 
-// Verificar se existem dados no POST
 if ($_POST) {
     include "functions.php";
     include "../config/conexao.php";
-    // tabela pessoa
     $nome = $login = $senha = $rg = $cpf = $data_nascimento = $data_cadastro =
         $email = $logradouro = $numero  = $cep = $complemento = $telefone1 = $telefone2 =
         $status = $cidade_id = $cidade = $estado = $matricula = $data_matricula = $pessoa_id =
@@ -66,19 +64,13 @@ if ($_POST) {
         exit;
     }
 
-    // if (empty($tmid)) {
-    //     echo "<script>alert('Preencha a Turma');history.back();</script>";
-    //     exit;
-    // }
-
-    //iniciar uma transação com o DB toda alteração pra baixo, só será feito após o commit
     $pdo->beginTransaction();
 
     if (empty($id)) {
         $sql = "SELECT cpf 
                 FROM pessoa
                 WHERE cpf = :cpf
-            LIMIT 1";
+                LIMIT 1";
         $consulta = $pdo->prepare($sql);
         $consulta->bindParam(":cpf", $cpf);
         $consulta->execute();
@@ -96,6 +88,7 @@ if ($_POST) {
         $consulta->bindParam(":login", $login);
         $consulta->execute();
         $dados = $consulta->fetch(PDO::FETCH_OBJ);
+
         if (!empty($dados->login)) {
             echo "<script>alert('Login já cadastrado');history.back();</script>";
             exit;
@@ -109,6 +102,7 @@ if ($_POST) {
         $consulta->bindParam(":matricula", $matricula);
         $consulta->execute();
         $dados = $consulta->fetch(PDO::FETCH_OBJ);
+
         if (!empty($dados->matricula)) {
             echo "<script>alert('Matricula já cadastrada');history.back();</script>";
             exit;
@@ -123,8 +117,8 @@ if ($_POST) {
                     :email, :logradouro, :numero, :cep, :complemento,
                     :telefone1, :telefone2, :cidade_id, :tipo_cadastro, :status)";
 
-        $tipo_cadastro = 2; //1 - ADM, 2 - ALUNO, 3 - PROF
-        $status = 1;       // 1 - ATIVO, 0 - INATIVO - Ativo como padrão
+        $tipo_cadastro = 2;
+        $status = 1;
         $senha = password_hash($senha, PASSWORD_BCRYPT);
         $login = strtolower($login);
         $consulta = $pdo->prepare($sql);
@@ -290,7 +284,6 @@ if ($_POST) {
 
         echo $consulta->errorInfo()[2] . '-' . $consulta2->errorInfo()[2] .  $consulta3->errorInfo()[2];
         print_r($_POST);
-        //exit;
     }
 }
 

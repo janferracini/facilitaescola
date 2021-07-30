@@ -13,7 +13,6 @@ if (!isset($id)) $id = "";
 $disciplina = '';
 
 if (!empty($id)) {
-    //select nos dados do grade
     $sql = "SELECT  g.id gid, g.*, 
                     t.id tid, t.*, 
                     d.id did, d.*, 
@@ -34,7 +33,6 @@ if (!empty($id)) {
 
     $dados = $consulta->fetch(PDO::FETCH_OBJ);
 
-
     if (empty($dados->id)) {
         echo "<div class='pt-3'><p class='alert alert-danger'>Cadastro não existe</p></div>";
         print_r($sql);
@@ -54,17 +52,15 @@ if (!empty($id)) {
 }
 ?>
 
-<!-- Content Header (Page header) -->
 <div class="content-header">
     <div class="container-fluid">
         <div class="row">
             <div>
                 <h1 class="m-0 text-dark">Cadastro da Grade</h1>
-            </div><!-- /.col -->
-        </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
+            </div>
+        </div>
+    </div>
 </div>
-<!-- /.content-header -->
 
 <div class="container">
 
@@ -72,14 +68,12 @@ if (!empty($id)) {
         <a href="listar/grade" class="btn btn-outline-info">Listrar Cadastros</a>
     </div>
 
-    <div class="clearfix"></div> <!-- Ignora os floats -->
+    <div class="clearfix"></div>
 
     <form action="salvar/grade" name="formCadastro" method="post" data-parsley-validate enctype="multipart/form-data" role="form">
         <div class="row mb-3">
             <input type="hidden" class="form-control" name="id" id="id" readonly value="<?= $id ?>">
 
-
-            <!-- TURMA -->
             <div class="col-12 col-md-4">
                 <label for="turma">Turma</label>
                 <input type="hidden" class="form-control" name="tid" id="tid" readonly value="<?= $turma_id ?>">
@@ -87,14 +81,13 @@ if (!empty($id)) {
                 <datalist id="listaTurma">
                     <?php
                     $sql = "SELECT t.*,t.id tid, p.*
-                                        FROM turma t
-                                        INNER JOIN periodo p ON (p.id = t.periodo_id)
-                                        ORDER BY serie";
+                            FROM turma t
+                            INNER JOIN periodo p ON (p.id = t.periodo_id)
+                            ORDER BY serie";
                     $consulta = $pdo->prepare($sql);
                     $consulta->execute();
 
                     while ($dados = $consulta->fetch(PDO::FETCH_OBJ)) {
-                        // separar os dados
                         $serie     = $dados->serie;
                         $descricao = $dados->descricao;
                         $ano       = $dados->ano;
@@ -106,7 +99,6 @@ if (!empty($id)) {
                 </datalist>
             </div>
 
-            <!-- Disciplina -->
             <div class="col-12 col-md-4">
                 <label for="disciplina">Disciplina</label>
                 <input type="hidden" class="form-control" name="disciplina_id" id="disciplina_id" readonly value="<?= $disciplina_id ?>">
@@ -120,7 +112,6 @@ if (!empty($id)) {
                     $consulta->execute();
 
                     while ($dados = $consulta->fetch(PDO::FETCH_OBJ)) {
-                        // separar os dados
                         $did     = $dados->did;
                         $disciplina = $dados->disciplina;
                         echo '<option value=" ' . $did . ' - ' . $disciplina . '">';
@@ -129,7 +120,6 @@ if (!empty($id)) {
                 </datalist>
             </div>
 
-            <!-- PROFESSOR -->
             <div class="col-12 col-md-4">
                 <label for="professor">Professor</label>
                 <input type="hidden" class="form-control" name="professor_id" id="professor_id" readonly value="<?= $professor_id ?>">
@@ -144,7 +134,6 @@ if (!empty($id)) {
                     $consulta->execute();
 
                     while ($dados = $consulta->fetch(PDO::FETCH_OBJ)) {
-                        // separar os dados
                         $pid     = $dados->id;
                         $nome = $dados->nome;
                         echo '<option value=" ' . $pid . ' - ' . $nome . '">';
@@ -161,5 +150,4 @@ if (!empty($id)) {
         </div>
         <div class="clearfix"></div>
     </form>
-
 </div>

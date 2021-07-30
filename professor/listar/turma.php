@@ -10,7 +10,6 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 3) {
 }
 ?>
 
-<!-- Content Header (Page header) -->
 <div class="content-header">
     <div class="container-fluid">
         <?php
@@ -50,11 +49,10 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 3) {
         <div class="row">
             <div>
                 <h1 class="m-0 text-dark">Turma <?php echo  $serie . " " . $descricao . " / " . $periodo . " - " . $disciplina; ?></h1>
-            </div><!-- /.col -->
-        </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
+            </div>
+        </div>
+    </div>
 </div>
-<!-- /.content-header -->
 <div class="container">
     <div class="card-body table-responsive p-0 mt-3">
         <table id="tabTurma" class="table ui celled table table-bordered table-hover">

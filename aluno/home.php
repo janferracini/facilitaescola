@@ -10,23 +10,19 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 2) {
 }
 ?>
 
-<!-- Content Header (Page header) -->
 <div class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
                 <h1 class="m-0 text-dark">Facilita Escola</h1>
-            </div><!-- /.col -->
-        </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
+            </div>
+        </div>
+    </div>
 </div>
-<!-- /.content-header -->
-<!-- row -->
 <div class="row">
 
     <div class="col-lg-4 col-6">
         <a href="listar/atividade" style="text-decoration: none;">
-            <!-- small card -->
             <div class="small-box bg-info">
                 <div class="inner">
                     <h4>Atividades</h4>
@@ -41,7 +37,6 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 2) {
 
     <div class="col-lg-4 col-6">
         <a href="listar/recado" style="text-decoration: none;">
-            <!-- small card -->
             <div class="small-box bg-info">
                 <div class="inner">
                     <h4>Recados</h4>
@@ -55,7 +50,6 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 2) {
     </div>
 
     <div class="col-lg-4 col-6">
-        <!-- small card -->
         <a href="cadastro/mensagem" style="text-decoration: none;">
             <div class="small-box bg-info">
                 <div class="inner">
@@ -68,25 +62,20 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 2) {
             </div>
         </a>
     </div>
-
 </div>
-<!-- /.row -->
 
-<!-- Primeira linha de cards -->
 <div class="row">
-    <!-- div mensagens -->
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header border-transparent">
                 <h3 class="card-title">Últimos Recados</h3>
-
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
                         <i class="fas fa-minus"></i>
                     </button>
                 </div>
             </div>
-            <!-- /.card-header -->
+
             <div class="card-body p-0">
                 <div class="table-responsive">
                     <table class="table table-hover m-0">
@@ -101,7 +90,7 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 2) {
                             <?php
                             $idaluno = $_SESSION["facilita_escola"]["id"];
                             $sql = "SELECT  r.id rid, r.*, date_format(r.data_postagem, '%d/%m/%Y') dp, g.*,
-                            t.id tid, t.*, tm.*, m.*, p.id pid
+                                            t.id tid, t.*, tm.*, m.*, p.id pid
                                     FROM recado r
                                     INNER JOIN grade g ON (g.id = r.grade_id)
                                     INNER JOIN turma t ON (t.id = g.turma_id)
@@ -116,14 +105,11 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 2) {
                             $consulta->execute();
 
                             while ($dados = $consulta->fetch(PDO::FETCH_OBJ)) {
-                                // Separar os dados
                                 $id       = $dados->rid;
                                 $titulo   = $dados->titulo;
                                 $conteudo = $dados->conteudo;
                                 $data      = $dados->dp;
 
-
-                                // Mostrar na tela
                                 echo "
                                     <tr>
                                         <td>" . $data . "</td>
@@ -135,16 +121,10 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 2) {
                         </tbody>
                     </table>
                 </div>
-                <!-- /.table-responsive -->
             </div>
-            <!-- /.card-body -->
             <div class="card-footer clearfix">
                 <a href="listar/recado" class="btn btn-sm btn-outline-laranja float-right">Ver todas</a>
             </div>
-            <!-- /.card-footer -->
         </div>
-        <!-- /.card -->
     </div>
-    <!-- fim div mensagens -->
 </div>
-<!-- fim primeira linha de cars -->

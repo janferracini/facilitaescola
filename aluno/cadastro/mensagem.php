@@ -8,22 +8,17 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 2) {
     echo "<script>alert('Erro na requisição da página, faça login novamente para continuar');location.href='sair.php'</script>";
     exit;
 }
-
 ?>
 
-<!-- Content Header (Page header) -->
 <div class="content-header">
     <div class="container-fluid">
         <div class="row">
             <div>
                 <h1 class="m-0 text-dark">Enviar Mensagem </h1>
-            </div><!-- /.col -->
-        </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
+            </div>
+        </div>
+    </div>
 </div>
-<!-- /.content-header -->
-
-
 
 <div class="container">
 
@@ -31,7 +26,7 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 2) {
         <a href="listar/mensagem" class="btn btn-outline-info">Listar Enviadas </a>
     </div>
 
-    <div class="clearfix"></div> <!-- Ignora os floats -->
+    <div class="clearfix"></div>
 
     <form action="salvar/mensagem" name="formCadastro" method="post" data-parsley-validate enctype="multipart/form-data" role="form">
         <div class="row mb-3">
@@ -41,9 +36,6 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 2) {
                 <label for="mensagem">Mensagem:</label>
                 <textarea type="text" name="mensagem" maxlength="1024" id="mensagem" class="form-control" required data-parsley-required-message="Preencha a mensagem" placeholder="Digite a Mensagem"></textarea>
             </div>
-
-
-
         </div>
 
         <div class="float-right">
@@ -51,7 +43,6 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 2) {
                 <i class="fas fa-check"></i> Gravar Dados
             </button>
         </div>
-        <div class="clearfix"></div> <!-- Ignora os floats -->
+        <div class="clearfix"></div>
     </form>
-
 </div>

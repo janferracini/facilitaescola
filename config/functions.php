@@ -95,18 +95,16 @@ function getNomeMes($mes)
 
 function validaCPF($cpf)
 {
-	// Extrai somente os números
 	$cpf = preg_replace('/[^0-9]/is', '', $cpf);
 
-	// Verifica se foi informado todos os digitos corretamente
 	if (strlen($cpf) != 11) {
 		return "O CPF precisa ter ao menos 11 números";
 	}
-	// Verifica se foi informada uma sequência de digitos repetidos. Ex: 111.111.111-11
+
 	if (preg_match('/(\d)\1{10}/', $cpf)) {
 		return "CPF inválido";
 	}
-	// Faz o calculo para validar o CPF
+
 	for ($t = 9; $t < 11; $t++) {
 		for ($d = 0, $c = 0; $c < $t; $c++) {
 			$d += $cpf[$c] * (($t + 1) - $c);
@@ -121,7 +119,6 @@ function validaCPF($cpf)
 
 function formatarDN($data_nascimento)
 {
-	// 20/12/2020 -> 2020-12-20
 	$data_nascimento = explode("/", $data_nascimento);
 	return $data_nascimento = $data_nascimento[2] . "-" . $data_nascimento[1] . "-" . $data_nascimento[0];
 }
@@ -147,6 +144,5 @@ function fotoUsuario($pastaFotos, $imagem, $nome)
 	ImageDestroy($imagem_orig);
 	ImageDestroy($imagem_fin);
 
-	//apagar a imagem antiga
 	unlink($imagem);
 }

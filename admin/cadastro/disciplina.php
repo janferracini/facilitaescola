@@ -13,7 +13,6 @@ if (!isset($id)) $id = "";
 $disciplina = '';
 
 if (!empty($id)) {
-    //select nos dados do disciplina
     $sql = "SELECT  *
             FROM disciplina
             WHERE id = :id
@@ -33,17 +32,15 @@ if (!empty($id)) {
 }
 ?>
 
-<!-- Content Header (Page header) -->
 <div class="content-header">
     <div class="container-fluid">
         <div class="row">
             <div>
                 <h1 class="m-0 text-dark">Cadastro de Disciplina</h1>
-            </div><!-- /.col -->
-        </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
+            </div>
+        </div>
+    </div>
 </div>
-<!-- /.content-header -->
 
 <div class="container">
 
@@ -51,7 +48,7 @@ if (!empty($id)) {
         <a href="listar/disciplina" class="btn btn-outline-info">Listar Disciplinas</a>
     </div>
 
-    <div class="clearfix"></div> <!-- Ignora os floats -->
+    <div class="clearfix"></div>
 
     <form action="salvar/disciplina" name="formCadastro" method="post" data-parsley-validate enctype="multipart/form-data" role="form">
         <div class="row mb-3">
@@ -60,7 +57,6 @@ if (!empty($id)) {
                 <label for="disciplina">Disciplina:</label>
                 <input type="text" autocomplete="off" name="disciplina" id="disciplina" class="form-control" required data-parsley-required-message="Preencha a Disciplina" value="<?= $disciplina ?>" placeholder="Digite a Disciplina">
             </div>
-
         </div>
 
         <div class="float-right">
@@ -68,7 +64,6 @@ if (!empty($id)) {
                 <i class="fas fa-check"></i> Gravar Dados
             </button>
         </div>
-        <div class="clearfix"></div> <!-- Ignora os floats -->
+        <div class="clearfix"></div>
     </form>
-
 </div>

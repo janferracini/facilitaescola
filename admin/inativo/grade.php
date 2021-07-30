@@ -10,17 +10,16 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
 }
 ?>
 
-<!-- Content Header (Page header) -->
 <div class="content-header">
     <div class="container-fluid">
         <div class="row">
             <div>
                 <h1 class="m-0 text-dark">Grades Inativas</h1>
-            </div><!-- /.col -->
-        </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
+            </div>
+        </div>
+    </div>
 </div>
-<!-- /.content-header -->
+
 <div class="container">
 
     <div class="float-right">
@@ -43,19 +42,18 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
                 <?php
 
                 $sql = "SELECT  g.id gid, g.*, t.*, d.*, p.*, pe.nome, pd.*
-                    FROM grade g
-                    INNER JOIN turma t ON (t.id = g.turma_id)
-                    INNER JOIN disciplina d ON (d.id = g.disciplina_id)
-                    INNER JOIN professor p ON (p.id = g.professor_id)
-                    INNER JOIN pessoa pe ON (pe.id = p.pessoa_id)
-                    INNER JOIN periodo pd ON (pd.id = t.periodo_id)
-                    WHERE g.status = 0";
+                        FROM grade g
+                        INNER JOIN turma t ON (t.id = g.turma_id)
+                        INNER JOIN disciplina d ON (d.id = g.disciplina_id)
+                        INNER JOIN professor p ON (p.id = g.professor_id)
+                        INNER JOIN pessoa pe ON (pe.id = p.pessoa_id)
+                        INNER JOIN periodo pd ON (pd.id = t.periodo_id)
+                        WHERE g.status = 0";
 
                 $consulta = $pdo->prepare($sql);
                 $consulta->execute();
 
                 while ($dados = $consulta->fetch(PDO::FETCH_OBJ)) {
-                    // Separar os dados
                     $id         = $dados->gid;
                     $serie      = $dados->serie;
                     $descricao  = $dados->descricao;
@@ -80,15 +78,12 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
             </tbody>
         </table>
     </div>
-    <!-- /.card-body -->
 </div>
 
 <script>
-    //função para perguntar se deseja ativar. Se sim, direcionar para o endereço de ativação
     function ativar(id) {
         //perguntar
         if (confirm("Deseja mesmo ativar?")) {
-            //direcionar para exclusão
             location.href = "ativar/grade/" + id;
         }
     }

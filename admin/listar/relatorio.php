@@ -10,17 +10,16 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
 }
 ?>
 
-<!-- Content Header (Page header) -->
 <div class="content-header">
     <div class="container-fluid">
         <div class="row">
             <div>
                 <h1 class="m-0 text-dark">Relatórios</h1>
-            </div><!-- /.col -->
-        </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
+            </div>
+        </div>
+    </div>
 </div>
-<!-- /.content-header -->
+
 <div class="container">
 
     <div class="card-body table-responsive p-0 mt-3">
@@ -71,9 +70,7 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
             </tbody>
         </table>
     </div>
-    <!-- /.card-body -->
 
-    <!-- Modal Aluno-Turma -->
     <div id="aluno-turma" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -88,14 +85,13 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
                         <datalist id="listaTurma">
                             <?php
                             $sql = "SELECT t.*,t.id tid, p.*
-                                        FROM turma t
-                                        INNER JOIN periodo p ON (p.id = t.periodo_id)
-                                        ORDER BY serie";
+                                    FROM turma t
+                                    INNER JOIN periodo p ON (p.id = t.periodo_id)
+                                    ORDER BY serie";
+
                             $consulta = $pdo->prepare($sql);
                             $consulta->execute();
-
                             while ($dados = $consulta->fetch(PDO::FETCH_OBJ)) {
-                                // separar os dados
                                 $serie     = $dados->serie;
                                 $descricao = $dados->descricao;
                                 $ano       = $dados->ano;
@@ -110,12 +106,9 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
                         </div>
                     </form>
                 </div>
-
             </div>
         </div>
     </div>
-    <!-- /Modal Aluno-Turma -->
-    <!-- Modal Aluno-Professor -->
     <div id="aluno-professor" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -130,14 +123,13 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
                         <datalist id="listaProfessor">
                             <?php
                             $sql = "SELECT p.id pid, p.*, pe.id, pe.nome
-                                        FROM professor p
-                                        INNER JOIN pessoa pe ON (pe.id = p.pessoa_id)
-                                        ORDER BY nome";
+                                    FROM professor p
+                                    INNER JOIN pessoa pe ON (pe.id = p.pessoa_id)
+                                    ORDER BY nome";
                             $consulta = $pdo->prepare($sql);
                             $consulta->execute();
 
                             while ($dados = $consulta->fetch(PDO::FETCH_OBJ)) {
-                                // separar os dados
                                 $nome     = $dados->nome;
                                 $professor_id  = $dados->pid;
                                 echo '<option value=" ' . $professor_id . ' - ' . $nome . '">';
@@ -149,12 +141,10 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
                         </div>
                     </form>
                 </div>
-
             </div>
         </div>
     </div>
-    <!-- /Modal Aluno-Turma -->
-    <!-- Modal Atividade-Turma -->
+
     <div id="atividade-turma" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -169,14 +159,13 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
                         <datalist id="listaTurma">
                             <?php
                             $sql = "SELECT t.*,t.id tid, p.*
-                                        FROM turma t
-                                        INNER JOIN periodo p ON (p.id = t.periodo_id)
-                                        ORDER BY serie";
+                                    FROM turma t
+                                    INNER JOIN periodo p ON (p.id = t.periodo_id)
+                                    ORDER BY serie";
                             $consulta = $pdo->prepare($sql);
                             $consulta->execute();
 
                             while ($dados = $consulta->fetch(PDO::FETCH_OBJ)) {
-                                // separar os dados
                                 $serie     = $dados->serie;
                                 $descricao = $dados->descricao;
                                 $ano       = $dados->ano;
@@ -191,12 +180,9 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
                         </div>
                     </form>
                 </div>
-
             </div>
         </div>
     </div>
-    <!-- /Modal Atividade-Turma -->
-    <!-- Modal Recado-Turma -->
     <div id="recado-turma" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -218,7 +204,6 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
                             $consulta->execute();
 
                             while ($dados = $consulta->fetch(PDO::FETCH_OBJ)) {
-                                // separar os dados
                                 $serie     = $dados->serie;
                                 $descricao = $dados->descricao;
                                 $ano       = $dados->ano;
@@ -236,8 +221,6 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
             </div>
         </div>
     </div>
-    <!-- /Modal Recado-Turma -->
-    <!-- Modal Recado-Período -->
     <div id="recado-periodo" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -273,8 +256,6 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
             </div>
         </div>
     </div>
-    <!-- /Modal Recado-Período -->
-    <!-- Modal Mensagem-Período -->
     <div id="mensagem_periodo" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -310,8 +291,6 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
             </div>
         </div>
     </div>
-    <!-- /Modal Mensagem-Período -->
-    <!-- Modal Aniversario-Mês -->
     <div id="aniversario-mes" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -345,52 +324,50 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
             </div>
         </div>
     </div>
-    <!-- /Modal Aniversario-Mês -->
 
     <script>
-        // aluno-turma
         $('.aluno-turma').on('click', function() {
             var titulo = $(this).data('titulo');
             var id = $(this).data('id');
             $('span.titulo').text(titulo);
             $('#aluno-turma').modal('show');
         });
-        // aluno-professor
+
         $('.aluno-professor').on('click', function() {
             var titulo = $(this).data('titulo');
             var id = $(this).data('id');
             $('span.titulo').text(titulo);
             $('#aluno-professor').modal('show');
         });
-        // atividade-turma
+
         $('.atividade-turma').on('click', function() {
             var titulo = $(this).data('titulo');
             var id = $(this).data('id');
             $('span.titulo').text(titulo);
             $('#atividade-turma').modal('show');
         });
-        // recado-turma
+
         $('.recado-turma').on('click', function() {
             var titulo = $(this).data('titulo');
             var id = $(this).data('id');
             $('span.titulo').text(titulo);
             $('#recado-turma').modal('show');
         });
-        // recado-periodo
+
         $('.recado-periodo').on('click', function() {
             var titulo = $(this).data('titulo');
             var id = $(this).data('id');
             $('span.titulo').text(titulo);
             $('#recado-periodo').modal('show');
         });
-        // mensagem-periodo
+
         $('.mensagem_periodo').on('click', function() {
             var titulo = $(this).data('titulo');
             var id = $(this).data('id');
             $('span.titulo').text(titulo);
             $('#mensagem_periodo').modal('show');
         });
-        // aniversario-mes
+
         $('.aniversario-mes').on('click', function() {
             var titulo = $(this).data('titulo');
             var id = $(this).data('id');
@@ -398,5 +375,4 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
             $('#aniversario-mes').modal('show');
         });
     </script>
-
 </div>

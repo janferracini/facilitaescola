@@ -40,24 +40,15 @@ $base = "$h://$site:$porta/$url"
 
   <link rel="shortcut icon" href="../docs/assets/img/FE-icone.ico">
 
-  <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
-  <!-- IonIcons -->
   <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- Tempusdominus Bbootstrap 4 -->
   <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
-  <!-- overlayScrollbars -->
   <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
-  <!-- Daterange picker -->
   <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
-  <!-- Theme style -->
   <link rel="stylesheet" href="../dist/css/adminlte.min.css">
   <link rel="stylesheet" href="../dist/css/style.css">
-  <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
 
 <body class="hold-transition sidebar-mini">
@@ -66,25 +57,20 @@ $base = "$h://$site:$porta/$url"
   $pagina = $pagina . ".php";
   ?>
 
-
   <div class="wrapper pb-3">
-    <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-      <!-- Left navbar links -->
       <ul class="navbar-nav">
         <li class="nav-item">
           <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
       </ul>
 
-      <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
         <li class="nav-item mt-2">
           <span class="mr-2 d-none d-lg-inline text-gray-200 ">
             <?= $_SESSION["facilita_escola"]["nome"]; ?>
           </span>
         </li>
-        <!-- Botão SAIR -->
         <li class="nav-item dropdown">
           <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
             <i class="fas fa-sign-out-alt"></i>
@@ -92,19 +78,14 @@ $base = "$h://$site:$porta/$url"
         </li>
       </ul>
     </nav>
-    <!-- /.navbar -->
 
-    <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-orange elevation-4">
-      <!-- Brand Logo -->
       <a href="#" class="brand-link">
         <img src="img/facilitaescola-logo.png" alt="Facilita Escola Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">Facilita Escola</span>
       </a>
 
-      <!-- Sidebar -->
       <div class="sidebar">
-        <!-- Sidebar Menu -->
         <nav class="mt-2">
           <ul class="nav nav-pills nav-sidebar nav-legacy nav-flat nav-child-indent flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item">
@@ -140,14 +121,10 @@ $base = "$h://$site:$porta/$url"
             </li>
           </ul>
         </nav>
-        <!-- /.sidebar-menu -->
       </div>
-      <!-- /.sidebar -->
     </aside>
 
-    <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper pb-3">
-      <!-- Main content -->
       <div class="content">
         <div class="container-fluid">
 
@@ -177,30 +154,20 @@ $base = "$h://$site:$porta/$url"
           ?>
 
         </div>
-        <!-- /.container-fluid -->
       </div>
-      <!-- /.content -->
     </div>
-    <!-- /.content-wrapper -->
 
-    <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
-      <!-- Control sidebar content goes here -->
     </aside>
-    <!-- /.control-sidebar -->
 
-    <!-- Main Footer -->
     <footer class="main-footer">
       Copyright &copy; 2020 <strong>Facilita Escola</strong>.
   </div>
   </footer>
   </div>
-  <!-- ./wrapper -->
   <?php
-  //}
   ?>
 
-  <!-- Logout Modal-->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -218,25 +185,16 @@ $base = "$h://$site:$porta/$url"
       </div>
     </div>
   </div>
-  <!-- REQUIRED SCRIPTS -->
 
-  <!-- jQuery -->
   <script src="../plugins/jquery/jquery.min.js"></script>
-  <!-- Bootstrap -->
   <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <!-- AdminLTE -->
   <script src="../dist/js/adminlte.js"></script>
-  <!-- daterangepicker -->
   <script src="plugins/moment/moment.min.js"></script>
   <script src="plugins/daterangepicker/daterangepicker.js"></script>
-  <!-- Tempusdominus Bootstrap 4 -->
   <script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-
-  <!-- OPTIONAL SCRIPTS -->
   <script src="../plugins/chart.js/Chart.min.js"></script>
   <script src="../dist/js/demo.js"></script>
   <script src="../dist/js/pages/dashboard3.js"></script>
-
   <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 </body>
 

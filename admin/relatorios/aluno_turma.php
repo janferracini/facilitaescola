@@ -15,7 +15,6 @@ if ($_POST) {
         echo "O campo Turma deve ser preenchido";
     }
 
-
     $usuario = $_SESSION['facilita_escola']['nome'];
     $turma = getTurma($turma_id);
 

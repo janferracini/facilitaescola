@@ -15,11 +15,11 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
         <div class="row mb-2">
             <div>
                 <h1 class="m-0 text-dark">Facilita Escola</h1>
-            </div><!-- /.col -->
-        </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
+            </div>
+        </div>
+    </div>
 </div>
-<!-- row -->
+
 <div class="row pt-2">
     <div class="col-12 col-sm- col-md-4">
         <a href="listar/aluno" style="text-decoration: none;">
@@ -55,11 +55,8 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
     </div>
 
 </div>
-<!--/.row -->
 
-<!-- Primeira linha de cards -->
 <div class="row">
-    <!-- div mensagens -->
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header border-transparent">
@@ -71,7 +68,6 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
                     </button>
                 </div>
             </div>
-            <!-- /.card-header -->
             <div class="card-body p-0">
                 <div class="table-responsive">
                     <table class="table table-hover m-0">
@@ -98,7 +94,6 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
                             $consulta->execute();
 
                             while ($dados = $consulta->fetch(PDO::FETCH_OBJ)) {
-                                // Separar os dados
                                 $idmensagem = $dados->id;
                                 $data_postagem = $dados->dp;
                                 $aluno = $dados->nome;
@@ -107,7 +102,6 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
                                 $serie = $dados->serie;
                                 $descricao = $dados->descricao;
 
-                                // Mostrar na tela
                                 echo "
                                     <tr>
                                         <td>" . $aluno . "</td>
@@ -119,18 +113,12 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
                         </tbody>
                     </table>
                 </div>
-                <!-- /.table-responsive -->
             </div>
-            <!-- /.card-body -->
             <div class="card-footer clearfix">
                 <a href="listar/mensagem" class="btn btn-sm btn-outline-laranja float-right">Ver todas</a>
             </div>
-            <!-- /.card-footer -->
         </div>
-        <!-- /.card -->
     </div>
-    <!-- fim div mensagens -->
-    <!-- div recados -->
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header border-transparent">
@@ -142,7 +130,6 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
                     </button>
                 </div>
             </div>
-            <!-- /.card-header -->
             <div class="card-body p-0">
                 <div class="table-responsive">
                     <table class="table table-hover m-0">
@@ -156,21 +143,20 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
                         <tbody>
                             <?php
                             $sql = "SELECT *,  date_format(data_postagem, '%d/%m/%Y') data_postagem
-                            FROM recado
-                            ORDER BY id DESC
-                            LIMIT 6";
+                                    FROM recado
+                                    ORDER BY id DESC
+                                    LIMIT 6";
 
                             $consulta = $pdo->prepare($sql);
                             $consulta->execute();
 
                             while ($dados = $consulta->fetch(PDO::FETCH_OBJ)) {
-                                // Separar os dados
+
                                 $id       = $dados->id;
                                 $titulo   = $dados->titulo;
                                 $conteudo = $dados->conteudo;
                                 $data      = $dados->data_postagem;
 
-                                // Mostrar na tela
                                 echo "
                                     <tr>
                                         <td>" . $data . "</td>
@@ -182,16 +168,11 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
                         </tbody>
                     </table>
                 </div>
-                <!-- /.table-responsive -->
             </div>
-            <!-- /.card-body -->
+
             <div class="card-footer clearfix">
                 <a href="listar/recado" class="btn btn-sm btn-outline-laranja float-right">Ver todos</a>
             </div>
-            <!-- /.card-footer -->
         </div>
-        <!-- /.card -->
     </div>
-    <!-- fim div recados -->
 </div>
-<!-- fim primeira linha de cars -->

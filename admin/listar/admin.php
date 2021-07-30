@@ -10,17 +10,16 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
 }
 ?>
 
-<!-- Content Header (Page header) -->
 <div class="content-header">
     <div class="container-fluid">
         <div class="row">
             <div>
                 <h1 class="m-0 text-dark">Administradores Cadastrados</h1>
-            </div><!-- /.col -->
-        </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
+            </div>
+        </div>
+    </div>
 </div>
-<!-- /.content-header -->
+
 <div class="container">
 
     <div class="float-right">
@@ -70,15 +69,11 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
             </tbody>
         </table>
     </div>
-    <!-- /.card-body -->
 </div>
 
 <script>
-    //função para perguntar se deseja excluir. Se sim, direcionar para o endereço de exclusão
     function inativar(id) {
-        //perguntar
         if (confirm("Deseja mesmo inativar?")) {
-            //direcionar para exclusão
             location.href = "excluir/admin/" + id;
         }
     }

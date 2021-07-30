@@ -10,17 +10,16 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
 }
 ?>
 
-<!-- Content Header (Page header) -->
 <div class="content-header">
     <div class="container-fluid">
         <div class="row">
             <div>
                 <h1 class="m-0 text-dark">Disciplinas Inativas</h1>
-            </div><!-- /.col -->
-        </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
+            </div>
+        </div>
+    </div>
 </div>
-<!-- /.content-header -->
+
 <div class="container">
 
     <div class="float-right">
@@ -41,19 +40,17 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
                 <?php
 
                 $sql = "SELECT  *
-                    FROM disciplina
-                    WHERE status = 0
-                    ORDER BY disciplina";
+                        FROM disciplina
+                        WHERE status = 0
+                        ORDER BY disciplina";
 
                 $consulta = $pdo->prepare($sql);
                 $consulta->execute();
 
                 while ($dados = $consulta->fetch(PDO::FETCH_OBJ)) {
-                    // Separar os dados
                     $id = $dados->id;
                     $disciplina = $dados->disciplina;
 
-                    // Mostrar na tela
                     echo '<tr>
                         <td>' . $disciplina . '</td>
                         <td>                            
@@ -68,15 +65,11 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
             </tbody>
         </table>
     </div>
-    <!-- /.card-body -->
 </div>
 
 <script>
-    //função para perguntar se deseja excluir. Se sim, direcionar para o endereço de exclusão
     function ativar(id) {
-        //perguntar
         if (confirm("Deseja mesmo ativar?")) {
-            //direcionar para exclusão
             location.href = "ativar/disciplina/" + id;
         }
     }

@@ -35,74 +35,52 @@ $base = "$h://$site:$porta/$url"
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
   <title>Facilita Escola</title>
+
   <base href="<?= $base; ?>">
-
   <link rel="shortcut icon" href="../docs/assets/img/FE-icone.ico">
-
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
-
-
-  <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
   <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
-  <!-- IonIcons -->
   <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-
-  <!-- Theme style -->
   <link rel="stylesheet" href="../dist/css/adminlte.min.css">
-
-  <!-- overlayScrollbars -->
   <link rel="stylesheet" href="../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
-  <!-- Daterange picker -->
-  <!-- <link rel="stylesheet" href="../plugins/daterangepicker/daterangepicker.css"> -->
-
-  <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-
-  <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-
   <link rel="stylesheet" href="../dist/css/style.css">
-  <!-- Tempusdominus Bbootstrap 4 -->
-  <!-- <link rel="stylesheet" href="../plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css"> -->
+
 </head>
 
 
 <body class="hold-transition sidebar-mini">
   <?php
+
   $pagina = $pagina . ".php";
 
-
-  //VALIDAÇÃO DE LOGADO. SE NÃO TIVER, IR PARA PÁGINA DE LOGIN
   if (!isset($_SESSION["facilita_escola"]["id"])) {
-    //incluir login
     include $pagina;
   } else {
 
   ?>
 
     <div class="wrapper">
-      <!-- Navbar -->
       <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-        <!-- Left navbar links -->
+
         <ul class="navbar-nav">
           <li class="nav-item">
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
           </li>
         </ul>
 
-        <!-- Right navbar links -->
         <ul class="navbar-nav ml-auto">
           <li class="nav-item mt-2">
             <span class="mr-2 d-none d-lg-inline text-gray-200 ">
               <?= $_SESSION["facilita_escola"]["nome"]; ?>
             </span>
           </li>
-          <!-- Botão SAIR -->
+
           <li class="nav-item">
             <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
               <i class="fas fa-sign-out-alt"></i>
@@ -110,19 +88,14 @@ $base = "$h://$site:$porta/$url"
           </li>
         </ul>
       </nav>
-      <!-- /.navbar -->
 
-      <!-- Main Sidebar Container -->
       <aside class="main-sidebar sidebar-dark-orange elevation-4">
-        <!-- Brand Logo -->
         <a href="index.php" class="brand-link">
           <img src="img/facilitaescola-logo.png" alt="Facilita Escola Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
           <span class="brand-text font-weight-light">Facilita Escola</span>
         </a>
 
-        <!-- Sidebar -->
         <div class="sidebar">
-          <!-- Sidebar Menu -->
           <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar nav-legacy nav-flat nav-child-indent flex-column" data-widget="treeview" role="menu" data-accordion="false">
               <li class="nav-item">
@@ -266,26 +239,19 @@ $base = "$h://$site:$porta/$url"
                   </li>
                 </ul>
               </li>
-
             </ul>
           </nav>
-          <!-- /.sidebar-menu -->
         </div>
-        <!-- /.sidebar -->
       </aside>
 
-      <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper pb-3">
-        <!-- Main content -->
         <div class="content">
           <div class="container-fluid">
             <?php
 
             $pagina = "home.php";
 
-            // referente a pagina que será aberta
             if (isset($_GET["parametro"])) {
-              //recuperar o parametro
               $p = trim($_GET["parametro"]);
               $p = explode("/", $p);
 
@@ -297,7 +263,6 @@ $base = "$h://$site:$porta/$url"
                 $id     = $p[2];
             }
 
-
             if (file_exists($pagina)) {
               include $pagina;
             } else {
@@ -306,22 +271,16 @@ $base = "$h://$site:$porta/$url"
             ?>
 
           </div>
-          <!-- /.container-fluid -->
         </div>
-        <!-- /.content -->
       </div>
-      <!-- /.content-wrapper -->
 
-      <!-- Main Footer -->
       <footer class="main-footer">
         Copyright &copy; 2021 <strong>Facilita Escola</strong>.
     </div>
     </footer>
+
     </div>
-    <!-- ./wrapper -->
 
-
-    <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -344,8 +303,6 @@ $base = "$h://$site:$porta/$url"
   }
   ?>
 
-
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script src="../plugins/mask/jquery.mask.min.js"></script>
@@ -353,9 +310,7 @@ $base = "$h://$site:$porta/$url"
   <script src="../dist/js/adminlte.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-  <!-- ChartJS -->
   <script src="../plugins/chart.js/Chart.min.js"></script>
-  <!-- Sparkline -->
   <script src="../plugins/sparklines/sparkline.js"></script>
 
 </body>

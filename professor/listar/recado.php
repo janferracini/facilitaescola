@@ -10,17 +10,16 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 3) {
 }
 ?>
 
-<!-- Content Header (Page header) -->
 <div class="content-header">
     <div class="container-fluid">
         <div class="row">
             <div>
                 <h1 class="m-0 text-dark">Recados Cadastrados</h1>
-            </div><!-- /.col -->
-        </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
+            </div>
+        </div>
+    </div>
 </div>
-<!-- /.content-header -->
+
 <div class="container">
 
     <div class="container">
@@ -56,8 +55,6 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 3) {
             WHERE pe.id = $idprofessor
             ORDER BY r.id DESC";
 
-
-
                 $consulta = $pdo->prepare($sql);
                 $consulta->execute();
 
@@ -65,12 +62,9 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 3) {
                     $id     = $dados->rid;
                     $titulo = $dados->titulo;
                     $data_postagem = $dados->data_postagem;
-                    //disciplina
                     $disciplina = $dados->disciplina;
-                    //turma
                     $serie      = $dados->serie;
                     $descricao  = $dados->descricao;
-                    //periodo
                     $periodo    = $dados->periodo;
 
                     echo '<tr>

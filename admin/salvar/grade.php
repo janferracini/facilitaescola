@@ -43,6 +43,7 @@ if ($_POST) {
     $consulta->bindParam(":professor_id", $professor_id);
     $consulta->bindParam("id", $id);
     $consulta->execute();
+
     $dados = $consulta->fetch(PDO::FETCH_OBJ);
     if (!empty($dados->id)) {
         echo "<script>alert('Registro duplicado');history.back();</script>";
@@ -51,9 +52,10 @@ if ($_POST) {
 
         $pdo->beginTransaction();
         if (empty($id)) {
-            $status = 1;       // 1 - ATIVO, 0 - INATIVO - Ativo como padrão
+            $status = 1;
             $sql = "INSERT INTO grade (turma_id, disciplina_id, professor_id, status)
                     VALUES (:turma_id, :disciplina_id, :professor_id, :status)";
+
             $consulta = $pdo->prepare($sql);
             $consulta->bindParam(":turma_id", $turma_id);
             $consulta->bindParam(":disciplina_id", $disciplina_id);

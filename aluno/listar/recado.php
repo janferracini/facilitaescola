@@ -11,17 +11,15 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 2) {
 }
 ?>
 
-<!-- Content Header (Page header) -->
 <div class="content-header">
     <div class="container-fluid">
         <div class="row">
             <div>
                 <h1 class="m-0 text-dark">Recados Recebidos</h1>
-            </div><!-- /.col -->
-        </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
+            </div>
+        </div>
+    </div>
 </div>
-<!-- /.content-header -->
 <div class="container">
     <div class="card-body p-0 mt-3 pb-3">
         <table id="tabRecado" class="table ui celled table table-bordered table-hover">
@@ -33,6 +31,7 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 2) {
                     <th style="width: 20%;"></th>
                 </tr>
             </thead>
+
             <tbody>
                 <?php
                 $idaluno = $_SESSION["facilita_escola"]["id"];
@@ -51,14 +50,11 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 2) {
                 $consulta->execute();
 
                 while ($dados = $consulta->fetch(PDO::FETCH_OBJ)) {
-                    // Separar os dados
                     $id       = $dados->rid;
                     $titulo   = $dados->titulo;
                     $conteudo = $dados->conteudo;
                     $data_postagem = $dados->dp;
 
-
-                    // Mostrar na tela
                     echo "
                         <tr>
                             <td>" . $data_postagem . "</td>
@@ -98,24 +94,22 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 2) {
                         </div>
                     </div>
                 </div>
-
-
             </tbody>
         </table>
     </div>
 
     <script>
         $('.visualizar').on('click', function() {
-            var nome = $(this).data('nome'); // vamos buscar o valor do atributo data-name que temos no botão que foi clicado
+            var nome = $(this).data('nome');
             var conteudo = $(this).data('conteudo');
             var titulo = $(this).data('titulo');
             var postagem = $(this).data('postagem')
-            var id = $(this).data('id'); // vamos buscar o valor do atributo data-id
-            $('span.nome').text(nome); // inserir na o nome na pergunta de confirmação dentro da modal
+            var id = $(this).data('id');
+            $('span.nome').text(nome);
             $('span.titulo').text(titulo);
             $('span.conteudo').text(conteudo);
             $('span.postagem').text(postagem);
-            $('#myModal').modal('show'); // modal aparece
+            $('#myModal').modal('show');
         });
 
         $(document).ready(function() {
@@ -137,5 +131,4 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 2) {
             });
         })
     </script>
-    <!-- /.card-body -->
 </div>

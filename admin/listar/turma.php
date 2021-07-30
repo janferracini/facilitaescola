@@ -10,17 +10,15 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
 }
 ?>
 
-<!-- Content Header (Page header) -->
 <div class="content-header">
     <div class="container-fluid">
         <div class="row">
             <div>
                 <h1 class="m-0 text-dark">Turmas Cadastradas</h1>
-            </div><!-- /.col -->
-        </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
+            </div>
+        </div>
+    </div>
 </div>
-<!-- /.content-header -->
 <div class="container">
 
     <div class="float-right">
@@ -59,16 +57,14 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
                 $consulta->execute();
 
                 while ($dados = $consulta->fetch(PDO::FETCH_OBJ)) {
-                    // Separar os dados
-                    $id = $dados->id;
-                    $serie = $dados->serie;
-                    $descricao = $dados->descricao;
+                    $id     = $dados->id;
+                    $serie  = $dados->serie;
+                    $descricao  = $dados->descricao;
                     $periodo_id = $dados->periodo_id;
-                    $periodo = $dados->periodo;
-                    $ano = $dados->ano;
-                    $idperiodo = $dados->idperiodo;
+                    $periodo    = $dados->periodo;
+                    $ano        = $dados->ano;
+                    $idperiodo  = $dados->idperiodo;
 
-                    // Mostrar na tela
                     echo '<tr>
                         <td>' . $serie . '</td>
                         <td>' . $descricao . '</td>
@@ -90,14 +86,11 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
             </tbody>
         </table>
     </div>
-    <!-- /.card-body -->
 </div>
 
 <script>
     function inativar(id) {
-        //perguntar
         if (confirm("Deseja mesmo inativar?")) {
-            //direcionar para exclusão
             location.href = "excluir/turma/" + id;
         }
     }

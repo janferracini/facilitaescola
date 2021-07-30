@@ -9,7 +9,6 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
     exit;
 }
 
-//verificar se id está vazia
 if (empty($id)) {
     echo "<script>
                 alert('Não foi possível excluir o registro');history.back();
@@ -17,10 +16,13 @@ if (empty($id)) {
     exit;
 }
 
-$sql = "DELETE FROM recado WHERE id = :id limit 1";
+$sql = "DELETE FROM recado 
+        WHERE id = :id 
+        LIMIT 1";
+
 $consulta = $pdo->prepare($sql);
 $consulta->bindParam(":id", $id);
-//verificar se não executou
+
 if (!$consulta->execute()) {
     echo "<script>
             alert('Erro ao excluir');javascript:history.back();

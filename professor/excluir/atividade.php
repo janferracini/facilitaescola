@@ -9,7 +9,6 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 3) {
     exit;
 }
 
-//verificar se id está vazia
 if (empty($id)) {
     echo "<script>
                 alert('Não foi possível concluir a solicitação');history.back();
@@ -20,11 +19,7 @@ if (empty($id)) {
 $sql = "DELETE FROM atividade WHERE id = ? limit 1";
 $consulta = $pdo->prepare($sql);
 $consulta->bindParam(1, $id);
-//verificar se não executou
 if (!$consulta->execute()) {
-
-    //consulta erros - sempre depois do execute
-    //echo $consulta->errorInfo()[2];
 
     echo "<script> alert('Erro ao excluir');javascript:history.back();</script>";
 }

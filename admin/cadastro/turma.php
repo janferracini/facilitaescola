@@ -13,7 +13,6 @@ if (!isset($id)) $id = "";
 $serie = $descricao = $periodo = $ano = $periodo_id = '';
 
 if (!empty($id)) {
-    //select nos dados da turma
     $sql = "SELECT  t.id,
                     t.serie,
                     t.descricao,
@@ -45,17 +44,15 @@ if (!empty($id)) {
 }
 ?>
 
-<!-- Content Header (Page header) -->
 <div class="content-header">
     <div class="container-fluid">
         <div class="row">
             <div>
                 <h1 class="m-0 text-dark">Cadastro de Turma</h1>
-            </div><!-- /.col -->
-        </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
+            </div>
+        </div>
+    </div>
 </div>
-<!-- /.content-header -->
 
 <div class="container">
 
@@ -63,7 +60,7 @@ if (!empty($id)) {
         <a href="listar/turma" class="btn btn-outline-info">Listar Turmas</a>
     </div>
 
-    <div class="clearfix"></div> <!-- Ignora os floats -->
+    <div class="clearfix"></div>
 
     <form action="salvar/turma" name="formCadastro" method="post" data-parsley-validate enctype="multipart/form-data" role="form">
         <div class="row mb-3">
@@ -79,7 +76,6 @@ if (!empty($id)) {
             </div>
 
             <div class="col-sm-6">
-                <!-- select -->
                 <div class="form-group">
                     <label for="periodo">Período</label>
                     <input type="text" autocomplete="off" name="periodo_id" id="periodo_id" class="form-select" list="listaPeriodo" data-parsley-required-message="Selecione o período" value="<?php if (!empty($periodo_id)) echo "$periodo - $periodo_id"; ?>">
@@ -92,7 +88,6 @@ if (!empty($id)) {
                         $consulta->execute();
 
                         while ($d = $consulta->fetch(PDO::FETCH_OBJ)) {
-                            //separar os dados
                             $periodo_id    = $d->id;
                             $periodo       = $d->periodo;
                             echo '<option value=" ' . $periodo . ' - ' . $periodo_id . '">';
@@ -106,8 +101,6 @@ if (!empty($id)) {
                 <label for="ano">Ano:</label>
                 <input type="text" autocomplete="off" name="ano" id="ano" class="form-control" required data-parsley-required-message="Preencha o Ano" value="<?= $ano ?>" placeholder="Digite o Ano">
             </div>
-
-
         </div>
 
         <div class="float-right">
@@ -115,7 +108,6 @@ if (!empty($id)) {
                 <i class="fas fa-check"></i> Gravar Dados
             </button>
         </div>
-        <div class="clearfix"></div> <!-- Ignora os floats -->
+        <div class="clearfix"></div>
     </form>
-
 </div>

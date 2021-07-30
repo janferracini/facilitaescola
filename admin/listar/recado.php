@@ -9,23 +9,22 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
     exit;
 }
 ?>
-
-<!-- Content Header (Page header) -->
 <div class="content-header">
     <div class="container-fluid">
         <div class="row">
             <div>
                 <h1 class="m-0 text-dark">Recados Enviados</h1>
-            </div><!-- /.col -->
-        </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
+            </div>
+        </div>
+    </div>
 </div>
-<!-- /.content-header -->
+
 <div class="container">
 
     <div class="float-right">
         <a href="cadastro/recado" class="btn btn-outline-laranja">Novo Recado</a>
     </div>
+
     <div class="clearfix"></div>
 
     <div class="card-body p-0 mt-3 pb-3">
@@ -42,7 +41,7 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
                 <?php
                 $sql = "SELECT r.id rid, r.*, date_format(r.data_postagem, '%d/%m/%Y') data_postagem,
                                 g.*, g.id gid, t.*, p.*, d.*, p.id, pe.id , pe.nome
-                                FROM recado r
+                        FROM recado r
                         INNER JOIN grade g ON (g.id = r.grade_id) 
                         INNER JOIN turma t ON (t.id = g.turma_id) 
                         INNER JOIN periodo p ON (p.id = t.periodo_id)
@@ -55,14 +54,11 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
                 $consulta->execute();
 
                 while ($dados = $consulta->fetch(PDO::FETCH_OBJ)) {
-                    //recado
                     $id     = $dados->rid;
                     $titulo = $dados->titulo;
                     $data_postagem = $dados->data_postagem;
-                    //turma
                     $serie      = $dados->serie;
                     $descricao  = $dados->descricao;
-                    //periodo
                     $periodo    = $dados->periodo;
                     $ano           = $dados->ano;
                     $serie         = $dados->serie;
@@ -70,8 +66,6 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
                     $disciplina    = $dados->disciplina;
                     $professor     = $dados->nome;
                     $grade_id = $dados->gid;
-
-
 
                     echo '<tr>
                             <td>' . $data_postagem . '</td>
@@ -96,11 +90,8 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
 
 
 <script>
-    //função para perguntar se deseja excluir. Se sim, direcionar para o endereço de exclusão
     function excluir(id) {
-        //perguntar
         if (confirm("Deseja mesmo excluir?")) {
-            //direcionar para exclusão
             location.href = "excluir/recado/" + id;
         }
     }

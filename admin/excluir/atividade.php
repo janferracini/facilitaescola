@@ -18,11 +18,8 @@ $dados = $consulta->fetch(PDO::FETCH_OBJ);
 
 $arquivo = $dados->arquivo;
 
-//verificar se id está vazia
 if (empty($id)) {
-    echo "<script>
-                alert('Não foi possível concluir a solicitação');history.back();
-            </script>";
+    echo "<script>alert('Não foi possível concluir a solicitação');history.back();</script>";
     exit;
 }
 

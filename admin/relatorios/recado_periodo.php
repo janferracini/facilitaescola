@@ -1,7 +1,5 @@
 <?php
 
-use Mpdf\Tag\H4;
-
 date_default_timezone_set('America/Sao_Paulo');
 
 if ($_POST) {
@@ -95,7 +93,6 @@ if ($_POST) {
         .text-end {
             text-align: right !important;
         }
-
         
         .btn-outline-laranja {
             color: var(--laranja);

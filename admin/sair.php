@@ -1,9 +1,7 @@
 <?php
-    //iniciar a sessão
-    session_start();
 
-    //encerrar a sessão
-    unset ( $_SESSION["facilita_escola"] ); //apaga as variaveis da sessão
+session_start();
 
-    //redirecionar para a página inicial
-    header("Location: ../index.php");
+unset($_SESSION["facilita_escola"]);
+
+header("Location: ../index.php");

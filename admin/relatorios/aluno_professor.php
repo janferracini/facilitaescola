@@ -87,7 +87,6 @@ if ($_POST) {
             margin-top: 1em;
         }
 
-        
         .btn-outline-laranja {
             color: var(--laranja);
             border-color: var(--laranja);

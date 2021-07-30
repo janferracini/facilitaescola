@@ -10,17 +10,15 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
 }
 ?>
 
-<!-- Content Header (Page header) -->
 <div class="content-header">
     <div class="container-fluid">
         <div class="row">
             <div>
                 <h1 class="m-0 text-dark">Turmas Inativas</h1>
-            </div><!-- /.col -->
-        </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
+            </div>
+        </div>
+    </div>
 </div>
-<!-- /.content-header -->
 <div class="container">
 
     <div class="float-right">
@@ -59,7 +57,6 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
                 $consulta->execute();
 
                 while ($dados = $consulta->fetch(PDO::FETCH_OBJ)) {
-                    // Separar os dados
                     $id          = $dados->id;
                     $serie       = $dados->serie;
                     $descricao   = $dados->descricao;
@@ -68,7 +65,6 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
                     $ano         = $dados->ano;
                     $idperiodo   = $dados->idperiodo;
 
-                    // Mostrar na tela
                     echo '<tr>
                         <td>' . $serie . '</td>
                         <td>' . $descricao . '</td>
@@ -87,15 +83,11 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
             </tbody>
         </table>
     </div>
-    <!-- /.card-body -->
 </div>
 
 <script>
-    //função para perguntar se deseja excluir. Se sim, direcionar para o endereço de exclusão
     function ativar(id) {
-        //perguntar
         if (confirm("Deseja mesmo ativar?")) {
-            //direcionar para exclusão
             location.href = "ativar/turma/" + id;
         }
     }

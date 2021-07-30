@@ -9,7 +9,6 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
     exit;
 }
 
-// Verificar se existem dados no POST
 if ($_POST) {
     include "../config/conexao.php";
 
@@ -24,11 +23,11 @@ if ($_POST) {
         exit;
     }
 
-    // verificar se existe disciplina de mesmo nome
     $sql = "SELECT id
             FROM disciplina
             WHERE disciplina = :disciplina AND id <> :id
             LIMIT 1 ";
+
     $consulta = $pdo->prepare($sql);
     $consulta->bindParam(":disciplina", $disciplina);
     $consulta->bindParam(":id", $id);
@@ -43,7 +42,7 @@ if ($_POST) {
     $pdo->beginTransaction();
 
     if (empty($id)) {
-        $status = 1;       // 1 - ATIVO, 0 - INATIVO - Ativo como padrão
+        $status = 1;
         $sql = "INSERT INTO disciplina (disciplina, status)
                 VALUES (:disciplina, :status)";
         $consulta = $pdo->prepare($sql);
@@ -59,10 +58,7 @@ if ($_POST) {
         $consulta->bindParam(":id", $id);
     }
 
-    //executar SQL depois de ver qual ele vai passar
     if ($consulta->execute()) {
-
-        //gravar no DB se tudo estiver OK
         $pdo->commit();
         echo "<script>alert('Registro salvo');location.href='listar/disciplina';</script>;";
         exit;
@@ -70,7 +66,5 @@ if ($_POST) {
     echo $consulta->errorInfo()[2];
     exit;
 }
-// Mensagem de erro
-// Javascript - mensagem alert
-// Retornar history.back()
+
 echo "<p class='alert alert-danger'>Erro ao realizar requisição.</p>";

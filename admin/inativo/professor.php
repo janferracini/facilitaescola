@@ -1,22 +1,25 @@
 <?php
-//verificar se está logado
-// if (!isset($_SESSION['hqs']['id'])) {
-//     exit;
-// }
-// 
+if (!isset($_SESSION["facilita_escola"]["id"])) {
+    echo "<script>alert('Erro na requisição da página');location.href='javascript:history.back()'</script>";
+    exit;
+}
+
+if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
+    echo "<script>alert('Erro na requisição da página');location.href='javascript:history.back()'</script>";
+    exit;
+}
 ?>
 
-<!-- Content Header (Page header) -->
 <div class="content-header">
     <div class="container-fluid">
         <div class="row">
             <div>
                 <h1 class="m-0 text-dark">Professores Inativos</h1>
-            </div><!-- /.col -->
-        </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
+            </div>
+        </div>
+    </div>
 </div>
-<!-- /.content-header -->
+
 <div class="container">
 
     <div class="float-right">
@@ -37,10 +40,9 @@
                 <?php
 
                 $sql = "SELECT  id, nome
-                    FROM pessoa
-                    -- admin = 1 | aluno = 2 | professor = 3 
-                    WHERE tipo_cadastro = 3 AND status = 0
-                    ORDER BY nome";
+                        FROM pessoa
+                        WHERE tipo_cadastro = 3 AND status = 0
+                        ORDER BY nome";
 
                 $consulta = $pdo->prepare($sql);
                 $consulta->execute();
@@ -63,15 +65,11 @@
             </tbody>
         </table>
     </div>
-    <!-- /.card-body -->
 </div>
 
 <script>
-    //função para perguntar se deseja excluir. Se sim, direcionar para o endereço de exclusão
     function ativar(id) {
-        //perguntar
         if (confirm("Deseja mesmo ativar?")) {
-            //direcionar para exclusão
             location.href = "ativar/professor/" + id;
         }
     }

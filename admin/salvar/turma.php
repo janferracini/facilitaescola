@@ -9,7 +9,6 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
     exit;
 }
 
-// Verificar se existem dados no POST
 if ($_POST) {
     include "../config/conexao.php";
     include "functions.php";
@@ -19,7 +18,9 @@ if ($_POST) {
     foreach ($_POST as $key => $value) {
         $$key = trim(strip_tags($value));
     }
+
     $periodo_id = getPeriodo($periodo_id);
+
     if (empty($serie)) {
         echo "<script>alert('Preencha a Série');history.back();</script>";
         exit;
@@ -55,12 +56,9 @@ if ($_POST) {
         echo "<script>alert('Registro duplicado');history.back();</script>";
         exit;
     } else {
-
-        //iniciar uma transação com o DB toda alteração pra baixo, só será feito após o commit
         $pdo->beginTransaction();
 
         if (empty($id)) {
-            $status = 1;       // 1 - ATIVO, 0 - INATIVO - Ativo como padrão
             $sql = "INSERT INTO turma
                     (serie, descricao, ano, periodo_id, status)
                 VALUES 
@@ -87,10 +85,8 @@ if ($_POST) {
             $consulta->bindParam(":id", $id);
         }
 
-        //executar SQL depois de ver qual ele vai passar
         if ($consulta->execute()) {
 
-            //gravar no DB se tudo estiver OK
             $pdo->commit();
             echo "<script>alert('Registro salvo');location.href='listar/turma';</script>;";
             exit;
@@ -99,7 +95,4 @@ if ($_POST) {
         exit;
     }
 }
-// Mensagem de erro
-// Javascript - mensagem alert
-// Retornar history.back()
 echo "<p class='alert alert-danger'>Erro ao realizar requisição.</p>";

@@ -8,7 +8,7 @@ if ($_SESSION["facilita_escola"]["tipo_cadastro"] != 1) {
     echo "<script>alert('Erro na requisição da página, faça login novamente para continuar');location.href='sair.php'</script>";
     exit;
 }
-// Verificar se existem dados no POST
+
 if ($_POST) {
     include "../config/conexao.php";
 
@@ -47,7 +47,7 @@ if ($_POST) {
         $consulta->bindParam(":grade_id", $grade_id);
     } else {
         $sql = "UPDATE recado
-                    SET titulo = :titulo, 
+                SET titulo = :titulo, 
                     conteudo = :conteudo, 
                     grade_id = :grade_id
                 WHERE id = :id
@@ -59,8 +59,7 @@ if ($_POST) {
         $consulta->bindParam(":conteudo", $conteudo);
         $consulta->bindParam(":grade_id", $grade_id);
     }
-    // var_dump($id, $titulo, $conteudo, $grade_id);
-    // Executar e verificar se deu certo
+
     if ($consulta->execute()) {
 
         $pdo->commit();
